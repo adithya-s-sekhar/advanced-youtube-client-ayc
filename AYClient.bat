@@ -1,7 +1,7 @@
 @echo off
 mode con:cols=80 lines=30
-set version=v2.45.6 (08/Jan/2018)
-title Advanced Youtube Client - AYC v2.45.6
+set version=v2.50.0 (25/Mar/2018)
+title Advanced Youtube Client - AYC v2.50.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
@@ -15,11 +15,11 @@ echo.
 echo                  Paypal Donations: EMAIL_REMOVED
 echo --------------------------------------------------------------------------------
 echo.
-echo ------------------------------------------------------
+echo -------------------------------------------------------
+echo.
 echo  Downloaded files are saved in your 'My Videos' folder.
 echo.
-echo  Please donate to support development.
-echo ------------------------------------------------------
+echo -------------------------------------------------------
 echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
