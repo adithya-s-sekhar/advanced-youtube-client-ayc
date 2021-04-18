@@ -9,7 +9,7 @@ set fix=%random%
 title Advanced Youtube Client - AYC
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.0
+echo                           Advanced Youtube Client - AYC v1.1
 echo.
 echo.
 set /p url=Enter Youtube video URL to get started: 
@@ -171,7 +171,7 @@ echo 1) MP3 - 128K
 echo 2) MP3 - 320K
 echo 3) M4A - 128K
 echo.
-set /p qual=Enter Output Format(1-4): 
+set /p qual=Enter Output Format(1-3): 
 if %qual%==1 goto 128k
 if %qual%==2 goto 320k
 if %qual%==3 goto m128k
@@ -205,7 +205,7 @@ del "%loc%\%fix%.mp4"
 del "%loc%\%tmp%.m4a"
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.0
+echo                           Advanced Youtube Client - AYC v1.1
 echo.
 echo Your Download has been Finished. Press enter to open your File Location.
 pause>NUL
