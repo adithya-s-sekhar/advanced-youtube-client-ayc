@@ -1,8 +1,8 @@
 @echo off
 :begin
 mode con:cols=90 lines=32
-set version=v2.92.0 (09/May/2018)
-title Advanced Youtube Client - AYC v2.92.0
+set version=v2.93.0 (14/May/2018)
+title Advanced Youtube Client - AYC v2.93.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 if not exist aria2c.exe goto corrupt
@@ -52,6 +52,8 @@ echo -------------------------------------------------------
 echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
+if "%url%" equ "m" goto more
+if "%url%" equ "M" goto more
 :menu
 color 0F
 set "dlmode="
@@ -408,7 +410,7 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo ------------------------------------------------------------------------------------------
+echo -More-------------------------------------------------------------------------------------
 echo.
 echo ---------------------------------------------------
 echo  0) GO BACK
