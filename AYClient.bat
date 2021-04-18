@@ -1,7 +1,6 @@
 @echo off
-set version=v2.45
-title Advanced Youtube Client - AYC v2.45
-ayc-info.exe welcome.vbs
+set version=v2.45.1
+title Advanced Youtube Client - AYC v2.45.1
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
