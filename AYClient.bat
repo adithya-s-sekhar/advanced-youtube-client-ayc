@@ -1,10 +1,14 @@
+@echo off
+set version=v2.99.7 (17/Oct/2020)
+
+
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
-:: / First Release   : v1.0 2016-08-13                /
-:: / Current Release : v2.99.6 2020-10-15             /
+:: / First Release   : v1.0    (13/Aug/2016)          /
+:: / Current Release : v2.99.7 (17/Oct/2020)          /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -13,13 +17,9 @@
 :: /--------------------------------------------------/
 
 
-@echo off
-
-
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-set version=v2.99.6 (15/Oct/2020)
 if not exist "%aycdata%\cols.txt" goto colsnotexist
 if not exist "%aycdata%\lines.txt" goto linesnotexist
 set /p cols=<"%aycdata%\cols.txt"
@@ -149,10 +149,10 @@ echo  0) GO BACK
 echo.
 echo  1) MP4  -   Video:H264   Audio:AAC  (Default)
 echo.
-echo  2) MKV -   Video:VP9    Audio:OPUS (Subject To Availability)
+echo  2) MKV  -   Video:VP9    Audio:OPUS (Subject To Availability)
 echo.
 echo --------------------------
-choice /c 01234 /n /m "Enter Option Number (0-4): "
+choice /c 012 /n /m "Enter Option Number (0-4): "
 if %errorlevel% == 1 goto menu
 if %errorlevel% == 2 goto mp4
 if %errorlevel% == 3 goto vp9
@@ -211,7 +211,7 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Video-Webm--------------------------------------------------------------------------
+echo -Mode-Video-VP9---------------------------------------------------------------------------
 echo.
 echo  URL: %url%
 echo.
@@ -370,7 +370,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
+youtube-dl.exe --no-warnings --ignore-errors --add-metadata --embed-thumbnail --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto audiodownloadtried
@@ -417,7 +417,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --add-metadata --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto mp3tried
@@ -704,8 +704,8 @@ echo.
 echo -More-Settings-Change No. of Rechecks-----------------------------------------------------
 echo.
 echo -----------------------------------------------------
-echo  On unstable connections with dropouts, playlist/batch download can sometimes miss a
-echo  download and will show you download failed.
+echo  On unstable connections, playlist/batch download can sometimes miss a
+echo  file and will fail the download.
 echo.
 echo  You can restart the download and it will download the remaining files without
 echo  downloading all of them again.
@@ -787,9 +787,9 @@ echo   Advanced Youtube Client - AYC Script
 echo.
 echo   Author           : Adithya S Sekhar
 echo.
-echo   First Release    : v1.0 2016-08-13
+echo   First Release    : v1.0    (13/Aug/2016)
 echo.
-echo   Current Release  : v2.99.6 2020-10-15
+echo   Current Release  : %version%
 echo.
 echo   Released under the MIT License.
 echo.
@@ -971,10 +971,10 @@ echo  0) GO BACK
 echo.
 echo  1) MP4  -   Video:H264   Audio:AAC  (Default)
 echo.
-echo  2) MKV -   Video:VP9    Audio:OPUS (Subject To Availability)
+echo  2) MKV  -   Video:VP9    Audio:OPUS (Subject To Availability)
 echo.
 echo --------------------------
-choice /c 01234 /n /m "Enter Option Number (0-4): "
+choice /c 012 /n /m "Enter Option Number (0-4): "
 if %errorlevel% == 1 goto batch_youtube
 if %errorlevel% == 2 goto batch_ytmp4
 if %errorlevel% == 3 goto batch_ytvp9
@@ -1156,7 +1156,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --ignore-errors --add-metadata --embed-thumbnail --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytaudiodownloadtried
@@ -1180,7 +1180,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --add-metadata --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytmp3tried
@@ -1242,7 +1242,7 @@ echo  Run AYC as administrator if this fails.
 echo  Press enter to check for updates.
 pause>NUL
 echo.
-echo Checking for updates..
+echo  Checking for updates..
 youtube-dl -U
 echo.
 echo  Press Enter to go back.
@@ -1251,7 +1251,7 @@ goto settings
 
 
 :reset
-color 4F
+color 04
 title Reset AYC
 cls
 echo.
@@ -1264,8 +1264,15 @@ echo  You are about to reset AYC to it's default settings.
 echo.
 echo  This should fix any issues caused by incorrect or corrupted settings.
 echo.
-echo  Press ENTER to reset and exit.
-pause>NUL
+echo ------------------------
+echo.
+echo  0. GO BACK
+echo.
+echo  1. Reset and Exit AYC
+echo.
+echo ------------------------
+choice /C 012 /n /m "Choose option (0-1): "
+if %errorlevel% == 1 goto settings
 rd /s /q "%aycdata%"
 title Reset Succesfully
 cls
