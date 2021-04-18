@@ -1,9 +1,36 @@
 @echo off
+:begin
 mode con:cols=90 lines=32
-set version=v2.90.0 (04/May/2018)
-title Advanced Youtube Client - AYC v2.90.0
+set version=v2.91.0 (06/May/2018)
+title Advanced Youtube Client - AYC v2.91.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
+if not exist aria2c.exe goto corrupt
+if not exist avcodec-58.dll goto corrupt
+if not exist avdevice-58.dll goto corrupt
+if not exist avfilter-7.dll goto corrupt
+if not exist avformat-58.dll goto corrupt
+if not exist avutil-56.dll goto corrupt
+if not exist ffmpeg.exe goto corrupt
+if not exist ffprobe.exe goto corrupt
+if not exist postproc-55.dll goto corrupt
+if not exist swresample-3.dll goto corrupt
+if not exist swscale-5.dll goto corrupt
+if not exist youtube-dl.exe goto corrupt
+goto start
+:corrupt
+color 4F
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ------------------------------------------------------------------------------------------
+echo.
+echo  Some files are missing from your AYC installation. Please reinstall the program!
+echo.
+pause>NUL
+exit
 :start
 color 07
 set "url="
@@ -19,10 +46,16 @@ echo -------------------------------------------------------
 echo.
 echo  Downloaded files are saved in your 'My Videos' folder.
 echo.
+echo  Enter M for more options and QuickKeys.
+echo.
 echo -------------------------------------------------------
 echo.
-set /p url=Paste a Youtube Video/Playlist URL to start: 
+set /p url=Paste a Youtube Video/Playlist URL/QuickKey to start: 
 if "%url%" equ "" goto start
+if %url% equ m goto more
+if %url% equ M goto more
+if %url% equ u goto uni
+if %url% equ U goto uni
 :menu
 color 0F
 set "dlmode="
@@ -263,16 +296,16 @@ goto audiodownload
 color 0B
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo --------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
 goto error
 :downloadsuccess
 color 2F
@@ -302,7 +335,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
+youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
 goto error
 :audiosuccess
 color 2F
@@ -332,7 +365,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
 :error
 color 4F
 cls
@@ -370,3 +403,113 @@ pause>NUL
 goto start
 :exit
 exit
+Rem multifucntions
+:more
+set "morechoice="
+color 07
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ------------------------------------------------------------------------------------------
+echo.
+echo ---------------------------------------------------
+echo  0) GO BACK
+echo.
+echo  1) Universal Mode    [BETA]          QuickKey: U
+echo.
+echo  2) Multi Mode        [Coming Soon]
+echo.
+echo  3) Batch Download    [Coming Soon]
+echo ---------------------------------------------------
+echo.
+set /p morechoice=Select Option: 
+if "%morechoice%" equ "" goto more
+if %morechoice% == 0 goto begin
+if %morechoice% == 1 goto uni
+if %morechoice% GTR 1 goto more
+pause>NUL
+:uni
+set "uniurl="
+color 07
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ---------------------------------------BETA FEATURE---------------------------------------
+echo.
+echo --------------------------------------------------------------------------------------
+echo  Universal mode enables you to download from any video/audio from any websites.
+echo.
+echo  This is an untested (yes) feature just added to this release to be further developed.
+echo  It may or may not work!
+echo.
+echo  Enter 0 to go back.
+echo --------------------------------------------------------------------------------------
+echo.
+set /p uniurl=Enter a page url with playing video: 
+if "%uniurl%" equ "" goto uni
+if %uniurl% == 0 goto more
+:uniqualselect
+set "uniqual="
+color 0F
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ---------------------------------------BETA FEATURE---------------------------------------
+echo.
+youtube-dl.exe -F "%uniurl%"
+echo.
+set /p uniqual=Choose Format Code (left side on the above list): 
+if "%uniqual%" equ "" goto uniqualselect
+if %uniqual% == 0 goto uni
+:unidownload
+color 0B
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ---------------------------------------BETA FEATURE---------------------------------------
+echo.
+youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %uniqual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+goto unierror
+:unidownloadsuccess
+color 2F
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo                          Paypal Donations: EMAIL_REMOVED
+echo ---------------------------------------BETA FEATURE---------------------------------------
+echo.
+echo  Download Finished, The files are saved in Your 'My Videos' Folder.
+echo.
+echo  Woah It worked! Thank you for testing out an AYC Beta feature.
+echo  Please share your opinions on our Facebook page.
+echo.
+echo  Press enter to do it again.
+pause>NUL
+goto uni
+:unierror
+color 4F
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ---------------------------------------BETA FEATURE---------------------------------------
+echo.
+echo  Download Failed!!!! :-(
+echo  Don't worry it's completely normal. This is a beta feature which still has it's problems.
+echo.
+echo  You can try it again to see if it's possible on another try.
+echo.
+echo  Press enter to try again
+pause>NUL
+goto uni
