@@ -1,324 +1,212 @@
 @echo off
-start ayc-prompt.exe Welcome.vbs
-ren *.ayc *.vbs
-start ayc-updater.exe
-md "%userprofile%\Documents\Advanced Youtube Client - AYC"
-set loc=%userprofile%\Documents\Advanced Youtube Client - AYC
-set video=%random%
-set audio=%random%
-set tmp=%random%
-set fix=%random%
-title Advanced Youtube Client - AYC
-goto pl
-:playlist
-cls
-echo.
-echo                           Advanced Youtube Client - AYC v1.8
-echo.
-echo.
-set /p url=Enter Youtube Playlist URL to get started : 
-cls
-echo.
-echo                           Select Output Type
-echo.
-echo 1) Video + Audio
-echo 2) Video Only
-echo 3) Audio Only
-echo.
-set /p type=Enter Output Type(1-3): 
-if %type%==1 goto pva
-if %type%==2 goto pv
-if %type%==3 goto pa
-:pva
-cls
-echo.
-echo                           Select Output Quality
-echo.
-echo 1) 720p
-echo 2) 360p
-echo.
-echo Some Qualities are not available in Playlist mode yet!
-echo.
-set /p qual=Enter Output Quality(1-2): 
-if %qual%==1 goto 720ppva
-if %qual%==2 goto 360ppva
-:720ppva
-cls
-yt -f 22 -o "%loc%/%%(title)s.%%(ext)s" "%url%"
-goto finish
-:360ppva
-cls
-yt -f 18 -o "%loc%/%%(title)s.%%(ext)s" "%url%"
-goto finish
-:pv
-cls
-echo.
-echo                           Select Output Quality
-echo.
-echo 1) 720p
-echo 2) 360p
-echo.
-echo Some Qualities are not available in Playlist mode yet!
-echo.
-set /p qual=Enter Output Quality(1-2): 
-if %qual%==1 goto 720ppv
-if %qual%==2 goto 360ppv
-:720ppv
-cls
-yt -f 136 -o "%loc%/%%(title)s.%%(ext)s" "%url%"
-goto finish
-:360ppv
-cls
-yt -f 134 -o "%loc%/%%(title)s.%%(ext)s" "%url%"
-goto finish
-:pa
-cls
-echo.
-echo                           Advanced Youtube Client - AYC v1.8
-echo.
-echo Your Files wil be downloaded in 128K MP3.
-echo.
-echo More Formats are coming soon!
-echo.
-echo Press Enter key to begin the download.
-pause>NUL
-cls
-yt --extract-audio --audio-format mp3 --embed-thumbnail -o "%loc%/%%(title)s.%%(ext)s" "%url%"
-:pl
-cls
-echo.
-echo                           Advanced Youtube Client - AYC v1.8
-echo.
-echo.
-echo Enter 'p' if you want to go to Playlist Mode or anything else for single file
-echo mode.
-echo.
-set /p choice=Select Application Mode: 
-if %choice%==p (goto playlist)
+ayc-info.exe welcome.vbs
+md "%userprofile%\Videos\Advanced Youtube Client - AYC"
+set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
+set url=
+set dlmode=
+set stream=
+set qual=
+set fmt=
 :start
-md "%userprofile%\Documents\Advanced Youtube Client - AYC"
-set loc=%userprofile%\Documents\Advanced Youtube Client - AYC
-set video=%random%
-set audio=%random%
-set tmp=%random%
-set fix=%random%
-title Advanced Youtube Client - AYC
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.8
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+:s1
 echo.
+echo  Downloaded files are saved in your My Videos folder
 echo.
-set /p url=Enter Youtube video URL to get started : 
+set /p url=Paste a Youtube Video/Playlist URL to start: 
+if "%url%" equ "" goto s1
+:menu
 cls
 echo.
-echo                           Select Output Type
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
 echo.
-echo 1) Video + Audio
-echo 2) Video Only
-echo 3) Audio Only
+echo -------------
+echo  Choose mode
+echo -------------
+echo  1) Download Video+Audio
+echo  2) Download Audio Only
 echo.
-set /p type=Enter Output Type(1-3): 
-echo.
-set /p file=Enter a Name for your Output File: 
-if %type%==1 goto va
-if %type%==2 goto v
-if %type%==3 goto a
-:va
-echo.
-echo                           Select Output Quality
-echo.
-echo 1) 1080p
-echo 2) 720p
-echo 3) 480p
-echo 4) 360p
-echo 5) 240p
-echo 6) 144p
-echo.
-set /p qual=Enter Output Quality(1-6): 
-if %qual%==1 goto 1080pva
-if %qual%==2 goto 720pva
-if %qual%==3 goto 480pva
-if %qual%==4 goto 360pva
-if %qual%==5 goto 240pva
-if %qual%==6 goto 144pva
-:1080pva
-cls
-yt -f 137 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 1080pva2) else (goto va)
-:1080pva2
-yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
-ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
-ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:720pva
-cls
-yt -f 22 -o "%loc%\%tmp%.mp4" "%url%"
-if exist "%loc%\%tmp%.mp4" (goto 720pva2) else (goto va)
-:720pva2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:480pva
-cls
-yt -f 135 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 480pva2) else (goto va)
-:480pva2
-yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
-ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
-ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:360pva
-cls
-yt -f 18 -o "%loc%\%tmp%.mp4" "%url%"
-if exist "%loc%\%tmp%.mp4" (goto 360pva2) else (goto va)
-:360pva2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:240pva
-cls
-yt -f 133 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 240pva2) else (goto va)
-:240pva2
-yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
-ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
-ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:144pva
-cls
-yt -f 160 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 144pva2) else (goto va)
-:144pva2
-yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
-ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
-ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:v
-echo.
-echo                           Select Output Quality
-echo.
-echo 1) 1080p
-echo 2) 720p
-echo 3) 480p
-echo 4) 360p
-echo 5) 240p
-echo 6) 144p
-echo.
-set /p qual=Enter Output Quality(1-6): 
-if %qual%==1 goto 1080pv
-if %qual%==2 goto 720pv
-if %qual%==3 goto 480pv
-if %qual%==4 goto 360pv
-if %qual%==5 goto 240pv
-if %qual%==6 goto 144pv
-:1080pv
-cls
-yt -f 137 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 1080pv2) else (goto v)
-:1080pv2
-ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:720pv
-cls
-yt -f 136 -o "%loc%\%tmp%.mp4" "%url%"
-if exist "%loc%\%tmp%.mp4" (goto 720pv2) else (goto v)
-:720pv2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:480pv
-cls
-yt -f 135 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 480pv2) else (goto v)
-:480pv2
-ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:360pv
-cls
-yt -f 134 -o "%loc%\%tmp%.mp4" "%url%"
-if exist "%loc%\%tmp%.mp4" (goto 360pv2) else (goto v)
-:360pv2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:240pv
-cls
-yt -f 133 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 240pv2) else (goto v)
-:240pv2
-ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:144pv
-cls
-yt -f 160 -o "%loc%\%video%.mp4" "%url%"
-if exist "%loc%\%video%.mp4" (goto 144pv2) else (goto v)
-:144pv2
-ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
-if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
-:a
-echo.
-echo                           Select Output Format
-echo.
-echo 1) MP3 - 128K
-echo 2) MP3 - 320K
-echo 3) M4A - 128K
-echo.
-set /p qual=Enter Output Format(1-3): 
-if %qual%==1 goto 128k
-if %qual%==2 goto 320k
-if %qual%==3 goto m128k
-:128k
-cls
-yt -f 140 -o "%loc%\%tmp%.m4a" "%url%"
-if exist "%loc%\%tmp%.m4a" (goto 128k2) else (goto error)
-:128k2
-ffmpeg -i "%loc%\%tmp%.m4a" -ab 128k "%loc%\%file%.mp3"
-if exist "%loc%\%file%.mp3" (goto finish) else (goto error)
-:320k
-cls
-yt -f 140 -o "%loc%\%tmp%.m4a" "%url%"
-if exist "%loc%\%tmp%.m4a" (goto 320k2) else (goto error)
-:320k2
-ffmpeg -i "%loc%\%tmp%.m4a" -ab 320k "%loc%\%file%.mp3"
-if exist "%loc%\%file%.mp3" (goto finish) else (goto error)
-pause
-:m128k
-cls
-yt -f 140 -o "%loc%\%tmp%.m4a" "%url%"
-if exist "%loc%\%tmp%.m4a" (goto m128k2) else (goto error)
-:m128k2
-ffmpeg -i "%loc%\%tmp%.m4a" -c copy "%loc%\%file%.m4a"
-if exist "%loc%\%file%.m4a" (goto finish) else (goto error)
-:finish
-del "%loc%\%tmp%.mp4"
-del "%loc%\%video%.mp4"
-del "%loc%\%audio%.m4a"
-del "%loc%\%fix%.mp4"
-del "%loc%\%tmp%.m4a"
-start ayc-prompt.exe finish.vbs
+set /p dlmode=Enter Download mode (1-2): 
+if "%dlmode%" equ "" goto menu
+if %dlmode% == 1 goto video
+if %dlmode% == 2 goto audio
+if %dlmode% GTR 2 goto menu
+if %dlmode% LSS 1 goto menu
+:video
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.8
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
 echo.
-echo Your Download is Finished. Press enter to open your File Location.
+echo ---------------------------------
+echo  Choose which Stream to Download
+echo ---------------------------------
+echo.
+echo  1) MP4 - H264 (Default)
+echo  2) WEBM - VP9 (Smaller but less compatible)
+echo  3) 3GP - MPEG 4 (Compatible for old phones)
+echo.
+set /p stream=Enter Option Number (1-3): 
+if "%stream%" equ "" goto video
+if %stream% == 1 goto mp4
+if %stream% == 2 goto vp9
+if %stream% == 3 goto 3gp
+if %stream% GTR 2 goto video
+if %stream% LSS 1 goto video
+:mp4
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo ----------------
+echo  Choose Quality
+echo ----------------
+echo  1) 360p 
+echo  2) 480p (If not available, returns to 360p)
+echo  3) 720p (If not available, returns to 480p)
+echo  4) 1080p (If not available, returns to 720p)
+echo  5) 2K (If not available, returns to 1080p)
+echo  6) 4K (If not available, returns to 2K)
+echo.
+set /p qual=Enter Choice (1-6): 
+if "%qual%" equ "" goto mp4
+if %qual% == 1 set qual="bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %qual% == 2 set qual="bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %qual% == 3 set qual="bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %qual% == 4 set qual="bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %qual% == 5 set qual="bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %qual% == 6 set qual="bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+goto download
+:vp9
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo ----------------
+echo  Choose Quality
+echo ----------------
+echo  1) 360p 
+echo  2) 480p (If not available, returns to 360p)
+echo  3) 720p (If not available, returns to 480p)
+echo  4) 1080p (If not available, returns to 720p)
+echo  5) 2K (If not available, returns to 1080p)
+echo  6) 4K (If not available, returns to 2K)
+echo.
+set /p qual=Enter Choice (1-6): 
+if "%qual%" equ "" goto vp9
+if %qual% == 1 set qual="bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+if %qual% == 2 set qual="bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+if %qual% == 3 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+if %qual% == 4 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+if %qual% == 5 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+if %qual% == 6 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+goto download
+:3gp
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo ----------------
+echo  Choose Quality
+echo ----------------
+echo  1) 240p (Recommended)
+echo  2) 144p
+echo.
+set /p qual=Enter Choice (1-2): 
+if "%qual%" equ "" goto 3gp
+if %qual% == 1 set qual=36
+if %qual% == 2 set qual=17
+goto download
+:audio
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo --------------
+echo  Choose Format
+echo --------------
+echo.
+echo  1) MP3 (External)
+echo  2) M4A
+set /p fmt=Enter Choice (1-2): 
+if "%fmt%" equ "" goto audio
+if %fmt% == 1 goto mp3
+if %fmt% == 2 goto audiodownload
+goto audiodownload
+:download
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo -------------------
+echo  Starting Download
+echo -------------------
+youtube-dl --restrict-filenames --ignore-errors -f %qual% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%"
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo  Your download is Finished, The files are saved in Your Videos Folder
 pause>NUL
-start explorer.exe "%loc%"
-exit
-:error
-del "%loc%\%tmp%.mp4"
-del "%loc%\%video%.mp4"
-del "%loc%\%audio%.m4a"
-del "%loc%\%fix%.mp4"
-del "%loc%\%tmp%.m4a"
+goto exit
+:audiodownload
 cls
 echo.
-echo Some error occured, please try again! :-(
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
 echo.
-echo Please start over start over.
+echo -------------------
+echo  Starting Download
+echo -------------------
+youtube-dl --restrict-filenames --ignore-errors -f bestaudio[ext=m4a] -o "%loc%\%%(title)s.%%(ext)s" "%url%"
+cls
 echo.
-start ayc-prompt.exe error.vbs
-goto pl
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo  Your download is Finished, The files are saved in Your Videos Folder
+pause>NUL
+goto exit
+:mp3
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo -------------------
+echo  Starting Download
+echo -------------------
+echo.
+youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --restrict-filenames --ignore-errors -o "%loc%\%%(title)s.%%(ext)s" "%url%"
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC v2.0
+echo --------------------------------------------------------------------------------
+echo.
+echo  Your download is Finished, The files are saved in Your Videos Folder
+pause>NUL
+goto exit
+:exit
