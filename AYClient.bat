@@ -1,5 +1,5 @@
 @echo off
-set version=v3.0 (18/Oct/2020)
+set version=v3.1 (22/Nov/2020)
 
 
 :: /--------------------------------------------------/
@@ -8,7 +8,7 @@ set version=v3.0 (18/Oct/2020)
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 (13/Aug/2016)          /
-:: / Current Release : v3.0 (18/Oct/2020)          /
+:: / Current Release : v3.1 (22/Nov/2020)          /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -106,14 +106,14 @@ echo --------------
 echo   (8) - M4A 128Kb/s
 echo   (9) - MP3 128Kb/s
 echo -------------------
-choice /c 123456789 /n /m "Enter Choice (0-9): "
+choice /c 123456789 /n /m "Enter Choice (1-9): "
 if %errorlevel% == 1 set conf="-f bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
 if %errorlevel% == 2 set conf="-f bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[height<=4320]+bestaudio[ext=m4a]"
 if %errorlevel% == 8 set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
 if %errorlevel% == 9 set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k
 if %errorlevel% == 255 goto menu
@@ -141,7 +141,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --ignore-errors %conf% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+youtube-dl.exe --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadtried
@@ -502,9 +502,9 @@ if %errorlevel% == 2 set conf="-f bestvideo[ext=mp4][height<=360]+bestaudio[ext=
 if %errorlevel% == 3 set conf="-f bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
 if %errorlevel% == 5 set conf="-f bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set conf="-f bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf="-f bestvideo[height<=4320]+bestaudio[ext=m4a]"
 if %errorlevel% == 9 set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
 if %errorlevel% == 10 set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k
 if %errorlevel% == 255 goto batch_ytmp4
@@ -529,7 +529,7 @@ echo ------------------------------------------------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --ignore-errors %conf% -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
@@ -665,6 +665,8 @@ echo.
 set /p settings_try=No. of Rechecks (Enter to go back):
 if %settings_try%p equ p goto settings
 echo "%settings_try%">"%aycdata%\try.txt"
+set /p defined_try=<"%aycdata%\try.txt"
+set defined_try=%defined_try:"=%
 goto settings
 
 
