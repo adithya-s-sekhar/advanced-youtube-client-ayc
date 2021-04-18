@@ -1,10 +1,11 @@
 @echo off
-set version=v2.44
-title Advanced Youtube Client - AYC v2.44
+set version=v2.45
+title Advanced Youtube Client - AYC v2.45
 ayc-info.exe welcome.vbs
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
+color 07
 set "url="
 cls
 echo.
@@ -19,6 +20,7 @@ echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
 :menu
+color 07
 set "dlmode="
 cls
 echo.
@@ -44,6 +46,7 @@ if %dlmode% == 2 goto audio
 if %dlmode% GTR 2 goto menu
 if %dlmode% == 0 goto start
 :video
+color 07
 set "stream="
 cls
 echo.
@@ -75,6 +78,7 @@ if %stream% == 4 goto 3gp
 if %stream% GTR 4 goto video
 if %stream% == 0 goto menu
 :mp4
+color 07
 set "qual="
 cls
 echo.
@@ -113,6 +117,7 @@ if %qual% GTR 8 goto mp4
 if %qual% == 0 goto video
 goto download
 :vp9
+color 07
 set "qual="
 cls
 echo.
@@ -151,6 +156,7 @@ if %qual% GTR 8 goto vp9
 if %qual% == 0 goto video
 goto download
 :mkv
+color 07
 set "qual="
 cls
 echo.
@@ -189,6 +195,7 @@ if %qual% GTR 8 goto mkv
 if %qual% == 0 goto video
 goto download
 :3gp
+color 07
 set "gpq="
 cls
 echo.
@@ -215,6 +222,7 @@ if %gpq% GTR 2 goto 3gp
 if %gpq% == 0 goto video
 goto download
 :audio
+color 07
 set "fmt="
 cls
 echo.
@@ -241,6 +249,7 @@ if %fmt% GTR 2 goto audio
 if %fmt% == 0 goto menu
 goto audiodownload
 :download
+color 17
 cls
 echo.
 echo --------------------------------------------------------------------------------
@@ -251,7 +260,28 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --embed-subs --ignore-errors -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%"
+youtube-dl --no-warnings --embed-subs --ignore-errors -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 5M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+:error
+color 47
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC %version%
+echo --------------------------------------------------------------------------------
+echo.
+echo  Download Failed!!!! :-(
+echo.
+echo  Press enter to goto the main screen to try again. 
+echo.
+echo  This normally happens if WEBM/MKV format doesn't exist.
+echo  If you are facing this issue with all formats, please contact us on our 
+echo  Facebook page.
+pause>NUL
+goto start
+:exit
+exit
+:downloadsuccess
+color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
@@ -264,6 +294,7 @@ echo  You can press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :audiodownload
+color 17
 cls
 echo.
 echo --------------------------------------------------------------------------------
@@ -274,7 +305,28 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --ignore-errors -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%"
+youtube-dl --no-warnings --ignore-errors -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 5M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
+:error
+color 47
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC %version%
+echo --------------------------------------------------------------------------------
+echo.
+echo  Download Failed!!!! :-(
+echo.
+echo  Press enter to goto the main screen to try again. 
+echo.
+echo  This normally happens if WEBM/MKV format doesn't exist.
+echo  If you are facing this issue with all formats, please contact us on our 
+echo  Facebook page.
+pause>NUL
+goto start
+:exit
+exit
+:audiosuccess
+color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
@@ -287,6 +339,7 @@ echo  You can press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :mp3
+color 17
 cls
 echo.
 echo --------------------------------------------------------------------------------
@@ -297,7 +350,28 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --extract-audio --audio-format mp3 --audio-quality 192k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%"
+youtube-dl --no-warnings --extract-audio --audio-format mp3 --audio-quality 192k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 5M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+:error
+color 47
+cls
+echo.
+echo --------------------------------------------------------------------------------
+echo                          Advanced Youtube Client - AYC %version%
+echo --------------------------------------------------------------------------------
+echo.
+echo  Download Failed!!!! :-(
+echo.
+echo  Press enter to goto the main screen to try again. 
+echo.
+echo  This normally happens if WEBM/MKV format doesn't exist.
+echo  If you are facing this issue with all formats, please contact us on our 
+echo  Facebook page.
+pause>NUL
+goto start
+:exit
+exit
+:songsuccess
+color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
