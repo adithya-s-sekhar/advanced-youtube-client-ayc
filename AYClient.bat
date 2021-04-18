@@ -1,4 +1,89 @@
 @echo off
+start ayc-prompt.exe Welcome.vbs
+ren *.ayc *.vbs
+start ayc-updater.exe
+goto pl
+:playlist
+start ayc-prompt.exe playliststart.vbs
+goto pl
+cls
+echo.
+echo                           Advanced Youtube Client - AYC v1.5
+echo.
+echo.
+set /p url=Enter Youtube Playlist URL to get started : 
+cls
+echo.
+echo                           Select Output Type
+echo.
+echo 1) Video + Audio
+echo 2) Video Only
+echo.
+set /p type=Enter Output Type(1-2): 
+echo.
+set /p file=Enter a Name for your Output File: 
+if %type%==1 goto pva
+if %type%==2 goto pv
+:pva
+cls
+echo.
+echo                           Select Output Quality
+echo.
+echo 1) 720p
+echo 2) 360p
+echo.
+echo Some Qualities are not available in Playlist mode yet!
+echo.
+set /p qual=Enter Output Quality(1-2): 
+if %qual%==1 goto 720ppva
+if %qual%==2 goto 360ppva
+:720ppva
+cls
+yt -f 22 -o "%loc%/%(title)s.%(ext)s" "%url%"
+goto finish
+:360ppva
+cls
+yt -f 18 -o "%loc%/%(title)s.%(ext)s" "%url%"
+goto finish
+:pv
+cls
+echo.
+echo                           Select Output Quality
+echo.
+echo 1) 720p
+echo 2) 360p
+echo.
+echo Some Qualities are not available in Playlist mode yet!
+echo.
+set /p qual=Enter Output Quality(1-2): 
+if %qual%==1 goto 720ppv
+if %qual%==2 goto 360ppv
+:720ppv
+cls
+yt -f 136 -o "%loc%/%(title)s.%(ext)s" "%url%"
+goto finish
+:360ppv
+cls
+yt -f 134 -o "%loc%/%(title)s.%(ext)s" "%url%"
+goto finish
+:pl
+md "%userprofile%\Documents\Advanced Youtube Client - AYC"
+set loc=%userprofile%\Documents\Advanced Youtube Client - AYC
+set video=%random%
+set audio=%random%
+set tmp=%random%
+set fix=%random%
+title Advanced Youtube Client - AYC
+cls
+echo.
+echo                           Advanced Youtube Client - AYC v1.5
+echo.
+echo.
+echo Enter 'p' if you want to go to Playlist Mode or anything else for single file
+echo mode.
+echo.
+set /p choice=Select Application Mode: 
+if %choice%==p (goto playlist)
 :start
 md "%userprofile%\Documents\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Documents\Advanced Youtube Client - AYC
@@ -9,10 +94,10 @@ set fix=%random%
 title Advanced Youtube Client - AYC
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.1
+echo                           Advanced Youtube Client - AYC v1.5
 echo.
 echo.
-set /p url=Enter Youtube video URL to get started: 
+set /p url=Enter Youtube video URL to get started : 
 cls
 echo.
 echo                           Select Output Type
@@ -127,7 +212,7 @@ repack -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.0" -new "%
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :720pv
 cls
-yt -f 22 -o "%loc%\%tmp%.mp4" "%url%"
+yt -f 136 -o "%loc%\%tmp%.mp4" "%url%"
 if exist "%loc%\%tmp%.mp4" (goto 720pv2) else (goto v)
 :720pv2
 repack -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.0" -new "%loc%\%file%.mp4"
@@ -142,7 +227,7 @@ repack -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.0" -new "%
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :360pv
 cls
-yt -f 18 -o "%loc%\%tmp%.mp4" "%url%"
+yt -f 134 -o "%loc%\%tmp%.mp4" "%url%"
 if exist "%loc%\%tmp%.mp4" (goto 360pv2) else (goto v)
 :360pv2
 repack -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.0" -new "%loc%\%file%.mp4"
@@ -203,11 +288,12 @@ del "%loc%\%video%.mp4"
 del "%loc%\%audio%.m4a"
 del "%loc%\%fix%.mp4"
 del "%loc%\%tmp%.m4a"
+start ayc-prompt.exe finish.vbs
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.1
+echo                           Advanced Youtube Client - AYC v1.5
 echo.
-echo Your Download has been Finished. Press enter to open your File Location.
+echo Your Download is Finished. Press enter to open your File Location.
 pause>NUL
 start explorer.exe "%loc%"
 exit
@@ -221,7 +307,7 @@ cls
 echo.
 echo Some error occured, please try again! :-(
 echo.
-echo Press Enter to start over.
+echo Please start over start over.
 echo.
-pause>NUL
-goto start
+start ayc-prompt.exe error.vbs
+goto pl
