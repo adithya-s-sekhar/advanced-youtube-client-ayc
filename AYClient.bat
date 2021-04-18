@@ -1,6 +1,6 @@
 @echo off
-set version=v2.42
-title Advanced Youtube Client - AYC v2.42
+set version=v2.43
+title Advanced Youtube Client - AYC v2.43
 ayc-info.exe welcome.vbs
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
@@ -18,7 +18,6 @@ echo ------------------------------------------------------
 echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
-if %url% == s goto settings
 :menu
 set "dlmode="
 cls
