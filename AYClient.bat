@@ -1,8 +1,8 @@
 @echo off
 :begin
 mode con:cols=90 lines=32
-set version=v2.91.0 (06/May/2018)
-title Advanced Youtube Client - AYC v2.91.0
+set version=v2.92.0 (09/May/2018)
+title Advanced Youtube Client - AYC v2.92.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 if not exist aria2c.exe goto corrupt
@@ -46,16 +46,12 @@ echo -------------------------------------------------------
 echo.
 echo  Downloaded files are saved in your 'My Videos' folder.
 echo.
-echo  Enter M for more options and QuickKeys.
+echo  Enter M for more options.
 echo.
 echo -------------------------------------------------------
 echo.
-set /p url=Paste a Youtube Video/Playlist URL/QuickKey to start: 
+set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
-if %url% equ m goto more
-if %url% equ M goto more
-if %url% equ u goto uni
-if %url% equ U goto uni
 :menu
 color 0F
 set "dlmode="
@@ -417,7 +413,7 @@ echo.
 echo ---------------------------------------------------
 echo  0) GO BACK
 echo.
-echo  1) Universal Mode    [BETA]          QuickKey: U
+echo  1) Universal Mode    [BETA]
 echo.
 echo  2) Multi Mode        [Coming Soon]
 echo.
