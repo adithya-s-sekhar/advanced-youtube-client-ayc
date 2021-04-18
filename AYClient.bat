@@ -5,12 +5,12 @@
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
 :: / Advanced Youtube Client - AYC Script             /
-:: / Designed and developed by Adithya S Sekhar       /
-:: / First Release: v1.0 2016-08-13                   /
-:: / Current Release: v2.99.0 2018-08-24              /
+:: / Author          : Adithya S Sekhar               /
+:: / First Release   : v1.0 2016-08-13                /
+:: / Current Release : v2.99.1 2018-09-02             /
 :: / Released under the MIT License.                  /
-:: / Don't reproduce (the code!) without proper credi /
-:: / -ts.                                             /
+:: / Please don't modify or redistribute without      /
+:: / proper credits.                                  /
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
@@ -18,7 +18,7 @@
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-set version=v2.99.0 (24/Aug/2018)
+set version=v2.99.1 (02/Sep/2018)
 title Race to the moon.
 if not exist "%aycdata%\cols.txt" goto colsnotexist
 if not exist "%aycdata%\lines.txt" goto linesnotexist
@@ -92,14 +92,14 @@ goto menu
 :start
 color 07
 set "url="
-title Let's do this!
+title It's a different type of downloader.
 if not exist unins*.exe title AYC Portable Mode (Default settings applied if a different PC)
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo.                       SAVE KERALA - http://bit.ly/ayckeralaflood
+echo     Save Kerala - http://bit.ly/ayckeralaflood   Save Nagaland - http://bit.ly/aycnlan
 echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------------------------------------------
@@ -363,7 +363,7 @@ set "try="
 set try=%try_count%
 :downloadtried
 color 0B
-title Screen will turn green when download finishes. 
+title Downloading
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -404,7 +404,7 @@ set "try="
 set try=%try_count%
 :audiodownloadtried
 color 0B
-title Green Screen will show when download's finished
+title Downloading
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -445,7 +445,7 @@ set "try="
 set try=%try_count%
 :mp3tried
 color 0B
-title Grabbing those MP3's (Hail Napster)
+title Downloading
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -459,7 +459,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto mp3tried
@@ -512,7 +512,7 @@ exit
 Rem The More Page
 :more
 color 07
-title You asked for more?
+title More Options
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -595,7 +595,7 @@ echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %uniqual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto unierror
 goto unidownloadtried
@@ -676,19 +676,22 @@ echo.
 echo  4) Automatic Updates (COMING SOON)
 echo.
 echo  5) Reset AYC
+echo.
+echo  6) About
 echo -----------------------------------
 echo.
-choice /c 012345 /n /m "Select Option: "
+choice /c 0123456 /n /m "Select Option: "
 if %errorlevel% == 1 goto more
 if %errorlevel% == 2 goto settings_change_dir
 if %errorlevel% == 3 goto settings_change_defined_try
 if %errorlevel% == 4 goto settings_change_ayc_size
 if %errorlevel% == 5 goto settings
 if %errorlevel% == 6 goto reset
+if %errorlevel% == 7 goto about
 if %errorlevel% == 255 goto settings
 :settings_change_dir
 color 07
-title Pandora's Box
+title Change Download Location
 cls
 set "settings_dir="
 echo.
@@ -716,7 +719,7 @@ echo "%settings_dir%">"%aycdata%\dir.txt"
 goto settings
 :settings_change_defined_try
 color 07
-title Guess we're all paranoid
+title Change recheck attempts
 cls
 set "settings_try="
 echo.
@@ -746,7 +749,7 @@ echo "%settings_try%">"%aycdata%\try.txt"
 goto settings
 :settings_change_ayc_size
 color 07
-title THICC
+title Change AYC window size
 cls
 set "settings_cols="
 set "settings_lines="
@@ -804,7 +807,8 @@ echo.
 echo -----------------------------------------------------------------
 echo.
 echo  Batch Mode allows you to create jobs, add videos to that job 
-echo  and then download it.
+echo  and then download it. Job URLs are saved and can be resumed 
+echo  by re-entering the same job.
 echo.
 echo -----------------------------------------------------------------
 echo.
@@ -833,7 +837,7 @@ echo  0) GO BACK
 echo.
 echo  1) Add Video Links
 echo.
-echo  2) Open Job File (Delete, Add Links through Notepad)
+echo  2) Open Job File (Delete, View, Add Links through Notepad)
 echo.
 echo  3) Start Batch Job
 echo.
@@ -915,7 +919,7 @@ if %errorlevel% == 3 goto batch_ytaudio
 if %errorlevel% == 255 goto batch_download
 :batch_ytvideo
 color 07
-title Playing on the edge. Typical.
+title There's this girl...
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -946,7 +950,7 @@ if %errorlevel% == 5 goto batch_yt3gp
 if %errorlevel% == 255 goto batch_ytvideo
 :batch_ytmp4
 color 07
-title Playing on the edge. Typical.
+title with wings and stuff..
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -985,7 +989,7 @@ if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
 :batch_ytvp9
 color 07
-title Choose VP9 Quality
+title with tails and stuff, yes two of them..
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1024,7 +1028,7 @@ if %errorlevel% == 255 goto batch_ytvp9
 goto batch_ytdownload
 :batch_ytmkv
 color 07
-title Choose MKV Quality
+title with a beard...
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1063,7 +1067,7 @@ if %errorlevel% == 255 goto batch_ytmkv
 goto download
 :batch_yt3gp
 color 07
-title Choose 3GP Quality
+title and now she don't want you
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1089,7 +1093,7 @@ if %errorlevel% == 255 goto batch_ytvideo
 goto batch_ytdownload
 :batch_ytaudio
 color 07
-title Choose Audio Format
+title **clap clap**
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1117,7 +1121,7 @@ set "try="
 set try=%try_count%
 :batch_ytdownloadtried
 color 0B
-title Screen will turn green when download finishes. 
+title she said she's a pokemon 
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1128,7 +1132,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %batch_ytqual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %batch_ytqual% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
@@ -1137,7 +1141,7 @@ set "try="
 set try=%try_count%
 :batch_ytaudiodownloadtried
 color 0B
-title Green Screen will show when download's finished
+title she said she's a pokemon
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1148,7 +1152,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "-c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytaudiodownloadtried
@@ -1157,7 +1161,7 @@ set "try="
 set try=%try_count%
 :batch_ytmp3tried
 color 0B
-title Grabbing those MP3's (Hail Napster)
+title she said she's a pokemon
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1168,7 +1172,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "-c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytmp3tried
@@ -1214,7 +1218,7 @@ pause>NUL
 goto batch
 :reset
 color 4F
-title Clean Slate Protocol
+title I've seen things I don't want to remember
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -1229,6 +1233,7 @@ echo.
 echo  Press ENTER to reset and exit.
 pause>NUL
 rd /s /q "%aycdata%"
+title Then the sheep said stop touching me
 cls
 echo.
 echo.
