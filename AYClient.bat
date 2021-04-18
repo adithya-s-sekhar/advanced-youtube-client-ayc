@@ -1,5 +1,5 @@
 @echo off
-set version=v3.3 (24/Jan/2021)
+set version=v3.4 (21/Mar/2021)
 
 
 :: /--------------------------------------------------/
@@ -8,7 +8,7 @@ set version=v3.3 (24/Jan/2021)
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 (13/Aug/2016)          /
-:: / Current Release : v3.3 (24/Jan/2021)          /
+:: / Current Release : v3.4 (21/Mar/2021)          /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -19,7 +19,7 @@ set version=v3.3 (24/Jan/2021)
 
 :begin
 mode con:cols=92 lines=26
-md "%appdata%\Advanced Youtube Client - AYC"
+if not exist "%appdata%\Advanced Youtube Client - AYC" md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
 set youtube_dl="%aycdata%\youtube-dl.exe"
 if not exist "%aycdata%\firstrun.txt" goto firstrun
@@ -67,8 +67,7 @@ if %1% equ "b" goto batch
 if %1% equ "B" goto batch
 if %1% equ "u" goto uni
 if %1% equ "U" goto uni
-echo %1>"%tmp%\tmp.txt"
-set /p url=<"%tmp%\tmp.txt"
+set url=%1%
 set url=%url:"=%
 goto menu
 
@@ -203,10 +202,12 @@ echo  URL: %url%
 echo.
 echo  Possible problems and solutions:
 echo   1. youtube-dl might be out of date. Update it by going 
-echo   into settings, update youtube-dl.
+echo   into Settings, Update youtube-dl.
 echo   2. You may have entered an invalid/private link. These 
 echo   aren't supported yet.
-echo   3. If all else fails, report the failing URLs on the 
+echo   3. If you have an unreliable network, enable rechecks
+echo   in Settings.
+echo   4. If all else fails, report the failing URLs on the 
 echo   Sourceforge page. 
 echo.
 echo  Press enter to close this window.
@@ -262,6 +263,7 @@ echo.
 echo  Universal mode enables you to download from any webpage with playing video. 
 echo  eg: youtube and others
 echo.
+echo ------------------------------------
 set /p uniurl=Enter a page url with playing video: 
 if "%uniurl%" equ "" goto uni
 
@@ -352,10 +354,12 @@ echo  URL: %uniurl%
 echo.
 echo  Possible problems and solutions:
 echo   1. youtube-dl might be out of date. Update it by going 
-echo   into settings, update youtube-dl.
+echo   into Settings, Update youtube-dl.
 echo   2. You may have entered an invalid/private link. These 
 echo   aren't supported yet.
-echo   3. If all else fails, report the failing URLs on the 
+echo   3. If you have an unreliable network, enable rechecks
+echo   in Settings.
+echo   4. If all else fails, report the failing URLs on the 
 echo   Sourceforge page. 
 echo.
 echo  Press enter to try again
@@ -377,8 +381,10 @@ echo                                     %version%
 echo --------------------------------------------------------------------------------------------
 echo.
 echo  Batch Mode allows you to create jobs, add videos to that  job and download it.
+echo.
 echo  Job URLs are saved and can be resumed by re-entering the same job.
 echo.
+echo ------------------------------------------
 set /p job_name=Enter Job Name(eg: Adventure time videos): 
 md "%loc%\%job_name%"
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check
@@ -487,14 +493,64 @@ echo  1) Highest Quality
 echo.
 echo  2) Lowest Quality
 echo.
+echo  3) Pick a custom format code
 echo ---------------------------------
-choice /c 012 /n /m "Choose Quality: "
+choice /c 0123 /n /m "Choose Quality: "
 if %errorlevel% == 1 goto batch_manage
 if %errorlevel% == 2 set conf=-f best
 if %errorlevel% == 3 set conf=-f worst
+if %errorlevel% == 4 goto batch_custom_format
 if %errorlevel% == 255 goto batch_download
 goto batch_ytdownload
 
+:batch_custom_format
+mode con:cols=92 lines=26
+set "batch_custom_format_url="
+color 07
+title Pick custom format code
+cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
+echo.
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
+echo.
+echo  Working on: %job_name%
+echo.
+echo  Enter 0 to Go Back.
+echo.
+echo  Enter a sample URL from your batch job to retrieve all available qualities.
+echo.
+echo -----------
+set /p batch_custom_format_url=Sample URL: 
+if "%batch_custom_format_url%" equ "" goto batch_custom_format
+if "%batch_custom_format_url%" equ "0" goto batch_download
+
+:batch_custom_format_select
+mode con:cols=110 lines=42
+set "batch_custom_qual="
+title Retrieving all available qualities
+color 07
+cls
+echo --------------------------------------------------------------------------------------------------------------
+echo                                         Advanced Youtube Client - AYC 
+echo.
+echo                                              %version%
+echo --------------------------------------------------------------------------------------------------------------
+echo.
+echo  Working on: %job_name%
+echo.
+echo  Sample URL: %batch_custom_format_url%
+echo.
+%youtube_dl% -F "%batch_custom_format_url%"
+echo.
+echo  Enter 0 to Go Back.
+echo -------------------------------------------------
+set /p batch_custom_qual=Choose Format Code (left side on the above list):
+if "%batch_custom_qual%" equ "" goto batch_custom_format_select
+if "%batch_custom_qual%" equ "0" goto batch_custom_format
+set conf=-f %batch_custom_qual%
+goto batch_ytdownload
 
 :batch_ytmp4
 mode con:cols=60 lines=32
@@ -581,11 +637,13 @@ echo  Job: %job_name%
 echo.
 echo  Possible problems and solutions:
 echo   1. youtube-dl might be out of date. Update it by going 
-echo   into settings, update youtube-dl.
+echo   into Settings, Update youtube-dl.
 echo   2. You may have entered an invalid job name.
 echo   3. One of your links might be failing, rest might have
 echo   downloaded successfully.
-echo   4. If all else fails, report the failing URLs on the 
+echo   4. If you have an unreliable network, enable rechecks
+echo   in Settings.
+echo   5. If all else fails, report the failing URLs on the 
 echo   Sourceforge page. 
 echo.
 echo  Press enter to try again
