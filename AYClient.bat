@@ -1,5 +1,5 @@
 @echo off
-set version=v3.1 (22/Nov/2020)
+set version=v3.2 (23/Jan/2021)
 
 
 :: /--------------------------------------------------/
@@ -8,7 +8,7 @@ set version=v3.1 (22/Nov/2020)
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 (13/Aug/2016)          /
-:: / Current Release : v3.1 (22/Nov/2020)          /
+:: / Current Release : v3.2 (23/Jan/2021)          /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -20,6 +20,10 @@ set version=v3.1 (22/Nov/2020)
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
+set youtube_dl="%aycdata%\youtube-dl.exe"
+if not exist unins*.exe goto zip
+:zip_continue
+if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
@@ -29,6 +33,27 @@ set defined_try=%defined_try:"=%
 if %defined_try%p equ =p goto trynotexist
 set try_count=0
 goto check_parameter
+
+
+:zip
+set youtube_dl="youtube-dl.exe"
+goto zip_continue
+
+
+:firstrun
+echo "0">"%aycdata%\firstrun.txt"
+cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
+echo.
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
+echo.
+echo Preparing for first run..
+echo.
+echo Please wait, updating youtube-dl..
+%youtube_dl% -U
+goto begin
 
 
 :dirnotexist
@@ -59,7 +84,6 @@ mode con:cols=92 lines=26
 color 07
 set "url="
 title A different type of downloader
-if not exist unins*.exe title AYC Portable Mode (Default settings applied if a different PC)
 cls
 echo --------------------------------------------------------------------------------------------
 echo                                Advanced Youtube Client - AYC 
@@ -141,7 +165,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+%youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadtried
@@ -183,11 +207,15 @@ echo  Download Failed!!!! :-(
 echo.
 echo  URL: %url%
 echo.
+echo  Possible problems and solutions:
+echo   1. youtube-dl might be out of date. Update it by going 
+echo   into settings, update youtube-dl.
+echo   2. You may have entered an invalid/private link. These 
+echo   aren't supported yet.
+echo   3. If all else fails, report the failing URLs on the 
+echo   Sourceforge page. 
+echo.
 echo  Press enter to close this window.
-echo.
-echo  Choose a different format or quality.
-echo.
-echo  TIP: Enable rechecks in settings if you have a bad network.
 echo.
 pause>NUL
 goto exit
@@ -258,7 +286,7 @@ echo ---------------------------------------------------------------------------
 echo.
 echo  URL: %uniurl%
 echo.
-youtube-dl.exe -F "%uniurl%"
+%youtube_dl% -F "%uniurl%"
 echo.
 echo -------------------------------------------------
 set /p uniqual=Choose Format Code (left side on the above list, use + symbol to merge two):
@@ -286,7 +314,7 @@ echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-youtube-dl.exe --ignore-errors -f %uniqual% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+%youtube_dl% --ignore-errors -f %uniqual% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto unierror
 goto unidownloadtried
@@ -325,9 +353,16 @@ echo                      %version%
 echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
+echo.
 echo  URL: %uniurl%
 echo.
-echo  TIP: Enable rechecks in settings if you have a bad network.
+echo  Possible problems and solutions:
+echo   1. youtube-dl might be out of date. Update it by going 
+echo   into settings, update youtube-dl.
+echo   2. You may have entered an invalid/private link. These 
+echo   aren't supported yet.
+echo   3. If all else fails, report the failing URLs on the 
+echo   Sourceforge page. 
 echo.
 echo  Press enter to try again
 pause>NUL
@@ -428,7 +463,7 @@ echo --------------------------------------------
 
 
 :batch_add_links_added
-set /p batch_link_tmp=Paste Link:
+set /p batch_link_tmp=Paste Link: 
 echo.
 if "%batch_link_tmp%" equ "0" goto batch_manage
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
@@ -529,7 +564,7 @@ echo ------------------------------------------------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+%youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
@@ -548,7 +583,16 @@ echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo.
-echo  TIP: Enable rechecks in settings if you have a bad network.
+echo  Job: %job_name%
+echo.
+echo  Possible problems and solutions:
+echo   1. youtube-dl might be out of date. Update it by going 
+echo   into settings, update youtube-dl.
+echo   2. You may have entered an invalid job name.
+echo   3. One of your links might be failing, rest might have
+echo   downloaded successfully.
+echo   4. If all else fails, report the failing URLs on the 
+echo   Sourceforge page. 
 echo.
 echo  Press enter to try again
 pause>NUL
@@ -682,15 +726,10 @@ echo                      %version%
 echo ------------------------------------------------------------
 echo.
 echo  Checking currently installed version:
-youtube-dl --version
-echo.
-echo  You need administrator permission to update.
-echo  Run AYC as administrator if this fails.
-echo  Press enter to check for updates.
-pause>NUL
+%youtube_dl% --version
 echo.
 echo  Checking for updates..
-youtube-dl -U
+%youtube_dl% -U
 echo.
 echo  Press Enter to go back.
 pause>NUL
