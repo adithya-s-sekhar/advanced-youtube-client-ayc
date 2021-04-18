@@ -1,7 +1,7 @@
 @echo off
 mode con:cols=80 lines=30
-set version=v2.50.0 (25/Mar/2018)
-title Advanced Youtube Client - AYC v2.50.0
+set version=v2.60.0 (27/Mar/2018)
+title Advanced Youtube Client - AYC v2.60.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
@@ -272,7 +272,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 5M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+youtube-dl --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 3M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
 :error
 color 47
 cls
@@ -321,7 +321,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 5M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
+youtube-dl --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 3M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
 :error
 color 47
 cls
@@ -370,7 +370,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 192k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 5M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+youtube-dl --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 192k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 3M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
 :error
 color 47
 cls
