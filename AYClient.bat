@@ -1,13 +1,10 @@
-:: #####################
-:: Don't View in notepad.
-:: #####################
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
 :: /--------------------------------------------------/
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 2016-08-13                /
-:: / Current Release : v2.99.2 2018-09-12             /
+:: / Current Release : v2.99.3 2018-11-11             /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -18,7 +15,7 @@
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-set version=v2.99.2 (12/Sep/2018)
+set version=v2.99.3 (11/Nov/2018)
 title Race to the moon.
 if not exist "%aycdata%\cols.txt" goto colsnotexist
 if not exist "%aycdata%\lines.txt" goto linesnotexist
@@ -530,7 +527,7 @@ echo.
 echo  3) Settings
 echo ---------------------------------------------------
 echo.
-choice /c 0123 /n /m "Enter Choice: "
+choice /c 0123 /n /m "Enter Choice (0-3): "
 if %errorlevel% == 1 goto start
 if %errorlevel% == 2 start AYClient.exe "u" && goto more
 if %errorlevel% == 3 start AYClient.exe "b" && goto more
@@ -676,6 +673,8 @@ echo.
 echo  4) Automatic Updates (COMING SOON)
 echo.
 echo  5) Reset AYC
+echo.
+echo  6) About
 echo -----------------------------------
 echo.
 choice /c 0123456 /n /m "Select Option: "
@@ -685,7 +684,7 @@ if %errorlevel% == 3 goto settings_change_defined_try
 if %errorlevel% == 4 goto settings_change_ayc_size
 if %errorlevel% == 5 goto settings
 if %errorlevel% == 6 goto reset
-if %errorlevel% == 7 goto about
+if %errorlevel% == 7 goto settings_about
 if %errorlevel% == 255 goto settings
 :settings_change_dir
 color 07
@@ -790,6 +789,34 @@ if %settings_lines%p equ p goto settings
 if %settings_cols% == 0 goto settings_change_ayc_size
 echo "%settings_lines%">"%aycdata%\lines.txt"
 mode con:cols=%settings_cols% lines=%settings_lines%
+goto settings
+:settings_about
+color 07
+title Change AYC window size
+cls
+set "settings_cols="
+set "settings_lines="
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo -More-Settings-About----------------------------------------------------------------------
+echo.
+echo   Advanced Youtube Client - AYC Script   
+echo.          
+echo   Author           : Adithya S Sekhar  
+echo.             
+echo   First Release    : v1.0 2016-08-13   
+echo.             
+echo   Current Release  : v2.99.3 2018-11-11   
+echo.          
+echo   Released under the MIT License.                  
+echo   Please don't modify or redistribute without      
+echo   proper credits.                                  
+echo.
+echo.
+echo  Press Enter to go back.
+pause>NUL
 goto settings
 :batch
 set batch_exists_true=0
