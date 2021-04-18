@@ -4,7 +4,7 @@
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 2016-08-13                /
-:: / Current Release : v2.99.3 2018-11-11             /
+:: / Current Release : v2.99.4 2019-01-30             /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -15,8 +15,8 @@
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-set version=v2.99.3 (11/Nov/2018)
-title Race to the moon.
+set version=v2.99.4 (30/Jan/2019)
+title I can put anything here no one's going to read it. oof sex
 if not exist "%aycdata%\cols.txt" goto colsnotexist
 if not exist "%aycdata%\lines.txt" goto linesnotexist
 set /p cols=<"%aycdata%\cols.txt"
@@ -74,6 +74,8 @@ echo ---------------------------------------------------------------------------
 echo.
 echo  Some files are missing from your AYC installation. Please reinstall the program!
 echo.
+echo  If you are trying to run ayc portable, check the corrupt_check part in source!
+echo.
 pause>NUL
 exit
 :check_parameter
@@ -89,7 +91,7 @@ goto menu
 :start
 color 07
 set "url="
-title It's a different type of downloader.
+title A different type of downloader
 if not exist unins*.exe title AYC Portable Mode (Default settings applied if a different PC)
 cls
 echo.
@@ -670,7 +672,7 @@ echo.
 echo  3) Change AYC Window Size
 echo     Currently: %cols%x%lines%
 echo.
-echo  4) Automatic Updates (COMING SOON)
+echo  4) Automatic Updates (ik ik)
 echo.
 echo  5) Reset AYC
 echo.
@@ -732,7 +734,7 @@ echo.
 echo  You can easily restart the download and it will download the remaining files without 
 echo  downloading all of them again.
 echo.
-echo  But this is incovenient at most times.
+echo  But this is incovenient at most times. whoami kidding? it's stupid!
 echo.
 echo  The number you set here is the number of times AYC will recheck the download to see if 
 echo  any files are missing.
@@ -792,7 +794,7 @@ mode con:cols=%settings_cols% lines=%settings_lines%
 goto settings
 :settings_about
 color 07
-title Change AYC window size
+title You're a curious one..
 cls
 set "settings_cols="
 set "settings_lines="
@@ -808,7 +810,7 @@ echo   Author           : Adithya S Sekhar
 echo.             
 echo   First Release    : v1.0 2016-08-13   
 echo.             
-echo   Current Release  : v2.99.3 2018-11-11   
+echo   Current Release  : v2.99.4 2019-01-30   
 echo.          
 echo   Released under the MIT License.                  
 echo   Please don't modify or redistribute without      
@@ -1279,5 +1281,5 @@ echo.
 echo.
 echo  AYC reset succesfully.
 echo.
-timeout /t 2 /nobreak
+timeout /t 5 /nobreak
 exit
