@@ -1,10 +1,21 @@
 @echo off
+goto begin
+:dirnotexist
+md "%userprofile%\Videos\Advanced Youtube Client - AYC"
+echo "%userprofile%\Videos\Advanced Youtube Client - AYC">"%aycdata%\dir.txt"
+set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
+set loc=%loc:"=%
+goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.93.0 (14/May/2018)
-title Advanced Youtube Client - AYC v2.93.0
-md "%userprofile%\Videos\Advanced Youtube Client - AYC"
-set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
+set version=v2.94.0 (29/May/2018)
+title Advanced Youtube Client - AYC v2.94.0
+md "%appdata%\Advanced Youtube Client - AYC"
+set aycdata=%appdata%\Advanced Youtube Client - AYC
+if not exist "%aycdata%\dir.txt" goto dirnotexist
+set /p loc=<"%aycdata%\dir.txt"
+set loc=%loc:"=%
+:corrupt_check
 if not exist aria2c.exe goto corrupt
 if not exist avcodec-58.dll goto corrupt
 if not exist avdevice-58.dll goto corrupt
@@ -43,8 +54,6 @@ echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------------------------------------------
-echo.
-echo  Downloaded files are saved in your 'My Videos' folder.
 echo.
 echo  Enter M for more options.
 echo.
@@ -315,7 +324,8 @@ echo.
 echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
-echo  Download Finished, The files are saved in Your 'My Videos' Folder.
+echo  Download Finished, The files are saved in:
+echo  %loc%
 echo.
 echo  Press ENTER to to download antoher video or close this program.
 pause>NUL
@@ -345,7 +355,8 @@ echo.
 echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
-echo  Download finished, The audio(s) are saved in Your 'My Videos' Folder.
+echo  Download finished, The audio(s) are saved in:
+echo  %loc%
 echo.
 echo  Press ENTER to to download antoher video or close this program.
 pause>NUL
@@ -394,14 +405,15 @@ echo.
 echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
-echo  Download Finished, The song(s) are saved in Your 'My Videos' Folder.
+echo  Download Finished, The song(s) are saved in:
+echo  %loc%
 echo.
 echo  Press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :exit
 exit
-Rem multifucntions
+Rem The More Page
 :more
 set "morechoice="
 color 07
@@ -420,13 +432,18 @@ echo.
 echo  2) Multi Mode        [Coming Soon]
 echo.
 echo  3) Batch Download    [Coming Soon]
+echo.
+echo  4) Settings
 echo ---------------------------------------------------
 echo.
 set /p morechoice=Select Option: 
 if "%morechoice%" equ "" goto more
 if %morechoice% == 0 goto begin
 if %morechoice% == 1 goto uni
-if %morechoice% GTR 1 goto more
+if %morechoice% == 2 goto more
+if %morechoice% == 3 goto more
+if %morechoice% == 4 goto settings
+if %morechoice% GTR 4 goto more
 pause>NUL
 :uni
 set "uniurl="
@@ -436,10 +453,10 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo ---------------------------------------BETA FEATURE---------------------------------------
+echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
 echo --------------------------------------------------------------------------------------
-echo  Universal mode enables you to download from any video/audio from any websites.
+echo  Universal mode enables you to download any video/audio from any websites.
 echo.
 echo  This is an untested (yes) feature just added to this release to be further developed.
 echo  It may or may not work!
@@ -458,7 +475,7 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo ---------------------------------------BETA FEATURE---------------------------------------
+echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
 youtube-dl.exe -F "%uniurl%"
 echo.
@@ -472,7 +489,7 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo ---------------------------------------BETA FEATURE---------------------------------------
+echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
 youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %uniqual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 goto unierror
@@ -484,9 +501,10 @@ echo ---------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
 echo                          Paypal Donations: EMAIL_REMOVED
-echo ---------------------------------------BETA FEATURE---------------------------------------
+echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
-echo  Download Finished, The files are saved in Your 'My Videos' Folder.
+echo  Download Finished, The files are saved in:
+echo  %loc%
 echo.
 echo  Woah It worked! Thank you for testing out an AYC Beta feature.
 echo  Please share your opinions on our Facebook page.
@@ -501,7 +519,7 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo ---------------------------------------BETA FEATURE---------------------------------------
+echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo  Don't worry it's completely normal. This is a beta feature which still has it's problems.
@@ -511,3 +529,55 @@ echo.
 echo  Press enter to try again
 pause>NUL
 goto uni
+:settings
+set "settings_choice="
+set /p loc=<"%aycdata%\dir.txt"
+set loc=%loc:"=%
+color 07
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo -More-Settings----------------------------------------------------------------------------
+echo.
+echo -----------------------------------
+echo  0) GO BACK
+echo.
+echo  1) Change Download Folder
+echo.
+echo  2) Automatic Updates (COMING SOON)
+echo -----------------------------------
+echo.
+set /p settings_choice=Select Option (0-1): 
+if "%settings_choice%" equ "" goto settings
+if %settings_choice% == 0 goto more
+if %settings_choice% == 1 goto settings_change_dir
+if %settings_choice% GTR 1 goto settings
+:settings_change_dir
+color 07
+cls
+set "settings_dir="
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo -More-Settings-Change Download Folder-----------------------------------------------------
+echo.
+echo  Current download folder is: 
+echo  %loc%
+echo.
+echo ----------------------------------------------
+echo  Drag and Drop the folder you want AYC to save 
+echo  it's downloads into the below area.
+echo.
+echo  Then Press Enter to save.
+echo.  
+echo  Enter 0 to Go Back.
+echo ----------------------------------------------
+echo.
+set /p settings_dir=Drag and Drop here: 
+if %settings_dir%1 equ 1 goto settings_change_dir
+if %settings_dir% == 0 goto settings
+echo "%settings_dir%">"%aycdata%\dir.txt"
+goto settings
