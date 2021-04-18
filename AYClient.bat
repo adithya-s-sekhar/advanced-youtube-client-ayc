@@ -1,5 +1,5 @@
 @echo off
-set version=v3.2 (23/Jan/2021)
+set version=v3.3 (24/Jan/2021)
 
 
 :: /--------------------------------------------------/
@@ -8,7 +8,7 @@ set version=v3.2 (23/Jan/2021)
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 (13/Aug/2016)          /
-:: / Current Release : v3.2 (23/Jan/2021)          /
+:: / Current Release : v3.3 (24/Jan/2021)          /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -18,11 +18,10 @@ set version=v3.2 (23/Jan/2021)
 
 
 :begin
+mode con:cols=92 lines=26
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
 set youtube_dl="%aycdata%\youtube-dl.exe"
-if not exist unins*.exe goto zip
-:zip_continue
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
@@ -33,11 +32,6 @@ set defined_try=%defined_try:"=%
 if %defined_try%p equ =p goto trynotexist
 set try_count=0
 goto check_parameter
-
-
-:zip
-set youtube_dl="youtube-dl.exe"
-goto zip_continue
 
 
 :firstrun
@@ -758,9 +752,11 @@ echo.
 echo  1. Reset and Exit AYC
 echo.
 echo ------------------------
-choice /C 012 /n /m "Choose option (0-1): "
+choice /C 01 /n /m "Choose option (0-1): "
 if %errorlevel% == 1 goto settings
-rd /s /q "%aycdata%"
+del /q "%aycdata%\firstrun.txt"
+del /q "%aycdata%\dir.txt"
+del /q "%aycdata%\try.txt"
 title Reset Succesfully
 cls
 echo.
