@@ -1,7 +1,7 @@
 @echo off
 mode con:cols=80 lines=30
-set version=v2.45.3 (10/09/2017)
-title Advanced Youtube Client - AYC v2.45.3
+set version=v2.45.4 (04/Nov/2017)
+title Advanced Youtube Client - AYC v2.45.4
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
