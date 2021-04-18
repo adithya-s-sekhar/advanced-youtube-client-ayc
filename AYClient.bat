@@ -8,7 +8,7 @@ set loc=%loc:"=%
 goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.96.2 (24/Jun/2018)
+set version=v2.96.3 (03/Jul/2018)
 title Race to the moon.
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
@@ -631,8 +631,8 @@ echo  Enter 0 to Go Back.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
-if %settings_dir%1 equ 1 goto settings_change_dir
-if "%settings_dir%" equ "0" goto settings
+if %settings_dir%p equ p goto settings_change_dir
+if %settings_dir% == 0 goto settings
 echo "%settings_dir%">"%aycdata%\dir.txt"
 goto settings
 :batch
