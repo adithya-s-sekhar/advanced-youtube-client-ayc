@@ -1,5 +1,5 @@
 @echo off
-set version=v2.99.7 (17/Oct/2020)
+set version=v3.0 (18/Oct/2020)
 
 
 :: /--------------------------------------------------/
@@ -7,8 +7,8 @@ set version=v2.99.7 (17/Oct/2020)
 :: /--------------------------------------------------/
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
-:: / First Release   : v1.0    (13/Aug/2016)          /
-:: / Current Release : v2.99.7 (17/Oct/2020)          /
+:: / First Release   : v1.0 (13/Aug/2016)          /
+:: / Current Release : v3.0 (18/Oct/2020)          /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -20,15 +20,6 @@ set version=v2.99.7 (17/Oct/2020)
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-if not exist "%aycdata%\cols.txt" goto colsnotexist
-if not exist "%aycdata%\lines.txt" goto linesnotexist
-set /p cols=<"%aycdata%\cols.txt"
-set cols=%cols:"=%
-if %cols%1 equ =1 goto colsnotexist
-set /p lines=<"%aycdata%\lines.txt"
-set lines=%lines:"=%
-if %lines%1 equ =1 goto linesnotexist
-mode con:cols=%cols% lines=%lines%
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
@@ -38,16 +29,6 @@ set defined_try=%defined_try:"=%
 if %defined_try%p equ =p goto trynotexist
 set try_count=0
 goto check_parameter
-
-
-:colsnotexist
-echo "90">"%aycdata%\cols.txt"
-goto begin
-
-
-:linesnotexist
-echo "32">"%aycdata%\lines.txt"
-goto begin
 
 
 :dirnotexist
@@ -74,206 +55,69 @@ goto menu
 
 
 :start
+mode con:cols=92 lines=26
 color 07
 set "url="
 title A different type of downloader
 if not exist unins*.exe title AYC Portable Mode (Default settings applied if a different PC)
 cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
+echo Enter M for more options.
 echo.
-echo -------------------------------------------------------
-echo.
-echo  Enter M for more options.
-echo.
-echo -------------------------------------------------------
-echo.
-set /p url=Paste a Youtube Video/Playlist URL or QuickKey:
+set /p url=Paste a Youtube Video/Playlist URL or QuickKey: 
 if "%url%" equ "" goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
-start AYClient.exe "%url%"
+start AYClient.bat "%url%"
 goto start
 
 
 :menu
-title URL Recieved. Choose Download Mode
+mode con:cols=60 lines=32
 color 07
+title Link Recieved
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  URL: %url%
 echo.
-echo -------------
-echo  Choose mode
-echo -------------
-echo.
-echo  0) GO BACK
-echo.
-echo  1) Download Video+Audio
-echo.
-echo  2) Download Audio Only
-echo.
-echo --------------------------
-choice /C 012 /n /m "Choose Download mode (0-2): "
-if %errorlevel% == 1 exit
-if %errorlevel% == 2 goto video
-if %errorlevel% == 3 goto audio
-if %errorlevel% == 255 goto menu
-
-
-:video
-color 07
-title Choose Video Format
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-Video-------------------------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
-echo ---------------------------------
-echo  Choose which Stream to Download
-echo ---------------------------------
-echo.
-echo  0) GO BACK
-echo.
-echo  1) MP4  -   Video:H264   Audio:AAC  (Default)
-echo.
-echo  2) MKV  -   Video:VP9    Audio:OPUS (Subject To Availability)
-echo.
-echo --------------------------
-choice /c 012 /n /m "Enter Option Number (0-4): "
-if %errorlevel% == 1 goto menu
-if %errorlevel% == 2 goto mp4
-if %errorlevel% == 3 goto vp9
-if %errorlevel% == 255 goto video
-
-
-:mp4
-color 07
-title Choose MP4 Quality
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-Video-MP4---------------------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
-echo ----------------
-echo  Choose Quality
-echo ----------------
-echo.
-echo  0) GO BACK
-echo ---------------------------------------------
-echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p)
-echo  3) 480p   (If not available, returns to 360p)
-echo ---------------------------------------------
-echo  4) 720p   (If not available, returns to 480p)
-echo  5) 1080p  (If not available, returns to 720p)
-echo ---------------------------------------------
-echo  6) 2K     (If not available, returns to 1080p)
-echo  7) 4K     (If not available, returns to 2K)
-echo  8) 8K     (If not available, returns to 4K)
-echo.
-echo --------------------
-choice /c 012345678 /n /m "Enter Choice (0-8): "
-if %errorlevel% == 1 goto video
-if %errorlevel% == 2 set qual="bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %errorlevel% == 3 set qual="bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 4 set qual="bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set qual="bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set qual="bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set qual="bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set qual="bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 9 set qual="bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]"
-if %errorlevel% == 255 goto mp4
-goto download
-
-
-:vp9
-color 07
-title Choose VP9 Quality
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-Video-VP9---------------------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
-echo ----------------
-echo  Choose Quality
-echo ----------------
-echo.
-echo  0) GO BACK
-echo ---------------------------------------------
-echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p)
-echo  3) 480p   (If not available, returns to 360p)
-echo ---------------------------------------------
-echo  4) 720p   (If not available, returns to 480p)
-echo  5) 1080p  (If not available, returns to 720p)
-echo ---------------------------------------------
-echo  6) 2K     (If not available, returns to 1080p)
-echo  7) 4K     (If not available, returns to 2K)
-echo  8) 8K     (If not available, returns to 4K)
-echo.
-echo --------------------
-choice /c 012345678 /n /m "Enter Choice (0-8): "
-if %errorlevel% == 1 goto video
-if %errorlevel% == 2 set qual="bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %errorlevel% == 3 set qual="bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
-if %errorlevel% == 4 set qual="bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]"
-if %errorlevel% == 5 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]"
-if %errorlevel% == 6 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]"
-if %errorlevel% == 7 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]"
-if %errorlevel% == 8 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]"
-if %errorlevel% == 9 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=webm]"
-if %errorlevel% == 255 goto vp9
-goto downloadmkv
-
-
-:audio
-color 07
-title Choose Audio Format
-cls
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-Audio-------------------------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
+echo ---------------
+echo  Video + Audio
+echo ---------------
+echo   (1) - 360p   (If not available, returns to 240p)
+echo   (2) - 480p   (If not available, returns to 360p)
+echo   (3) - 720p   (If not available, returns to 480p)
+echo   (4) - 1080p  (If not available, returns to 720p)
+echo   (5) - 1440p  (If not available, returns to 1080p)
+echo   (6) - 4K     (If not available, returns to 1440p)
+echo   (7) - 8K     (If not available, returns to 4K)
 echo --------------
-echo  Choose Format
+echo   Audio Only
 echo --------------
-echo.
-echo  0) GO BACK
-echo.
-echo  1) MP3 (128K)
-echo.
-echo  2) M4A (128K)
-echo.
+echo   (8) - M4A 128Kb/s
+echo   (9) - MP3 128Kb/s
 echo -------------------
-choice /c 012 /n /m "Enter Choice (0-2): "
-if %errorlevel% == 1 goto menu
-if %errorlevel% == 2 goto mp3
-if %errorlevel% == 3 goto audiodownload
-if %errorlevel% == 255 goto audio
+choice /c 123456789 /n /m "Enter Choice (0-9): "
+if %errorlevel% == 1 set conf="-f bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 2 set conf="-f bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
+if %errorlevel% == 9 set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k
+if %errorlevel% == 255 goto menu
+goto download
 
 
 :download
@@ -282,62 +126,37 @@ set try=%try_count%
 
 
 :downloadtried
+mode con:cols=60 lines=32
 color 0B
 title Downloading
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+youtube-dl.exe --ignore-errors %conf% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadtried
 
 
-:downloadmkv
-set "try="
-set try=%try_count%
-
-
-:downloadmkvtried
-color 0B
-title Downloading
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo -------------------
-echo  Starting Download
-echo -------------------
-echo.
-echo  URL: %url%
-echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s-%%(height)sp.mkv" "%url%" && goto downloadsuccess
-set /a try=%try%+1
-if %try% GTR %defined_try% goto error
-goto downloadmkvtried
-
 :downloadsuccess
+mode con:cols=60 lines=32
 color 2F
 title Download Finished
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  URL: %url%
 echo.
@@ -349,89 +168,16 @@ pause>NUL
 goto exit
 
 
-:audiodownload
-set "try="
-set try=%try_count%
-
-
-:audiodownloadtried
-color 0B
-title Downloading
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-Audio-M4A---------------------------------------------------------------------------
-echo.
-echo -------------------
-echo  Starting Download
-echo -------------------
-echo.
-echo  URL: %url%
-echo.
-youtube-dl.exe --no-warnings --ignore-errors --add-metadata --embed-thumbnail --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
-set /a try=%try%+1
-if %try% GTR %defined_try% goto error
-goto audiodownloadtried
-
-
-:audiosuccess
-color 2F
-title Download Finished
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
-echo  Download finished, The audio(s) are saved in:
-echo  %loc%
-echo.
-echo  Press ENTER to close this window.
-pause>NUL
-goto exit
-
-
-:mp3
-set "try="
-set try=%try_count%
-
-
-:mp3tried
-color 0B
-title Downloading
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -Mode-Audio-MP3---------------------------------------------------------------------------
-echo.
-echo -------------------
-echo  Starting Download
-echo -------------------
-echo.
-echo  URL: %url%
-echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --add-metadata --external-downloader aria2c --external-downloader-args "-c -x 4 -k 1M --file-allocation=none" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
-set /a try=%try%+1
-if %try% GTR %defined_try% goto error
-goto mp3tried
-
-
 :error
+mode con:cols=60 lines=32
 color 4F
 title Houston, We have a problem!
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo.
@@ -447,102 +193,75 @@ pause>NUL
 goto exit
 
 
-:exit
-exit
-
-
-:songsuccess
-color 2F
-title Sweet sweet music
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
-echo  Download Finished, The song(s) are saved in:
-echo  %loc%
-echo.
-echo  Press ENTER to close this window.
-pause>NUL
-goto exit
-
-
-:exit
-exit
-
-
 :more
+mode con:cols=60 lines=32
 color 07
 title More Options
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo -More-------------------------------------------------------------------------------------
-echo.
-echo ---------------------------------------------------
 echo  0) GO BACK
 echo.
 echo  1) Universal Mode     QuickKey: U
 echo.
-echo  2) Batch Download     QuickKey: B
+echo  2) Batch Mode         QuickKey: B
 echo.
 echo  3) Settings
-echo ---------------------------------------------------
 echo.
-choice /c 0123 /n /m "Enter Choice (0-3): "
+echo  4) About
+echo.
+echo -------------------
+choice /c 01234 /n /m "Enter Choice (0-4): "
 if %errorlevel% == 1 goto start
-if %errorlevel% == 2 start AYClient.exe "u" && goto more
-if %errorlevel% == 3 start AYClient.exe "b" && goto more
+if %errorlevel% == 2 start AYClient.bat "u" && goto more
+if %errorlevel% == 3 start AYClient.bat "b" && goto more
 if %errorlevel% == 4 goto settings
+if %errorlevel% == 5 goto about
 if %errorlevel% == 255 goto more
 goto more
 
 
 :uni
+mode con:cols=92 lines=26
 set "uniurl="
 color 07
 title Universal Mode
 cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
+echo  Universal mode enables you to download from any webpage with playing video. 
+echo  eg: youtube and others
 echo.
-echo --------------------------------------------------------------------------------------
-echo  Universal mode enables you to download any video/audio from any websites.
-echo.
-echo  It may or may not work!
-echo.
-echo  Close this window to go back.
-echo --------------------------------------------------------------------------------------
-echo.
-set /p uniurl=Enter a page url with playing video:
+set /p uniurl=Enter a page url with playing video: 
 if "%uniurl%" equ "" goto uni
+
+
 :uniqualselect
-
-
+mode con:cols=110 lines=42
 set "uniqual="
 color 07
 title Universal Mode: URL Recieved
 cls
+echo --------------------------------------------------------------------------------------------------------------
+echo                                         Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
+echo                                              %version%
+echo --------------------------------------------------------------------------------------------------------------
 echo.
 echo  URL: %uniurl%
 echo.
 youtube-dl.exe -F "%uniurl%"
 echo.
-set /p uniqual=Choose Format Code (left side on the above list):
+echo -------------------------------------------------
+set /p uniqual=Choose Format Code (left side on the above list, use + symbol to merge two):
 if "%uniqual%" equ "" goto uniqualselect
 
 
@@ -552,36 +271,37 @@ set try=%try_count%
 
 
 :unidownloadtried
+mode con:cols=60 lines=32
 color 0B
 title Finger's Crossed! How's the weather?
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+youtube-dl.exe --ignore-errors -f %uniqual% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto unierror
 goto unidownloadtried
 
 
 :unidownloadsuccess
+mode con:cols=60 lines=32
 color 2F
-title Done
+title Download Finished!
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  URL: %uniurl%
 echo.
@@ -594,14 +314,15 @@ goto uni
 
 
 :unierror
+mode con:cols=60 lines=32
 color 4F
 title Download Failed!
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo  URL: %uniurl%
@@ -613,215 +334,23 @@ pause>NUL
 goto uni
 
 
-:settings
-set /p loc=<"%aycdata%\dir.txt"
-set loc=%loc:"=%
-set /p defined_try=<"%aycdata%\try.txt"
-set defined_try=%defined_try:"=%
-set /p cols=<"%aycdata%\cols.txt"
-set cols=%cols:"=%
-set /p lines=<"%aycdata%\lines.txt"
-set lines=%lines:"=%
-mode con:cols=%cols% lines=%lines%
-color 07
-title AYC Settings
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -More-Settings----------------------------------------------------------------------------
-echo.
-echo -----------------------------------
-echo  0) GO BACK
-echo.
-echo  1) Change Download Folder
-echo     Currently: %loc%
-echo.
-echo  2) No. of Rechecks
-echo     Currently: %defined_try%
-echo.
-echo  3) Change AYC Window Size
-echo     Currently: %cols%x%lines%
-echo.
-echo  4) Update youtube-dl (fixes most issues)
-echo.
-echo  5) Reset AYC
-echo.
-echo  6) About
-echo -----------------------------------
-echo.
-choice /c 0123456 /n /m "Select Option: "
-if %errorlevel% == 1 goto more
-if %errorlevel% == 2 goto settings_change_dir
-if %errorlevel% == 3 goto settings_change_defined_try
-if %errorlevel% == 4 goto settings_change_ayc_size
-if %errorlevel% == 5 goto update
-if %errorlevel% == 6 goto reset
-if %errorlevel% == 7 goto settings_about
-if %errorlevel% == 255 goto settings
-
-
-:settings_change_dir
-color 07
-title Change Download Location
-cls
-set "settings_dir="
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -More-Settings-Change Download Folder-----------------------------------------------------
-echo.
-echo  Current download folder is:
-echo  %loc%
-echo.
-echo ----------------------------------------------
-echo  Drag and Drop the folder you want AYC to save
-echo  it's downloads into the below area.
-echo.
-echo  Then Press Enter to save.
-echo.
-echo  Enter 0 to Go Back.
-echo ----------------------------------------------
-echo.
-set /p settings_dir=Drag and Drop here:
-if %settings_dir%p equ p goto settings_change_dir
-if %settings_dir% == 0 goto settings
-echo "%settings_dir%">"%aycdata%\dir.txt"
-goto settings
-
-
-:settings_change_defined_try
-color 07
-title Change recheck attempts
-cls
-set "settings_try="
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -More-Settings-Change No. of Rechecks-----------------------------------------------------
-echo.
-echo -----------------------------------------------------
-echo  On unstable connections, playlist/batch download can sometimes miss a
-echo  file and will fail the download.
-echo.
-echo  You can restart the download and it will download the remaining files without
-echo  downloading all of them again.
-echo.
-echo.
-echo  The number you set here is the number of times AYC will recheck the download to see if
-echo  any files are missing.
-echo.
-echo  If it found any, that missing file will be downloaded.
-echo -----------------------------------------------------
-echo.
-set /p settings_try=No. of Rechecks (Enter to go back):
-if %settings_try%p equ p goto settings
-echo "%settings_try%">"%aycdata%\try.txt"
-goto settings
-
-
-:settings_change_ayc_size
-color 07
-title Change AYC window size
-cls
-set "settings_cols="
-set "settings_lines="
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -More-Settings-Change window size---------------------------------------------------------
-echo.
-echo ---------------------------------------
-echo  Current width: %cols% (Default: 90)
-echo  Current height: %lines% (Default: 32)
-echo.
-echo  Leave blank and ENTER to go back.
-echo ---------------------------------------
-echo.
-set /p settings_cols=Enter custom width:
-if %settings_cols%p equ p goto settings
-if %settings_cols% == 0 goto settings_change_ayc_size
-echo "%settings_cols%">"%aycdata%\cols.txt"
-mode con:cols=%settings_cols% lines=%lines%
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -More-Settings-Change window size---------------------------------------------------------
-echo.
-echo ---------------------------------------
-echo  Current width: %settings_cols% (Default: 90)
-echo  Current height: %lines% (Default: 32)
-echo.
-echo  Leave blank and ENTER to go back.
-echo ---------------------------------------
-echo.
-echo Enter custom width: %settings_cols%
-echo.
-set /p settings_lines=Enter custom height:
-if %settings_lines%p equ p goto settings
-if %settings_cols% == 0 goto settings_change_ayc_size
-echo "%settings_lines%">"%aycdata%\lines.txt"
-mode con:cols=%settings_cols% lines=%settings_lines%
-goto settings
-
-
-:settings_about
-color 07
-title You're a curious one..
-cls
-set "settings_cols="
-set "settings_lines="
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -More-Settings-About----------------------------------------------------------------------
-echo.
-echo   Advanced Youtube Client - AYC Script
-echo.
-echo   Author           : Adithya S Sekhar
-echo.
-echo   First Release    : v1.0    (13/Aug/2016)
-echo.
-echo   Current Release  : %version%
-echo.
-echo   Released under the MIT License.
-echo.
-echo.
-echo  Press Enter to go back.
-pause>NUL
-goto settings
-
-
 :batch
+mode con:cols=92 lines=26
 set batch_exists_true=0
 color 07
 title Batch Mode
 set "job_name="
 cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
+echo  Batch Mode allows you to create jobs, add videos to that  job and download it.
+echo  Job URLs are saved and can be resumed by re-entering the same job.
 echo.
-echo -----------------------------------------------------------------
-echo.
-echo  Batch Mode allows you to create jobs, add videos to that job
-echo  and then download it.
-echo.
-echo  Job URLs are saved and can be resumed by re-entering the
-echo  same job.
-echo.
-echo -----------------------------------------------------------------
-echo.
-set /p job_name=Enter a name for your Job (eg: Adventure time videos):
+set /p job_name=Enter Job Name(eg: Adventure time videos): 
 md "%loc%\%job_name%"
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check
 echo.>"%loc%\%job_name%\%job_name%.txt"
@@ -842,22 +371,22 @@ set youtube=%youtube:"=%
 
 
 :batch_manage
+mode con:cols=60 lines=32
 color 07
 title Now working on %job_name%
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo -------------------------------------
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
 if %youtube% == 1 echo  Youtube Job: Yes
 if %youtube% == 0 echo  Youtube Job: No
-echo -------------------------------------
+echo --------------------------
 echo.
 echo  0) GO BACK
 echo.
@@ -879,17 +408,19 @@ goto batch_manage
 
 
 :batch_add_links
+mode con:cols=60 lines=32
 color 07
 title Enter 0 to go back after adding links.
 set "batch_link_tmp="
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
-echo.
-echo  Paste each url and press enter, the links will be added to your list.
+echo  Paste each url and press enter, the links will be added to 
+echo  your list.
 echo.
 echo  Enter 0 to Go Back after adding links
 echo.
@@ -905,16 +436,17 @@ goto batch_add_links_added
 
 
 :batch_download
+mode con:cols=60 lines=32
 color 07
 title Yay! Hidden Joke!
 set "batch_link_tmp="
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-if %youtube% == 1 goto batch_youtube
+echo                      %version%
+echo ------------------------------------------------------------
+if %youtube% == 1 goto batch_ytmp4
 if %youtube% == 0 echo.
 echo ---------------------------------
 echo  Select Quality
@@ -929,165 +461,54 @@ echo.
 echo ---------------------------------
 choice /c 012 /n /m "Choose Quality: "
 if %errorlevel% == 1 goto batch_manage
-if %errorlevel% == 2 set batch_ytqual=best
-if %errorlevel% == 3 set batch_ytqual=worst
+if %errorlevel% == 2 set conf=-f best
+if %errorlevel% == 3 set conf=-f worst
 if %errorlevel% == 255 goto batch_download
 goto batch_ytdownload
-
-
-:batch_youtube
-echo -------------
-echo  Choose mode
-echo -------------
-echo.
-echo  0) GO BACK
-echo.
-echo  1) Download Video+Audio
-echo.
-echo  2) Download Audio Only
-echo.
-echo --------------------------
-choice /C 012 /n /m "Choose Download mode (0-2): "
-if %errorlevel% == 1 batch_manage
-if %errorlevel% == 2 goto batch_ytvideo
-if %errorlevel% == 3 goto batch_ytaudio
-if %errorlevel% == 255 goto batch_download
-
-
-:batch_ytvideo
-color 07
-title Choose Stream
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo ---------------------------------
-echo  Choose which Stream to Download
-echo ---------------------------------
-echo.
-echo  0) GO BACK
-echo.
-echo  1) MP4  -   Video:H264   Audio:AAC  (Default)
-echo.
-echo  2) MKV  -   Video:VP9    Audio:OPUS (Subject To Availability)
-echo.
-echo --------------------------
-choice /c 012 /n /m "Enter Option Number (0-4): "
-if %errorlevel% == 1 goto batch_youtube
-if %errorlevel% == 2 goto batch_ytmp4
-if %errorlevel% == 3 goto batch_ytvp9
-if %errorlevel% == 255 goto batch_ytvideo
 
 
 :batch_ytmp4
+mode con:cols=60 lines=32
 color 07
-title Choose Quality
+title Choose Stream
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo ------------------------------------------------------------------------------------------
-echo ----------------
-echo  Choose Quality
-echo ----------------
+echo   (0) GO BACK
 echo.
-echo  0) GO BACK
-echo ---------------------------------------------
-echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p)
-echo  3) 480p   (If not available, returns to 360p)
-echo ---------------------------------------------
-echo  4) 720p   (If not available, returns to 480p)
-echo  5) 1080p  (If not available, returns to 720p)
-echo ---------------------------------------------
-echo  6) 2K     (If not available, returns to 1080p)
-echo  7) 4K     (If not available, returns to 2K)
-echo  8) 8K     (If not available, returns to 4K)
-echo.
-echo --------------------
-choice /c 012345678 /n /m "Enter Choice (0-8): "
-if %errorlevel% == 1 goto batch_ytvideo
-if %errorlevel% == 2 set batch_ytqual="bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %errorlevel% == 3 set batch_ytqual="bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 4 set batch_ytqual="bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set batch_ytqual="bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set batch_ytqual="bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set batch_ytqual="bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set batch_ytqual="bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 9 set batch_ytqual="bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]"
+echo ---------------
+echo  Video + Audio
+echo ---------------
+echo   (1) - 360p   (If not available, returns to 240p)
+echo   (2) - 480p   (If not available, returns to 360p)
+echo   (3) - 720p   (If not available, returns to 480p)
+echo   (4) - 1080p  (If not available, returns to 720p)
+echo   (5) - 1440p  (If not available, returns to 1080p)
+echo   (6) - 4K     (If not available, returns to 1440p)
+echo   (7) - 8K     (If not available, returns to 4K)
+echo --------------
+echo   Audio Only
+echo --------------
+echo   (8) - M4A 128Kb/s
+echo   (9) - MP3 128Kb/s
+echo -------------------
+choice /c 0123456789 /n /m "Enter Choice (0-9): "
+if %errorlevel% == 1 goto batch_manage
+if %errorlevel% == 2 set conf="-f bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf="-f bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
+if %errorlevel% == 10 set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k
 if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
-
-
-:batch_ytvp9
-color 07
-title Choose Quality
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo ----------------
-echo  Choose Quality
-echo ----------------
-echo.
-echo  0) GO BACK
-echo ---------------------------------------------
-echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p)
-echo  3) 480p   (If not available, returns to 360p)
-echo ---------------------------------------------
-echo  4) 720p   (If not available, returns to 480p)
-echo  5) 1080p  (If not available, returns to 720p)
-echo ---------------------------------------------
-echo  6) 2K     (If not available, returns to 1080p)
-echo  7) 4K     (If not available, returns to 2K)
-echo  8) 8K     (If not available, returns to 4K)
-echo.
-echo --------------------
-choice /c 012345678 /n /m "Enter Choice (0-8): "
-if %errorlevel% == 1 goto batch_ytvideo
-if %errorlevel% == 2 set batch_ytqual="bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %errorlevel% == 3 set batch_ytqual="bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
-if %errorlevel% == 4 set batch_ytqual="bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]"
-if %errorlevel% == 5 set batch_ytqual="bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]"
-if %errorlevel% == 6 set batch_ytqual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]"
-if %errorlevel% == 7 set batch_ytqual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]"
-if %errorlevel% == 8 set batch_ytqual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]"
-if %errorlevel% == 9 set batch_ytqual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=webm]"
-if %errorlevel% == 255 goto batch_ytvp9
-goto batch_ytdownloadmkv
-
-
-:batch_ytaudio
-color 07
-title Choose Format
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo --------------
-echo  Choose Format
-echo --------------
-echo.
-echo  0) GO BACK
-echo.
-echo  1) MP3 (128K)
-echo.
-echo  2) M4A (128K)
-echo.
-echo -------------------
-choice /c 012 /n /m "Enter Choice (0-2): "
-if %errorlevel% == 1 goto batch_download
-if %errorlevel% == 2 goto batch_ytmp3
-if %errorlevel% == 3 goto batch_ytaudiodownload
-if %errorlevel% == 255 goto batch_ytaudio
 
 
 :batch_ytdownload
@@ -1096,105 +517,34 @@ set try=%try_count%
 
 
 :batch_ytdownloadtried
+mode con:cols=60 lines=32
 color 0B
 title Downloading
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo -------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %batch_ytqual% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --ignore-errors %conf% -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
 
 
-:batch_ytdownloadmkv
-set "try="
-set try=%try_count%
-
-
-:batch_ytdownloadmkvtried
-color 0B
-title Downloading
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo -------------------
-echo  Starting Download
-echo -------------------
-echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %batch_ytqual% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-set /a try=%try%+1
-if %try% GTR %defined_try% goto batch_error
-goto batch_ytdownloadmkvtried
-
-
-:batch_ytaudiodownload
-set "try="
-set try=%try_count%
-
-
-:batch_ytaudiodownloadtried
-color 0B
-title Downloading
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo -------------------
-echo  Starting Download
-echo -------------------
-echo.
-youtube-dl.exe --no-warnings --ignore-errors --add-metadata --embed-thumbnail --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-set /a try=%try%+1
-if %try% GTR %defined_try% goto batch_error
-goto batch_ytaudiodownloadtried
-
-
-:batch_ytmp3
-set "try="
-set try=%try_count%
-
-
-:batch_ytmp3tried
-color 0B
-title Downloading
-cls
-echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
-echo -------------------
-echo  Starting Download
-echo -------------------
-echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --add-metadata --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-set /a try=%try%+1
-if %try% GTR %defined_try% goto batch_error
-goto batch_ytmp3tried
-
-
 :batch_error
+mode con:cols=60 lines=32
 color 4F
 title Download Failed!
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo.
@@ -1206,14 +556,15 @@ goto batch
 
 
 :batch_downloadsuccess
+mode con:cols=60 lines=32
 color 2F
 title Download Finished
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo -------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
@@ -1223,17 +574,111 @@ pause>NUL
 goto batch
 
 
+:settings
+mode con:cols=60 lines=32
+color 07
+title AYC Settings
+cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+echo.
+echo  0) GO BACK
+echo.
+echo  1) Change Download Folder
+echo     Currently: %loc%
+echo.
+echo  2) No. of Rechecks
+echo     Currently: %defined_try%
+echo.
+echo  3) Update youtube-dl (fixes most issues)
+echo.
+echo  4) Reset AYC
+echo.
+echo -----------------------------------
+echo.
+choice /c 01234 /n /m "Select Option: "
+if %errorlevel% == 1 goto more
+if %errorlevel% == 2 goto settings_change_dir
+if %errorlevel% == 3 goto settings_change_defined_try
+if %errorlevel% == 4 goto update
+if %errorlevel% == 5 goto reset
+if %errorlevel% == 255 goto settings
+
+
+:settings_change_dir
+mode con:cols=60 lines=32
+color 07
+title Change Download Location
+cls
+set "settings_dir="
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+echo.
+echo  Current download folder is:
+echo  %loc%
+echo.
+echo ----------------------------------------------
+echo  Drag and Drop the folder you want AYC to save
+echo  it's downloads into the below area.
+echo.
+echo  Then Press Enter to save.
+echo.
+echo  Enter 0 to Go Back.
+echo ----------------------------------------------
+echo.
+set /p settings_dir=Drag and Drop here:
+if %settings_dir%p equ p goto settings_change_dir
+if %settings_dir% == 0 goto settings
+echo "%settings_dir%">"%aycdata%\dir.txt"
+set /p loc=<"%aycdata%\dir.txt"
+set loc=%loc:"=%
+goto settings
+
+
+:settings_change_defined_try
+mode con:cols=60 lines=32
+color 07
+title Change recheck attempts
+cls
+set "settings_try="
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+echo.
+echo  On unstable connections, playlist/batch download can 
+echo  sometimes miss a file and will fail the download.
+echo.
+echo  The number you set here is the number of times AYC will 
+echo  recheck the download to see if any files are missing.
+echo.
+echo  If it found any, that missing file will be downloaded.
+echo ------------------------------------------------------------
+echo.
+set /p settings_try=No. of Rechecks (Enter to go back):
+if %settings_try%p equ p goto settings
+echo "%settings_try%">"%aycdata%\try.txt"
+goto settings
+
+
 :update
+mode con:cols=60 lines=32
 color 07
 title Update youtube-dl
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
-echo -More-Settings-Update youtube-dl----------------------------------------------------------
-echo.
-echo -----------------------------------
 echo  Checking currently installed version:
 youtube-dl --version
 echo.
@@ -1251,14 +696,15 @@ goto settings
 
 
 :reset
+mode con:cols=60 lines=32
 color 04
 title Reset AYC
 cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
 echo.
-echo ------------------------------------------------------------------------------------------
-echo                     Advanced Youtube Client - AYC %version%
-echo.
-echo ------------------------------------------------------------------------------------------
+echo                      %version%
+echo ------------------------------------------------------------
 echo.
 echo  You are about to reset AYC to it's default settings.
 echo.
@@ -1281,4 +727,35 @@ echo.
 echo  AYC reset succesfully.
 echo.
 timeout /t 5 /nobreak
+exit
+
+
+:about
+mode con:cols=60 lines=32
+color 07
+title You're a curious one..
+cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+echo.
+echo   Advanced Youtube Client - AYC Script
+echo.
+echo   Author           : Adithya S Sekhar
+echo.
+echo   First Release    : v1.0 (13/Aug/2016)
+echo.
+echo   Current Release  : %version%
+echo.
+echo   Released under the MIT License.
+echo.
+echo.
+echo   Press Enter to go back.
+pause>NUL
+goto more
+
+
+:exit
 exit
