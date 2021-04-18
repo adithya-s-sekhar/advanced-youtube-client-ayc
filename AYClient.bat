@@ -7,7 +7,7 @@
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 2016-08-13                /
-:: / Current Release : v2.99.1 2018-09-02             /
+:: / Current Release : v2.99.2 2018-09-12             /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -18,7 +18,7 @@
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-set version=v2.99.1 (02/Sep/2018)
+set version=v2.99.2 (12/Sep/2018)
 title Race to the moon.
 if not exist "%aycdata%\cols.txt" goto colsnotexist
 if not exist "%aycdata%\lines.txt" goto linesnotexist
@@ -377,7 +377,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadtried
@@ -418,7 +418,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
+youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto audiodownloadtried
@@ -459,7 +459,7 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto mp3tried
@@ -676,8 +676,6 @@ echo.
 echo  4) Automatic Updates (COMING SOON)
 echo.
 echo  5) Reset AYC
-echo.
-echo  6) About
 echo -----------------------------------
 echo.
 choice /c 0123456 /n /m "Select Option: "
@@ -794,6 +792,7 @@ echo "%settings_lines%">"%aycdata%\lines.txt"
 mode con:cols=%settings_cols% lines=%settings_lines%
 goto settings
 :batch
+set batch_exists_true=0
 color 07
 title Playing on the edge. Typical.
 set "job_name="
@@ -807,18 +806,27 @@ echo.
 echo -----------------------------------------------------------------
 echo.
 echo  Batch Mode allows you to create jobs, add videos to that job 
-echo  and then download it. Job URLs are saved and can be resumed 
-echo  by re-entering the same job.
+echo  and then download it. 
+echo.
+echo  Job URLs are saved and can be resumed by re-entering the 
+echo  same job.
 echo.
 echo -----------------------------------------------------------------
 echo.
 set /p job_name=Enter a name for your Job (eg: Adventure time videos): 
+md "%loc%\%job_name%"
+if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check 
+echo.>"%loc%\%job_name%\%job_name%.txt"
+:batch_is_yt_confirm
 echo.
 choice /c yn /n /m "Is this a YouTube Download Job? (Yes/No) "
-if %errorlevel% == 1 set youtube=1
-if %errorlevel% == 2 set youtube=0
+if %errorlevel% == 1 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
+if %errorlevel% == 2 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
 if %errorlevel% == 255 goto batch
-md "%loc%\%job_name%"
+:batch_is_yt_check
+if not exist "%loc%\%job_name%\is_youtube.txt" goto batch_is_yt_confirm
+set /p youtube=<"%loc%\%job_name%\is_youtube.txt"
+set youtube=%youtube:"=%
 :batch_manage
 color 07
 title Now working on %job_name%
@@ -829,9 +837,13 @@ echo                     Advanced Youtube Client - AYC %version%
 echo.
 echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
-echo -------------------------
-echo  Job: %job_name%
-echo -------------------------
+echo -------------------------------------
+if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
+if %batch_exists_true% == 0 echo  New Job: %job_name%
+echo.
+if %youtube% == 1 echo  Youtube Job: Yes
+if %youtube% == 0 echo  Youtube Job: No
+echo -------------------------------------
 echo.
 echo  0) GO BACK
 echo.
@@ -839,7 +851,8 @@ echo  1) Add Video Links
 echo.
 echo  2) Open Job File (Delete, View, Add Links through Notepad)
 echo.
-echo  3) Start Batch Job
+if %batch_exists_true% == 1 echo  3) Resume Batch Job
+if %batch_exists_true% == 0 echo  3) Start Batch Job
 echo.
 echo --------------------------
 choice /c 01234 /n /m "Enter Choice: "
@@ -851,7 +864,7 @@ if %errorlevel% == 255 goto batch_manage
 goto batch_manage
 :batch_add_links
 color 07
-title Link 'em all so that we I don't know where I am going with this joke
+title Enter 0 to go back after adding links.
 set "batch_link_tmp="
 cls
 echo.
@@ -1152,7 +1165,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "-c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytaudiodownloadtried
@@ -1172,7 +1185,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "-c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytmp3tried
@@ -1237,7 +1250,7 @@ title Then the sheep said stop touching me
 cls
 echo.
 echo.
-echo  AYC Succesfully Reseted.
+echo  AYC reset succesfully.
 echo.
 timeout /t 2 /nobreak
 exit
