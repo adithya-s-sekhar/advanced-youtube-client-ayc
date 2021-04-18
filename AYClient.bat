@@ -1,7 +1,7 @@
 @echo off
-mode con:cols=80 lines=30
-set version=v2.80.0 (10/Apr/2018)
-title Advanced Youtube Client - AYC v2.80.0
+mode con:cols=90 lines=32
+set version=v2.90.0 (04/May/2018)
+title Advanced Youtube Client - AYC v2.90.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
@@ -9,11 +9,11 @@ color 07
 set "url="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                  Paypal Donations: EMAIL_REMOVED
-echo --------------------------------------------------------------------------------
+echo                          Paypal Donations: EMAIL_REMOVED
+echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------------------------------------------
 echo.
@@ -24,14 +24,14 @@ echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
 :menu
-color 07
+color 0F
 set "dlmode="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode---------------------------------------------------------------------------
+echo -Mode-------------------------------------------------------------------------------------
 echo.
 echo -------------
 echo  Choose mode
@@ -51,14 +51,14 @@ if %dlmode% == 2 goto audio
 if %dlmode% GTR 2 goto menu
 if %dlmode% == 0 goto start
 :video
-color 07
+color 0F
 set "stream="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Video---------------------------------------------------------------------
+echo -Mode-Video-------------------------------------------------------------------------------
 echo.
 echo ---------------------------------
 echo  Choose which Stream to Download
@@ -84,14 +84,14 @@ if %stream% == 4 goto 3gp
 if %stream% GTR 4 goto video
 if %stream% == 0 goto menu
 :mp4
-color 07
+color 0F
 set "qual="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Video-MP4-----------------------------------------------------------------
+echo -Mode-Video-MP4---------------------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
 echo ----------------
@@ -124,14 +124,14 @@ if %qual% GTR 8 goto mp4
 if %qual% == 0 goto video
 goto download
 :vp9
-color 07
+color 0F
 set "qual="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Video-WEBM-----------------------------------------------------------------
+echo -Mode-Video-Webm--------------------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
 echo ----------------
@@ -164,14 +164,14 @@ if %qual% GTR 8 goto vp9
 if %qual% == 0 goto video
 goto download
 :mkv
-color 07
+color 0F
 set "qual="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Video-MKV-----------------------------------------------------------------
+echo -Mode-Video-MKV---------------------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
 echo ----------------
@@ -204,14 +204,14 @@ if %qual% GTR 8 goto mkv
 if %qual% == 0 goto video
 goto download
 :3gp
-color 07
+color 0F
 set "gpq="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Video-3GP-----------------------------------------------------------------
+echo -Mode-Video-3gp---------------------------------------------------------------------------
 echo.
 echo ----------------
 echo  Choose Quality
@@ -232,14 +232,14 @@ if %gpq% GTR 2 goto 3gp
 if %gpq% == 0 goto video
 goto download
 :audio
-color 07
+color 0F
 set "fmt="
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Mode-Audio---------------------------------------------------------------------
+echo -Mode-Audio-------------------------------------------------------------------------------
 echo.
 echo --------------
 echo  Choose Format
@@ -247,7 +247,7 @@ echo --------------
 echo.
 echo  0) GO BACK
 echo.
-echo  1) MP3 (192K)
+echo  1) MP3 (128K)
 echo.
 echo  2) M4A (128K)
 echo.
@@ -260,7 +260,7 @@ if %fmt% GTR 2 goto audio
 if %fmt% == 0 goto menu
 goto audiodownload
 :download
-color 07
+color 0B
 cls
 echo.
 echo --------------------------------------------------------------------------------
@@ -273,35 +273,16 @@ echo  Starting Download
 echo -------------------
 echo.
 youtube-dl --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
-:error
-color 47
-cls
-echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
-echo.
-echo --------------------------------------------------------------------------------
-echo.
-echo  Download Failed!!!! :-(
-echo.
-echo  Press enter to goto the main screen to try again. 
-echo.
-echo  This normally happens if WEBM/MKV format doesn't exist.
-echo  If you are facing this issue with all formats, please contact us on our 
-echo  Facebook page.
-pause>NUL
-goto start
-:exit
-exit
+goto error
 :downloadsuccess
-color 27
+color 2F
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                 Paypal Donations: EMAIL_REMOVED
-echo --------------------------------------------------------------------------------
+echo                          Paypal Donations: EMAIL_REMOVED
+echo ------------------------------------------------------------------------------------------
 echo.
 echo  Download Finished, The files are saved in Your 'My Videos' Folder.
 echo.
@@ -309,48 +290,29 @@ echo  Press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :audiodownload
-color 07
+color 0B
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Audio-M4A----------------------------------------------------------------------
+echo -Mode-Audio-M4A---------------------------------------------------------------------------
 echo.
 echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
 youtube-dl --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
-:error
-color 47
-cls
-echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
-echo.
-echo --------------------------------------------------------------------------------
-echo.
-echo  Download Failed!!!! :-(
-echo.
-echo  Press enter to goto the main screen to try again. 
-echo.
-echo  This normally happens if WEBM/MKV format doesn't exist.
-echo  If you are facing this issue with all formats, please contact us on our 
-echo  Facebook page.
-pause>NUL
-goto start
-:exit
-exit
+goto error
 :audiosuccess
-color 27
+color 2F
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                  Paypal Donations: EMAIL_REMOVED
-echo --------------------------------------------------------------------------------
+echo                          Paypal Donations: EMAIL_REMOVED
+echo ------------------------------------------------------------------------------------------
 echo.
 echo  Download finished, The audio(s) are saved in Your 'My Videos' Folder.
 echo.
@@ -358,31 +320,31 @@ echo  Press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :mp3
-color 07
+color 0B
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo -Audio-MP3----------------------------------------------------------------------
+echo -Mode-Audio-MP3---------------------------------------------------------------------------
 echo.
 echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 192k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+youtube-dl --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
 :error
-color 47
+color 4F
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo --------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo.
-echo  Press enter to goto the main screen to try again. 
+echo  Press enter to go to the main screen to try again. 
 echo.
 echo  This normally happens if WEBM/MKV format doesn't exist.
 echo  If you are facing this issue with all formats, please contact us on our 
@@ -392,14 +354,14 @@ goto start
 :exit
 exit
 :songsuccess
-color 27
+color 2F
 cls
 echo.
-echo --------------------------------------------------------------------------------
-echo               Advanced Youtube Client - AYC %version%
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                  Paypal Donations: EMAIL_REMOVED
-echo --------------------------------------------------------------------------------
+echo                          Paypal Donations: EMAIL_REMOVED
+echo ------------------------------------------------------------------------------------------
 echo.
 echo  Download Finished, The song(s) are saved in Your 'My Videos' Folder.
 echo.
