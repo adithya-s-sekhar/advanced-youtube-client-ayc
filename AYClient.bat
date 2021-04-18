@@ -8,7 +8,7 @@ set loc=%loc:"=%
 goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.96.1 (23/Jun/2018)
+set version=v2.96.2 (24/Jun/2018)
 title Race to the moon.
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
@@ -499,12 +499,11 @@ echo.
 echo  This is an untested (yes) feature just added to this release to be further developed.
 echo  It may or may not work!
 echo.
-echo  Enter 0 to go back.
+echo  Close this window to go back.
 echo --------------------------------------------------------------------------------------
 echo.
 set /p uniurl=Enter a page url with playing video: 
 if "%uniurl%" equ "" goto uni
-if %uniurl% == 0 exit
 :uniqualselect
 set "uniqual="
 color 07
@@ -522,7 +521,6 @@ youtube-dl.exe -F "%uniurl%"
 echo.
 set /p uniqual=Choose Format Code (left side on the above list): 
 if "%uniqual%" equ "" goto uniqualselect
-if %uniqual% == 0 goto uni
 :unidownload
 color 0B
 title Finger's Crossed! How's the weather?
@@ -648,9 +646,12 @@ echo                     Advanced Youtube Client - AYC %version%
 echo.
 echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
-echo ----------------------------------------------------------------
-echo  Batch Mode allows you to create jobs and add videos to that job and then download it.
-echo ----------------------------------------------------------------
+echo -----------------------------------------------------------------
+echo.
+echo  Batch Mode allows you to create jobs, add videos to that job 
+echo  and then download it.
+echo.
+echo -----------------------------------------------------------------
 echo.
 set /p job_name=Enter a name for your Job (eg: Adventure time videos): 
 echo.
@@ -1038,4 +1039,4 @@ echo  Please share your opinions on our Facebook page.
 echo.
 echo  Press enter to do it again.
 pause>NUL
-exit
+goto batch
