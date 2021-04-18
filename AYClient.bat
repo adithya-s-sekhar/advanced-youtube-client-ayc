@@ -1,7 +1,7 @@
 @echo off
 mode con:cols=80 lines=30
-set version=v2.61.0 (27/Mar/2018)
-title Advanced Youtube Client - AYC v2.60.0
+set version=v2.70.0 (03/Apr/2018)
+title Advanced Youtube Client - AYC v2.70.0
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
@@ -219,7 +219,7 @@ echo ----------------
 echo.
 echo  0) GO BACK
 echo.
-echo  1) 240p (Recommended)
+echo  1) 240p
 echo.
 echo  2) 144p
 echo.
