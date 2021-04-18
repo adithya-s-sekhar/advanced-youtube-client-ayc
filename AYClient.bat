@@ -8,7 +8,7 @@ set loc=%loc:"=%
 goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.97.0 (04/Jul/2018)
+set version=v2.98.0 (28/Jul/2018)
 title Race to the moon.
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
@@ -353,9 +353,9 @@ echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
 echo.
-echo  Press ENTER to to download antoher video or close this program.
+echo  Press ENTER to to close this window.
 pause>NUL
-if %1p equ p goto exit
+goto exit
 :audiodownload
 color 0B
 title Green Screen will show when download's finished
@@ -389,9 +389,9 @@ echo.
 echo  Download finished, The audio(s) are saved in:
 echo  %loc%
 echo.
-echo  Press ENTER to to download antoher video or close this program.
+echo  Press ENTER to close this window.
 pause>NUL
-if %1p equ p goto exit
+goto exit
 :mp3
 color 0B
 title Grabbing those MP3's (Hail Napster)
@@ -423,13 +423,13 @@ echo  Download Failed!!!! :-(
 echo.
 echo  URL: %url%
 echo.
-echo  Press enter to go to the main screen to try again. 
+echo  Press enter to close this window. 
 echo.
 echo  This normally happens if WEBM/MKV format doesn't exist.
 echo  If you are facing this issue with all formats, please contact us on our 
 echo  Facebook page.
 pause>NUL
-if %1p equ p goto exit
+goto exit
 :exit
 exit
 :songsuccess
@@ -447,9 +447,9 @@ echo.
 echo  Download Finished, The song(s) are saved in:
 echo  %loc%
 echo.
-echo  Press ENTER to to download antoher video or close this program.
+echo  Press ENTER to close this window.
 pause>NUL
-if %1p equ p goto exit
+goto exit
 :exit
 exit
 Rem The More Page
@@ -1016,7 +1016,7 @@ echo  You can try it again to see if it's possible on another try.
 echo.
 echo  Press enter to try again
 pause>NUL
-exit
+goto batch
 :batch_downloadsuccess
 color 2F
 title I knew it would work!
