@@ -1,4 +1,5 @@
 @echo off
+set version=v2.41
 ayc-info.exe welcome.vbs
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
@@ -7,7 +8,7 @@ set "url="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo ------------------------------------------------------
@@ -21,7 +22,7 @@ set "dlmode="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode---------------------------------------------------------------------------
 echo.
 echo -------------
@@ -46,7 +47,7 @@ set "stream="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode-Video---------------------------------------------------------------------
 echo.
 echo ---------------------------------
@@ -77,7 +78,7 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode-Video-MP4-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -115,7 +116,7 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode-Video-WEBM-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -153,7 +154,7 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode-Video-MKV-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -191,7 +192,7 @@ set "gpq="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode-Video-3GP-----------------------------------------------------------------
 echo.
 echo ----------------
@@ -217,7 +218,7 @@ set "fmt="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Mode-Audio---------------------------------------------------------------------
 echo.
 echo --------------
@@ -242,7 +243,7 @@ goto audiodownload
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------------
@@ -253,7 +254,7 @@ youtube-dl --no-warnings --ignore-errors -f %qual% --external-downloader aria2c 
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The files are saved in Your 'My Videos' Folder.
@@ -265,7 +266,7 @@ goto start
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Audio-M4A----------------------------------------------------------------------
 echo.
 echo -------------------
@@ -276,7 +277,7 @@ youtube-dl --no-warnings --ignore-errors -f bestaudio[ext=m4a] --external-downlo
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The audio(s) are saved in Your 'My Videos' Folder.
@@ -288,7 +289,7 @@ goto start
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo -Audio-MP3----------------------------------------------------------------------
 echo.
 echo -------------------
@@ -299,7 +300,7 @@ youtube-dl --no-warnings --extract-audio --audio-format mp3 --audio-quality 192k
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.4
+echo                          Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is finished, The song(s) are saved in Your 'My Videos' Folder.
