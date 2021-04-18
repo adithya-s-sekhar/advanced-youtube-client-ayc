@@ -1,20 +1,56 @@
+:: #####################
+:: Don't View in notepad.
+:: #####################
+:: /--------------------------------------------------/
+:: /--------------------------------------------------/
+:: /--------------------------------------------------/
+:: / Advanced Youtube Client - AYC Script             /
+:: / Designed and developed by Adithya S Sekhar       /
+:: / First Release: v1.0 2016-08-13                   /
+:: / Current Release: v2.99.0 2018-08-24              /
+:: / Released under the MIT License.                  /
+:: / Don't reproduce (the code!) without proper credi /
+:: / -ts.                                             /
+:: /--------------------------------------------------/
+:: /--------------------------------------------------/
+:: /--------------------------------------------------/
 @echo off
+:begin
+md "%appdata%\Advanced Youtube Client - AYC"
+set aycdata=%appdata%\Advanced Youtube Client - AYC
+set version=v2.99.0 (24/Aug/2018)
+title Race to the moon.
+if not exist "%aycdata%\cols.txt" goto colsnotexist
+if not exist "%aycdata%\lines.txt" goto linesnotexist
+set /p cols=<"%aycdata%\cols.txt"
+set cols=%cols:"=%
+if %cols%1 equ =1 goto colsnotexist
+set /p lines=<"%aycdata%\lines.txt"
+set lines=%lines:"=%
+if %lines%1 equ =1 goto linesnotexist
+mode con:cols=%cols% lines=%lines%
+if not exist "%aycdata%\dir.txt" goto dirnotexist
+set /p loc=<"%aycdata%\dir.txt"
+set loc=%loc:"=%
+if not exist "%aycdata%\try.txt" goto trynotexist
+set /p defined_try=<"%aycdata%\try.txt"
+set defined_try=%defined_try:"=%
+if %defined_try%p equ =p goto trynotexist
+set try_count=0
+goto corrupt_check
+:colsnotexist
+echo "90">"%aycdata%\cols.txt"
+goto begin
+:linesnotexist
+echo "32">"%aycdata%\lines.txt"
 goto begin
 :dirnotexist
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 echo "%userprofile%\Videos\Advanced Youtube Client - AYC">"%aycdata%\dir.txt"
-set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
-set loc=%loc:"=%
-goto corrupt_check
-:begin
-mode con:cols=90 lines=32
-set version=v2.98.0 (28/Jul/2018)
-title Race to the moon.
-md "%appdata%\Advanced Youtube Client - AYC"
-set aycdata=%appdata%\Advanced Youtube Client - AYC
-if not exist "%aycdata%\dir.txt" goto dirnotexist
-set /p loc=<"%aycdata%\dir.txt"
-set loc=%loc:"=%
+goto begin
+:trynotexist
+echo "0">"%aycdata%\try.txt"
+goto begin
 :corrupt_check
 if not exist aria2c.exe goto corrupt
 if not exist avcodec-58.dll goto corrupt
@@ -56,12 +92,14 @@ goto menu
 :start
 color 07
 set "url="
-title The most actively developed batch script ever.
+title Let's do this!
+if not exist unins*.exe title AYC Portable Mode (Default settings applied if a different PC)
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
+echo.                       SAVE KERALA - http://bit.ly/ayckeralaflood
 echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------------------------------------------
@@ -321,6 +359,9 @@ if %errorlevel% == 2 goto mp3
 if %errorlevel% == 3 goto audiodownload
 if %errorlevel% == 255 goto audio
 :download
+set "try="
+set try=%try_count%
+:downloadtried
 color 0B
 title Screen will turn green when download finishes. 
 cls
@@ -337,10 +378,12 @@ echo.
 echo  URL: %url%
 echo.
 youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
-goto error
+set /a try=%try%+1
+if %try% GTR %defined_try% goto error
+goto downloadtried
 :downloadsuccess
 color 2F
-title This job's done! Gimme More....
+title Always thank the bus driver, unless he was the kidnapper
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -357,6 +400,9 @@ echo  Press ENTER to to close this window.
 pause>NUL
 goto exit
 :audiodownload
+set "try="
+set try=%try_count%
+:audiodownloadtried
 color 0B
 title Green Screen will show when download's finished
 cls
@@ -373,7 +419,9 @@ echo.
 echo  URL: %url%
 echo.
 youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto audiosuccess
-goto error
+set /a try=%try%+1
+if %try% GTR %defined_try% goto error
+goto audiodownloadtried
 :audiosuccess
 color 2F
 title Audio's Done Downloading.... Anyone there?
@@ -393,6 +441,9 @@ echo  Press ENTER to close this window.
 pause>NUL
 goto exit
 :mp3
+set "try="
+set try=%try_count%
+:mp3tried
 color 0B
 title Grabbing those MP3's (Hail Napster)
 cls
@@ -409,6 +460,9 @@ echo.
 echo  URL: %url%
 echo.
 youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto songsuccess
+set /a try=%try%+1
+if %try% GTR %defined_try% goto error
+goto mp3tried
 :error
 color 4F
 title Houston, We have a problem!
@@ -426,6 +480,9 @@ echo.
 echo  Press enter to close this window. 
 echo.
 echo  This normally happens if WEBM/MKV format doesn't exist.
+echo.
+echo  TIP: Enable rechecks in settings if you have a bad network.
+echo.
 echo  If you are facing this issue with all formats, please contact us on our 
 echo  Facebook page.
 pause>NUL
@@ -520,6 +577,9 @@ echo.
 set /p uniqual=Choose Format Code (left side on the above list): 
 if "%uniqual%" equ "" goto uniqualselect
 :unidownload
+set "try="
+set try=%try_count%
+:unidownloadtried
 color 0B
 title Finger's Crossed! How's the weather?
 cls
@@ -536,7 +596,9 @@ echo.
 echo  URL: %uniurl%
 echo.
 youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %uniqual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
-goto unierror
+set /a try=%try%+1
+if %try% GTR %defined_try% goto unierror
+goto unidownloadtried
 :unidownloadsuccess
 color 2F
 title I knew it would work!
@@ -575,12 +637,21 @@ echo  Don't worry it's completely normal. This is a beta feature which still has
 echo.
 echo  You can try it again to see if it's possible on another try.
 echo.
+echo  TIP: Enable rechecks in settings if you have a bad network.
+echo.
 echo  Press enter to try again
 pause>NUL
 goto uni
 :settings
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
+set /p defined_try=<"%aycdata%\try.txt"
+set defined_try=%defined_try:"=%
+set /p cols=<"%aycdata%\cols.txt"
+set cols=%cols:"=%
+set /p lines=<"%aycdata%\lines.txt"
+set lines=%lines:"=%
+mode con:cols=%cols% lines=%lines%
 color 07
 title AYC Settings
 cls
@@ -596,13 +667,24 @@ echo.
 echo  1) Change Download Folder
 echo     Currently: %loc%
 echo.
-echo  2) Automatic Updates (COMING SOON)
+echo  2) No. of Rechecks
+echo     Currently: %defined_try%
+echo.
+echo  3) Change AYC Window Size
+echo     Currently: %cols%x%lines%
+echo.
+echo  4) Automatic Updates (COMING SOON)
+echo.
+echo  5) Reset AYC
 echo -----------------------------------
 echo.
-choice /c 012 /n /m "Select Option: "
+choice /c 012345 /n /m "Select Option: "
 if %errorlevel% == 1 goto more
 if %errorlevel% == 2 goto settings_change_dir
-if %errorlevel% == 3 goto settings
+if %errorlevel% == 3 goto settings_change_defined_try
+if %errorlevel% == 4 goto settings_change_ayc_size
+if %errorlevel% == 5 goto settings
+if %errorlevel% == 6 goto reset
 if %errorlevel% == 255 goto settings
 :settings_change_dir
 color 07
@@ -632,6 +714,82 @@ if %settings_dir%p equ p goto settings_change_dir
 if %settings_dir% == 0 goto settings
 echo "%settings_dir%">"%aycdata%\dir.txt"
 goto settings
+:settings_change_defined_try
+color 07
+title Guess we're all paranoid
+cls
+set "settings_try="
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo -More-Settings-Change No. of Rechecks-----------------------------------------------------
+echo.
+echo -----------------------------------------------------
+echo  On unstable connections with dropouts, playlist/batch download can sometimes miss a 
+echo  download and will show you download failed.
+echo.
+echo  You can easily restart the download and it will download the remaining files without 
+echo  downloading all of them again.
+echo.
+echo  But this is incovenient at most times.
+echo.
+echo  The number you set here is the number of times AYC will recheck the download to see if 
+echo  any files are missing.
+echo.
+echo  If it found any, that missing file will be downloaded.
+echo -----------------------------------------------------
+echo.
+set /p settings_try=No. of Rechecks (Enter to go back): 
+if %settings_try%p equ p goto settings
+echo "%settings_try%">"%aycdata%\try.txt"
+goto settings
+:settings_change_ayc_size
+color 07
+title THICC
+cls
+set "settings_cols="
+set "settings_lines="
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo -More-Settings-Change window size---------------------------------------------------------
+echo.
+echo ---------------------------------------
+echo  Current width: %cols% (Default: 90)
+echo  Current height: %lines% (Default: 32)
+echo.
+echo  Leave blank and ENTER to go back.
+echo ---------------------------------------
+echo.
+set /p settings_cols=Enter custom width: 
+if %settings_cols%p equ p goto settings
+if %settings_cols% == 0 goto settings_change_ayc_size
+echo "%settings_cols%">"%aycdata%\cols.txt"
+mode con:cols=%settings_cols% lines=%lines%
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo -More-Settings-Change window size---------------------------------------------------------
+echo.
+echo ---------------------------------------
+echo  Current width: %settings_cols% (Default: 90)
+echo  Current height: %lines% (Default: 32)
+echo.
+echo  Leave blank and ENTER to go back.
+echo ---------------------------------------
+echo.
+echo Enter custom width: %settings_cols%
+echo.
+set /p settings_lines=Enter custom height: 
+if %settings_lines%p equ p goto settings
+if %settings_cols% == 0 goto settings_change_ayc_size
+echo "%settings_lines%">"%aycdata%\lines.txt"
+mode con:cols=%settings_cols% lines=%settings_lines%
+goto settings
 :batch
 color 07
 title Playing on the edge. Typical.
@@ -659,7 +817,7 @@ if %errorlevel% == 255 goto batch
 md "%loc%\%job_name%"
 :batch_manage
 color 07
-title Playing on the edge. Typical.
+title Now working on %job_name%
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -689,7 +847,7 @@ if %errorlevel% == 255 goto batch_manage
 goto batch_manage
 :batch_add_links
 color 07
-title Playing on the edge. Typical.
+title Link 'em all so that we I don't know where I am going with this joke
 set "batch_link_tmp="
 cls
 echo.
@@ -711,7 +869,7 @@ echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 goto batch_add_links_added
 :batch_download
 color 07
-title Playing on the edge. Typical.
+title Yay! Hidden Joke!
 set "batch_link_tmp="
 cls
 echo.
@@ -955,6 +1113,9 @@ if %errorlevel% == 2 goto batch_ytmp3
 if %errorlevel% == 3 goto batch_ytaudiodownload
 if %errorlevel% == 255 goto batch_ytaudio
 :batch_ytdownload
+set "try="
+set try=%try_count%
+:batch_ytdownloadtried
 color 0B
 title Screen will turn green when download finishes. 
 cls
@@ -968,8 +1129,13 @@ echo  Starting Download
 echo -------------------
 echo.
 youtube-dl.exe --no-warnings --embed-subs --ignore-errors --retries 16 -f %batch_ytqual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-goto batch_error
+set /a try=%try%+1
+if %try% GTR %defined_try% goto batch_error
+goto batch_ytdownloadtried
 :batch_ytaudiodownload
+set "try="
+set try=%try_count%
+:batch_ytaudiodownloadtried
 color 0B
 title Green Screen will show when download's finished
 cls
@@ -983,8 +1149,13 @@ echo  Starting Download
 echo -------------------
 echo.
 youtube-dl.exe --no-warnings --ignore-errors --retries 16 -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-goto batch_error
+set /a try=%try%+1
+if %try% GTR %defined_try% goto batch_error
+goto batch_ytaudiodownloadtried
 :batch_ytmp3
+set "try="
+set try=%try_count%
+:batch_ytmp3tried
 color 0B
 title Grabbing those MP3's (Hail Napster)
 cls
@@ -998,6 +1169,9 @@ echo  Starting Download
 echo -------------------
 echo.
 youtube-dl.exe --no-warnings --retries 16 --extract-audio --audio-format mp3 --audio-quality 128k --embed-thumbnail --ignore-errors --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -j 8 -s 8 -x 8 -k 1M" -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+set /a try=%try%+1
+if %try% GTR %defined_try% goto batch_error
+goto batch_ytmp3tried
 :batch_error
 color 4F
 title Not now Kato!
@@ -1013,6 +1187,8 @@ echo.
 echo  Don't worry it's completely normal. This is a beta feature which still has it's problems.
 echo.
 echo  You can try it again to see if it's possible on another try.
+echo.
+echo  TIP: Enable rechecks in settings if you have a bad network.
 echo.
 echo  Press enter to try again
 pause>NUL
@@ -1036,3 +1212,27 @@ echo.
 echo  Press enter to do it again.
 pause>NUL
 goto batch
+:reset
+color 4F
+title Clean Slate Protocol
+cls
+echo.
+echo ------------------------------------------------------------------------------------------
+echo                     Advanced Youtube Client - AYC %version%
+echo.
+echo ------------------------------------------------------------------------------------------
+echo.
+echo  You are about to reset AYC to it's default settings.
+echo.
+echo  This should fix any issues caused by incorrect or corrupted settings.
+echo.
+echo  Press ENTER to reset and exit.
+pause>NUL
+rd /s /q "%aycdata%"
+cls
+echo.
+echo.
+echo  AYC Succesfully Reseted.
+echo.
+timeout /t 2 /nobreak
+exit
