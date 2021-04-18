@@ -8,8 +8,8 @@ set loc=%loc:"=%
 goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.94.0 (29/May/2018)
-title Advanced Youtube Client - AYC v2.94.0
+set version=v2.95.0 (19/Jun/2018)
+title Advanced Youtube Client - AYC v2.95.0
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
 if not exist "%aycdata%\dir.txt" goto dirnotexist
@@ -65,7 +65,6 @@ if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
 :menu
 color 0F
-set "dlmode="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -84,15 +83,13 @@ echo.
 echo  2) Download Audio Only
 echo.
 echo --------------------------
-set /p dlmode=Enter Download mode (0-2): 
-if "%dlmode%" equ "" goto menu
-if %dlmode% == 1 goto video
-if %dlmode% == 2 goto audio
-if %dlmode% GTR 2 goto menu
-if %dlmode% == 0 goto start
+choice /C 012 /n /m "Choose Download mode (0-2): "
+if %errorlevel% == 1 goto start
+if %errorlevel% == 2 goto video
+if %errorlevel% == 3 goto audio
+if %errorlevel% == 255 goto menu
 :video
 color 0F
-set "stream="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -115,17 +112,15 @@ echo.
 echo  4) 3GP  -   Video:MPEG4  Audio:AAC  (Compatible for old phones)
 echo.
 echo --------------------------
-set /p stream=Enter Option Number (0-4): 
-if "%stream%" equ "" goto video
-if %stream% == 1 goto mp4
-if %stream% == 2 goto vp9
-if %stream% == 3 goto mkv
-if %stream% == 4 goto 3gp
-if %stream% GTR 4 goto video
-if %stream% == 0 goto menu
+choice /c 01234 /n /m "Enter Option Number (0-4): "
+if %errorlevel% == 1 goto menu
+if %errorlevel% == 2 goto mp4
+if %errorlevel% == 3 goto vp9
+if %errorlevel% == 4 goto mkv
+if %errorlevel% == 5 goto 3gp
+if %errorlevel% == 255 goto video
 :mp4
 color 0F
-set "qual="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -150,22 +145,20 @@ echo  7) 4K     (If not available, returns to 2K)
 echo  8) 8K     (If not available, returns to 4K)
 echo.
 echo --------------------
-set /p qual=Enter Choice (0-8): 
-if "%qual%" equ "" goto mp4
-if %qual% == 1 set qual="bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 2 set qual="bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 3 set qual="bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 4 set qual="bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 5 set qual="bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 6 set qual="bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 7 set qual="bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 8 set qual="bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
-if %qual% GTR 8 goto mp4
-if %qual% == 0 goto video
+choice /c 012345678 /n /m "Enter Choice (0-8): "
+if %errorlevel% == 1 goto video
+if %errorlevel% == 2 set qual="bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set qual="bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set qual="bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set qual="bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set qual="bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set qual="bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set qual="bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set qual="bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 255 goto mp4
 goto download
 :vp9
 color 0F
-set "qual="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -190,22 +183,20 @@ echo  7) 4K     (If not available, returns to 2K)
 echo  8) 8K     (If not available, returns to 4K)
 echo.
 echo --------------------
-set /p qual=Enter Choice (0-8): 
-if "%qual%" equ "" goto vp9
-if %qual% == 1 set qual="bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 2 set qual="bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 3 set qual="bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 4 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 5 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 6 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 7 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% == 8 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
-if %qual% GTR 8 goto vp9
-if %qual% == 0 goto video
+choice /c 012345678 /n /m "Enter Choice (0-8): "
+if %errorlevel% == 1 goto video
+if %errorlevel% == 2 set qual="bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 3 set qual="bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 4 set qual="bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 5 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 6 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 7 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 8 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 9 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 255 goto vp9
 goto download
 :mkv
 color 0F
-set "qual="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -230,22 +221,20 @@ echo  7) 4K     (If not available, returns to 2K)
 echo  8) 8K     (If not available, returns to 4K)
 echo.
 echo --------------------
-set /p qual=Enter Choice (0-8): 
-if "%qual%" equ "" goto mkv
-if %qual% == 1 set qual="bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 2 set qual="bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 3 set qual="bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 4 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 5 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 6 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 7 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% == 8 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
-if %qual% GTR 8 goto mkv
-if %qual% == 0 goto video
+choice /c 012345678 /n /m "Enter Choice (0-8): "
+if %errorlevel% == 1 goto video
+if %errorlevel% == 2 set qual="bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set qual="bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set qual="bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=360]+bestaudio[ext=m4a]/bestvideo[ext=webm][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 255 goto mkv
 goto download
 :3gp
 color 0F
-set "gpq="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -264,16 +253,14 @@ echo.
 echo  2) 144p
 echo.
 echo -------------------------
-set /p gpq=Enter Choice (1-2): 
-if "%gpq%" equ "" goto 3gp
-if %gpq% == 1 set qual=36
-if %gpq% == 2 set qual=17
-if %gpq% GTR 2 goto 3gp
-if %gpq% == 0 goto video
+choice /c 012 /n /m "Enter Choice (0-2): "
+if %errorlevel% == 1 goto video
+if %errorlevel% == 2 set qual=36
+if %errorlevel% == 3 set qual=17
+if %errorlevel% == 255 goto video
 goto download
 :audio
 color 0F
-set "fmt="
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -292,12 +279,11 @@ echo.
 echo  2) M4A (128K)
 echo.
 echo -------------------
-set /p fmt=Enter Choice (1-2): 
-if "%fmt%" equ "" goto audio
-if %fmt% == 1 goto mp3
-if %fmt% == 2 goto audiodownload
-if %fmt% GTR 2 goto audio
-if %fmt% == 0 goto menu
+choice /c 012 /n /m "Enter Choice (0-2): "
+if %errorlevel% == 1 goto menu
+if %errorlevel% == 2 goto mp3
+if %errorlevel% == 3 goto audiodownload
+if %errorlevel% == 255 goto audio
 goto audiodownload
 :download
 color 0B
@@ -415,7 +401,6 @@ goto start
 exit
 Rem The More Page
 :more
-set "morechoice="
 color 07
 cls
 echo.
@@ -436,14 +421,13 @@ echo.
 echo  4) Settings
 echo ---------------------------------------------------
 echo.
-set /p morechoice=Select Option: 
-if "%morechoice%" equ "" goto more
-if %morechoice% == 0 goto begin
-if %morechoice% == 1 goto uni
-if %morechoice% == 2 goto more
-if %morechoice% == 3 goto more
-if %morechoice% == 4 goto settings
-if %morechoice% GTR 4 goto more
+choice /c 01234 /n /m "Enter Choice: "
+if %errorlevel% == 1 goto start
+if %errorlevel% == 2 goto uni
+if %errorlevel% == 3 goto more
+if %errorlevel% == 4 goto more
+if %errorlevel% == 5 goto settings
+if %errorlevel% == 255 goto more
 pause>NUL
 :uni
 set "uniurl="
@@ -530,7 +514,6 @@ echo  Press enter to try again
 pause>NUL
 goto uni
 :settings
-set "settings_choice="
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
 color 07
@@ -549,11 +532,11 @@ echo.
 echo  2) Automatic Updates (COMING SOON)
 echo -----------------------------------
 echo.
-set /p settings_choice=Select Option (0-1): 
-if "%settings_choice%" equ "" goto settings
-if %settings_choice% == 0 goto more
-if %settings_choice% == 1 goto settings_change_dir
-if %settings_choice% GTR 1 goto settings
+choice /c 012 /n /m "Select Option: "
+if %errorlevel% == 1 goto more
+if %errorlevel% == 2 goto settings_change_dir
+if %errorlevel% == 3 goto settings
+if %errorlevel% == 255 goto settings
 :settings_change_dir
 color 07
 cls
