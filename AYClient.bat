@@ -1,6 +1,7 @@
 @echo off
-set version=v2.45.2
-title Advanced Youtube Client - AYC v2.45.2
+mode con:cols=80 lines=30
+set version=v2.45.3 (10/09/2017)
+title Advanced Youtube Client - AYC v2.45.3
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
@@ -9,11 +10,15 @@ set "url="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
+echo                  Paypal Donations: EMAIL_REMOVED
 echo --------------------------------------------------------------------------------
 echo.
 echo ------------------------------------------------------
-echo  Downloaded files are saved in your 'My Videos' folder
+echo  Downloaded files are saved in your 'My Videos' folder.
+echo.
+echo  Please donate to support development.
 echo ------------------------------------------------------
 echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
@@ -24,7 +29,8 @@ set "dlmode="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode---------------------------------------------------------------------------
 echo.
 echo -------------
@@ -50,7 +56,8 @@ set "stream="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Video---------------------------------------------------------------------
 echo.
 echo ---------------------------------
@@ -82,7 +89,8 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Video-MP4-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -121,7 +129,8 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Video-WEBM-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -160,7 +169,8 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Video-MKV-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -199,7 +209,8 @@ set "gpq="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Video-3GP-----------------------------------------------------------------
 echo.
 echo ----------------
@@ -226,7 +237,8 @@ set "fmt="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Audio---------------------------------------------------------------------
 echo.
 echo --------------
@@ -252,7 +264,8 @@ color 07
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------------
@@ -265,7 +278,8 @@ color 47
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo --------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
@@ -284,7 +298,9 @@ color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
+echo                  Paypal Donations: EMAIL_REMOVED
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The files are saved in Your 'My Videos' Folder.
@@ -297,7 +313,8 @@ color 07
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Audio-M4A----------------------------------------------------------------------
 echo.
 echo -------------------
@@ -310,7 +327,8 @@ color 47
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo --------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
@@ -329,7 +347,9 @@ color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
+echo                  Paypal Donations: EMAIL_REMOVED
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The audio(s) are saved in Your 'My Videos' Folder.
@@ -342,7 +362,8 @@ color 07
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo -Audio-MP3----------------------------------------------------------------------
 echo.
 echo -------------------
@@ -355,7 +376,8 @@ color 47
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
 echo --------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
@@ -374,7 +396,9 @@ color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                       Advanced Youtube Client - AYC %version%
+echo               Advanced Youtube Client - AYC %version%
+echo.
+echo                  Paypal Donations: EMAIL_REMOVED
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is finished, The song(s) are saved in Your 'My Videos' Folder.
