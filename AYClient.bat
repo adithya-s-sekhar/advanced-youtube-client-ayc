@@ -11,19 +11,18 @@ set fmt=
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
-:s1
 echo.
-echo  Downloaded files are saved in your My Videos folder
+echo  Downloaded files are saved in your 'My Videos' folder
 echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
-if "%url%" equ "" goto s1
+if "%url%" equ "" goto start
 :menu
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------
@@ -42,7 +41,7 @@ if %dlmode% LSS 1 goto menu
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo ---------------------------------
@@ -64,7 +63,7 @@ if %stream% LSS 1 goto video
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo ----------------
@@ -85,12 +84,14 @@ if %qual% == 3 set qual="bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best
 if %qual% == 4 set qual="bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
 if %qual% == 5 set qual="bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
 if %qual% == 6 set qual="bestvideo[ext=mp4][height<=2160]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1440]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
+if %stream% GTR 6 goto mp4
+if %stream% LSS 1 goto mp4
 goto download
 :vp9
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo ----------------
@@ -111,12 +112,14 @@ if %qual% == 3 set qual="bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/be
 if %qual% == 4 set qual="bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
 if %qual% == 5 set qual="bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
 if %qual% == 6 set qual="bestvideo[ext=webm][height<=2160]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1440]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=1080]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=720]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=480]+bestaudio[ext=webm]/bestvideo[ext=webm][height<=360]+bestaudio[ext=webm]"
+if %stream% GTR 6 goto vp9
+if %stream% LSS 1 goto vp9
 goto download
 :3gp
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo ----------------
@@ -134,7 +137,7 @@ goto download
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo --------------
@@ -147,22 +150,24 @@ set /p fmt=Enter Choice (1-2):
 if "%fmt%" equ "" goto audio
 if %fmt% == 1 goto mp3
 if %fmt% == 2 goto audiodownload
+if %stream% GTR 2 goto audio
+if %stream% LSS 1 goto audio
 goto audiodownload
 :download
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------------
 echo  Starting Download
 echo -------------------
-youtube-dl --restrict-filenames --ignore-errors -f %qual% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%"
+youtube-dl --ignore-errors -f %qual% --external-downloader aria2c --external-downloader-args "-x 8 -s 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%"
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The files are saved in Your Videos Folder
@@ -172,17 +177,17 @@ goto exit
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------------
 echo  Starting Download
 echo -------------------
-youtube-dl --restrict-filenames --ignore-errors -f bestaudio[ext=m4a] -o "%loc%\%%(title)s.%%(ext)s" "%url%"
+youtube-dl --ignore-errors -f bestaudio[ext=m4a] --external-downloader aria2c --external-downloader-args "-x 8 -s 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%"
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The files are saved in Your Videos Folder
@@ -192,21 +197,21 @@ goto exit
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --restrict-filenames --ignore-errors -o "%loc%\%%(title)s.%%(ext)s" "%url%"
+youtube-dl --audio-format mp3 --audio-quality 128k --embed-thumbnail --restrict-filenames --ignore-errors --external-downloader aria2c --external-downloader-args "-x 8 -s 8 -k 1M" -o "%loc%\%%(title)s.%%(ext)s" "%url%"
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC v2.0
+echo                          Advanced Youtube Client - AYC v2.1
 echo --------------------------------------------------------------------------------
 echo.
-echo  Your download is Finished, The files are saved in Your Videos Folder
+echo  Your download has finished, The files are saved in Your Videos Folder
 pause>NUL
 goto exit
 :exit
