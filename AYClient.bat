@@ -1,6 +1,6 @@
 @echo off
-set version=v2.45.1
-title Advanced Youtube Client - AYC v2.45.1
+set version=v2.45.2
+title Advanced Youtube Client - AYC v2.45.2
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
 :start
@@ -9,7 +9,7 @@ set "url="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo ------------------------------------------------------
@@ -24,7 +24,7 @@ set "dlmode="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode---------------------------------------------------------------------------
 echo.
 echo -------------
@@ -50,7 +50,7 @@ set "stream="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode-Video---------------------------------------------------------------------
 echo.
 echo ---------------------------------
@@ -82,7 +82,7 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode-Video-MP4-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -121,7 +121,7 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode-Video-WEBM-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -160,7 +160,7 @@ set "qual="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode-Video-MKV-----------------------------------------------------------------
 echo ----------------
 echo  Choose Quality
@@ -199,7 +199,7 @@ set "gpq="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode-Video-3GP-----------------------------------------------------------------
 echo.
 echo ----------------
@@ -226,7 +226,7 @@ set "fmt="
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Mode-Audio---------------------------------------------------------------------
 echo.
 echo --------------
@@ -248,11 +248,11 @@ if %fmt% GTR 2 goto audio
 if %fmt% == 0 goto menu
 goto audiodownload
 :download
-color 17
+color 07
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo -------------------
@@ -265,7 +265,7 @@ color 47
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
@@ -284,7 +284,7 @@ color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The files are saved in Your 'My Videos' Folder.
@@ -293,11 +293,11 @@ echo  You can press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :audiodownload
-color 17
+color 07
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Audio-M4A----------------------------------------------------------------------
 echo.
 echo -------------------
@@ -310,7 +310,7 @@ color 47
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
@@ -329,7 +329,7 @@ color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is Finished, The audio(s) are saved in Your 'My Videos' Folder.
@@ -338,11 +338,11 @@ echo  You can press ENTER to to download antoher video or close this program.
 pause>NUL
 goto start
 :mp3
-color 17
+color 07
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo -Audio-MP3----------------------------------------------------------------------
 echo.
 echo -------------------
@@ -355,7 +355,7 @@ color 47
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
@@ -374,7 +374,7 @@ color 27
 cls
 echo.
 echo --------------------------------------------------------------------------------
-echo                          Advanced Youtube Client - AYC %version%
+echo                       Advanced Youtube Client - AYC %version%
 echo --------------------------------------------------------------------------------
 echo.
 echo  Your download is finished, The song(s) are saved in Your 'My Videos' Folder.
