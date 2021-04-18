@@ -8,14 +8,13 @@ set loc=%loc:"=%
 goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.96.0 (22/Jun/2018)
+set version=v2.96.1 (23/Jun/2018)
 title Race to the moon.
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
-goto check_parameter
 :corrupt_check
 if not exist aria2c.exe goto corrupt
 if not exist avcodec-58.dll goto corrupt
@@ -80,7 +79,7 @@ start AYClient.exe "%url%"
 goto start
 :menu
 title URL Recieved. Choose Download Mode
-color 0F
+color 07
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
@@ -106,7 +105,7 @@ if %errorlevel% == 2 goto video
 if %errorlevel% == 3 goto audio
 if %errorlevel% == 255 goto menu
 :video
-color 0F
+color 07
 title Choose Video Format
 cls
 echo.
@@ -140,7 +139,7 @@ if %errorlevel% == 4 goto mkv
 if %errorlevel% == 5 goto 3gp
 if %errorlevel% == 255 goto video
 :mp4
-color 0F
+color 07
 title Choose MP4 Quality
 cls
 echo.
@@ -182,7 +181,7 @@ if %errorlevel% == 9 set qual="bestvideo[ext=mp4][height<=4320]+bestaudio[ext=m4
 if %errorlevel% == 255 goto mp4
 goto download
 :vp9
-color 0F
+color 07
 title Choose VP9 Quality
 cls
 echo.
@@ -224,7 +223,7 @@ if %errorlevel% == 9 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=w
 if %errorlevel% == 255 goto vp9
 goto download
 :mkv
-color 0F
+color 07
 title Choose MKV Quality
 cls
 echo.
@@ -266,7 +265,7 @@ if %errorlevel% == 9 set qual="bestvideo[ext=webm][height<=4320]+bestaudio[ext=m
 if %errorlevel% == 255 goto mkv
 goto download
 :3gp
-color 0F
+color 07
 title Choose 3GP Quality
 cls
 echo.
@@ -294,7 +293,7 @@ if %errorlevel% == 3 set qual=17
 if %errorlevel% == 255 goto video
 goto download
 :audio
-color 0F
+color 07
 title Choose Audio Format
 cls
 echo ------------------------------------------------------------------------------------------
@@ -508,7 +507,7 @@ if "%uniurl%" equ "" goto uni
 if %uniurl% == 0 exit
 :uniqualselect
 set "uniqual="
-color 0F
+color 07
 title This may or may not work. Read Instructions.
 cls
 echo.
@@ -657,6 +656,7 @@ set /p job_name=Enter a name for your Job (eg: Adventure time videos):
 echo.
 choice /c yn /n /m "Is this a YouTube Download Job? (Yes/No) "
 if %errorlevel% == 1 set youtube=1
+if %errorlevel% == 2 set youtube=0
 if %errorlevel% == 255 goto batch
 md "%loc%\%job_name%"
 :batch_manage
@@ -722,6 +722,7 @@ echo                     Advanced Youtube Client - AYC %version%
 echo.
 echo -------------------------------------- BETA FEATURE --------------------------------------
 if %youtube% == 1 goto batch_youtube
+if %youtube% == 0 echo.
 echo ---------------------------------
 echo  Select Quality
 echo ---------------------------------
@@ -827,7 +828,7 @@ if %errorlevel% == 9 set batch_ytqual="bestvideo[ext=mp4][height<=4320]+bestaudi
 if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
 :batch_ytvp9
-color 0F
+color 07
 title Choose VP9 Quality
 cls
 echo.
@@ -866,7 +867,7 @@ if %errorlevel% == 9 set batch_ytqual="bestvideo[ext=webm][height<=4320]+bestaud
 if %errorlevel% == 255 goto batch_ytvp9
 goto batch_ytdownload
 :batch_ytmkv
-color 0F
+color 07
 title Choose MKV Quality
 cls
 echo.
@@ -905,7 +906,7 @@ if %errorlevel% == 9 set batch_ytqual="bestvideo[ext=webm][height<=4320]+bestaud
 if %errorlevel% == 255 goto batch_ytmkv
 goto download
 :batch_yt3gp
-color 0F
+color 07
 title Choose 3GP Quality
 cls
 echo.
@@ -931,7 +932,7 @@ if %errorlevel% == 3 set batch_ytqual=17
 if %errorlevel% == 255 goto batch_ytvideo
 goto batch_ytdownload
 :batch_ytaudio
-color 0F
+color 07
 title Choose Audio Format
 cls
 echo.
