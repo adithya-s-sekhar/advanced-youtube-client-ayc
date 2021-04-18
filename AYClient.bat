@@ -1,5 +1,6 @@
 @echo off
-set version=v2.41
+set version=v2.42
+title Advanced Youtube Client - AYC v2.42
 ayc-info.exe welcome.vbs
 md "%userprofile%\Videos\Advanced Youtube Client - AYC"
 set loc=%userprofile%\Videos\Advanced Youtube Client - AYC
@@ -17,6 +18,7 @@ echo ------------------------------------------------------
 echo.
 set /p url=Paste a Youtube Video/Playlist URL to start: 
 if "%url%" equ "" goto start
+if %url% == s goto settings
 :menu
 set "dlmode="
 cls
@@ -58,9 +60,9 @@ echo  0) GO BACK
 echo.
 echo  1) MP4  -   Video:H264   Audio:AAC  (Default)
 echo.
-echo  2) WEBM -   Video:VP9    Audio:OPUS (Smaller but less compatible)
+echo  2) WEBM -   Video:VP9    Audio:OPUS (Subject To Availability)
 echo.
-echo  3) MKV  -   Video:VP9    Audio:AAC  (Smaller with compatible Audio)
+echo  3) MKV  -   Video:VP9    Audio:AAC  (Subject To Availability)
 echo.
 echo  4) 3GP  -   Video:MPEG4  Audio:AAC  (Compatible for old phones)
 echo.
@@ -250,7 +252,7 @@ echo -------------------
 echo  Starting Download
 echo -------------------
 echo.
-youtube-dl --no-warnings --ignore-errors -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%"
+youtube-dl --no-warnings --embed-subs --ignore-errors -f %qual% --external-downloader aria2c --external-downloader-args "--file-allocation=none -c -x 8 -s 8 -k 1M" -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%"
 cls
 echo.
 echo --------------------------------------------------------------------------------
