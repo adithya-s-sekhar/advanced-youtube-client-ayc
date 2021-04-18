@@ -4,7 +4,7 @@
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 2016-08-13                /
-:: / Current Release : v2.99.4 2019-01-30             /
+:: / Current Release : v2.99.5 2019-05-05             /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
@@ -15,7 +15,7 @@
 :begin
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
-set version=v2.99.4 (30/Jan/2019)
+set version=v2.99.5 (05/May/2019)
 title I can put anything here no one's going to read it. oof sex
 if not exist "%aycdata%\cols.txt" goto colsnotexist
 if not exist "%aycdata%\lines.txt" goto linesnotexist
@@ -98,7 +98,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo     Save Kerala - http://bit.ly/ayckeralaflood   Save Nagaland - http://bit.ly/aycnlan
 echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------------------------------------------
@@ -107,7 +106,7 @@ echo  Enter M for more options.
 echo.
 echo -------------------------------------------------------
 echo.
-set /p url=Paste a Youtube Video/Playlist URL or QuickKey: 
+set /p url=Paste a Youtube Video/Playlist URL or QuickKey:
 if "%url%" equ "" goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
@@ -194,7 +193,7 @@ echo.
 echo  0) GO BACK
 echo ---------------------------------------------
 echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p) 
+echo  2) 360p   (If not available, returns to 240p)
 echo  3) 480p   (If not available, returns to 360p)
 echo ---------------------------------------------
 echo  4) 720p   (If not available, returns to 480p)
@@ -236,7 +235,7 @@ echo.
 echo  0) GO BACK
 echo ---------------------------------------------
 echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p) 
+echo  2) 360p   (If not available, returns to 240p)
 echo  3) 480p   (If not available, returns to 360p)
 echo ---------------------------------------------
 echo  4) 720p   (If not available, returns to 480p)
@@ -278,7 +277,7 @@ echo.
 echo  0) GO BACK
 echo ---------------------------------------------
 echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p) 
+echo  2) 360p   (If not available, returns to 240p)
 echo  3) 480p   (If not available, returns to 360p)
 echo ---------------------------------------------
 echo  4) 720p   (If not available, returns to 480p)
@@ -476,13 +475,13 @@ echo  Download Failed!!!! :-(
 echo.
 echo  URL: %url%
 echo.
-echo  Press enter to close this window. 
+echo  Press enter to close this window.
 echo.
 echo  This normally happens if WEBM/MKV format doesn't exist.
 echo.
 echo  TIP: Enable rechecks in settings if you have a bad network.
 echo.
-echo  If you are facing this issue with all formats, please contact us on our 
+echo  If you are facing this issue with all formats, please contact us on our
 echo  Facebook page.
 pause>NUL
 goto exit
@@ -556,7 +555,7 @@ echo.
 echo  Close this window to go back.
 echo --------------------------------------------------------------------------------------
 echo.
-set /p uniurl=Enter a page url with playing video: 
+set /p uniurl=Enter a page url with playing video:
 if "%uniurl%" equ "" goto uni
 :uniqualselect
 set "uniqual="
@@ -573,7 +572,7 @@ echo  URL: %uniurl%
 echo.
 youtube-dl.exe -F "%uniurl%"
 echo.
-set /p uniqual=Choose Format Code (left side on the above list): 
+set /p uniqual=Choose Format Code (left side on the above list):
 if "%uniqual%" equ "" goto uniqualselect
 :unidownload
 set "try="
@@ -699,19 +698,19 @@ echo                     Advanced Youtube Client - AYC %version%
 echo.
 echo -More-Settings-Change Download Folder-----------------------------------------------------
 echo.
-echo  Current download folder is: 
+echo  Current download folder is:
 echo  %loc%
 echo.
 echo ----------------------------------------------
-echo  Drag and Drop the folder you want AYC to save 
+echo  Drag and Drop the folder you want AYC to save
 echo  it's downloads into the below area.
 echo.
 echo  Then Press Enter to save.
-echo.  
+echo.
 echo  Enter 0 to Go Back.
 echo ----------------------------------------------
 echo.
-set /p settings_dir=Drag and Drop here: 
+set /p settings_dir=Drag and Drop here:
 if %settings_dir%p equ p goto settings_change_dir
 if %settings_dir% == 0 goto settings
 echo "%settings_dir%">"%aycdata%\dir.txt"
@@ -728,21 +727,21 @@ echo.
 echo -More-Settings-Change No. of Rechecks-----------------------------------------------------
 echo.
 echo -----------------------------------------------------
-echo  On unstable connections with dropouts, playlist/batch download can sometimes miss a 
+echo  On unstable connections with dropouts, playlist/batch download can sometimes miss a
 echo  download and will show you download failed.
 echo.
-echo  You can easily restart the download and it will download the remaining files without 
+echo  You can easily restart the download and it will download the remaining files without
 echo  downloading all of them again.
 echo.
 echo  But this is incovenient at most times. whoami kidding? it's stupid!
 echo.
-echo  The number you set here is the number of times AYC will recheck the download to see if 
+echo  The number you set here is the number of times AYC will recheck the download to see if
 echo  any files are missing.
 echo.
 echo  If it found any, that missing file will be downloaded.
 echo -----------------------------------------------------
 echo.
-set /p settings_try=No. of Rechecks (Enter to go back): 
+set /p settings_try=No. of Rechecks (Enter to go back):
 if %settings_try%p equ p goto settings
 echo "%settings_try%">"%aycdata%\try.txt"
 goto settings
@@ -765,7 +764,7 @@ echo.
 echo  Leave blank and ENTER to go back.
 echo ---------------------------------------
 echo.
-set /p settings_cols=Enter custom width: 
+set /p settings_cols=Enter custom width:
 if %settings_cols%p equ p goto settings
 if %settings_cols% == 0 goto settings_change_ayc_size
 echo "%settings_cols%">"%aycdata%\cols.txt"
@@ -786,7 +785,7 @@ echo ---------------------------------------
 echo.
 echo Enter custom width: %settings_cols%
 echo.
-set /p settings_lines=Enter custom height: 
+set /p settings_lines=Enter custom height:
 if %settings_lines%p equ p goto settings
 if %settings_cols% == 0 goto settings_change_ayc_size
 echo "%settings_lines%">"%aycdata%\lines.txt"
@@ -804,17 +803,17 @@ echo                     Advanced Youtube Client - AYC %version%
 echo.
 echo -More-Settings-About----------------------------------------------------------------------
 echo.
-echo   Advanced Youtube Client - AYC Script   
-echo.          
-echo   Author           : Adithya S Sekhar  
-echo.             
-echo   First Release    : v1.0 2016-08-13   
-echo.             
-echo   Current Release  : v2.99.4 2019-01-30   
-echo.          
-echo   Released under the MIT License.                  
-echo   Please don't modify or redistribute without      
-echo   proper credits.                                  
+echo   Advanced Youtube Client - AYC Script
+echo.
+echo   Author           : Adithya S Sekhar
+echo.
+echo   First Release    : v1.0 2016-08-13
+echo.
+echo   Current Release  : v2.99.5 2019-05-05
+echo.
+echo   Released under the MIT License.
+echo   Please don't modify or redistribute without
+echo   proper credits.
 echo.
 echo.
 echo  Press Enter to go back.
@@ -834,17 +833,17 @@ echo -------------------------------------- BETA FEATURE -----------------------
 echo.
 echo -----------------------------------------------------------------
 echo.
-echo  Batch Mode allows you to create jobs, add videos to that job 
-echo  and then download it. 
+echo  Batch Mode allows you to create jobs, add videos to that job
+echo  and then download it.
 echo.
-echo  Job URLs are saved and can be resumed by re-entering the 
+echo  Job URLs are saved and can be resumed by re-entering the
 echo  same job.
 echo.
 echo -----------------------------------------------------------------
 echo.
-set /p job_name=Enter a name for your Job (eg: Adventure time videos): 
+set /p job_name=Enter a name for your Job (eg: Adventure time videos):
 md "%loc%\%job_name%"
-if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check 
+if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check
 echo.>"%loc%\%job_name%\%job_name%.txt"
 :batch_is_yt_confirm
 echo.
@@ -908,7 +907,7 @@ echo  Enter 0 to Go Back after adding links
 echo.
 echo --------------------------------------------
 :batch_add_links_added
-set /p batch_link_tmp=Paste Link: 
+set /p batch_link_tmp=Paste Link:
 echo.
 if "%batch_link_tmp%" equ "0" goto batch_manage
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
@@ -1006,7 +1005,7 @@ echo.
 echo  0) GO BACK
 echo ---------------------------------------------
 echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p) 
+echo  2) 360p   (If not available, returns to 240p)
 echo  3) 480p   (If not available, returns to 360p)
 echo ---------------------------------------------
 echo  4) 720p   (If not available, returns to 480p)
@@ -1045,7 +1044,7 @@ echo.
 echo  0) GO BACK
 echo ---------------------------------------------
 echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p) 
+echo  2) 360p   (If not available, returns to 240p)
 echo  3) 480p   (If not available, returns to 360p)
 echo ---------------------------------------------
 echo  4) 720p   (If not available, returns to 480p)
@@ -1084,7 +1083,7 @@ echo.
 echo  0) GO BACK
 echo ---------------------------------------------
 echo  1) 240p
-echo  2) 360p   (If not available, returns to 240p) 
+echo  2) 360p   (If not available, returns to 240p)
 echo  3) 480p   (If not available, returns to 360p)
 echo ---------------------------------------------
 echo  4) 720p   (If not available, returns to 480p)
@@ -1163,7 +1162,7 @@ set "try="
 set try=%try_count%
 :batch_ytdownloadtried
 color 0B
-title she said she's a pokemon 
+title she said she's a pokemon
 cls
 echo.
 echo ------------------------------------------------------------------------------------------
