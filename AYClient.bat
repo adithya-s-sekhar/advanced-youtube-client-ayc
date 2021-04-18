@@ -13,7 +13,7 @@ goto pl
 :playlist
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.7
+echo                           Advanced Youtube Client - AYC v1.8
 echo.
 echo.
 set /p url=Enter Youtube Playlist URL to get started : 
@@ -26,8 +26,6 @@ echo 2) Video Only
 echo 3) Audio Only
 echo.
 set /p type=Enter Output Type(1-3): 
-echo.
-set /p file=Enter a Name for your Output File: 
 if %type%==1 goto pva
 if %type%==2 goto pv
 if %type%==3 goto pa
@@ -76,7 +74,7 @@ goto finish
 :pa
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.7
+echo                           Advanced Youtube Client - AYC v1.8
 echo.
 echo Your Files wil be downloaded in 128K MP3.
 echo.
@@ -89,7 +87,7 @@ yt --extract-audio --audio-format mp3 --embed-thumbnail -o "%loc%/%%(title)s.%%(
 :pl
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.7
+echo                           Advanced Youtube Client - AYC v1.8
 echo.
 echo.
 echo Enter 'p' if you want to go to Playlist Mode or anything else for single file
@@ -107,7 +105,7 @@ set fix=%random%
 title Advanced Youtube Client - AYC
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.7
+echo                           Advanced Youtube Client - AYC v1.8
 echo.
 echo.
 set /p url=Enter Youtube video URL to get started : 
@@ -151,14 +149,14 @@ if exist "%loc%\%video%.mp4" (goto 1080pva2) else (goto va)
 yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
 ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
 ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :720pva
 cls
 yt -f 22 -o "%loc%\%tmp%.mp4" "%url%"
 if exist "%loc%\%tmp%.mp4" (goto 720pva2) else (goto va)
 :720pva2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :480pva
 cls
@@ -168,14 +166,14 @@ if exist "%loc%\%video%.mp4" (goto 480pva2) else (goto va)
 yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
 ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
 ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :360pva
 cls
 yt -f 18 -o "%loc%\%tmp%.mp4" "%url%"
 if exist "%loc%\%tmp%.mp4" (goto 360pva2) else (goto va)
 :360pva2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :240pva
 cls
@@ -185,7 +183,7 @@ if exist "%loc%\%video%.mp4" (goto 240pva2) else (goto va)
 yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
 ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
 ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :144pva
 cls
@@ -195,7 +193,7 @@ if exist "%loc%\%video%.mp4" (goto 144pva2) else (goto va)
 yt -f 140 -o "%loc%\%audio%.m4a" "%url%"
 ffmpeg -i "%loc%\%video%.mp4" -vcodec copy "%loc%\%fix%.mp4"
 ffmpeg -i "%loc%\%fix%.mp4" -i "%loc%\%audio%.m4a" -vcodec copy -acodec copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :v
 echo.
@@ -221,14 +219,14 @@ yt -f 137 -o "%loc%\%video%.mp4" "%url%"
 if exist "%loc%\%video%.mp4" (goto 1080pv2) else (goto v)
 :1080pv2
 ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :720pv
 cls
 yt -f 136 -o "%loc%\%tmp%.mp4" "%url%"
 if exist "%loc%\%tmp%.mp4" (goto 720pv2) else (goto v)
 :720pv2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :480pv
 cls
@@ -236,14 +234,14 @@ yt -f 135 -o "%loc%\%video%.mp4" "%url%"
 if exist "%loc%\%video%.mp4" (goto 480pv2) else (goto v)
 :480pv2
 ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :360pv
 cls
 yt -f 134 -o "%loc%\%tmp%.mp4" "%url%"
 if exist "%loc%\%tmp%.mp4" (goto 360pv2) else (goto v)
 :360pv2
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :240pv
 cls
@@ -251,7 +249,7 @@ yt -f 133 -o "%loc%\%video%.mp4" "%url%"
 if exist "%loc%\%video%.mp4" (goto 240pv2) else (goto v)
 :240pv2
 ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :144pv
 cls
@@ -259,7 +257,7 @@ yt -f 160 -o "%loc%\%video%.mp4" "%url%"
 if exist "%loc%\%video%.mp4" (goto 144pv2) else (goto v)
 :144pv2
 ffmpeg -i "%loc%\%video%.mp4" -c copy "%loc%\%tmp%.mp4"
-mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.7" -new "%loc%\%file%.mp4"
+mp4box -add "%loc%\%tmp%.mp4" -itags tool="Advanced Youtube Client v1.8" -new "%loc%\%file%.mp4"
 if exist "%loc%\%file%.mp4" (goto finish) else (goto error)
 :a
 echo.
@@ -304,7 +302,7 @@ del "%loc%\%tmp%.m4a"
 start ayc-prompt.exe finish.vbs
 cls
 echo.
-echo                           Advanced Youtube Client - AYC v1.7
+echo                           Advanced Youtube Client - AYC v1.8
 echo.
 echo Your Download is Finished. Press enter to open your File Location.
 pause>NUL
