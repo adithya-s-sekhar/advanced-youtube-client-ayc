@@ -8,7 +8,7 @@ set loc=%loc:"=%
 goto corrupt_check
 :begin
 mode con:cols=90 lines=32
-set version=v2.96.3 (03/Jul/2018)
+set version=v2.97.0 (04/Jul/2018)
 title Race to the moon.
 md "%appdata%\Advanced Youtube Client - AYC"
 set aycdata=%appdata%\Advanced Youtube Client - AYC
@@ -62,7 +62,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
 echo -------------------------------------------------------
@@ -84,6 +83,7 @@ cls
 echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-------------------------------------------------------------------------------------
 echo.
 echo  URL: %url%
@@ -271,6 +271,7 @@ cls
 echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
+echo.
 echo -Mode-Video-3gp---------------------------------------------------------------------------
 echo.
 echo  URL: %url%
@@ -345,7 +346,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
 echo  URL: %url%
@@ -382,7 +382,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
 echo  URL: %url%
@@ -441,7 +440,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                          Paypal Donations: EMAIL_REMOVED
 echo ------------------------------------------------------------------------------------------
 echo.
 echo  URL: %url%
@@ -547,7 +545,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                          Paypal Donations: EMAIL_REMOVED
 echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
 echo  URL: %uniurl%
@@ -1028,7 +1025,6 @@ echo.
 echo ------------------------------------------------------------------------------------------
 echo                     Advanced Youtube Client - AYC %version%
 echo.
-echo                          Paypal Donations: EMAIL_REMOVED
 echo -------------------------------------- BETA FEATURE --------------------------------------
 echo.
 echo  Download Finished, The files are saved in:
