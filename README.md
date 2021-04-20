@@ -7,7 +7,7 @@ Advanced Youtube Client - AYC is a lightweight youtube downloader written using 
 
 You can call it a console front end if you want.
 
-Project and screenshots on sourceforge: https://sourceforge.net/projects/advanced-youtube-client-ayc/
+Project and screenshots on sourceforge since 2016: https://sourceforge.net/projects/advanced-youtube-client-ayc/
 
 Website: https://advanced-youtube-client-ayc.sourceforge.io/
 
