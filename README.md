@@ -22,6 +22,7 @@ Website: https://advanced-youtube-client-ayc.sourceforge.io/
 - Programmed as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
 - Universal Mode - Download from any websites.
 - Batch Download Jobs.
+- Updater for youtube-dl.
 
 ## How to use
 
