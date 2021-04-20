@@ -1,4 +1,6 @@
-# advanced-youtube-client-ayc
+![256](https://user-images.githubusercontent.com/60822601/115324256-36724180-a1a7-11eb-929c-c0d1221b7b84.png)
+
+# Advanced Youtube Client - AYC
 ## This repo is stil WIP
 
 Project on sourceforge since 2016: https://sourceforge.net/projects/advanced-youtube-client-ayc/
