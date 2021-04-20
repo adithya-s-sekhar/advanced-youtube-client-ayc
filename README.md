@@ -20,5 +20,5 @@ Portable and Installer binaries are available [here](https://advanced-youtube-cl
 1. Download AYClient-Portable.bat, the regular one needs an AppData folder which I'll update later.
 2. Create a folder with any name anywhere, on a USB stick or your hard disk.
 3. Rename AYClient-Portable.bat to AYClient.bat and copy to the creater folder.
-4. Also have ffmpeg.exe and [youtube-dl.exe](https://youtube-dl.org) in the folder.
+4. Also have ffmpeg.exe([32-bit](https://www.notion.so/34dc4ddf501a4b98b46ea9fb4f3470af?v=878345c5d88f4d21a6520db752b5c29f)/[64-bit](https://github.com/BtbN/FFmpeg-Builds/releases)) and [youtube-dl.exe](https://youtube-dl.org) in the folder.
 5. Start AYClient.bat and it'll create the necessary files for further execution.
