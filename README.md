@@ -3,9 +3,25 @@
 # Advanced Youtube Client - AYC
 ## This repo is stil WIP
 
+Advanced Youtube Client - AYC is a lightweight youtube downloader written using windows batch commands based on youtube-dl.
+
+You can call it a console front end if you want.
+
 Project on sourceforge since 2016: https://sourceforge.net/projects/advanced-youtube-client-ayc/
 
 Website: https://advanced-youtube-client-ayc.sourceforge.io/
+
+## Features
+
+- Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p videos with audio.
+- Supports AV1 with HDR, VP9 for 1440p and above resolutions.
+- Playlist Downloader with resume capabilities.
+- MP3, M4A Audio Downloader with Cover Art.
+- Compatible with Windows Vista/7/8/8.1/10 (32/64-bit).
+- Light on CPU Resources as it runs solely on CMD.
+- Programmed as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
+- Universal Mode - Download from any websites.
+- Batch Download Jobs.
 
 ## How to use
 
