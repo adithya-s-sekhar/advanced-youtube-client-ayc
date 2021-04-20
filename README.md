@@ -9,6 +9,8 @@ Website: https://advanced-youtube-client-ayc.sourceforge.io/
 
 ### A. Binary
 
+Binaries are compiled with https://github.com/99fk/Bat-To-Exe-Converter-Downloader
+
 Portable and Installer binaries are available [here](https://advanced-youtube-client-ayc.sourceforge.io)
 
 ### B. Run source directly.
