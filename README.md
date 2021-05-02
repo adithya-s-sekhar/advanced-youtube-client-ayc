@@ -41,7 +41,8 @@ Older versions are also available: https://advanced-youtube-client-ayc.sourcefor
 1. Download AYClient-Portable.bat, the regular one needs an AppData folder.
 2. Create a folder with any name anywhere, on a USB stick or your hard disk.
 3. Rename AYClient-Portable.bat to AYClient.bat and copy to the created folder.
-4. Also have ffmpeg.exe([32-bit](https://www.notion.so/34dc4ddf501a4b98b46ea9fb4f3470af?v=878345c5d88f4d21a6520db752b5c29f)/[64-bit](https://github.com/BtbN/FFmpeg-Builds/releases)) and [youtube-dl.exe](https://youtube-dl.org) in the folder.
+4. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/) and [youtube-dl.exe](https://youtube-dl.org) in the folder.
+   Thank you Zeranoe for building ffmpeg for us windows peeps all these years, AYC switched to AnimMouse builds since Dec 2020.
 5. Start AYClient.bat and it'll create the necessary files for further execution.
 
 ## Quirks
