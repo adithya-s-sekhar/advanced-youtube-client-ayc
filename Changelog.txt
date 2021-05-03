@@ -1,0 +1,118 @@
+Advanced Youtube Client - AYC v3.4
+
+What's new?
+
+[3.4]
+-> Fix bug: AYC was creating aycdata folder while it already exists, this showed as an error momentarily while starting downloads.
+-> Enhancement: Batch downloads can now pick a custom quality to download from a sample url.
+-> Enhancement: Pass URLs directly to AYClient without using tmp.txt in Appdata.
+-> Enhancement: Add rechecker to error page solutions list.
+-> Enhancement: Minor UI Updates.
+
+[3.3]
+-> Fix bug: Resetting AYC deleted youtube-dl.
+-> Fix bug: Choice in reset window was listening for a non existing 3rd option.
+-> Fix bug: Window size wasn't applied while preparing first run.
+-> Enhancement: The zipped version is now fully portable instead of creating folders on the running system.
+
+[3.2]
+-> Enhancement: youtube-dl can now be updated without admin permissions.
+-> Enhancement: updated download failed pages with more information.
+-> Enhancement: update youtube-dl on first run.
+-> Enhancement: minor ui updates.
+
+[3.1]
+-> Fix bug: 1440p, 4k and 8k downloads fixed. Youtube changed these to VP9 from regular H264 which broke 3.0 because it was looking for MP4 h264 streams. As a result anything from 1440p and up can now be only saved as MKV files.
+-> Fix bug: Changing recheck counts only applied on restart, now it updates everytime it's changed.
+-> Fix bug: Fixed displayed choice range in download window.
+-> Updated: youtube-dl
+
+[3.0]
+-> Note: Major Update - It's way better now.
+-> Rewrite: Redid download block.
+-> Rewrite: Unified stream selection pages.
+-> Rewrite: Redid UI for quick access to everything.
+-> Removed: Removed custom window sizes and accompanying logic.
+-> Removed: Removed all unnecessary prompts and extra pages.
+-> Enhancement: Code size reduced by over 40%.
+-> Enhancement: Now uses a single download block instead of the old 4 per mode.
+
+It's a proper tool now rather than a fun piece of script.
+
+What's New in v2.99.7?
+
+1. Fixed wrongly selecting MP4 on format selection screen.
+2. Ask if user wants to reset before resetting.
+3. Increased aria2 piece size to 4MB from 1MB.
+4. Fixed UI mistakes:
+- wrong header
+- padding
+- wrong wording on rechecker settings
+- different date formats in different windows
+
+
+What's New in v2.99.6?
+
+* Seperated 64 and 32 bit installers.
+* Zipped version now available. :)
+* Added youtube-dl update option.
+* Cleaned up source code mess from my teenage years
+-unnecessary things
+-repeated commands
+-visual c++ 2010 installer
+-immature jokes
+* Updated ffmpeg:
+-thank you zeranoe for building ffmpeg for us windows peeps all these years.
+-now using https://github.com/AnimMouse/ffmpeg-stable-autobuild/
+* Updated aria2 and youtube-dl.
+* Reintroduced controls for the installer.
+* Removed 3gp support since it's broken. Need to find another way.
+
+
+What's New in v2.99.5? (Compared to v2.99.4)
+
+*Maintenance Update
+Updated youtube-dl to v2019.04.30
+Updated ffmpeg to 4.1.3 release
+Minor UI updates
+
+
+What's New in v2.99.4? (Compared to v2.99.3)
+
+*Maintenance Update
+Updated youtube-dl to v2019.01.30.1
+Updated ffmpeg to 20190129 zeranoe nightly
+Minor UI updates
+
+
+What's New in v2.99.3? (Compared to v2.99.2)
+
+*Maintenance Update
+Updated youtube-dl to v2018.11.07
+Minor UI updates
+
+
+What's New in v2.99.2? (Compared to v2.99.1)
+
+Batch downloads can be resumed by entering the job name.
+More updates to batch downloader
+Removed all custom aria2 tweaks. aria2c is fine for now. ;)
+Updated youtube-dl to v2018.09.10 (fixed youtube audio download)
+
+
+What's New in v2.99.1? (Compared to v2.99.0)
+
+[IMPORTANT] Disabled aria2 tweaks from Batch and Universal modes (some weird youtube-dl bug)
+Fixed bugs overwriting already downloaded mp3 files (might need some more testing, stay with m4a unless you really need it)
+Fixed bugs in Universal mode and Batch mode
+youtube-dl updated to v2018.09.01
+
+
+What's New in v2.99.0? (Compared to v2.98.0)
+
+-New feature: Rechecker
+-New feature: AYC windows size can be now customized
+-New feature: Reset switch to fix crashes due to wrong or corrupt config changes
+-Logic updated for directory handling
+-New failsafes to prevent crashes
+-Updated youtube-dl to v2018.08.22
