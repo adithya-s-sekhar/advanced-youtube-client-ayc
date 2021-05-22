@@ -1,6 +1,14 @@
-Advanced Youtube Client - AYC v3.4
+Advanced Youtube Client - AYC v3.5 - 22/May/2021
 
 What's new?
+
+[3.5]
+-> Seperate Format Selector pages for MP4/VP9/AV1 and Audio Formats.
+-> Fixed Wrongly downloading VP9.
+-> New quality selector using vcodec instead of ext.(see youtube-dl readme#FORMAT-SELECTION)
+-> UI Updates.
+-> ffmpeg updated to AnimMouse n4.4 2021-05-12 08:09 734bf00 (64/32-bit) (see ayc github readme)
+-> youtube-dl updated to v2021.05.16
 
 [3.4]
 -> Fix bug: AYC was creating aycdata folder while it already exists, this showed as an error momentarily while starting downloads.
