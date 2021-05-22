@@ -44,10 +44,3 @@ Older versions are also available: https://advanced-youtube-client-ayc.sourcefor
 4. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/) and [youtube-dl.exe](https://youtube-dl.org) in the folder.
    Thank you Zeranoe for building ffmpeg for us windows peeps all these years, AYC switched to AnimMouse builds since Dec 2020.
 5. Start AYClient.bat and it'll create the necessary files for further execution.
-
-## Quirks
-
-- If you choose qualities above 1080p, eg:- 1440p and up it'll be saved as MKV files with a VP9 video and AAC audio.
-This is due to YouTube not serving regular MP4 H264 videos anymore at these resolutions.
-The quirk is that, if you pick 1440p as the maximum quality and the video is only upto 720p it'll still download the VP9 720p stream instead of the H264 720p stream.
-I'm still trying to figure this part out :)
