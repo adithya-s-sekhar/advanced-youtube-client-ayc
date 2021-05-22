@@ -676,7 +676,7 @@ if %errorlevel% == 1 goto batch_manage
 if %errorlevel% == 2 set format_chosen=h264
 if %errorlevel% == 3 set format_chosen=vp9
 if %errorlevel% == 4 set format_chosen=av1
-if %errorlevel% == 5 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto download
+if %errorlevel% == 5 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto batch_ytdownload
 if %errorlevel% == 6 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto batch_ytdownload
 if %errorlevel% == 7 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto batch_ytdownload
 if %errorlevel% == 255 goto batch_yt_format_selector
