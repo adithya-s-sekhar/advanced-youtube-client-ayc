@@ -70,7 +70,7 @@ if %1% equ "u" goto uni
 if %1% equ "U" goto uni
 set url=%1%
 set url=%url:"=%
-goto menu
+goto format_selector
 
 
 :start
@@ -95,7 +95,7 @@ start AYClient.bat "%url%"
 goto start
 
 
-:menu
+:format_selector
 mode con:cols=60 lines=32
 color 07
 title Link Recieved
@@ -108,32 +108,111 @@ echo ------------------------------------------------------------
 echo.
 echo  URL: %url%
 echo.
-echo ---------------
+echo  Choose format
+echo ------------------------------------------------------------
 echo  Video + Audio
-echo ---------------
-echo   (1) - 360p   (If not available, returns to 240p)
-echo   (2) - 480p   (If not available, returns to 360p)
-echo   (3) - 720p   (If not available, returns to 480p)
-echo   (4) - 1080p  (If not available, returns to 720p)
-echo   (5) - 1440p  (If not available, returns to 1080p)
-echo   (6) - 4K     (If not available, returns to 1440p)
-echo   (7) - 8K     (If not available, returns to 4K)
-echo --------------
-echo   Audio Only
-echo --------------
-echo   (8) - M4A 128Kb/s
-echo   (9) - MP3 128Kb/s
-echo -------------------
-choice /c 123456789 /n /m "Enter Choice (1-9): "
-if %errorlevel% == 1 set conf="-f bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 2 set conf="-f bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[height<=4320]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
-if %errorlevel% == 9 set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k
+echo.
+echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
+echo.
+echo   (2) - VP9 Video/AAC Audio (Upto 8k)
+echo.
+echo   (3) - AV1 Video/AAC Audio (If available, upto 8k)
+echo ------------------------------------------------------------
+echo  Audio Only
+echo.
+echo   (4) - M4A  - AAC Audio  - 128kbps
+echo.
+echo   (5) - MP3  - MP3 Audio  - 128kbps
+echo.
+echo   (6) - WEBM - OPUS Audio - 160kbps
+echo ------------------------------------------------------------
+choice /c 123456 /n /m "Enter Choice (1-6): "
+if %errorlevel% == 1 set format_chosen=h264
+if %errorlevel% == 2 set format_chosen=vp9
+if %errorlevel% == 3 set format_chosen=av1
+if %errorlevel% == 4 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto download
+if %errorlevel% == 5 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto download
+if %errorlevel% == 6 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto download
+goto menu
+
+
+:menu
+mode con:cols=60 lines=32
+color 07
+if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
+if %format_chosen% == vp9 title  Format: .MKV (VP9 Video/AAC Audio)
+if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/AAC Audio)
+cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+echo.
+echo  URL: %url%
+echo.
+if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
+if %format_chosen% == vp9 echo  Format: .MKV (VP9 Video/AAC Audio)
+if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
+echo.
+echo   (0) - Go Back
+echo ------------------------------------------------------------
+echo  Choose Maximum Quality
+echo.
+echo   (1) - 144p 
+echo   (2) - 240p   (If not available, returns to 144p) 
+echo   (3) - 360p   (If not available, returns to 240p) 
+echo.
+echo   (4) - 480p   (If not available, returns to 360p) 
+echo   (5) - 720p   (If not available, returns to 480p) 
+echo   (6) - 1080p  (If not available, returns to 720p) 
+if NOT %format_chosen% == h264 echo.
+if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
+if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
+if NOT %format_chosen% == h264 echo   (9) - 8K     (If not available, returns to 4K)
+if %format_chosen% == vp9  goto choice_vp9
+if %format_chosen% == av1  goto choice_av1
+echo ------------------------------------------------------------
+choice /c 0123456 /n /m "Enter Choice (0-6): "
+if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 255 goto menu
+goto download
+
+:choice_vp9
+echo ------------------------------------------------------------
+choice /c 0123456789 /n /m "Enter Choice (0-9): "
+if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec=vp9][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec=vp9][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec=vp9][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec=vp9][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec=vp9][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec=vp9][height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec=vp9][height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec=vp9][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 255 goto menu
+goto download
+
+:choice_av1
+echo ------------------------------------------------------------
+choice /c 0123456789 /n /m "Enter Choice (0-9): "
+if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=m4a]"
 if %errorlevel% == 255 goto menu
 goto download
 
@@ -159,7 +238,10 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-%youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-MP4-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-VP9-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s-AV1-%%(height)sp.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%%(title)s.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadtried
@@ -203,12 +285,15 @@ echo  URL: %url%
 echo.
 echo  Possible problems and solutions:
 echo   1. youtube-dl might be out of date. Update it by going 
-echo   into Settings, Update youtube-dl.
+echo    into Settings, Update youtube-dl.
 echo   2. You may have entered an invalid/private link. These 
-echo   aren't supported yet.
+echo    aren't supported yet.
 echo   3. If you have an unreliable network, enable rechecks
-echo   in Settings.
-echo   4. If all else fails, report the failing URLs on the 
+echo    in Settings.
+echo   4. If you chose AV1, not all videos are supported by
+echo    youtube yet.
+echo.
+echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge page. 
 echo.
 echo  Press enter to close this window.
@@ -482,7 +567,7 @@ echo                 Advanced Youtube Client - AYC
 echo.
 echo                      %version%
 echo ------------------------------------------------------------
-if %youtube% == 1 goto batch_ytmp4
+if %youtube% == 1 goto batch_yt_format_selector
 if %youtube% == 0 echo.
 echo ---------------------------------
 echo  Select Quality
@@ -553,10 +638,10 @@ if "%batch_custom_qual%" equ "0" goto batch_custom_format
 set conf=-f %batch_custom_qual%
 goto batch_ytdownload
 
-:batch_ytmp4
+:batch_yt_format_selector
 mode con:cols=60 lines=32
 color 07
-title Choose Stream
+title Choose Format
 cls
 echo ------------------------------------------------------------
 echo                 Advanced Youtube Client - AYC 
@@ -564,35 +649,114 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-echo   (0) GO BACK
+echo  Working on: %job_name%
 echo.
-echo ---------------
+echo   (0) - Go Back
+echo.
+echo  Choose format
+echo ------------------------------------------------------------
 echo  Video + Audio
-echo ---------------
-echo   (1) - 360p   (If not available, returns to 240p)
-echo   (2) - 480p   (If not available, returns to 360p)
-echo   (3) - 720p   (If not available, returns to 480p)
-echo   (4) - 1080p  (If not available, returns to 720p)
-echo   (5) - 1440p  (If not available, returns to 1080p)
-echo   (6) - 4K     (If not available, returns to 1440p)
-echo   (7) - 8K     (If not available, returns to 4K)
-echo --------------
-echo   Audio Only
-echo --------------
-echo   (8) - M4A 128Kb/s
-echo   (9) - MP3 128Kb/s
-echo -------------------
-choice /c 0123456789 /n /m "Enter Choice (0-9): "
+echo.
+echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
+echo.
+echo   (2) - VP9 Video/AAC Audio (Upto 8k)
+echo.
+echo   (3) - AV1 Video/AAC Audio (If available, upto 8k)
+echo ------------------------------------------------------------
+echo  Audio Only
+echo.
+echo   (4) - M4A  - AAC Audio  - 128kbps
+echo.
+echo   (5) - MP3  - MP3 Audio  - 128kbps
+echo.
+echo   (6) - WEBM - OPUS Audio - 160kbps
+echo ------------------------------------------------------------
+choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto batch_manage
-if %errorlevel% == 2 set conf="-f bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set conf="-f bestvideo[height<=4320]+bestaudio[ext=m4a]"
-if %errorlevel% == 9 set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
-if %errorlevel% == 10 set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k
+if %errorlevel% == 2 set format_chosen=h264
+if %errorlevel% == 3 set format_chosen=vp9
+if %errorlevel% == 4 set format_chosen=av1
+if %errorlevel% == 5 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto download
+if %errorlevel% == 6 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto batch_ytdownload
+if %errorlevel% == 7 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto batch_ytdownload
+if %errorlevel% == 255 goto batch_yt_format_selector
+goto batch_ytmp4
+
+:batch_ytmp4
+mode con:cols=60 lines=32
+color 07
+title Choose Quality
+cls
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+echo.
+echo  Working on: %job_name%
+echo.
+if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
+if %format_chosen% == vp9 echo  Format: .MKV (VP9 Video/AAC Audio)
+if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
+echo.
+echo   (0) - Go Back
+echo ------------------------------------------------------------
+echo  Choose Maximum Quality
+echo.
+echo   (1) - 144p 
+echo   (2) - 240p   (If not available, returns to 144p) 
+echo   (3) - 360p   (If not available, returns to 240p) 
+echo.
+echo   (4) - 480p   (If not available, returns to 360p) 
+echo   (5) - 720p   (If not available, returns to 480p) 
+echo   (6) - 1080p  (If not available, returns to 720p) 
+if NOT %format_chosen% == h264 echo.
+if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
+if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
+if NOT %format_chosen% == h264 echo   (9) - 8K     (If not available, returns to 4K)
+if %format_chosen% == vp9  goto batch_choice_vp9
+if %format_chosen% == av1  goto batch_choice_av1
+echo ------------------------------------------------------------
+choice /c 0123456 /n /m "Enter Choice (0-6): "
+if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 255 goto batch_ytmp4
+goto batch_ytdownload
+
+:batch_choice_vp9
+echo ------------------------------------------------------------
+choice /c 0123456789 /n /m "Enter Choice (0-9): "
+if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec=vp9][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec=vp9][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec=vp9][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec=vp9][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec=vp9][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec=vp9][height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec=vp9][height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec=vp9][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 255 goto batch_ytmp4
+goto batch_ytdownload
+
+:batch_choice_av1
+echo ------------------------------------------------------------
+choice /c 0123456789 /n /m "Enter Choice (0-9): "
+if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=m4a]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=m4a]"
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=m4a]"
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=m4a]"
 if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
 
@@ -612,10 +776,14 @@ echo                 Advanced Youtube Client - AYC
 echo.
 echo                      %version%
 echo ------------------------------------------------------------
+echo.
 echo  Starting Download
 echo -------------------
 echo.
-%youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
@@ -642,9 +810,10 @@ echo   into Settings, Update youtube-dl.
 echo   2. You may have entered an invalid job name.
 echo   3. One of your links might be failing, rest might have
 echo   downloaded successfully.
-echo   4. If you have an unreliable network, enable rechecks
-echo   in Settings.
-echo   5. If all else fails, report the failing URLs on the 
+echo   4. If you chose AV1, not all videos are supported by
+echo    youtube yet.
+echo.
+echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge page. 
 echo.
 echo  Press enter to try again
