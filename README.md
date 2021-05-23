@@ -35,8 +35,8 @@ Start AYClient.exe after installation, I'll add a full documentation soon.
 AYC is compiled with [Bat-To-Exe-Converter](https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable).
 
 1. Download AYClient.bat or AYClient-Portable.bat depending on your need.
-2. Open the file with notepad and replace instances of all AYClient.bat to AYClient.exe.
-3. Open the file in Bat To Exe Converter, add an icon if you feel fancy.
+2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
+3. Open the file in Bat To Exe Converter, you can add an icon if you want.
 4. Compile.
 5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [AtomicParsley](https://sourceforge.net/projects/atomicparsley/files/) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
