@@ -30,10 +30,10 @@ Website: https://advanced-youtube-client-ayc.sourceforge.io/
 
 Binaries are compiled with https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable and are available on both Sourceforge and GiHub.
 
-  - From releases
+  - From releases\
     https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases
 
-  - From Sourceforge
+  - From Sourceforge\
     Older versions are also available: https://advanced-youtube-client-ayc.sourceforge.io
     
 Start AYClient.exe after installation, I'll add a full documentation soon.
