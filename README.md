@@ -28,7 +28,7 @@ Website: https://advanced-youtube-client-ayc.sourceforge.io/
 
 ### A. Binary
 
-Binaries are compiled with https://github.com/99fk/Bat-To-Exe-Converter-Downloader
+Binaries are compiled with https://github.com/xbl3/Bat-To-Exe-Converter-Downloader_99fk
 
 #### 1. From releases
 https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases
