@@ -4,9 +4,9 @@
 Advanced Youtube Client - AYC is a lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
 
-Project and screenshots on sourceforge: https://sourceforge.net/projects/advanced-youtube-client-ayc/
+[Project and screenshots on sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
 
-Website: https://advanced-youtube-client-ayc.sourceforge.io/
+[Website](https://advanced-youtube-client-ayc.sourceforge.io/)
 
 ## Features
 
@@ -21,21 +21,17 @@ Website: https://advanced-youtube-client-ayc.sourceforge.io/
 - Batch Download Jobs.
 - Updater for youtube-dl.
 
-## How to use
+## Downloads
+### Installer.exe/Portable.zip
+AYC is compiled with [Bat-To-Exe-Converter](https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable) and are available on both Sourceforge and GitHub.
 
-### 1. Use the compiled binary
-
-Binaries are compiled with https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable and are available on both Sourceforge and GitHub.
-
-  - From releases\
-    https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases
-
-  - From Sourceforge\
-    Older versions are also available: https://advanced-youtube-client-ayc.sourceforge.io
+  - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
+  - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
     
 Start AYClient.exe after installation, I'll add a full documentation soon.
 
-### 2. Run source directly
+## How to run the source
+Running AYC as a live batch file can help you tweak it to your needs. Or if you don't trust the binaries.
 
 1. Download AYClient-Portable.bat, the regular one needs an AppData folder.
 2. Create a folder with any name anywhere, on a USB stick or your hard disk.
