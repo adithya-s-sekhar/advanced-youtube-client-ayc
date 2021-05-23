@@ -47,6 +47,6 @@ Running AYC as a live batch file can help you tweak it to your needs. Or if you 
 1. Download AYClient-Portable.bat, the regular one needs an AppData folder.
 2. Create a folder with any name anywhere, on a USB stick or your hard disk.
 3. Rename AYClient-Portable.bat to AYClient.bat and copy to the created folder.
-4. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [AtomicParsley](https://sourceforge.net/projects/atomicparsley/files/)in the folder.
+4. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [AtomicParsley](https://sourceforge.net/projects/atomicparsley/files/) in the folder.
    Thank you Zeranoe for building ffmpeg for us windows peeps all these years, AYC switched to AnimMouse builds since Dec 2020.
 5. Start AYClient.bat and it'll create the necessary files for further execution.
