@@ -23,7 +23,6 @@ You can call it a console front end if you want.
 
 ## Downloads
 ### Installer.exe/Portable.zip
-AYC is compiled with [Bat-To-Exe-Converter](https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable) and are available on both Sourceforge and GitHub.
 
   - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
   - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
