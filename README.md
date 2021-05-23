@@ -30,7 +30,17 @@ AYC is compiled with [Bat-To-Exe-Converter](https://github.com/adithya-s-sekhar/
     
 Start AYClient.exe after installation, I'll add a full documentation soon.
 
-## How to run the source
+## Source and Building
+
+### Compiling
+AYC is compiled with [Bat-To-Exe-Converter](https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable).
+
+1. Download AYClient.bat or AYClient-Portable.bat depending on your need.
+2. Open the file with notepad and replace instances of all AYClient.bat to AYClient.exe.
+3. Open the file in Bat To Exe Converter, add an icon if you feel fancy.
+4. Compile.
+
+### Running the batch file itself
 Running AYC as a live batch file can help you tweak it to your needs. Or if you don't trust the binaries.
 
 1. Download AYClient-Portable.bat, the regular one needs an AppData folder.
