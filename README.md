@@ -25,7 +25,7 @@ Website: https://advanced-youtube-client-ayc.sourceforge.io/
 
 ### 1. Use the compiled binary
 
-Binaries are compiled with https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable and are available on both Sourceforge and GiHub.
+Binaries are compiled with https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable and are available on both Sourceforge and GitHub.
 
   - From releases\
     https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases
