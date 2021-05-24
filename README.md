@@ -32,7 +32,7 @@ Start AYClient.exe after installation, I'll add a full documentation soon.
 ## Source and Building
 
 ### Compiling
-AYC is compiled with [Bat-To-Exe-Converter](https://github.com/adithya-s-sekhar/Bat-To-Exe-Converter-Installer-Portable).
+AYC is compiled with [Bat-To-Exe-Converter](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65). (Hosted on [IPFS](http://ipfs.io))
 
 1. Download AYClient.bat or AYClient-Portable.bat depending on your need.
 2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
