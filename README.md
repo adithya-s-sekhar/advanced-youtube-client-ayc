@@ -24,6 +24,8 @@ You can call it a console front end if you want.
 ## Downloads
 ### Installer.exe/Portable.zip
 
+#### Due to the nature of using a compiled batch file [some AVs will flag AYC](https://www.virustotal.com/gui/file/c6482317869cd0f8b4b65ed21012b1b947ddcfd71c814bb99abb7d8b902ac64f/detection) binary as malware.
+#### See Source and Building below to make your own binary if you are not comfortable.
   - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
   - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
     
