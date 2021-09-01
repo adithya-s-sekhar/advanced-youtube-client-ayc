@@ -19,9 +19,10 @@ set version=v3.5 (22/May/2021)
 
 :begin
 mode con:cols=92 lines=26
-if not exist "%appdata%\Advanced Youtube Client - AYC" md "%appdata%\Advanced Youtube Client - AYC"
-set aycdata=%appdata%\Advanced Youtube Client - AYC
-set youtube_dl="%aycdata%\youtube-dl.exe"
+if not exist "%cd%\data" md "%cd%\data"
+if not exist "%cd%\Output" md "%cd%\Output"
+set aycdata=%cd%\data
+set youtube_dl="youtube-dl.exe"
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
@@ -51,8 +52,8 @@ goto begin
 
 
 :dirnotexist
-md "%userprofile%\Videos\Advanced Youtube Client - AYC"
-echo "%userprofile%\Videos\Advanced Youtube Client - AYC">"%aycdata%\dir.txt"
+md "%cd%\Output"
+echo "%cd%\Output">"%aycdata%\dir.txt"
 goto begin
 
 
@@ -76,7 +77,7 @@ goto format_selector
 mode con:cols=92 lines=26
 color 07
 set "url="
-title A different type of downloader
+title [PORTABLE] A different type of downloader
 cls
 echo --------------------------------------------------------------------------------------------
 echo                                Advanced Youtube Client - AYC 
@@ -1005,7 +1006,7 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-echo   Advanced Youtube Client - AYC Script
+echo   Advanced Youtube Client - AYC Script [PORTABLE]
 echo.
 echo   Author           : Adithya S Sekhar
 echo.
