@@ -33,7 +33,7 @@ You can call it a console front end if you want.
   - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
   - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
   
-Microsoft Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to press **More info** and click **Run Anyway** for it to go away
+Microsoft Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to press **More info** and click **Run Anyway** for it to go away.
 
 ## Source and Building
 
