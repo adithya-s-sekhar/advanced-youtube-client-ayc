@@ -1,7 +1,7 @@
 ![256](https://user-images.githubusercontent.com/60822601/115324256-36724180-a1a7-11eb-929c-c0d1221b7b84.png)
 
 # Advanced Youtube Client - AYC
-Advanced Youtube Client - AYC is a lightweight youtube downloader written using windows batch commands based on youtube-dl.
+Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
 
 ## Planned
