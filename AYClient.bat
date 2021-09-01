@@ -22,7 +22,7 @@ mode con:cols=92 lines=26
 if not exist "%cd%\data" md "%cd%\data"
 if not exist "%cd%\Output" md "%cd%\Output"
 set aycdata=%cd%\data
-set youtube_dl="youtube-dl.exe"
+set youtube_dl="yt-dlp.exe"
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
