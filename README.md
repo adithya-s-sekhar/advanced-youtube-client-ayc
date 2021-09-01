@@ -41,14 +41,5 @@ AYC is compiled with [Bat-To-Exe-Converter](http://ipfs.io/ipfs/QmPBp7wBSC9GukPU
 2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
 3. Open the file in Bat To Exe Converter, you can add an icon if you want.
 4. Compile.
-5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [atomicparsley.exe](https://sourceforge.net/projects/atomicparsley/) in the same folder as the compiled binary.
+5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases) and [atomicparsley.exe](https://sourceforge.net/projects/atomicparsley/) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
-
-### Running the batch file itself
-Running AYC as a live batch file can help you tweak it to your needs. Or if you don't trust the binaries.
-
-1. Download AYClient.bat.
-2. Create a folder with any name anywhere, on a USB stick or your hard disk.
-3. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [atomicparsley.exe](https://sourceforge.net/projects/atomicparsley/) in the folder.\
-   Thank you Zeranoe for building ffmpeg for us windows peeps all these years, AYC switched to AnimMouse builds since Dec 2020.
-4. Start AYClient.bat and it'll create the necessary files for further execution.
