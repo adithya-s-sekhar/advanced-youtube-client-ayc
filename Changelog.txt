@@ -6,7 +6,7 @@ What's new?
 -> AYC will be released as batch files from now on and only as portables.
 This is due to the horrible AV detection from Microsoft Defender that flags anything unpopular as a Virus.
 -> Switched to yt-dlp. No more throttling, super fast to download and contains a lot of fixes youtube-dl hasn't merged yet. 
--> Switch to the new AtomicParsley from wez (https://github.com/wez/atomicparsley).
+-> Switched to the new AtomicParsley from wez (https://github.com/wez/atomicparsley).
 
 [3.5]
 -> Seperate Format Selector pages for MP4/VP9/AV1 and Audio Formats.
