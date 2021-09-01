@@ -371,7 +371,7 @@ echo.
 %youtube_dl% -F "%uniurl%"
 echo.
 echo -------------------------------------------------
-set /p uniqual=Choose Format Code (left side on the above list, use + symbol to merge two):
+set /p uniqual=Choose ID (left side on the above list, use + symbol to merge two):
 if "%uniqual%" equ "" goto uniqualselect
 
 
@@ -632,7 +632,7 @@ echo.
 echo.
 echo  Enter 0 to Go Back.
 echo -------------------------------------------------
-set /p batch_custom_qual=Choose Format Code (left side on the above list):
+set /p batch_custom_qual=Choose ID (left side on the above list):
 if "%batch_custom_qual%" equ "" goto batch_custom_format_select
 if "%batch_custom_qual%" equ "0" goto batch_custom_format
 set conf=-f %batch_custom_qual%
