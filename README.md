@@ -7,7 +7,7 @@ You can call it a console front end if you want.
 ## Planned
 
 - Teenage code. Rewrite this properly with proper error handling.
-- Use any other compiler to fix Virus Warnings.
+- ~~Use any other compiler to fix Virus Warnings.~~
 
 [Project and screenshots on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
 
@@ -27,21 +27,17 @@ You can call it a console front end if you want.
 - Updater for youtube-dl.
 
 ## Downloads
-### Installer.exe/Portable.zip
 
-#### Due to the nature of using a compiled batch file [some AVs will flag AYC](https://www.virustotal.com/gui/file/c6482317869cd0f8b4b65ed21012b1b947ddcfd71c814bb99abb7d8b902ac64f/detection) binary as malware.
-#### See Source and Building below to make your own binary if you are not comfortable.
+#### See Source and Building below to make your own binary if you are not comfortable with a batch file.
   - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
   - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
-    
-Start AYClient.exe after installation, I'll add a full documentation soon.
 
 ## Source and Building
 
 ### Compiling
 AYC is compiled with [Bat-To-Exe-Converter](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65). (Hosted on [IPFS](http://ipfs.io))
 
-1. Download AYClient.bat or AYClient-Portable.bat depending on your need.
+1. Download AYClient.bat.
 2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
 3. Open the file in Bat To Exe Converter, you can add an icon if you want.
 4. Compile.
@@ -51,9 +47,8 @@ AYC is compiled with [Bat-To-Exe-Converter](http://ipfs.io/ipfs/QmPBp7wBSC9GukPU
 ### Running the batch file itself
 Running AYC as a live batch file can help you tweak it to your needs. Or if you don't trust the binaries.
 
-1. Download AYClient-Portable.bat, the regular one needs an AppData folder.
+1. Download AYClient.bat.
 2. Create a folder with any name anywhere, on a USB stick or your hard disk.
-3. Rename AYClient-Portable.bat to AYClient.bat and copy to the created folder.
-4. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [atomicparsley.exe](https://sourceforge.net/projects/atomicparsley/) in the folder.\
+3. Also have [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [youtube-dl.exe](https://youtube-dl.org) and [atomicparsley.exe](https://sourceforge.net/projects/atomicparsley/) in the folder.\
    Thank you Zeranoe for building ffmpeg for us windows peeps all these years, AYC switched to AnimMouse builds since Dec 2020.
-5. Start AYClient.bat and it'll create the necessary files for further execution.
+4. Start AYClient.bat and it'll create the necessary files for further execution.
