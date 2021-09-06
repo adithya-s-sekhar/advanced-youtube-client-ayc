@@ -38,11 +38,11 @@ Microsoft Defender will show a one-time warning before you try to start a batch 
 ## Source and Building
 
 ### Compiling
-AYC used to be compiled with [Bat-To-Exe-Converter](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65). (Hosted on [IPFS](http://ipfs.io))
+AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/files/details/bat_to_exe_converter.html) by Faith Kodak ([GitHub](https://github.com/99fk)/[f2ko.de](https://f2ko.de/programme/bat-to-exe-converter/)). ([IPFS Mirror](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65))
 
 1. Download AYClient.bat.
 2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
 3. Open the file in Bat To Exe Converter, you can add an icon if you want.
 4. Compile.
-5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases) and [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) in the same folder as the compiled binary.
+5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases) and [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
