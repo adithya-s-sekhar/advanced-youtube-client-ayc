@@ -46,3 +46,9 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 4. Compile.
 5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases) and [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
+
+## Credits
+
+[yt-dlp](https://github.com/yt-dlp/yt-dlp)
+[FFmpeg Stable Autobuilds for Windows](https://github.com/AnimMouse/ffmpeg-stable-autobuild/)
+[AtomicParsley](https://github.com/wez/atomicparsley)
