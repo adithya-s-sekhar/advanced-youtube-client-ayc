@@ -50,5 +50,7 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 ## Credits
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+
 [FFmpeg Stable Autobuilds for Windows](https://github.com/AnimMouse/ffmpeg-stable-autobuild/)
+
 [AtomicParsley](https://github.com/wez/atomicparsley)
