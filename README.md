@@ -47,6 +47,17 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 5. You need [ffmpeg.exe](https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases) and [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
 
+## Tips
+
+### 1. Shortcut Trick
+
+You can make Windows treat AYClient.bat as an .exe file and have all the goodies (able to pin to taskbar, have an icon..)
+1. Create a shortcut for AYClient.bat
+2. Right click, choose **Properties** >**Shortcut** Tab.
+3. There,the **Target** box will have your path auto filled. Add `cmd.exe /c ` before te start of the path.
+4. Example: If target is `"C:\Users\Joe\AYClient.bat"`, change it to `cmd.exe /c "C:\Users\Joe\AYClient.bat"`.
+5. You can also [pick an icon](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/ayc.ico?raw=true) using the **Change Icon** button.
+
 ## Credits
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
