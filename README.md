@@ -4,15 +4,26 @@
 Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
 
-## Planned
-
-- Teenage code. Rewrite this properly with proper error handling.
-- ~~Use any other compiler to fix Virus Warnings.~~
-  AYC is no longer released as EXE's (blame microsoft) so you don't need to compile it anymore.
-
 [Project and screenshots on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
 
 [Website](https://advanced-youtube-client-ayc.sourceforge.io/)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
+![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?style=flat)
+
+## Table of Contents
+
+- [Planned Items](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#planned)
+- [Features](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#features)
+- [Downloads](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#downloads)
+- [Source and Building](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#source-and-building)
+- [Tips](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#tips)
+  - [Shortcut Trick](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#1-shortcut-trick)
+
+## Planned Items
+
+- Teenage code. Rewrite this properly with proper error handling.
 
 ## Features
 
@@ -22,15 +33,17 @@ You can call it a console front end if you want.
 - MP3, M4A Audio Downloader with Cover Art.
 - Compatible with Windows Vista/7/8/8.1/10 (32/64-bit).
 - Light on CPU Resources as it runs solely on CMD.
-- Programmed as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
+- Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
 - Universal Mode - Download from any websites.
 - Batch Download Jobs.
-- Updater for youtube-dl.
+- Updater for yt-dlp (fork of [youtube-dl](https://youtube-dl.org)).
 
 ## Downloads
 
-#### See Source and Building below to make your own binary if you are not comfortable with a batch file.
-#### Or use [this trick](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#1-shortcut-trick) to make windows treat AYC as an exe.
+**See Source and Building below to make your own binary if you are not comfortable with a batch file.**
+
+**Or use [this trick](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#1-shortcut-trick) to make windows treat AYC as an exe.**
+
   - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
   - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
   
@@ -38,7 +51,6 @@ Microsoft Defender will show a one-time warning before you try to start a batch 
 
 ## Source and Building
 
-### Compiling
 AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/files/details/bat_to_exe_converter.html) by Faith Kodak ([GitHub](https://github.com/99fk)/[f2ko.de](https://f2ko.de/programme/bat-to-exe-converter/)). ([IPFS Mirror](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65))
 
 1. Download AYClient.bat.
