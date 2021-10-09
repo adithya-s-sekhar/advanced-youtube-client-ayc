@@ -4,6 +4,8 @@
 Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
 
+AYC Started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the SF page.
+
 [Project and screenshots on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
 
 [Website](https://advanced-youtube-client-ayc.sourceforge.io/)
