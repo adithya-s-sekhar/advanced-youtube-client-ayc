@@ -16,12 +16,12 @@ AYC started it's life on Sourceforge in 2016, it's only been on Github since 202
 
 ## Table of Contents
 
-- [Planned Items](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#planned)
-- [Features](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#features)
-- [Downloads](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#downloads)
-- [Source and Building](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#source-and-building)
-- [Tips](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#tips)
-  - [Shortcut Trick](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#1-shortcut-trick)
+- [Planned Items](#planned)
+- [Features](#features)
+- [Downloads](#downloads)
+- [Source and Building](#source-and-building)
+- [Tips](#tips)
+  - [Shortcut Trick](#1-shortcut-trick)
 
 ## Planned Items
 
