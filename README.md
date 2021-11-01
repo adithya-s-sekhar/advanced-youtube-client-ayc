@@ -6,7 +6,7 @@ You can call it a console front end if you want.
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
 
-AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the SF page.
+AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the [Sourceforge page](#links).
 
 **Note: In Windows 11, AYC is compatible with Windows Terminal but won't resize it's windows. Don't change `Windows Console Host` as [default terminal application](https://www.howtogeek.com/738631/how-to-make-windows-terminal-your-default-terminal-app/) if you want it to look good. Leave it as it is.**
 
