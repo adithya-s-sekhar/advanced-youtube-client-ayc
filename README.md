@@ -4,11 +4,11 @@
 Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
 
+![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
+
 AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the SF page.
 
-[Project and screenshots on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
-
-[Website](https://advanced-youtube-client-ayc.sourceforge.io/)
+Note: AYC is compatible with Windows Terminal but won't resize it's windows properly. Don't change Windows Console Host as default Terminal Application if you want it to look good.
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
@@ -73,7 +73,11 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 4. Example: If target is `"C:\Users\Joe\AYClient.bat"`, change it to `cmd.exe /c "C:\Users\Joe\AYClient.bat"`.
 5. You can also [pick an icon](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/ayc.ico?raw=true) using the **Change Icon** button.
 
-## Credits
+## Links
+
+[Website](https://advanced-youtube-client-ayc.sourceforge.io/)
+
+[Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
