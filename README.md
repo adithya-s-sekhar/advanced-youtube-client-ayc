@@ -22,6 +22,7 @@ Note: AYC is compatible with Windows Terminal but won't resize it's windows prop
 - [Source and Building](#source-and-building)
 - [Tips](#tips)
   - [Shortcut Trick](#1-shortcut-trick)
+- [Links](#links)
 
 ## Planned Items
 
