@@ -8,6 +8,8 @@ You can call it a console front end if you want.
 
 AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the [Sourceforge page](#links).
 
+**Note:** AYC **is compatible with the Windows Terminal but** it does not support custom window sizes. So it will not look good. Don't change `Windows Console Host` as [default terminal application](https://www.howtogeek.com/738631/how-to-make-windows-terminal-your-default-terminal-app/) if you want it to look good.
+
 ![GitHub last commit](https://img.shields.io/github/last-commit/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
 ![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?style=flat)
