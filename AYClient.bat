@@ -46,7 +46,7 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Preparing for first run..
 echo.
-echo Please wait, updating youtube-dl..
+echo Please wait, updating yt-dlp..
 %youtube_dl% -U
 goto begin
 
@@ -284,8 +284,8 @@ echo.
 echo  URL: %url%
 echo.
 echo  Possible problems and solutions:
-echo   1. youtube-dl might be out of date. Update it by going 
-echo    into Settings, Update youtube-dl.
+echo   1. yt-dlp might be out of date. Update it by going 
+echo    into Settings, Update yt-dlp.
 echo   2. You may have entered an invalid/private link. These 
 echo    aren't supported yet.
 echo   3. If you have an unreliable network, enable rechecks
@@ -439,8 +439,8 @@ echo.
 echo  URL: %uniurl%
 echo.
 echo  Possible problems and solutions:
-echo   1. youtube-dl might be out of date. Update it by going 
-echo   into Settings, Update youtube-dl.
+echo   1. yt-dlp might be out of date. Update it by going 
+echo   into Settings, Update yt-dlp.
 echo   2. You may have entered an invalid/private link. These 
 echo   aren't supported yet.
 echo   3. If you have an unreliable network, enable rechecks
@@ -805,8 +805,8 @@ echo.
 echo  Job: %job_name%
 echo.
 echo  Possible problems and solutions:
-echo   1. youtube-dl might be out of date. Update it by going 
-echo   into Settings, Update youtube-dl.
+echo   1. yt-dlp might be out of date. Update it by going 
+echo   into Settings, Update yt-dlp.
 echo   2. You may have entered an invalid job name.
 echo   3. One of your links might be failing, rest might have
 echo   downloaded successfully.
@@ -859,7 +859,7 @@ echo.
 echo  2) No. of Rechecks
 echo     Currently: %defined_try%
 echo.
-echo  3) Update youtube-dl (fixes most issues)
+echo  3) Update yt-dlp (fixes most issues)
 echo.
 echo  4) Reset AYC
 echo.
@@ -939,7 +939,7 @@ goto settings
 :update
 mode con:cols=60 lines=32
 color 07
-title Update youtube-dl
+title Update yt-dlp
 cls
 echo ------------------------------------------------------------
 echo                 Advanced Youtube Client - AYC 
