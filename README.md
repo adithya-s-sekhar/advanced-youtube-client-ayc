@@ -40,7 +40,7 @@ You can call it a console front end if you want.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
 - Playlist Downloader with resume capabilities.
 - MP3, M4A Audio Downloader with Cover Art.
-- Compatible with Windows Vista/7/8/8.1/10 (32/64-bit).
+- Compatible with Windows Vista/7/8/8.1/10/11 (32/64-bit).
 - Light on CPU Resources as it runs solely on CMD.
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
 - Universal Mode - Download from any websites.
