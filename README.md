@@ -1,18 +1,24 @@
+<div align="center">
+
 ![256](https://user-images.githubusercontent.com/60822601/115324256-36724180-a1a7-11eb-929c-c0d1221b7b84.png)
 
 # Advanced Youtube Client - AYC
+
+![GitHub last commit](https://img.shields.io/github/last-commit/adithya-s-sekhar/advanced-youtube-client-ayc?style=paper)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=paper)
+![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?style=paper)
+
 Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
 
-AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the [Sourceforge page](#links).
+</div>
 
-**Note:** AYC **is compatible with the Windows Terminal but** it does not support custom window sizes. So it will not look good. Don't change `Windows Console Host` as [default terminal application](https://www.howtogeek.com/738631/how-to-make-windows-terminal-your-default-terminal-app/) if you want it to look good.
+## Notes
 
-![GitHub last commit](https://img.shields.io/github/last-commit/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat)
-![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?style=flat)
+- AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the [Sourceforge page](#links).
+-  AYC **is compatible with the Windows Terminal but** it does not support custom window sizes. So it will not look good. Don't change `Windows Console Host` as [default terminal application](https://www.howtogeek.com/738631/how-to-make-windows-terminal-your-default-terminal-app/) if you want it to look good.
 
 ## Table of Contents
 
