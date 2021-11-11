@@ -24,6 +24,7 @@ if not exist "%cd%\Output" md "%cd%\Output"
 set aycdata=%cd%\data
 set youtube_dl="yt-dlp.exe"
 if not exist %youtube_dl% goto ytnotexist
+if not exist ffmpeg.exe goto ffmpegnotexist
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
@@ -62,6 +63,7 @@ goto begin
 echo "0">"%aycdata%\try.txt"
 goto begin
 
+
 :ytnotexist
 title yt-dlp missing!
 start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
@@ -86,6 +88,33 @@ echo  and press ENTER.
 echo.
 pause>NUL
 goto begin
+
+
+:ffmpegnotexist
+title ffmpeg missing!
+start "" "https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases/latest"
+cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
+echo.
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
+echo.
+echo  ffmpeg.exe is missing! AYC Opened a webpage right now for you to download the missing
+echo  dependency.
+echo.
+echo  URL: https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases/latest
+echo.
+echo  Filename: ffmpeg-n...-win64-nonfree.zip (For 64-bit)
+echo.
+echo  Filename: ffmpeg-n...-win32-nonfree.zip (For 32-bit)
+echo.
+echo  After download, extract the archive and copy ffmpeg.exe to the same folder as AYClient.bat
+echo  and press ENTER.
+echo.
+pause>NUL
+goto begin
+
 
 :check_parameter
 if %1p equ p goto start
