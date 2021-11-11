@@ -371,6 +371,7 @@ echo.
 %youtube_dl% -F "%uniurl%"
 echo.
 echo -------------------------------------------------
+echo You can also type "best" and "worst".
 set /p uniqual=Choose ID (green color in the list above):
 if "%uniqual%" equ "" goto uniqualselect
 
@@ -632,6 +633,7 @@ echo.
 echo.
 echo  Enter 0 to Go Back.
 echo -------------------------------------------------
+echo You can also type "best" and "worst".
 set /p batch_custom_qual=Choose ID (green color in the list above):
 if "%batch_custom_qual%" equ "" goto batch_custom_format_select
 if "%batch_custom_qual%" equ "0" goto batch_custom_format
