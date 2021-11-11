@@ -51,7 +51,7 @@ You can call it a console front end if you want.
 
 **See Source and Building below to make your own binary if you are not comfortable with a batch file.**
 
-**Or use [this trick](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#1-shortcut-trick) to make windows treat AYC as an exe.**
+**Or use [this trick](#1-shortcut-trick) to make windows treat AYC as an exe.**
 
   - [Download from website](https://advanced-youtube-client-ayc.sourceforge.io)
   - [Download from releases](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
