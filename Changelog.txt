@@ -1,6 +1,15 @@
-Advanced Youtube Client - AYC v3.6 - 01/Sep/2021
+Advanced Youtube Client - AYC v3.7 - --/---/2021
 
 What's new?
+
+[3.7]
+- Added dependency checks on startup for yt-dlp, ffmpeg and atomicparsley.
+- AYC will now guide users how to fix each dependency if any is missing.
+- Removed unnecessary step in yt-dlp update menu, should be faster.
+- Inform user about best/worst in Universal/Batch Modes.
+- Use color to indicate ID in Universal Mode.
+- Replaced all references to youtube-dl to yt-dlp.
+- In release zip: Updated dependencies.
 
 [3.6]
 -> AYC will be released as batch files from now on and only as portables.
