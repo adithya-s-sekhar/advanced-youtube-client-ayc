@@ -25,6 +25,7 @@ set aycdata=%cd%\data
 set youtube_dl="yt-dlp.exe"
 if not exist %youtube_dl% goto ytnotexist
 if not exist ffmpeg.exe goto ffmpegnotexist
+if not exist atomicparsley.exe goto atomicnotexist
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
@@ -111,6 +112,30 @@ echo  Filename: ffmpeg-n...-win32-nonfree.zip (For 32-bit)
 echo.
 echo  After download, extract the archive and copy ffmpeg.exe to the same folder as AYClient.bat
 echo  and press ENTER.
+echo.
+pause>NUL
+goto begin
+
+
+:atomicnotexist
+title AtomicParsley missing!
+start "" "https://github.com/wez/atomicparsley/releases/latest"
+cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
+echo.
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
+echo.
+echo  AtomicParsley.exe is missing! AYC Opened a webpage right now for you to download the 
+echo  missing dependency.
+echo.
+echo  URL: https://github.com/wez/atomicparsley/releases/latest
+echo.
+echo  Filename: AtomicParsleyWindows.zip
+echo.
+echo  After download, extract the archive and copy AtomicParsley.exe to the same folder as 
+echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
 goto begin
