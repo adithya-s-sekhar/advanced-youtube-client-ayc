@@ -949,9 +949,6 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-echo  Checking currently installed version:
-%youtube_dl% --version
-echo.
 echo  Checking for updates..
 %youtube_dl% -U
 echo.
