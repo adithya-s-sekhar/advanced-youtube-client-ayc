@@ -1094,9 +1094,6 @@ echo   Current Release  : %version%
 echo.
 echo   Released under the MIT License.
 echo.
-echo   AYC switched to yt-dlp since v3.6 due to the main 
-echo   youtube-dl project going stale.
-echo.
 echo   Press Enter to go back.
 pause>NUL
 goto more
