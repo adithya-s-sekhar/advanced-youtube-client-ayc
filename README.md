@@ -19,6 +19,7 @@ You can call it a console front end if you want.
 
 - AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Old releases are only available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/).
 -  AYC **is compatible with the Windows Terminal but** it does not support custom window sizes. So it will not look good. Don't change `Windows Console Host` as [default terminal application](https://www.howtogeek.com/738631/how-to-make-windows-terminal-your-default-terminal-app/) if you want it to look good.
+-  Some people noticed it won't start as admin? AYC doesn't need admin permissions please open it in a regular folder instead of some where which needs admin permissions. Even a folder on your desktop is fine.
 
 ## Table of Contents
 
@@ -85,6 +86,8 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 [Website](https://advanced-youtube-client-ayc.sourceforge.io/)
 
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
+
+[Seen on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
