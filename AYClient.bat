@@ -93,7 +93,7 @@ goto begin
 
 :ffmpegnotexist
 title ffmpeg missing!
-start "" "https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases/latest"
+start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
 cls
 echo --------------------------------------------------------------------------------------------
 echo                                Advanced Youtube Client - AYC 
@@ -104,13 +104,13 @@ echo.
 echo  ffmpeg.exe is missing! AYC Opened a webpage right now for you to download the missing
 echo  dependency.
 echo.
-echo  URL: https://github.com/AnimMouse/ffmpeg-stable-autobuild/releases/latest
+echo  URL: https://github.com/yt-dlp/FFmpeg-Builds/releases/latest
 echo.
-echo  Filename: ffmpeg-n...-win64-nonfree.zip (For 64-bit)
+echo  Filename: ffmpeg-n...-win64-gpl-4.4.zip (For 64-bit)
 echo.
-echo  Filename: ffmpeg-n...-win32-nonfree.zip (For 32-bit)
+echo  Filename: ffmpeg-n...-win32-gpl-4.4.zip (For 32-bit)
 echo.
-echo  After download, extract the archive and copy ffmpeg.exe to the same folder as AYClient.bat
+echo  After download, extract the archive and copy bin\ffmpeg.exe to the same folder as AYClient.bat
 echo  and press ENTER.
 echo.
 pause>NUL
