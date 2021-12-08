@@ -193,9 +193,9 @@ echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
 echo.
-echo   (2) - VP9 Video/OPUS Audio (Upto 4k)
+echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
-echo   (3) - AV1 Video/OPUS Audio (If available, upto 8k)
+echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
 echo ------------------------------------------------------------
 echo  Audio Only
 echo.
@@ -742,9 +742,9 @@ echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
 echo.
-echo   (2) - VP9 Video/OPUS Audio (Upto 4k)
+echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
-echo   (3) - AV1 Video/OPUS Audio (If available, upto 8k)
+echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
 echo ------------------------------------------------------------
 echo  Audio Only
 echo.
