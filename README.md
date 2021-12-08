@@ -83,14 +83,14 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 
 ## Links
 
-[Website](https://advanced-youtube-client-ayc.sourceforge.io/)
+[Website](https://advanced-youtube-client-ayc.sourceforge.io)
 
-[Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc/)
+[Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
 
 [Seen on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
-[FFmpeg Stable Autobuilds for Windows](https://github.com/AnimMouse/ffmpeg-stable-autobuild/)
+[yt-dlp/ffmpeg](https://github.com/yt-dlp/FFmpeg-Builds)
 
 [AtomicParsley](https://github.com/wez/atomicparsley)
