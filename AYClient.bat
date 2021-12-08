@@ -193,7 +193,7 @@ echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
 echo.
-echo   (2) - VP9 Video/AAC Audio (Upto 8k)
+echo   (2) - VP9 Video/AAC Audio (Upto 4k)
 echo.
 echo   (3) - AV1 Video/AAC Audio (If available, upto 8k)
 echo ------------------------------------------------------------
@@ -248,7 +248,7 @@ echo   (6) - 1080p  (If not available, returns to 720p)
 if NOT %format_chosen% == h264 echo.
 if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
-if NOT %format_chosen% == h264 echo   (9) - 8K     (If not available, returns to 4K)
+if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if %format_chosen% == vp9  goto choice_vp9
 if %format_chosen% == av1  goto choice_av1
 echo ------------------------------------------------------------
@@ -265,7 +265,7 @@ goto download
 
 :choice_vp9
 echo ------------------------------------------------------------
-choice /c 0123456789 /n /m "Enter Choice (0-9): "
+choice /c 012345678 /n /m "Enter Choice (0-8): "
 if %errorlevel% == 1 goto format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec=vp9][height<=240]+bestaudio[ext=m4a]"
@@ -275,7 +275,6 @@ if %errorlevel% == 6 set conf="-f bestvideo[vcodec=vp9][height<=720]+bestaudio[e
 if %errorlevel% == 7 set conf="-f bestvideo[vcodec=vp9][height<=1080]+bestaudio[ext=m4a]"
 if %errorlevel% == 8 set conf="-f bestvideo[vcodec=vp9][height<=1440]+bestaudio[ext=m4a]"
 if %errorlevel% == 9 set conf="-f bestvideo[vcodec=vp9][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec=vp9][height<=4320]+bestaudio[ext=m4a]"
 if %errorlevel% == 255 goto menu
 goto download
 
@@ -743,7 +742,7 @@ echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
 echo.
-echo   (2) - VP9 Video/AAC Audio (Upto 8k)
+echo   (2) - VP9 Video/AAC Audio (Upto 4k)
 echo.
 echo   (3) - AV1 Video/AAC Audio (If available, upto 8k)
 echo ------------------------------------------------------------
@@ -797,7 +796,7 @@ echo   (6) - 1080p  (If not available, returns to 720p)
 if NOT %format_chosen% == h264 echo.
 if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
-if NOT %format_chosen% == h264 echo   (9) - 8K     (If not available, returns to 4K)
+if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if %format_chosen% == vp9  goto batch_choice_vp9
 if %format_chosen% == av1  goto batch_choice_av1
 echo ------------------------------------------------------------
@@ -814,7 +813,7 @@ goto batch_ytdownload
 
 :batch_choice_vp9
 echo ------------------------------------------------------------
-choice /c 0123456789 /n /m "Enter Choice (0-9): "
+choice /c 012345678 /n /m "Enter Choice (0-8): "
 if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec=vp9][height<=240]+bestaudio[ext=m4a]"
@@ -824,7 +823,6 @@ if %errorlevel% == 6 set conf="-f bestvideo[vcodec=vp9][height<=720]+bestaudio[e
 if %errorlevel% == 7 set conf="-f bestvideo[vcodec=vp9][height<=1080]+bestaudio[ext=m4a]"
 if %errorlevel% == 8 set conf="-f bestvideo[vcodec=vp9][height<=1440]+bestaudio[ext=m4a]"
 if %errorlevel% == 9 set conf="-f bestvideo[vcodec=vp9][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec=vp9][height<=4320]+bestaudio[ext=m4a]"
 if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
 
