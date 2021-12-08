@@ -663,8 +663,8 @@ echo  3) Pick a custom format code
 echo ---------------------------------
 choice /c 0123 /n /m "Choose Quality: "
 if %errorlevel% == 1 goto batch_manage
-if %errorlevel% == 2 set conf=-f best
-if %errorlevel% == 3 set conf=-f worst
+if %errorlevel% == 2 set conf=-f best & set batch_name_end=high
+if %errorlevel% == 3 set conf=-f worst & set batch_name_end=low
 if %errorlevel% == 4 goto batch_custom_format
 if %errorlevel% == 255 goto batch_download
 set format_chosen=batch
@@ -718,6 +718,7 @@ set /p batch_custom_qual=Choose ID (green color in the list above):
 if "%batch_custom_qual%" equ "" goto batch_custom_format_select
 if "%batch_custom_qual%" equ "0" goto batch_custom_format
 set conf=-f %batch_custom_qual%
+set batch_name_end=%batch_custom_qual%
 set format_chosen=batch
 goto batch_ytdownload
 
@@ -867,7 +868,7 @@ if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% -o 
 if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
