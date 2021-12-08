@@ -802,7 +802,7 @@ if %format_chosen% == vp9  goto batch_choice_vp9
 if %format_chosen% == av1  goto batch_choice_av1
 echo ------------------------------------------------------------
 choice /c 0123456 /n /m "Enter Choice (0-6): "
-if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+bestaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]"
@@ -815,7 +815,7 @@ goto batch_ytdownload
 :batch_choice_vp9
 echo ------------------------------------------------------------
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
-if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec=vp9][height<=240]+bestaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec=vp9][height<=360]+bestaudio[ext=m4a]"
@@ -831,7 +831,7 @@ goto batch_ytdownload
 :batch_choice_av1
 echo ------------------------------------------------------------
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
-if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=m4a]"
