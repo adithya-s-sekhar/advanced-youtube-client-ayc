@@ -156,7 +156,7 @@ goto format_selector
 mode con:cols=92 lines=26
 color 07
 set "url="
-title [PORTABLE] A different type of downloader
+title Saving to %loc%
 cls
 echo --------------------------------------------------------------------------------------------
 echo                                Advanced Youtube Client - AYC 
