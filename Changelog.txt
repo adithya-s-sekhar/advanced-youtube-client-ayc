@@ -1,6 +1,16 @@
-Advanced Youtube Client - AYC v3.7 - 11/Nov/2021
+Advanced Youtube Client - AYC v3.8 - 08/Dec/2021
 
 What's new?
+
+[3.8]
+- Fix batch downloads failing on non-youtube jobs.
+- Fix batch youtube quality selector going back to regular youtube format selector.
+- Fix VP9 resolution limit.
+- Fix VP9 video and audio failing to merge sometimes. Switched to yt-dlp/ffmpeg.
+- VP9 and AV1 videos will now save 160k opus audio insted of 128k aac.
+- Batch downloads now saves format code or resolution at end of file name.
+- Some TUI changes here and there.
+- Updated dependencies in release zip.
 
 [3.7]
 - Added dependency checks on startup for yt-dlp, ffmpeg and atomicparsley.
