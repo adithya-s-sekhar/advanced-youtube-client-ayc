@@ -195,7 +195,7 @@ echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
 echo.
 echo   (2) - VP9 Video/OPUS Audio (Upto 4k)
 echo.
-echo   (3) - AV1 Video/AAC Audio (If available, upto 8k)
+echo   (3) - AV1 Video/OPUS Audio (If available, upto 8k)
 echo ------------------------------------------------------------
 echo  Audio Only
 echo.
@@ -220,7 +220,7 @@ mode con:cols=60 lines=32
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .WEBM (VP9 Video/OPUS Audio)
-if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/AAC Audio)
+if %format_chosen% == av1 title  Format: .MKV (AV1 Video/OPUS Audio)
 cls
 echo ------------------------------------------------------------
 echo                 Advanced Youtube Client - AYC 
@@ -232,7 +232,7 @@ echo  URL: %url%
 echo.
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 echo  Format: .WEBM (VP9 Video/OPUS Audio)
-if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
+if %format_chosen% == av1 echo  Format: .MKV (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Go Back
 echo ------------------------------------------------------------
@@ -282,15 +282,15 @@ goto download
 echo ------------------------------------------------------------
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
 if %errorlevel% == 1 goto format_selector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=webm]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]"
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]"
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]"
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]"
 if %errorlevel% == 255 goto menu
 goto download
 
@@ -744,7 +744,7 @@ echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
 echo.
 echo   (2) - VP9 Video/OPUS Audio (Upto 4k)
 echo.
-echo   (3) - AV1 Video/AAC Audio (If available, upto 8k)
+echo   (3) - AV1 Video/OPUS Audio (If available, upto 8k)
 echo ------------------------------------------------------------
 echo  Audio Only
 echo.
@@ -780,7 +780,7 @@ echo  Working on: %job_name%
 echo.
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 echo  Format: .WEBM (VP9 Video/OPUS Audio)
-if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
+if %format_chosen% == av1 echo  Format: .MKV (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Go Back
 echo ------------------------------------------------------------
@@ -830,15 +830,15 @@ goto batch_ytdownload
 echo ------------------------------------------------------------
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
 if %errorlevel% == 1 goto batch_yt_format_selector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=m4a]"
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=m4a]"
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=m4a]"
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=webm]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=webm]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]"
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]"
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]"
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]"
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]"
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]"
 if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
 
