@@ -478,7 +478,7 @@ echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-%youtube_dl% --ignore-errors -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+%youtube_dl% --ignore-errors -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto unierror
 goto unidownloadtried
