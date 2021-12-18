@@ -132,6 +132,7 @@ echo  AtomicParsley.exe is missing! AYC Opened two webpages right now for you to
 echo  missing dependency. Pick the right one for you.
 echo.
 echo  URL: https://github.com/wez/atomicparsley/releases/latest for 64-bit
+echo.
 echo  URL: https://sourceforge.net/projects/atomicparsley for 32-bit
 echo.
 echo  Filename: AtomicParsleyWindows.zip
