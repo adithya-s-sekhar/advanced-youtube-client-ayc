@@ -1,6 +1,14 @@
-Advanced Youtube Client - AYC v3.8 - 08/Dec/2021
+Advanced Youtube Client - AYC v3.9 - 18/Dec/2021
 
 What's new?
+
+[3.9]
+- aria2c multithreaded download enabled. 
+-- HLS/DASH/Non-Youtube downloads are significantly faster: 68sec --> 11sec on a Hotstar Video!
+-- Youtube Downloads are slightly faster depending on your internet.
+- Ship old 32-bit binary for AtomicParsley. Now it works :)
+- Update dependencyfix with 32-bit links to AtomicParsley.
+- Append Video ID to end of file name to fix downloading videos with same title.
 
 [3.8]
 - Fix batch downloads failing on non-youtube jobs.
