@@ -869,7 +869,7 @@ if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --e
 if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%batch_name_end%.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
