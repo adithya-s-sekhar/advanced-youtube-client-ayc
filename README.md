@@ -94,3 +94,5 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 [yt-dlp/ffmpeg](https://github.com/yt-dlp/FFmpeg-Builds)
 
 [AtomicParsley](https://github.com/wez/atomicparsley)
+
+[AtomicParsley 32-bit](https://sourceforge.net/projects/atomicparsley)
