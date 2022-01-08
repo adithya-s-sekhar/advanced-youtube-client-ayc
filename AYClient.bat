@@ -26,6 +26,7 @@ set youtube_dl="yt-dlp.exe"
 if not exist %youtube_dl% goto ytnotexist
 if not exist ffmpeg.exe goto ffmpegnotexist
 if not exist atomicparsley.exe goto atomicnotexist
+if not exist aria2c.exe goto aria2notexist
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
@@ -138,6 +139,32 @@ echo.
 echo  Filename: AtomicParsleyWindows.zip
 echo.
 echo  After download, extract the archive and copy AtomicParsley.exe to the same folder as 
+echo  AYClient.bat and press ENTER.
+echo.
+pause>NUL
+goto begin
+
+
+:aria2notexist
+title aria2c missing!
+start "" "https://github.com/aria2/aria2/releases/latest"
+cls
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
+echo.
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
+echo.
+echo  aria2c.exe is missing! AYC Opened a webpage right now for you to download the 
+echo  missing dependency. Pick the right one for you.
+echo.
+echo  URL: https://github.com/aria2/aria2/releases/latest
+echo.
+echo  Filename: aria2-...-win-32bit-build1.zip (For 32-bit)
+echo.
+echo  Filename: aria2-...-win-64bit-build1.zip (For 64-bit)
+echo.
+echo  After download, extract the archive and copy aria2c.exe to the same folder as 
 echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
