@@ -457,8 +457,23 @@ echo.
 echo  Universal mode enables you to download from any webpage with playing video. 
 echo  eg: youtube and others
 echo.
-echo ------------------------------------
+echo --------------------------------------------------------------------------------------------
 set /p uniurl=Enter a page url with playing video: 
+echo.
+echo  Choose Quality: 
+echo.
+echo   (1) - Highest Quality
+echo.
+echo   (2) - Lowest Quality
+echo.
+echo   (3) - Show all available formats
+echo.
+echo -------------------
+choice /c 123 /n /m "Enter Choice (1-3): "
+if %errorlevel% == 1 set uniqual=b && goto unidownload
+if %errorlevel% == 2 set uniqual=w && goto unidownload
+if %errorlevel% == 3 goto uniqualselect
+if %errorlevel% == 255 goto uni
 if "%uniurl%" equ "" goto uni
 
 
