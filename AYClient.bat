@@ -84,11 +84,12 @@ echo.
 echo  aria2 can massively speed up hls and Non-YouTube downloads but CAN REDUCE speed slightly
 echo  on YouTube downloads. You can change this any time by going to Settings.
 echo.
-echo   (1) Enable aria2
+echo   (1) - Enable aria2
 echo.
-echo   (2) Disable aria2
+echo   (2) - Disable aria2
 echo.
 echo -------------------
+echo.
 choice /c 12 /n /m "Enter Choice (1-2): "
 if %errorlevel% == 1 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt"
 if %errorlevel% == 2 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt"
@@ -296,6 +297,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo ------------------------------------------------------------
+echo.
 choice /c 123456 /n /m "Enter Choice (1-6): "
 if %errorlevel% == 1 set format_chosen=h264
 if %errorlevel% == 2 set format_chosen=vp9
@@ -326,6 +328,7 @@ if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Go Back
+echo.
 echo ------------------------------------------------------------
 echo  Choose Maximum Quality
 echo.
@@ -343,6 +346,7 @@ if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if %format_chosen% == vp9  goto choice_vp9
 if %format_chosen% == av1  goto choice_av1
 echo ------------------------------------------------------------
+echo.
 choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+bestaudio[ext=m4a]"
@@ -356,6 +360,7 @@ goto download
 
 :choice_vp9
 echo ------------------------------------------------------------
+echo.
 choice /c 012345678 /n /m "Enter Choice (0-8): "
 if %errorlevel% == 1 goto format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=webm]"
@@ -371,6 +376,7 @@ goto download
 
 :choice_av1
 echo ------------------------------------------------------------
+echo.
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
 if %errorlevel% == 1 goto format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=webm]"
@@ -491,17 +497,18 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-echo  0) GO BACK
+echo  (0) - GO BACK
 echo.
-echo  1) Universal Mode     QuickKey: U
+echo  (1) - Universal Mode     QuickKey: U
 echo.
-echo  2) Batch Mode         QuickKey: B
+echo  (2) - Batch Mode         QuickKey: B
 echo.
-echo  3) Settings
+echo  (3) - Settings
 echo.
-echo  4) About
+echo  (4) - About
 echo.
 echo -------------------
+echo.
 choice /c 01234 /n /m "Enter Choice (0-4): "
 if %errorlevel% == 1 goto start
 if %errorlevel% == 2 start AYClient.bat "u" && goto more
@@ -528,6 +535,7 @@ echo  Universal mode enables you to download from any webpage with playing video
 echo  eg: youtube and others
 echo.
 echo --------------------------------------------------------------------------------------------
+echo.
 set /p uniurl=Paste a page url with playing video: 
 echo.
 echo  Choose Quality: 
@@ -539,6 +547,7 @@ echo.
 echo   (3) - Show all available formats
 echo.
 echo -------------------
+echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uniqual=b && goto unidownload
 if %errorlevel% == 2 set uniqual=w && goto unidownload
@@ -564,8 +573,9 @@ echo.
 %youtube_dl% -F "%uniurl%"
 echo.
 echo -------------------------------------------------
+echo.
 echo  Merge two formats using + symbol.
-set /p uniqual=Choose ID (green color in the list above):
+set /p uniqual=Choose ID (green color in the list above): 
 if "%uniqual%" equ "" goto uniqualselect
 
 
@@ -668,7 +678,8 @@ echo.
 echo  Job URLs are saved and can be resumed by re-entering the same job.
 echo.
 echo ------------------------------------------
-set /p job_name=Enter Job Name(eg: Adventure time videos): 
+echo.
+set /p job_name=Enter Job Name (eg: Songs): 
 md "%loc%\%job_name%"
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check
 echo.>"%loc%\%job_name%\%job_name%.txt"
@@ -706,17 +717,19 @@ if %youtube% == 1 echo  Youtube Job: Yes
 if %youtube% == 0 echo  Youtube Job: No
 echo --------------------------
 echo.
-echo  0) GO BACK
+echo  (0) - GO BACK
 echo.
-echo  1) Add Video Links
+echo  (1) - Add Video Links
 echo.
-echo  2) Open Job File (Delete, View, Add Links through Notepad)
+echo  (2) - Open Job File (Delete, View, Add Links through 
+echo        Notepad)
 echo.
-if %batch_exists_true% == 1 echo  3) Resume Batch Job
-if %batch_exists_true% == 0 echo  3) Start Batch Job
+if %batch_exists_true% == 1 echo  (3) - Resume Batch Job
+if %batch_exists_true% == 0 echo  (3) - Start Batch Job
 echo.
 echo --------------------------
-choice /c 01234 /n /m "Enter Choice: "
+echo.
+choice /c 01234 /n /m "Enter Choice (0-3): "
 if %errorlevel% == 1 goto batch
 if %errorlevel% == 2 goto batch_add_links
 if %errorlevel% == 3 start notepad.exe "%loc%\%job_name%\%job_name%.txt"
@@ -743,6 +756,7 @@ echo.
 echo  Enter 0 to Go Back after adding links
 echo.
 echo --------------------------------------------
+echo.
 
 
 :batch_add_links_added
@@ -770,15 +784,15 @@ echo ---------------------------------
 echo  Select Quality
 echo ---------------------------------
 echo.
-echo  0) GO BACK
+echo  (0) - GO BACK
 echo.
-echo  1) Highest Quality
+echo  (1) - Highest Quality
 echo.
-echo  2) Lowest Quality
+echo  (2) - Lowest Quality
 echo.
-echo  3) Pick a custom format code
+echo  (3) - Pick a custom format code
 echo ---------------------------------
-choice /c 0123 /n /m "Choose Quality: "
+choice /c 0123 /n /m "Choose Quality (0-3): "
 if %errorlevel% == 1 goto batch_manage
 if %errorlevel% == 2 set conf=-f best & set batch_name_end=high
 if %errorlevel% == 3 set conf=-f worst & set batch_name_end=low
@@ -806,12 +820,13 @@ echo.
 echo  Paste a sample URL from your batch job to retrieve all available qualities.
 echo.
 echo -----------
+echo.
 set /p batch_custom_format_url=Sample URL: 
 if "%batch_custom_format_url%" equ "" goto batch_custom_format
 if "%batch_custom_format_url%" equ "0" goto batch_download
 
 :batch_custom_format_select
-mode con:cols=110 lines=42
+mode con:cols=110 lines=52
 set "batch_custom_qual="
 title Retrieving all available qualities
 color 07
@@ -830,8 +845,9 @@ echo.
 echo.
 echo  Enter 0 to Go Back.
 echo -------------------------------------------------
+echo.
 echo You can also type "best" and "worst".
-set /p batch_custom_qual=Choose ID (green color in the list above):
+set /p batch_custom_qual=Choose ID (green color in the list above): 
 if "%batch_custom_qual%" equ "" goto batch_custom_format_select
 if "%batch_custom_qual%" equ "0" goto batch_custom_format
 set conf=-f %batch_custom_qual%
@@ -872,6 +888,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo ------------------------------------------------------------
+echo.
 choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto batch_manage
 if %errorlevel% == 2 set format_chosen=h264
@@ -901,6 +918,7 @@ if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Go Back
+echo.
 echo ------------------------------------------------------------
 echo  Choose Maximum Quality
 echo.
@@ -918,6 +936,7 @@ if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if %format_chosen% == vp9  goto batch_choice_vp9
 if %format_chosen% == av1  goto batch_choice_av1
 echo ------------------------------------------------------------
+echo.
 choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+bestaudio[ext=m4a]"
@@ -931,6 +950,7 @@ goto batch_ytdownload
 
 :batch_choice_vp9
 echo ------------------------------------------------------------
+echo.
 choice /c 012345678 /n /m "Enter Choice (0-8): "
 if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=webm]"
@@ -946,6 +966,7 @@ goto batch_ytdownload
 
 :batch_choice_av1
 echo ------------------------------------------------------------
+echo.
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
 if %errorlevel% == 1 goto batch_yt_format_selector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=webm]"
@@ -1123,7 +1144,7 @@ echo.
 echo  Enter 0 to Go Back.
 echo ----------------------------------------------
 echo.
-set /p settings_dir=Drag and Drop here:
+set /p settings_dir=Drag and Drop here: 
 if %settings_dir%p equ p goto settings_change_dir
 if %settings_dir% == 0 goto settings
 echo "%settings_dir%">"%aycdata%\dir.txt"
@@ -1153,7 +1174,7 @@ echo.
 echo  If it found any, that missing file will be downloaded.
 echo ------------------------------------------------------------
 echo.
-set /p settings_try=No. of Rechecks (Enter to go back):
+set /p settings_try=No. of Rechecks (Enter to go back): 
 if %settings_try%p equ p goto settings
 echo "%settings_try%">"%aycdata%\try.txt"
 set /p defined_try=<"%aycdata%\try.txt"
@@ -1218,14 +1239,15 @@ if %version_mismatch% == 1 echo  This should fix any issues caused by old settin
 echo.
 echo ------------------------
 echo.
-if %version_mismatch% == 0 echo  0. GO BACK
+if %version_mismatch% == 0 echo  (0) - GO BACK
 if %version_mismatch% == 0 echo.
-if %version_mismatch% == 0 echo  1. Reset and Exit AYC
-if %version_mismatch% == 1 echo  0. Keep Settings, Don't Reset
+if %version_mismatch% == 0 echo  (1) - Reset and Exit AYC
+if %version_mismatch% == 1 echo  (0) - Keep Settings, Don't Reset
 if %version_mismatch% == 1 echo.
-if %version_mismatch% == 1 echo  1. Reset and Exit AYC
+if %version_mismatch% == 1 echo  (1) - Reset and Exit AYC
 echo.
 echo ------------------------
+echo.
 if %version_mismatch% == 0 goto reset_normal
 if %version_mismatch% == 1 goto reset_version_mismatch
 
