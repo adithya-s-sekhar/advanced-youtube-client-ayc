@@ -1,6 +1,15 @@
-Advanced Youtube Client - AYC v3.10 - 18/Dec/2021
+Advanced Youtube Client - AYC v3.11 - 13/Jan/2022
 
 What's new?
+
+[3.11]
+- Start download immediately in Universal Mode instead of waiting for it to fetch all available formats.
+- Added option to disable aria2 in Settings and First Run.
+- Added option to embed thumbnails and subtitles in Settings.
+- VP9/AV1 are now saved in MP4 containers.
+- Added dependencyfix for aria2c.
+- Detect when AYC gets updated and offer to reset old settings.
+- UI Fixes throughout.
 
 [3.10 and 3.9]
 - Added missing license to release zip. (Reason for 3.10)
