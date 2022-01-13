@@ -458,7 +458,7 @@ echo  Universal mode enables you to download from any webpage with playing video
 echo  eg: youtube and others
 echo.
 echo --------------------------------------------------------------------------------------------
-set /p uniurl=Enter a page url with playing video: 
+set /p uniurl=Paste a page url with playing video: 
 echo.
 echo  Choose Quality: 
 echo.
@@ -730,7 +730,7 @@ echo  Working on: %job_name%
 echo.
 echo  Enter 0 to Go Back.
 echo.
-echo  Enter a sample URL from your batch job to retrieve all available qualities.
+echo  Paste a sample URL from your batch job to retrieve all available qualities.
 echo.
 echo -----------
 set /p batch_custom_format_url=Sample URL: 
