@@ -19,27 +19,37 @@ set version=v3.10 (18/Dec/2021)
 
 :begin
 mode con:cols=92 lines=26
+
 if not exist "%cd%\data" md "%cd%\data"
 if not exist "%cd%\Output" md "%cd%\Output"
+
 set aycdata=%cd%\data
 set youtube_dl="yt-dlp.exe"
+
 if not exist %youtube_dl% goto ytnotexist
 if not exist ffmpeg.exe goto ffmpegnotexist
 if not exist atomicparsley.exe goto atomicnotexist
 if not exist aria2c.exe goto aria2notexist
+
 if not exist "%aycdata%\firstrun.txt" goto firstrun
+
 if not exist "%aycdata%\dir.txt" goto dirnotexist
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
+
 if not exist "%aycdata%\try.txt" goto trynotexist
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
-if %defined_try%p equ =p goto trynotexist
-set try_count=0
+
+if not exist "%aycdata%\aria2_status.txt" goto aria2_statusnotexist
+set /p aria2_status=<"%aycdata%\aria2_status.txt"
+set aria2_status=%aria2_status:"=%
+
 goto check_parameter
 
 
 :firstrun
+title Welcome to AYC
 echo "0">"%aycdata%\firstrun.txt"
 cls
 echo --------------------------------------------------------------------------------------------
@@ -52,6 +62,22 @@ echo Preparing for first run..
 echo.
 echo Please wait, updating yt-dlp..
 %youtube_dl% -U
+echo.
+echo -----------------------------------------------------
+echo Do you want to enable aria2 Multi-threaded downloads?
+echo.
+echo  aria2 can massively speed up hls and Non-YouTube downloads but CAN REDUCE speed slightly
+echo  on YouTube downloads. You can change this any time by going to Settings.
+echo.
+echo   (1) Enable aria2
+echo.
+echo   (2) Disable aria2
+echo.
+echo -------------------
+choice /c 12 /n /m "Enter Choice (1-2): "
+if %errorlevel% == 1 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt"
+if %errorlevel% == 2 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt"
+if %errorlevel% == 255 goto firstrun
 goto begin
 
 
@@ -63,6 +89,11 @@ goto begin
 
 :trynotexist
 echo "0">"%aycdata%\try.txt"
+goto begin
+
+
+:aria2_statusnotexist
+echo "0">"%aycdata%\aria2_status.txt"
 goto begin
 
 
@@ -328,6 +359,8 @@ goto download
 :download
 set "try="
 set try=%try_count%
+if %aria2_status% == 0 set "aria2="
+if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 
 :downloadtried
@@ -346,10 +379,10 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --merge-output-format mp4 --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --merge-output-format mp4 --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadtried
@@ -502,6 +535,8 @@ if "%uniqual%" equ "" goto uniqualselect
 :unidownload
 set "try="
 set try=%try_count%
+if %aria2_status% == 0 set "aria2="
+if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 
 :unidownloadtried
@@ -520,7 +555,7 @@ echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-%youtube_dl% --ignore-errors -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+%youtube_dl% --ignore-errors -f %uniqual% %aria2% -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto unierror
 goto unidownloadtried
@@ -891,6 +926,8 @@ goto batch_ytdownload
 :batch_ytdownload
 set "try="
 set try=%try_count%
+if %aria2_status% == 0 set "aria2="
+if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 
 :batch_ytdownloadtried
@@ -907,11 +944,11 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto batch_error
 goto batch_ytdownloadtried
@@ -989,16 +1026,21 @@ echo     Currently: %defined_try%
 echo.
 echo  3) Update yt-dlp (fixes most issues)
 echo.
-echo  4) Reset AYC
+echo  4) aria2 Multi-threaded Download
+if %aria2_status% == 0 echo     Currently: Disabled
+if %aria2_status% == 1 echo     Currently: Enabled
+echo.
+echo  5) Reset AYC
 echo.
 echo -----------------------------------
 echo.
-choice /c 01234 /n /m "Select Option: "
+choice /c 012345 /n /m "Select Option: "
 if %errorlevel% == 1 goto more
 if %errorlevel% == 2 goto settings_change_dir
 if %errorlevel% == 3 goto settings_change_defined_try
 if %errorlevel% == 4 goto update
-if %errorlevel% == 5 goto reset
+if %errorlevel% == 5 goto settings_change_aria2
+if %errorlevel% == 6 goto reset
 if %errorlevel% == 255 goto settings
 
 
@@ -1081,6 +1123,11 @@ echo.
 echo  Press Enter to go back.
 pause>NUL
 goto settings
+
+
+:settings_change_aria2
+if %aria2_status% == 0 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt" && goto settings
+if %aria2_status% == 1 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt" && goto settings
 
 
 :reset
