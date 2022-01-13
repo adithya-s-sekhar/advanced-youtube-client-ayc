@@ -346,9 +346,9 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --merge-output-format mp4 -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --merge-output-format mp4 --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
 if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
@@ -907,9 +907,9 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% --external-downloader aria2c -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
