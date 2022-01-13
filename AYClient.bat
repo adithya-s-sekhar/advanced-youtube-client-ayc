@@ -539,7 +539,7 @@ echo.
 %youtube_dl% -F "%uniurl%"
 echo.
 echo -------------------------------------------------
-echo You can also type "best" and "worst".
+echo  Merge two formats using + symbol.
 set /p uniqual=Choose ID (green color in the list above):
 if "%uniqual%" equ "" goto uniqualselect
 
