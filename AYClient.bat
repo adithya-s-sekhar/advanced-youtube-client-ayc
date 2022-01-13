@@ -1,5 +1,7 @@
 @echo off
 set version=v3.10 (18/Dec/2021)
+set internal_version=310
+set version_mismatch=0
 
 
 :: /--------------------------------------------------/
@@ -30,6 +32,11 @@ if not exist %youtube_dl% goto ytnotexist
 if not exist ffmpeg.exe goto ffmpegnotexist
 if not exist atomicparsley.exe goto atomicnotexist
 if not exist aria2c.exe goto aria2notexist
+
+if not exist "%aycdata%\external_version.txt" goto versionnotexist
+set /p external_version=<"%aycdata%\external_version.txt"
+set external_version=%external_version:"=%
+if NOT %external_version% == %internal_version% set version_mismatch=1 && goto reset
 
 if not exist "%aycdata%\firstrun.txt" goto firstrun
 
@@ -78,6 +85,11 @@ choice /c 12 /n /m "Enter Choice (1-2): "
 if %errorlevel% == 1 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt"
 if %errorlevel% == 2 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt"
 if %errorlevel% == 255 goto firstrun
+goto begin
+
+
+:versionnotexist
+echo "%internal_version%">"%aycdata%\external_version.txt"
 goto begin
 
 
@@ -1132,8 +1144,10 @@ if %aria2_status% == 1 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.tx
 
 :reset
 mode con:cols=60 lines=32
-color 04
-title Reset AYC
+if %version_mismatch% == 0 color 04
+if %version_mismatch% == 1 color 02
+if %version_mismatch% == 0 title Reset AYC
+if %version_mismatch% == 1 title AYC Updated
 cls
 echo ------------------------------------------------------------
 echo                 Advanced Youtube Client - AYC 
@@ -1141,23 +1155,48 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-echo  You are about to reset AYC to it's default settings.
-echo.
-echo  This should fix any issues caused by incorrect or corrupted settings.
-echo.
-echo ------------------------
-echo.
-echo  0. GO BACK
-echo.
-echo  1. Reset and Exit AYC
+if %version_mismatch% == 0 echo  You are about to reset AYC to it's default settings.
+if %version_mismatch% == 0 echo.
+if %version_mismatch% == 0 echo  This should fix any issues caused by incorrect or corrupted settings.
+if %version_mismatch% == 1 echo  AYC was updated. It is recommended to reset AYC and start
+if %version_mismatch% == 1 echo  fresh.
+if %version_mismatch% == 1 echo.
+if %version_mismatch% == 1 echo  This should fix any issues caused by old settings.
 echo.
 echo ------------------------
+echo.
+if %version_mismatch% == 0 echo  0. GO BACK
+if %version_mismatch% == 0 echo.
+if %version_mismatch% == 0 echo  1. Reset and Exit AYC
+if %version_mismatch% == 1 echo  0. Keep Settings, Don't Reset
+if %version_mismatch% == 1 echo.
+if %version_mismatch% == 1 echo  1. Reset and Exit AYC
+echo.
+echo ------------------------
+if %version_mismatch% == 0 goto reset_normal
+if %version_mismatch% == 1 goto reset_version_mismatch
+
+
+:reset_normal
 choice /C 01 /n /m "Choose option (0-1): "
 if %errorlevel% == 1 goto settings
+goto reset_finish
+
+
+:reset_version_mismatch
+choice /C 01 /n /m "Choose option (0-1): "
+if %errorlevel% == 1 echo "%internal_version%">"%aycdata%\external_version.txt" && goto begin
+goto reset_finish
+
+
+:reset_finish
 del /q "%aycdata%\firstrun.txt"
 del /q "%aycdata%\dir.txt"
 del /q "%aycdata%\try.txt"
+del /q "%aycdata%\aria2_status.txt"
+del /q "%aycdata%\external_version.txt"
 title Reset Succesfully
+color 02
 cls
 echo.
 echo.
