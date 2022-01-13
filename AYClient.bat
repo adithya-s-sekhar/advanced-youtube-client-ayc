@@ -478,7 +478,7 @@ if "%uniurl%" equ "" goto uni
 
 
 :uniqualselect
-mode con:cols=110 lines=42
+mode con:cols=110 lines=52
 set "uniqual="
 color 07
 title Universal Mode: URL Recieved
