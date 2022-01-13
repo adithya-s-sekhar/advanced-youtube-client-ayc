@@ -52,6 +52,14 @@ if not exist "%aycdata%\aria2_status.txt" goto aria2_statusnotexist
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
 set aria2_status=%aria2_status:"=%
 
+if not exist "%aycdata%\thumbs_status.txt" goto thumbs_statusnotexist
+set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
+set thumbs_status=%thumbs_status:"=%
+
+if not exist "%aycdata%\subs_status.txt" goto subs_statusnotexist
+set /p subs_status=<"%aycdata%\subs_status.txt"
+set subs_status=%subs_status:"=%
+
 goto check_parameter
 
 
@@ -106,6 +114,16 @@ goto begin
 
 :aria2_statusnotexist
 echo "0">"%aycdata%\aria2_status.txt"
+goto begin
+
+
+:thumbs_statusnotexist
+echo "1">"%aycdata%\thumbs_status.txt"
+goto begin
+
+
+:subs_statusnotexist
+echo "1">"%aycdata%\subs_status.txt"
 goto begin
 
 
@@ -371,8 +389,15 @@ goto download
 :download
 set "try="
 set try=%try_count%
+
 if %aria2_status% == 0 set "aria2="
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
+
+if %thumbs_status% == 0 set "thumbs="
+if %thumbs_status% == 1 set thumbs=--embed-thumbnail
+
+if %subs_status% == 0 set "subs="
+if %subs_status% == 1 set subs=--embed-subs
 
 
 :downloadtried
@@ -391,9 +416,9 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --merge-output-format mp4 --embed-subs --embed-thumbnail -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% %subs% %thumbs% -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
 if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
@@ -547,6 +572,7 @@ if "%uniqual%" equ "" goto uniqualselect
 :unidownload
 set "try="
 set try=%try_count%
+
 if %aria2_status% == 0 set "aria2="
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
@@ -938,8 +964,15 @@ goto batch_ytdownload
 :batch_ytdownload
 set "try="
 set try=%try_count%
+
 if %aria2_status% == 0 set "aria2="
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
+
+if %thumbs_status% == 0 set "thumbs="
+if %thumbs_status% == 1 set thumbs=--embed-thumbnail
+
+if %subs_status% == 0 set "subs="
+if %subs_status% == 1 set subs=--embed-subs
 
 
 :batch_ytdownloadtried
@@ -956,9 +989,9 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% --embed-subs --embed-thumbnail --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == h264 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == av1 %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == aud %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == batch %youtube_dl% --ignore-errors --no-warnings %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
@@ -1028,31 +1061,41 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-echo  0) GO BACK
+echo  (0) - GO BACK
 echo.
-echo  1) Change Download Folder
-echo     Currently: %loc%
+echo  (1) - Change Download Folder
+echo        Currently: %loc%
 echo.
-echo  2) No. of Rechecks
-echo     Currently: %defined_try%
+echo  (2) - No. of Rechecks
+echo        Currently: %defined_try%
 echo.
-echo  3) Update yt-dlp (fixes most issues)
+echo  (3) - Update yt-dlp (fixes most issues)
 echo.
-echo  4) aria2 Multi-threaded Download
-if %aria2_status% == 0 echo     Currently: Disabled
-if %aria2_status% == 1 echo     Currently: Enabled
+echo  (4) - aria2 Multi-threaded Download
+if %aria2_status% == 0 echo        [Disabled]
+if %aria2_status% == 1 echo        [Enabled]
 echo.
-echo  5) Reset AYC
+echo  (5) - Embed Thumbnails
+if %thumbs_status% == 0 echo        [Disabled]
+if %thumbs_status% == 1 echo        [Enabled]
+echo.
+echo  (6) - Embed Subtitles
+if %subs_status% == 0 echo        [Disabled]
+if %subs_status% == 1 echo        [Enabled]
+echo.
+echo  (7) - Reset AYC
 echo.
 echo -----------------------------------
 echo.
-choice /c 012345 /n /m "Select Option: "
+choice /c 01234567 /n /m "Select Option (1-7): "
 if %errorlevel% == 1 goto more
 if %errorlevel% == 2 goto settings_change_dir
 if %errorlevel% == 3 goto settings_change_defined_try
 if %errorlevel% == 4 goto update
 if %errorlevel% == 5 goto settings_change_aria2
-if %errorlevel% == 6 goto reset
+if %errorlevel% == 6 goto settings_change_thumbs
+if %errorlevel% == 7 goto settings_change_subs
+if %errorlevel% == 8 goto reset
 if %errorlevel% == 255 goto settings
 
 
@@ -1142,6 +1185,16 @@ if %aria2_status% == 0 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.tx
 if %aria2_status% == 1 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt" && goto settings
 
 
+:settings_change_thumbs
+if %thumbs_status% == 0 set thumbs_status=1 && echo "1">"%aycdata%\thumbs_status.txt" && goto settings
+if %thumbs_status% == 1 set thumbs_status=0 && echo "0">"%aycdata%\thumbs_status.txt" && goto settings
+
+
+:settings_change_subs
+if %subs_status% == 0 set subs_status=1 && echo "1">"%aycdata%\subs_status.txt" && goto settings
+if %subs_status% == 1 set subs_status=0 && echo "0">"%aycdata%\subs_status.txt" && goto settings
+
+
 :reset
 mode con:cols=60 lines=32
 if %version_mismatch% == 0 color 04
@@ -1194,6 +1247,8 @@ del /q "%aycdata%\firstrun.txt"
 del /q "%aycdata%\dir.txt"
 del /q "%aycdata%\try.txt"
 del /q "%aycdata%\aria2_status.txt"
+del /q "%aycdata%\thumbs_status.txt"
+del /q "%aycdata%\subs_status.txt"
 del /q "%aycdata%\external_version.txt"
 title Reset Succesfully
 color 02
