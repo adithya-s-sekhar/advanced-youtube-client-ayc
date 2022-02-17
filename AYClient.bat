@@ -124,7 +124,7 @@ goto begin
 
 
 :subs_statusnotexist
-echo "1">"%aycdata%\subs_status.txt"
+echo "0">"%aycdata%\subs_status.txt"
 goto begin
 
 
