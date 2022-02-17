@@ -1108,7 +1108,7 @@ echo  (7) - Reset AYC
 echo.
 echo -----------------------------------
 echo.
-choice /c 01234567 /n /m "Select Option (1-7): "
+choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto more
 if %errorlevel% == 2 goto settings_change_dir
 if %errorlevel% == 3 goto settings_change_defined_try
