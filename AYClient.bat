@@ -724,16 +724,20 @@ echo.
 echo  (2) - Open Job File (Delete, View, Add Links through 
 echo        Notepad)
 echo.
-if %batch_exists_true% == 1 echo  (3) - Resume Batch Job
-if %batch_exists_true% == 0 echo  (3) - Start Batch Job
+if %youtube% == 1 echo  (3) - Change job to Non-Youtube mode
+if %youtube% == 0 echo  (3) - Change job to Youtube mode
+echo.
+if %batch_exists_true% == 1 echo  (4) - Resume Batch Job
+if %batch_exists_true% == 0 echo  (4) - Start Batch Job
 echo.
 echo --------------------------
 echo.
-choice /c 01234 /n /m "Enter Choice (0-3): "
+choice /c 01234 /n /m "Enter Choice (0-4): "
 if %errorlevel% == 1 goto batch
 if %errorlevel% == 2 goto batch_add_links
 if %errorlevel% == 3 start notepad.exe "%loc%\%job_name%\%job_name%.txt"
-if %errorlevel% == 4 goto batch_download
+if %errorlevel% == 4 goto batch_change_type
+if %errorlevel% == 5 goto batch_download
 if %errorlevel% == 255 goto batch_manage
 goto batch_manage
 
@@ -765,6 +769,11 @@ echo.
 if "%batch_link_tmp%" equ "0" goto batch_manage
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 goto batch_add_links_added
+
+
+:batch_change_type
+if %youtube% == 0 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt" && goto batch_manage
+if %youtube% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt" && goto batch_manage
 
 
 :batch_download
