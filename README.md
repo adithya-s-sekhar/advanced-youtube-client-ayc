@@ -6,7 +6,6 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/adithya-s-sekhar/advanced-youtube-client-ayc?style=paper)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=paper)
-![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?style=paper)
 
 Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
