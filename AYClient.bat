@@ -77,23 +77,6 @@ echo Preparing for first run..
 echo.
 echo Please wait, updating yt-dlp..
 %youtube_dl% -U
-echo.
-echo -----------------------------------------------------
-echo Do you want to enable aria2 Multi-threaded downloads?
-echo.
-echo  aria2 can massively speed up hls and Non-YouTube downloads but CAN REDUCE speed slightly
-echo  on YouTube downloads. You can change this any time by going to Settings.
-echo.
-echo   (1) - Enable aria2
-echo.
-echo   (2) - Disable aria2
-echo.
-echo -------------------
-echo.
-choice /c 12 /n /m "Enter Choice (1-2): "
-if %errorlevel% == 1 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt"
-if %errorlevel% == 2 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt"
-if %errorlevel% == 255 goto firstrun
 goto begin
 
 
