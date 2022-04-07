@@ -583,9 +583,6 @@ if "%uniqual%" equ "" goto uniqualselect
 set "try="
 set try=%try_count%
 
-if %aria2_status% == 0 set "aria2="
-if %aria2_status% == 1 set aria2=--external-downloader aria2c
-
 
 :unidownloadtried
 mode con:cols=60 lines=32
@@ -603,7 +600,7 @@ echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-%youtube_dl% --ignore-errors -f %uniqual% %aria2% -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+%youtube_dl% --ignore-errors -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto unierror
 goto unidownloadtried
