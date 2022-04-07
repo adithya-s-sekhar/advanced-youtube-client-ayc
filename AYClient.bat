@@ -396,7 +396,7 @@ goto download
 set "try="
 set try=%try_count%
 
-if %aria2_status% == 0 set "aria2="
+if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 if %thumbs_status% == 0 set "thumbs="
@@ -992,10 +992,9 @@ goto batch_ytdownload
 set "try="
 set try=%try_count%
 
-if %aria2_status% == 0 set "aria2="
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
-rem Remove the bottom line to stop AYC overriding aria2 config for non youtube downloads.
 if %youtube% == 0 set aria2=--external-downloader aria2c
+if %youtube% == 1 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 
 if %thumbs_status% == 0 set "thumbs="
 if %thumbs_status% == 1 set thumbs=--embed-thumbnail
