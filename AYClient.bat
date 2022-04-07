@@ -1082,7 +1082,7 @@ echo        Currently: %defined_try%
 echo.
 echo  (3) - Update yt-dlp (fixes most issues)
 echo.
-echo  (4) - aria2 Multi-threaded Download
+echo  (4) - Force aria2 on all downloads
 if %aria2_status% == 0 echo        [Disabled]
 if %aria2_status% == 1 echo        [Enabled]
 echo.
