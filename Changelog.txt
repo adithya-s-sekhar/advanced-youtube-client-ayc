@@ -1,6 +1,16 @@
-Advanced Youtube Client - AYC v3.11 - 13/Jan/2022
+Advanced Youtube Client - AYC v3.12 - 08/Apr/2022
 
 What's new?
+
+[3.12]
+- Faster HLS(480p,1080p) and Non-Youtube downloads without sacrificing regular Youtube speeds.
+- Force aria2 in Universal Mode.
+- Force aria2 in Non-Youtube Batch Jobs.
+- Increase concurrent HLS fragments to 8 if aria2 is disabled.
+- Ability to change batch download type after creation.
+- Remove aria2 setup prompt on first run.
+- UI fixes.
+- Updated ffmpeg to 5.0.
 
 [3.11]
 - Start download immediately in Universal Mode instead of waiting for it to fetch all available formats.
