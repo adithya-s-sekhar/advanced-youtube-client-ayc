@@ -50,7 +50,7 @@ You can call it a console front end if you want.
 
 ## Downloads
 
-**See Source and Building below to make your own binary if you are not comfortable with a batch file.**
+**AYC is now only released as batch files (.bat). See [Source and Building](#source-and-building) to build your own .exe file.**
 
 **Or use [this trick](#1-shortcut-trick) to make windows treat AYC as an exe.**
 
