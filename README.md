@@ -85,8 +85,6 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 
 [Website](https://advanced-youtube-client-ayc.sourceforge.io)
 
-[Updates and Discuss on Telegram](https://t.me/advancedyoutubeclientayc)
-
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
 
 [Seen on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
