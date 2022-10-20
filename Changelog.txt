@@ -1,6 +1,12 @@
-Advanced Youtube Client - AYC v3.12 - 08/Apr/2022
+Advanced Youtube Client - AYC v3.13 - 20/Oct/2022
+Open AYClient.bat :)
 
 What's new?
+
+[3.13]
+- Improved high-low quality selector in Batch and Universal modes.
+- Added ffprobe to support post-processing on some websites.
+- Updated dependencies.
 
 [3.12]
 - Faster HLS(480p,1080p) and Non-Youtube downloads without sacrificing regular Youtube speeds.

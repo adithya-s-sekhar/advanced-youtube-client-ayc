@@ -1,6 +1,6 @@
 @echo off
-set version=v3.12 (08/Apr/2022)
-set internal_version=312
+set version=v3.13 (20/Oct/2022)
+set internal_version=313
 set version_mismatch=0
 
 
@@ -10,7 +10,7 @@ set version_mismatch=0
 :: / Advanced Youtube Client - AYC Script             /
 :: / Author          : Adithya S Sekhar               /
 :: / First Release   : v1.0 (13/Aug/2016)             /
-:: / Current Release : v3.12 (08/Apr/2022)             /
+:: / Current Release : v3.13 (20/Oct/2022)             /
 :: / Released under the MIT License.                  /
 :: / Please don't modify or redistribute without      /
 :: / proper credits.                                  /
