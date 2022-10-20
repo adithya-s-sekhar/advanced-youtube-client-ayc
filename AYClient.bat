@@ -532,8 +532,8 @@ echo.
 echo -------------------
 echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
-if %errorlevel% == 1 set uniqual=b && goto unidownload
-if %errorlevel% == 2 set uniqual=w && goto unidownload
+if %errorlevel% == 1 set uniqual="bv*+ba/b" && goto unidownload
+if %errorlevel% == 2 set uniqual="wv*+wa/w" && goto unidownload
 if %errorlevel% == 3 goto uniqualselect
 if %errorlevel% == 255 goto uni
 if "%uniurl%" equ "" goto uni
@@ -783,8 +783,8 @@ echo  (3) - Pick a custom format code
 echo ---------------------------------
 choice /c 0123 /n /m "Choose Quality (0-3): "
 if %errorlevel% == 1 goto batch_manage
-if %errorlevel% == 2 set conf=-f best & set batch_name_end=high
-if %errorlevel% == 3 set conf=-f worst & set batch_name_end=low
+if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
+if %errorlevel% == 3 set conf=-f "wv*+wa/w" & set batch_name_end=low
 if %errorlevel% == 4 goto batch_custom_format
 if %errorlevel% == 255 goto batch_download
 set format_chosen=batch
