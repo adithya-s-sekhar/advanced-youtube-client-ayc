@@ -169,7 +169,6 @@ goto begin
 :atomicnotexist
 title AtomicParsley missing!
 start "" "https://github.com/wez/atomicparsley/releases/latest"
-start "" "https://sourceforge.net/projects/atomicparsley"
 cls
 echo --------------------------------------------------------------------------------------------
 echo                                Advanced Youtube Client - AYC 
@@ -177,14 +176,11 @@ echo.
 echo                                     %version%
 echo --------------------------------------------------------------------------------------------
 echo.
-echo  AtomicParsley.exe is missing! AYC Opened two webpages right now for you to download the 
+echo  AtomicParsley.exe is missing! AYC Opened a webpage right now for you to download the 
 echo  missing dependency. Pick the right one for you.
 echo.
-echo  URL: https://github.com/wez/atomicparsley/releases/latest for 64-bit
-echo.
-echo  URL: https://sourceforge.net/projects/atomicparsley for 32-bit
-echo.
-echo  Filename: AtomicParsleyWindows.zip
+echo  Filename: AtomicParsleyWindows.zip (For 64-bit)
+echo  Filename: AtomicParsleyWindowsX86.zip (For 32-bit)
 echo.
 echo  After download, extract the archive and copy AtomicParsley.exe to the same folder as 
 echo  AYClient.bat and press ENTER.
