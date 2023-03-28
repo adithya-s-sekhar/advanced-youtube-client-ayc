@@ -133,7 +133,7 @@ echo  Filename: yt-dlp.exe (For 64-bit)
 echo.
 echo  Filename: yt-dlp_x86.exe (For 32-bit)
 echo.
-echo  After download, rename it as yt-dlp.exe and copy it to the same folder as AYClient.bat
+echo  After download, copy it to the same folder as AYClient.bat
 echo  and press ENTER.
 echo.
 pause>NUL
