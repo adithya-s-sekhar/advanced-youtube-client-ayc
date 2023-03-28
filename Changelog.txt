@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v3.13 - 20/Oct/2022
+Advanced Youtube Client - AYC v3.14 - 29/Mar/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.14]
+- Fix downloads failing on long file names.
+- Automatically detect and use yt-dlp.exe, yt-dlp_x86.exe and youtube-dl.exe in that order.
+- Updated to ffmpeg 6.0.
+- Switched to wez/atomicparsley for both 32 and 64-bit.
 
 [3.13]
 - Improved high-low quality selector in Batch and Universal modes.
