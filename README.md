@@ -70,7 +70,7 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
 3. Open the file in Bat To Exe Converter, you can [add an icon](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/ayc.ico?raw=true) if you want.
 4. Compile.
-5. You need [ffmpeg.exe](https://github.com/yt-dlp/FFmpeg-Builds/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases), atomicparsley.exe ([32-bit](https://sourceforge.net/projects/atomicparsley)/[64-bit](https://github.com/wez/atomicparsley/releases)) and [aria2c.exe](https://github.com/aria2/aria2/releases/latest) in the same folder as the compiled binary.
+5. You need [ffmpeg.exe](https://github.com/yt-dlp/FFmpeg-Builds/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases), [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) and [aria2c.exe](https://github.com/aria2/aria2/releases) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
 
 ## Tips
@@ -97,8 +97,6 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 [yt-dlp/ffmpeg](https://github.com/yt-dlp/FFmpeg-Builds)
 
 [AtomicParsley](https://github.com/wez/atomicparsley)
-
-[AtomicParsley 32-bit](https://sourceforge.net/projects/atomicparsley)
 
 [aria2](https://github.com/aria2/aria2)
 
