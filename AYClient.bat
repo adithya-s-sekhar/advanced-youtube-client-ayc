@@ -26,7 +26,9 @@ if not exist "%cd%\data" md "%cd%\data"
 if not exist "%cd%\Output" md "%cd%\Output"
 
 set aycdata=%cd%\data
-set youtube_dl="yt-dlp.exe"
+if exist youtube-dl.exe set youtube_dl="youtube-dl.exe"
+if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
+if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
 set default_config=--ignore-errors --no-warnings --trim-filenames 128 --windows-filenames
 
 if not exist %youtube_dl% goto ytnotexist
