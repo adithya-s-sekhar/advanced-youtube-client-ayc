@@ -180,6 +180,7 @@ echo  AtomicParsley.exe is missing! AYC Opened a webpage right now for you to do
 echo  missing dependency. Pick the right one for you.
 echo.
 echo  Filename: AtomicParsleyWindows.zip (For 64-bit)
+echo.
 echo  Filename: AtomicParsleyWindowsX86.zip (For 32-bit)
 echo.
 echo  After download, extract the archive and copy AtomicParsley.exe to the same folder as 
