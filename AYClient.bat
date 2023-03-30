@@ -222,6 +222,8 @@ if %1% equ "b" goto batch
 if %1% equ "B" goto batch
 if %1% equ "u" goto uni
 if %1% equ "U" goto uni
+if %1% equ "s" goto settings
+if %1% equ "S" goto settings
 set url=%1%
 set url=%url:"=%
 goto format_selector
@@ -486,7 +488,7 @@ echo  (1) - Universal Mode     QuickKey: U
 echo.
 echo  (2) - Batch Mode         QuickKey: B
 echo.
-echo  (3) - Settings
+echo  (3) - Settings           QuickKey: S
 echo.
 echo  (4) - About
 echo.
