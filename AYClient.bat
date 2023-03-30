@@ -155,9 +155,9 @@ echo  dependency.
 echo.
 echo  URL: https://github.com/yt-dlp/FFmpeg-Builds/releases/latest
 echo.
-echo  Filename: ffmpeg-n...-win64-gpl-4.4.zip (For 64-bit)
+echo  Filename: ffmpeg-n...-win64-gpl-6.0.zip (For 64-bit)
 echo.
-echo  Filename: ffmpeg-n...-win32-gpl-4.4.zip (For 32-bit)
+echo  Filename: ffmpeg-n...-win32-gpl-6.0.zip (For 32-bit)
 echo.
 echo  After download, extract the archive and copy bin\ffmpeg.exe to the same folder as AYClient.bat
 echo  and press ENTER.
