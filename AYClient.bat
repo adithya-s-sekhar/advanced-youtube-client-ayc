@@ -461,7 +461,7 @@ echo   4. If you chose AV1, not all videos are supported by
 echo    youtube yet.
 echo.
 echo   If all else fails, report the failing URLs on the 
-echo   Sourceforge page. 
+echo   Sourceforge or GitHub page. 
 echo.
 echo  Press enter to close this window.
 echo.
@@ -633,7 +633,7 @@ echo   aren't supported yet.
 echo   3. If you have an unreliable network, enable rechecks
 echo   in Settings.
 echo   4. If all else fails, report the failing URLs on the 
-echo   Sourceforge page. 
+echo   Sourceforge or GitHub page. 
 echo.
 echo  Press enter to try again
 pause>NUL
@@ -1035,7 +1035,7 @@ echo   4. If you chose AV1, not all videos are supported by
 echo    youtube yet.
 echo.
 echo   If all else fails, report the failing URLs on the 
-echo   Sourceforge page. 
+echo   Sourceforge or GitHub page. 
 echo.
 echo  Press enter to try again
 pause>NUL
