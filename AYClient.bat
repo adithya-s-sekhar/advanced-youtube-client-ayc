@@ -492,14 +492,20 @@ echo  (3) - Settings           QuickKey: S
 echo.
 echo  (4) - About
 echo.
+echo  (5) - Visit on GitHub
+echo.
+echo  (6) - Visit on Sourceforge
+echo.
 echo -------------------
 echo.
-choice /c 01234 /n /m "Enter Choice (0-4): "
+choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto start
 if %errorlevel% == 2 start AYClient.bat "u" && goto more
 if %errorlevel% == 3 start AYClient.bat "b" && goto more
 if %errorlevel% == 4 goto settings
 if %errorlevel% == 5 goto about
+if %errorlevel% == 6 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
+if %errorlevel% == 7 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc/"
 if %errorlevel% == 255 goto more
 goto more
 
