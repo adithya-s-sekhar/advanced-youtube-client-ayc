@@ -2,6 +2,7 @@
 set version=v3.14 (29/Mar/2023)
 set internal_version=314
 set version_mismatch=0
+set errorformat=0
 
 
 :: /--------------------------------------------------/
@@ -360,6 +361,7 @@ if %errorlevel% == 255 goto menu
 goto download
 
 :choice_av1
+set errorformat=av1
 echo ------------------------------------------------------------
 echo.
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
@@ -392,6 +394,7 @@ if %subs_status% == 1 set subs=--embed-subs
 
 
 :downloadtried
+set errormode=regular
 mode con:cols=60 lines=32
 color 0B
 title Downloading
@@ -417,6 +420,7 @@ goto downloadtried
 
 
 :downloadsuccess
+set "errormode="
 mode con:cols=60 lines=32
 color 2F
 title Download Finished
@@ -433,40 +437,6 @@ echo  Download Finished, The files are saved in:
 echo  %loc%
 echo.
 echo  Press ENTER to to close this window.
-pause>NUL
-goto exit
-
-
-:error
-mode con:cols=60 lines=32
-color 4F
-title Houston, We have a problem!
-cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
-echo.
-echo  Download Failed!!!! :-(
-echo.
-echo  URL: %url%
-echo.
-echo  Possible problems and solutions:
-echo   1. yt-dlp might be out of date. Update it by going 
-echo    into Settings, Update yt-dlp.
-echo   2. You may have entered an invalid/private link. These 
-echo    aren't supported yet.
-echo   3. If you have an unreliable network, enable rechecks
-echo    in Settings.
-echo   4. If you chose AV1, not all videos are supported by
-echo    youtube yet.
-echo.
-echo   If all else fails, report the failing URLs on the 
-echo   Sourceforge or GitHub page. 
-echo.
-echo  Press enter to close this window.
-echo.
 pause>NUL
 goto exit
 
@@ -576,6 +546,7 @@ set try=%try_count%
 
 
 :unidownloadtried
+set errormode=uni
 mode con:cols=60 lines=32
 color 0B
 title Finger's Crossed! How's the weather?
@@ -593,11 +564,12 @@ echo  URL: %uniurl%
 echo.
 %youtube_dl% %default_config% -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
 set /a try=%try%+1
-if %try% GTR %defined_try% goto unierror
+if %try% GTR %defined_try% goto error
 goto unidownloadtried
 
 
 :unidownloadsuccess
+set "errormode="
 mode con:cols=60 lines=32
 color 2F
 title Download Finished!
@@ -614,36 +586,6 @@ echo  Download Finished, The files are saved in:
 echo  %loc%
 echo.
 echo  Press enter to do it again.
-pause>NUL
-goto uni
-
-
-:unierror
-mode con:cols=60 lines=32
-color 4F
-title Download Failed!
-cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
-echo.
-echo  Download Failed!!!! :-(
-echo.
-echo  URL: %uniurl%
-echo.
-echo  Possible problems and solutions:
-echo   1. yt-dlp might be out of date. Update it by going 
-echo   into Settings, Update yt-dlp.
-echo   2. You may have entered an invalid/private link. These 
-echo   aren't supported yet.
-echo   3. If you have an unreliable network, enable rechecks
-echo   in Settings.
-echo   4. If all else fails, report the failing URLs on the 
-echo   Sourceforge or GitHub page. 
-echo.
-echo  Press enter to try again
 pause>NUL
 goto uni
 
@@ -962,6 +904,7 @@ if %errorlevel% == 255 goto batch_ytmp4
 goto batch_ytdownload
 
 :batch_choice_av1
+set errorformat=av1
 echo ------------------------------------------------------------
 echo.
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
@@ -995,6 +938,7 @@ if %subs_status% == 1 set subs=--embed-subs
 
 
 :batch_ytdownloadtried
+set errormode=batch
 mode con:cols=60 lines=32
 color 0B
 title Downloading
@@ -1014,11 +958,11 @@ if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %t
 if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
 set /a try=%try%+1
-if %try% GTR %defined_try% goto batch_error
+if %try% GTR %defined_try% goto error
 goto batch_ytdownloadtried
 
 
-:batch_error
+:error
 mode con:cols=60 lines=32
 color 4F
 title Download Failed!
@@ -1031,26 +975,36 @@ echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo.
-echo  Job: %job_name%
+if %errormode% == batch echo  Job: %job_name%
+if %errormode% == regular echo  URL: %url%
 echo.
 echo  Possible problems and solutions:
-echo   1. yt-dlp might be out of date. Update it by going 
-echo   into Settings, Update yt-dlp.
-echo   2. You may have entered an invalid job name.
-echo   3. One of your links might be failing, rest might have
-echo   downloaded successfully.
-echo   4. If you chose AV1, not all videos are supported by
-echo    youtube yet.
+echo.
+if %errorformat% == av1 echo  - If you chose AV1, not all videos are supported by
+echo   youtube yet.
+echo  - yt-dlp might be out of date. Update it by going 
+echo  into Settings, Update yt-dlp.
+echo  - If you have an unreliable network, enable rechecks
+echo   in Settings.
+if %errormode% == batch echo  - You may have entered an invalid job name.
+if %errormode% == regular echo  - You may have entered an invalid/private link. These 
+if %errormode% == regular echo   aren't supported yet.
+if %errormode% == batch echo - One of your links might be failing, rest might have
+if %errormode% == batch echo  downloaded successfully.
 echo.
 echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge or GitHub page. 
 echo.
-echo  Press enter to try again
+if NOT %errormode% == regular echo  Press enter to try again.
+if %errormode% == regular echo  Press enter to close this window.
 pause>NUL
-goto batch
+if %errormode% == batch goto batch
+if %errormode% == uni goto uni
+if %errormode% == regular exit
 
 
 :batch_downloadsuccess
+set "errormode="
 mode con:cols=60 lines=32
 color 2F
 title Download Finished
