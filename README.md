@@ -83,6 +83,7 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 3. The **Target** box will have your path auto filled. Add `cmd.exe /c ` before the start of the path.
 4. Example: If target is `"C:\Users\Joe\AYClient.bat"`, change it to `cmd.exe /c "C:\Users\Joe\AYClient.bat"`.
 5. You can also [pick an icon](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/ayc.ico?raw=true) using the **Change Icon** button.
+6. Right click the created shortcut and select "Pin to taskbar".
 
 ## Links
 
