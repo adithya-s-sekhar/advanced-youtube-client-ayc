@@ -957,7 +957,7 @@ if %errormode% == regular echo  Press enter to close this window.
 pause>NUL
 if %errormode% == batch goto batch
 if %errormode% == uni goto uni
-if %errormode% == regular exit
+if %errormode% == regular goto exit
 
 
 :downloadsuccess
@@ -1191,7 +1191,7 @@ echo.
 echo  AYC reset succesfully.
 echo.
 timeout /t 5 /nobreak
-exit
+goto exit
 
 
 :about
