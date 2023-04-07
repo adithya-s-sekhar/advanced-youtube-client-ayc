@@ -25,6 +25,7 @@ AYC can work in Windows Terminal but with the following issues:
     - a) Open `Windows Terminal` App. (Either right click `Start` and select `Terminal` or search for `Terminal` in the start menu).
     - b) Press `Ctrl + ,` (comma) to open **Settings**.
     - c) Change your `Default terminal application` to `Windows Console Host` and click **Save**.
+- [How to pin a batch script to taskbar for easy access?](#1-shortcut-trick)
 - AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Part of old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ). Be adviced most AVs will trigger due to early releases being batch scripts compiled to exe's.
 -  Some people noticed it won't start as admin? AYC doesn't need admin permissions please open it in a regular folder instead of some where which needs admin permissions. Even a folder on your desktop is fine.
 
