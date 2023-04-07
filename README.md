@@ -40,16 +40,16 @@ AYC can work in Windows Terminal but with the following issues:
 
 ## Features
 
-- Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p videos with audio.
+- Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube.
+- Create Batch Download Jobs to organize and download multiple videos from multiple websites.
+- Supports more than 1000+ websites.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
-- Playlist Downloader with resume capabilities.
+- Download and resume playlists.
 - MP3, M4A Audio Downloader with Cover Art.
-- Compatible with Windows Vista/7/8/8.1/10/11 (32/64-bit).
+- Compatible with Windows Vista SP2/7/8/8.1/10/11 (32/64-bit).
 - Light on CPU Resources as it runs solely on CMD.
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
-- Universal Mode - Download from any websites.
-- Batch Download Jobs.
-- Updater for yt-dlp (fork of [youtube-dl](https://youtube-dl.org)).
+- Universal Mode - Download from any website.
 
 ## Downloads
 
