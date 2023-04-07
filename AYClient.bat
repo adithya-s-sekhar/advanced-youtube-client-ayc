@@ -3,6 +3,7 @@ set version=v3.14 (29/Mar/2023)
 set internal_version=314
 set version_mismatch=0
 set errorformat=0
+set errormode=0
 
 
 :: /--------------------------------------------------/
@@ -419,28 +420,6 @@ if %try% GTR %defined_try% goto error
 goto downloadtried
 
 
-:downloadsuccess
-set "errormode="
-mode con:cols=60 lines=32
-color 2F
-title Download Finished
-cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
-echo.
-echo  URL: %url%
-echo.
-echo  Download Finished, The files are saved in:
-echo  %loc%
-echo.
-echo  Press ENTER to to close this window.
-pause>NUL
-goto exit
-
-
 :more
 mode con:cols=60 lines=32
 color 07
@@ -562,32 +541,10 @@ echo -------------------
 echo.
 echo  URL: %uniurl%
 echo.
-%youtube_dl% %default_config% -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto unidownloadsuccess
+%youtube_dl% %default_config% -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto unidownloadtried
-
-
-:unidownloadsuccess
-set "errormode="
-mode con:cols=60 lines=32
-color 2F
-title Download Finished!
-cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
-echo.
-echo  URL: %uniurl%
-echo.
-echo  Download Finished, The files are saved in:
-echo  %loc%
-echo.
-echo  Press enter to do it again.
-pause>NUL
-goto uni
 
 
 :batch
@@ -952,11 +909,11 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
-if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto batch_downloadsuccess
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
+if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto batch_ytdownloadtried
@@ -1003,8 +960,7 @@ if %errormode% == uni goto uni
 if %errormode% == regular exit
 
 
-:batch_downloadsuccess
-set "errormode="
+:downloadsuccess
 mode con:cols=60 lines=32
 color 2F
 title Download Finished
@@ -1018,9 +974,12 @@ echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
 echo.
-echo  Press enter to do it again.
+if NOT %errormode% == regular echo  Press enter to do it again.
+if %errormode% == regular echo  Press enter to close this window.
 pause>NUL
-goto batch
+if %errormode% == batch goto batch
+if %errormode% == uni goto uni
+if %errormode% == regular goto exit
 
 
 :settings
