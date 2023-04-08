@@ -683,7 +683,7 @@ if %youtube% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt" &&
 :batchQuickQualitySelector
 mode con:cols=60 lines=32
 color 07
-title Yay! Hidden Joke!
+title Select Quality
 set "batch_link_tmp="
 cls
 echo ------------------------------------------------------------
