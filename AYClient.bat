@@ -2,9 +2,9 @@
 set version=v3.14 (29/Mar/2023)
 set internal_version=314
 set version_mismatch=0
-set errorformat=0
-set errormode=0
-set isbatch=0
+set error_format=0
+set error_mode=0
+set is_batch=0
 
 
 :: /--------------------------------------------------/
@@ -34,44 +34,44 @@ if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
 if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
 set default_config=--ignore-errors --no-warnings --trim-filenames 128 --windows-filenames
 
-if not exist %youtube_dl% goto ytnotexist
-if not exist ffmpeg.exe goto ffmpegnotexist
-if not exist atomicparsley.exe goto atomicnotexist
-if not exist aria2c.exe goto aria2notexist
+if not exist %youtube_dl% goto ytMissing
+if not exist ffmpeg.exe goto ffmpegMissing
+if not exist atomicparsley.exe goto atomicparsleyMissing
+if not exist aria2c.exe goto aria2Missing
 
-if not exist "%aycdata%\external_version.txt" goto versionnotexist
+if not exist "%aycdata%\external_version.txt" goto externalVersionMissing
 set /p external_version=<"%aycdata%\external_version.txt"
 set external_version=%external_version:"=%
 if NOT %external_version% == %internal_version% set version_mismatch=1 && goto reset
 
-if not exist "%aycdata%\firstrun.txt" goto firstrun
+if not exist "%aycdata%\first_run.txt" goto firstRun
 
-if not exist "%aycdata%\dir.txt" goto dirnotexist
+if not exist "%aycdata%\dir.txt" goto dirMissing
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
 
-if not exist "%aycdata%\try.txt" goto trynotexist
+if not exist "%aycdata%\try.txt" goto tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
 
-if not exist "%aycdata%\aria2_status.txt" goto aria2_statusnotexist
+if not exist "%aycdata%\aria2_status.txt" goto aria2StatusMissing
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
 set aria2_status=%aria2_status:"=%
 
-if not exist "%aycdata%\thumbs_status.txt" goto thumbs_statusnotexist
+if not exist "%aycData%\thumbs_status.txt" goto thumbsStatusMissing
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
 set thumbs_status=%thumbs_status:"=%
 
-if not exist "%aycdata%\subs_status.txt" goto subs_statusnotexist
+if not exist "%aycdata%\subs_status.txt" goto subsStatusMissing
 set /p subs_status=<"%aycdata%\subs_status.txt"
 set subs_status=%subs_status:"=%
 
-goto check_parameter
+goto checkParameter
 
 
-:firstrun
+:firstRun
 title Welcome to AYC
-echo "0">"%aycdata%\firstrun.txt"
+echo "0">"%aycdata%\first_run.txt"
 cls
 echo --------------------------------------------------------------------------------------------
 echo                                Advanced Youtube Client - AYC 
@@ -86,38 +86,38 @@ echo Please wait, updating yt-dlp..
 goto begin
 
 
-:versionnotexist
+:externalVersionMissing
 echo "%internal_version%">"%aycdata%\external_version.txt"
 goto begin
 
 
-:dirnotexist
+:dirMissing
 md "%cd%\Output"
 echo "%cd%\Output">"%aycdata%\dir.txt"
 goto begin
 
 
-:trynotexist
+:tryMissing
 echo "0">"%aycdata%\try.txt"
 goto begin
 
 
-:aria2_statusnotexist
+:aria2StatusMissing
 echo "0">"%aycdata%\aria2_status.txt"
 goto begin
 
 
-:thumbs_statusnotexist
+:thumbsStatusMissing
 echo "1">"%aycdata%\thumbs_status.txt"
 goto begin
 
 
-:subs_statusnotexist
+:subsStatusMissing
 echo "0">"%aycdata%\subs_status.txt"
 goto begin
 
 
-:ytnotexist
+:ytMissing
 title yt-dlp missing!
 start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
 cls
@@ -143,7 +143,7 @@ pause>NUL
 goto begin
 
 
-:ffmpegnotexist
+:ffmpegMissing
 title ffmpeg missing!
 start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
 cls
@@ -169,7 +169,7 @@ pause>NUL
 goto begin
 
 
-:atomicnotexist
+:atomicparsleyMissing
 title AtomicParsley missing!
 start "" "https://github.com/wez/atomicparsley/releases/latest"
 cls
@@ -193,7 +193,7 @@ pause>NUL
 goto begin
 
 
-:aria2notexist
+:aria2Missing
 title aria2c missing!
 start "" "https://github.com/aria2/aria2/releases/latest"
 cls
@@ -219,7 +219,7 @@ pause>NUL
 goto begin
 
 
-:check_parameter
+:checkParameter
 if %1p equ p goto start
 if %1% equ "b" goto batch
 if %1% equ "B" goto batch
@@ -229,7 +229,7 @@ if %1% equ "s" goto settings
 if %1% equ "S" goto settings
 set url=%1%
 set url=%url:"=%
-goto format_selector
+goto formatSelector
 
 
 :start
@@ -254,11 +254,11 @@ start AYClient.bat "%url%"
 goto start
 
 
-:format_selector
+:formatSelector
 mode con:cols=60 lines=32
 color 07
-if %isbatch% == 0 title Link Recieved
-if %isbatch% == 1 title Choose format
+if %is_batch% == 0 title Link Recieved
+if %is_batch% == 1 title Choose format
 cls
 echo ------------------------------------------------------------
 echo                 Advanced Youtube Client - AYC 
@@ -266,11 +266,11 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-if %isbatch% == 0 echo  URL: %url%
-if %isbatch% == 1 echo  Working on: %job_name%
+if %is_batch% == 0 echo  URL: %url%
+if %is_batch% == 1 echo  Working on: %job_name%
 echo.
-if %isbatch% == 1 echo   (0) - Go Back
-if %isbatch% == 1 echo.
+if %is_batch% == 1 echo   (0) - Go Back
+if %is_batch% == 1 echo.
 echo  Choose format
 echo ------------------------------------------------------------
 echo  Video + Audio
@@ -290,25 +290,25 @@ echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo ------------------------------------------------------------
 echo.
-if %isbatch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
-if %isbatch% == 1 choice /c 0123456 /n /m "Enter Choice (0-6): "
-if %errorlevel% == 1 if %isbatch% == 0 set format_chosen=h264
-if %errorlevel% == 2 if %isbatch% == 0 set format_chosen=vp9
-if %errorlevel% == 3 if %isbatch% == 0 set format_chosen=av1
-if %errorlevel% == 4 if %isbatch% == 0 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto download
-if %errorlevel% == 5 if %isbatch% == 0 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto download
-if %errorlevel% == 6 if %isbatch% == 0 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto download
-if %errorlevel% == 1 if %isbatch% == 1 goto batch_manage
-if %errorlevel% == 2 if %isbatch% == 1 set format_chosen=h264
-if %errorlevel% == 3 if %isbatch% == 1 set format_chosen=vp9
-if %errorlevel% == 4 if %isbatch% == 1 set format_chosen=av1
-if %errorlevel% == 5 if %isbatch% == 1 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto batch_ytdownload
-if %errorlevel% == 6 if %isbatch% == 1 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto batch_ytdownload
-if %errorlevel% == 7 if %isbatch% == 1 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto batch_ytdownload
-goto quality_selector
+if %is_batch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
+if %is_batch% == 1 choice /c 0123456 /n /m "Enter Choice (0-6): "
+if %errorlevel% == 1 if %is_batch% == 0 set format_chosen=h264
+if %errorlevel% == 2 if %is_batch% == 0 set format_chosen=vp9
+if %errorlevel% == 3 if %is_batch% == 0 set format_chosen=av1
+if %errorlevel% == 4 if %is_batch% == 0 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto download
+if %errorlevel% == 5 if %is_batch% == 0 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto download
+if %errorlevel% == 6 if %is_batch% == 0 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto download
+if %errorlevel% == 1 if %is_batch% == 1 goto batchManage
+if %errorlevel% == 2 if %is_batch% == 1 set format_chosen=h264
+if %errorlevel% == 3 if %is_batch% == 1 set format_chosen=vp9
+if %errorlevel% == 4 if %is_batch% == 1 set format_chosen=av1
+if %errorlevel% == 5 if %is_batch% == 1 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto batchDownload
+if %errorlevel% == 6 if %is_batch% == 1 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto batchDownload
+if %errorlevel% == 7 if %is_batch% == 1 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto batchDownload
+goto qualitySelector
 
 
-:quality_selector
+:qualitySelector
 mode con:cols=60 lines=32
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
@@ -321,8 +321,8 @@ echo.
 echo                      %version%
 echo ------------------------------------------------------------
 echo.
-if %isbatch% == 0 echo  URL: %url%
-if %isbatch% == 1 echo  Working on: %job_name%
+if %is_batch% == 0 echo  URL: %url%
+if %is_batch% == 1 echo  Working on: %job_name%
 echo.
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
@@ -344,27 +344,27 @@ if NOT %format_chosen% == h264 echo.
 if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
 if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
-if %format_chosen% == vp9  goto choice_vp9
-if %format_chosen% == av1  goto choice_av1
+if %format_chosen% == vp9  goto choiceVp9
+if %format_chosen% == av1  goto choiceAv1
 echo ------------------------------------------------------------
 echo.
 choice /c 0123456 /n /m "Enter Choice (0-6): "
-if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 1 goto formatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+bestaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+bestaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]"
 if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]"
 if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
 if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 255 goto quality_selector
-if %isbatch% == 0 goto download
-if %isbatch% == 1 goto batch_ytdownload
+if %errorlevel% == 255 goto qualitySelector
+if %is_batch% == 0 goto download
+if %is_batch% == 1 goto batchDownload
 
-:choice_vp9
+:choiceVp9
 echo ------------------------------------------------------------
 echo.
 choice /c 012345678 /n /m "Enter Choice (0-8): "
-if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 1 goto formatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec=vp9][height<=144]+bestaudio[ext=webm]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec=vp9][height<=240]+bestaudio[ext=webm]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec=vp9][height<=360]+bestaudio[ext=webm]"
@@ -373,16 +373,16 @@ if %errorlevel% == 6 set conf="-f bestvideo[vcodec=vp9][height<=720]+bestaudio[e
 if %errorlevel% == 7 set conf="-f bestvideo[vcodec=vp9][height<=1080]+bestaudio[ext=webm]"
 if %errorlevel% == 8 set conf="-f bestvideo[vcodec=vp9][height<=1440]+bestaudio[ext=webm]"
 if %errorlevel% == 9 set conf="-f bestvideo[vcodec=vp9][height<=2160]+bestaudio[ext=webm]"
-if %errorlevel% == 255 goto quality_selector
-if %isbatch% == 0 goto download
-if %isbatch% == 1 goto batch_ytdownload
+if %errorlevel% == 255 goto qualitySelector
+if %is_batch% == 0 goto download
+if %is_batch% == 1 goto batchDownload
 
-:choice_av1
-set errorformat=av1
+:choiceAv1
+set error_format=av1
 echo ------------------------------------------------------------
 echo.
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
-if %errorlevel% == 1 goto format_selector
+if %errorlevel% == 1 goto formatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+bestaudio[ext=webm]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+bestaudio[ext=webm]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]"
@@ -392,9 +392,9 @@ if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudi
 if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]"
 if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]"
 if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]"
-if %errorlevel% == 255 goto quality_selector
-if %isbatch% == 0 goto download
-if %isbatch% == 1 goto batch_ytdownload
+if %errorlevel% == 255 goto qualitySelector
+if %is_batch% == 0 goto download
+if %is_batch% == 1 goto batchDownload
 
 
 :download
@@ -411,8 +411,8 @@ if %subs_status% == 0 set "subs="
 if %subs_status% == 1 set subs=--embed-subs
 
 
-:downloadtried
-set errormode=regular
+:downloadTried
+set error_mode=regular
 mode con:cols=60 lines=32
 color 0B
 title Downloading
@@ -428,13 +428,13 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadsuccess
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
-goto downloadtried
+goto downloadTried
 
 
 :more
@@ -478,7 +478,7 @@ goto more
 
 :uni
 mode con:cols=92 lines=26
-set "uniurl="
+set "uni_url="
 color 07
 title Universal Mode
 cls
@@ -493,7 +493,7 @@ echo  eg: youtube and others
 echo.
 echo --------------------------------------------------------------------------------------------
 echo.
-set /p uniurl=Paste a page url with playing video: 
+set /p uni_url=Paste a page url with playing video: 
 echo.
 echo  Choose Quality: 
 echo.
@@ -506,16 +506,16 @@ echo.
 echo -------------------
 echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
-if %errorlevel% == 1 set uniqual="bv*+ba/b" && goto unidownload
-if %errorlevel% == 2 set uniqual="wv*+wa/w" && goto unidownload
-if %errorlevel% == 3 goto uniqualselect
+if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
+if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
+if %errorlevel% == 3 goto uniQualitySelector
 if %errorlevel% == 255 goto uni
-if "%uniurl%" equ "" goto uni
+if "%uni_url%" equ "" goto uni
 
 
-:uniqualselect
+:uniQualitySelector
 mode con:cols=110 lines=52
-set "uniqual="
+set "uni_qual="
 color 07
 title Universal Mode: URL Recieved
 cls
@@ -525,24 +525,24 @@ echo.
 echo                                              %version%
 echo --------------------------------------------------------------------------------------------------------------
 echo.
-echo  URL: %uniurl%
+echo  URL: %uni_url%
 echo.
-%youtube_dl% -F "%uniurl%"
+%youtube_dl% -F "%uni_url%"
 echo.
 echo -------------------------------------------------
 echo.
 echo  Merge two formats using + symbol.
-set /p uniqual=Choose ID (green color in the list above): 
-if "%uniqual%" equ "" goto uniqualselect
+set /p uni_qual=Choose ID (green color in the list above): 
+if "%uni_qual%" equ "" goto uniQualitySelector
 
 
-:unidownload
+:uniDownload
 set "try="
 set try=%try_count%
 
 
-:unidownloadtried
-set errormode=uni
+:uniDownloadTried
+set error_mode=uni
 mode con:cols=60 lines=32
 color 0B
 title Finger's Crossed! How's the weather?
@@ -556,12 +556,12 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-echo  URL: %uniurl%
+echo  URL: %uni_url%
 echo.
-%youtube_dl% %default_config% -f %uniqual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uniurl%" && goto downloadsuccess
+%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uni_url%" && goto downloadSuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
-goto unidownloadtried
+goto uniDownloadTried
 
 
 :batch
@@ -585,11 +585,11 @@ echo ------------------------------------------
 echo.
 set /p job_name=Enter Job Name (eg: Songs): 
 md "%loc%\%job_name%"
-if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batch_is_yt_check
+if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batchIsYoutubeCheck
 echo.>"%loc%\%job_name%\%job_name%.txt"
 
 
-:batch_is_yt_confirm
+:batchIsYoutubeConfirm
 echo.
 choice /c yn /n /m "Is this a YouTube Download Job? (Yes/No) "
 if %errorlevel% == 1 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
@@ -597,13 +597,13 @@ if %errorlevel% == 2 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
 if %errorlevel% == 255 goto batch
 
 
-:batch_is_yt_check
-if not exist "%loc%\%job_name%\is_youtube.txt" goto batch_is_yt_confirm
+:batchIsYoutubeCheck
+if not exist "%loc%\%job_name%\is_youtube.txt" goto batchIsYoutubeConfirm
 set /p youtube=<"%loc%\%job_name%\is_youtube.txt"
 set youtube=%youtube:"=%
 
 
-:batch_manage
+:batchManage
 mode con:cols=60 lines=32
 color 07
 title Now working on %job_name%
@@ -638,15 +638,15 @@ echo --------------------------
 echo.
 choice /c 01234 /n /m "Enter Choice (0-4): "
 if %errorlevel% == 1 goto batch
-if %errorlevel% == 2 goto batch_add_links
+if %errorlevel% == 2 goto batchAddLinks
 if %errorlevel% == 3 start notepad.exe "%loc%\%job_name%\%job_name%.txt"
-if %errorlevel% == 4 goto batch_change_type
-if %errorlevel% == 5 goto batch_download
-if %errorlevel% == 255 goto batch_manage
-goto batch_manage
+if %errorlevel% == 4 goto batchChangeType
+if %errorlevel% == 5 goto batchQuickQualitySelector
+if %errorlevel% == 255 goto batchManage
+goto batchManage
 
 
-:batch_add_links
+:batchAddLinks
 mode con:cols=60 lines=32
 color 07
 title Enter 0 to go back after adding links.
@@ -667,20 +667,20 @@ echo --------------------------------------------
 echo.
 
 
-:batch_add_links_added
+:batchAddLinksLoop
 set /p batch_link_tmp=Paste Link: 
 echo.
-if "%batch_link_tmp%" equ "0" goto batch_manage
+if "%batch_link_tmp%" equ "0" goto batchManage
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
-goto batch_add_links_added
+goto batchAddLinksLoop
 
 
-:batch_change_type
-if %youtube% == 0 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt" && goto batch_manage
-if %youtube% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt" && goto batch_manage
+:batchChangeType
+if %youtube% == 0 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt" && goto batchManage
+if %youtube% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt" && goto batchManage
 
 
-:batch_download
+:batchQuickQualitySelector
 mode con:cols=60 lines=32
 color 07
 title Yay! Hidden Joke!
@@ -691,7 +691,7 @@ echo                 Advanced Youtube Client - AYC
 echo.
 echo                      %version%
 echo ------------------------------------------------------------
-if %youtube% == 1 set isbatch=1 && goto format_selector
+if %youtube% == 1 set is_batch=1 && goto formatSelector
 if %youtube% == 0 echo.
 echo ---------------------------------
 echo  Select Quality
@@ -706,15 +706,15 @@ echo.
 echo  (3) - Pick a custom format code
 echo ---------------------------------
 choice /c 0123 /n /m "Choose Quality (0-3): "
-if %errorlevel% == 1 goto batch_manage
+if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
 if %errorlevel% == 3 set conf=-f "wv*+wa/w" & set batch_name_end=low
-if %errorlevel% == 4 goto batch_custom_format
-if %errorlevel% == 255 goto batch_download
+if %errorlevel% == 4 goto batchCustomFormat
+if %errorlevel% == 255 goto batchQuickQualitySelector
 set format_chosen=batch
-goto batch_ytdownload
+goto batchDownload
 
-:batch_custom_format
+:batchCustomFormat
 mode con:cols=92 lines=26
 set "batch_custom_format_url="
 color 07
@@ -735,10 +735,10 @@ echo.
 echo -----------
 echo.
 set /p batch_custom_format_url=Sample URL: 
-if "%batch_custom_format_url%" equ "" goto batch_custom_format
-if "%batch_custom_format_url%" equ "0" goto batch_download
+if "%batch_custom_format_url%" equ "" goto batchCustomFormat
+if "%batch_custom_format_url%" equ "0" goto batchQuickQualitySelector
 
-:batch_custom_format_select
+:batchCustomFormatSelector
 mode con:cols=110 lines=52
 set "batch_custom_qual="
 title Retrieving all available qualities
@@ -761,15 +761,15 @@ echo -------------------------------------------------
 echo.
 echo You can also type "best" and "worst".
 set /p batch_custom_qual=Choose ID (green color in the list above): 
-if "%batch_custom_qual%" equ "" goto batch_custom_format_select
-if "%batch_custom_qual%" equ "0" goto batch_custom_format
+if "%batch_custom_qual%" equ "" goto batchCustomFormatSelector
+if "%batch_custom_qual%" equ "0" goto batchCustomFormat
 set conf=-f %batch_custom_qual%
 set batch_name_end=%batch_custom_qual%
 set format_chosen=batch
-goto batch_ytdownload
+goto batchDownload
 
 
-:batch_ytdownload
+:batchDownload
 set "try="
 set try=%try_count%
 
@@ -784,8 +784,8 @@ if %subs_status% == 0 set "subs="
 if %subs_status% == 1 set subs=--embed-subs
 
 
-:batch_ytdownloadtried
-set errormode=batch
+:batchDownloadTried
+set error_mode=batch
 mode con:cols=60 lines=32
 color 0B
 title Downloading
@@ -799,14 +799,14 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
-if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadsuccess
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
-goto batch_ytdownloadtried
+goto batchDownloadTried
 
 
 :error
@@ -822,35 +822,35 @@ echo ------------------------------------------------------------
 echo.
 echo  Download Failed!!!! :-(
 echo.
-if %errormode% == batch echo  Job: %job_name%
-if %errormode% == regular echo  URL: %url%
+if %error_mode% == batch echo  Job: %job_name%
+if %error_mode% == regular echo  URL: %url%
 echo.
 echo  Possible problems and solutions:
 echo.
-if %errorformat% == av1 echo  - If you chose AV1, not all videos are supported by
+if %error_format% == av1 echo  - If you chose AV1, not all videos are supported by
 echo   youtube yet.
 echo  - yt-dlp might be out of date. Update it by going 
 echo  into Settings, Update yt-dlp.
 echo  - If you have an unreliable network, enable rechecks
 echo   in Settings.
-if %errormode% == batch echo  - You may have entered an invalid job name.
-if %errormode% == regular echo  - You may have entered an invalid/private link. These 
-if %errormode% == regular echo   aren't supported yet.
-if %errormode% == batch echo - One of your links might be failing, rest might have
-if %errormode% == batch echo  downloaded successfully.
+if %error_mode% == batch echo  - You may have entered an invalid job name.
+if %error_mode% == regular echo  - You may have entered an invalid/private link. These 
+if %error_mode% == regular echo   aren't supported yet.
+if %error_mode% == batch echo - One of your links might be failing, rest might have
+if %error_mode% == batch echo  downloaded successfully.
 echo.
 echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge or GitHub page. 
 echo.
-if NOT %errormode% == regular echo  Press enter to try again.
-if %errormode% == regular echo  Press enter to close this window.
+if NOT %error_mode% == regular echo  Press enter to try again.
+if %error_mode% == regular echo  Press enter to close this window.
 pause>NUL
-if %errormode% == batch goto batch
-if %errormode% == uni goto uni
-if %errormode% == regular goto exit
+if %error_mode% == batch goto batch
+if %error_mode% == uni goto uni
+if %error_mode% == regular goto exit
 
 
-:downloadsuccess
+:downloadSuccess
 mode con:cols=60 lines=32
 color 2F
 title Download Finished
@@ -864,12 +864,12 @@ echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
 echo.
-if NOT %errormode% == regular echo  Press enter to do it again.
-if %errormode% == regular echo  Press enter to close this window.
+if NOT %error_mode% == regular echo  Press enter to do it again.
+if %error_mode% == regular echo  Press enter to close this window.
 pause>NUL
-if %errormode% == batch goto batch
-if %errormode% == uni goto uni
-if %errormode% == regular goto exit
+if %error_mode% == batch goto batch
+if %error_mode% == uni goto uni
+if %error_mode% == regular goto exit
 
 
 :settings
@@ -911,17 +911,17 @@ echo -----------------------------------
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto more
-if %errorlevel% == 2 goto settings_change_dir
-if %errorlevel% == 3 goto settings_change_defined_try
+if %errorlevel% == 2 goto settingsChangeDir
+if %errorlevel% == 3 goto settingsChangeDefinedTry
 if %errorlevel% == 4 goto update
-if %errorlevel% == 5 goto settings_change_aria2
-if %errorlevel% == 6 goto settings_change_thumbs
-if %errorlevel% == 7 goto settings_change_subs
+if %errorlevel% == 5 goto settingsChangeAria2
+if %errorlevel% == 6 goto settingsChangeThumbs
+if %errorlevel% == 7 goto settingsChangeSubs
 if %errorlevel% == 8 goto reset
 if %errorlevel% == 255 goto settings
 
 
-:settings_change_dir
+:settingsChangeDir
 mode con:cols=60 lines=32
 color 07
 title Change Download Location
@@ -946,7 +946,7 @@ echo  Enter 0 to Go Back.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
-if %settings_dir%p equ p goto settings_change_dir
+if %settings_dir%p equ p goto settingsChangeDir
 if %settings_dir% == 0 goto settings
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set /p loc=<"%aycdata%\dir.txt"
@@ -954,7 +954,7 @@ set loc=%loc:"=%
 goto settings
 
 
-:settings_change_defined_try
+:settingsChangeDefinedTry
 mode con:cols=60 lines=32
 color 07
 title Change recheck attempts
@@ -1002,17 +1002,17 @@ pause>NUL
 goto settings
 
 
-:settings_change_aria2
+:settingsChangeAria2
 if %aria2_status% == 0 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt" && goto settings
 if %aria2_status% == 1 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt" && goto settings
 
 
-:settings_change_thumbs
+:settingsChangeThumbs
 if %thumbs_status% == 0 set thumbs_status=1 && echo "1">"%aycdata%\thumbs_status.txt" && goto settings
 if %thumbs_status% == 1 set thumbs_status=0 && echo "0">"%aycdata%\thumbs_status.txt" && goto settings
 
 
-:settings_change_subs
+:settingsChangeSubs
 if %subs_status% == 0 set subs_status=1 && echo "1">"%aycdata%\subs_status.txt" && goto settings
 if %subs_status% == 1 set subs_status=0 && echo "0">"%aycdata%\subs_status.txt" && goto settings
 
@@ -1049,24 +1049,24 @@ if %version_mismatch% == 1 echo  (1) - Reset and Exit AYC
 echo.
 echo ------------------------
 echo.
-if %version_mismatch% == 0 goto reset_normal
-if %version_mismatch% == 1 goto reset_version_mismatch
+if %version_mismatch% == 0 goto resetNormal
+if %version_mismatch% == 1 goto resetVersionMismatch
 
 
-:reset_normal
+:resetNormal
 choice /C 01 /n /m "Choose option (0-1): "
 if %errorlevel% == 1 goto settings
-goto reset_finish
+goto resetFinish
 
 
-:reset_version_mismatch
+:resetVersionMismatch
 choice /C 01 /n /m "Choose option (0-1): "
 if %errorlevel% == 1 echo "%internal_version%">"%aycdata%\external_version.txt" && goto begin
-goto reset_finish
+goto resetFinish
 
 
-:reset_finish
-del /q "%aycdata%\firstrun.txt"
+:resetFinish
+del /q "%aycdata%\first_run.txt"
 del /q "%aycdata%\dir.txt"
 del /q "%aycdata%\try.txt"
 del /q "%aycdata%\aria2_status.txt"
