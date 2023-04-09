@@ -21,10 +21,10 @@ You can call it a console front end if you want.
     - [Basic](#basic)
     - [Complete](#complete)
 - [Features](#features)
-- [Alternatively: Build an .exe](#build-an-exe-old-way)
-- [Links](#links)
+- [Alternative: Build an .exe](#build-an-exe-old-way)
 - [Supported Sites](#supported-sites)
-- [Frequently Asked Questions (FAQ)](#FAQ)
+- [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
+- [Links](#links)
 
 ## Instructions
 
@@ -37,7 +37,7 @@ Before running AYC you need to make sure of the following.
 2. Windows Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to click **More info** and click **Run Anyway** for it to go away.
 
 ### Installation 
-[Why is this complicated](#faq)
+[Why is this complicated?](#2-why-is-the-installation-so-complicated)
 #### Basic
 1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/tag/v3.15) or [here](https://advanced-youtube-client-ayc.sourceforge.io/).
 2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
@@ -66,7 +66,6 @@ Before running AYC you need to make sure of the following.
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
 - Universal Mode - Download from any website.
 
-
 ## Build an .exe (Old way)
 
 AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/files/details/bat_to_exe_converter.html) by Faith Kodak ([GitHub](https://github.com/99fk)/[f2ko.de](https://f2ko.de/programme/bat-to-exe-converter/)). ([IPFS Mirror](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65))
@@ -77,6 +76,23 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 4. Compile.
 5. You need [ffmpeg.exe](https://github.com/yt-dlp/FFmpeg-Builds/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases), [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) and [aria2c.exe](https://github.com/aria2/aria2/releases) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
+
+## Supported sites
+Anything yt-dlp [supports](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md), AYC supports.
+
+## Frequently asked questions (FAQ)
+
+### 1. Where are the old releases?
+AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Part of old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
+
+### 2. Why is the installation so complicated?
+AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But it was a common tactic used by malware in the olden days. So antiviruses everywhere started flagging them. 
+
+Now AYC is released as straight batch files you can open with notepad and read. Some old releases were lost before I could archive them for future reference. The remaining recovered releases along with their source codes along with all the new releases are kept in an updated archive file on Mega. If you want you can download them below. 
+
+Be advised since then antivirus softwares have improved to detect that these are indeed harmless but some still falsely flag them. Windows defender sometimes does. It's not consistent. 
+
+MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
 
 ## Links
 
@@ -93,20 +109,3 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 [AtomicParsley](https://github.com/wez/atomicparsley)
 
 [aria2](https://github.com/aria2/aria2)
-
-## Supported sites
-Anything yt-dlp [supports](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md), AYC supports.
-
-## FAQ
-
-**1. Where are the old releases?**
-AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Part of old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
-
-**2. Why is the installation so complicated?**
-AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But it was a common tactic used by malware in the olden days. So antiviruses everywhere started flagging them. 
-
-Now AYC is released as straight batch files you can open with notepad and read. Some old releases were lost before I could archive them for future reference. The remaining recovered releases along with their source codes along with all the new releases are kept in an updated archive file on Mega. If you want you can download them below. 
-
-Be advised since then antivirus softwares have improved to detect that these are indeed harmless but some still falsely flag them. Windows defender sometimes does. It's not consistent. 
-
-MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
