@@ -4,7 +4,7 @@
 
 # Advanced Youtube Client - AYC
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=paper)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat) ![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?style=flat)
 
 Advanced Youtube Client - AYC is a portable lightweight youtube downloader written using windows batch commands based on youtube-dl.
 You can call it a console front end if you want.
@@ -13,37 +13,51 @@ You can call it a console front end if you want.
 
 </div>
 
-## Notes
-
--  **Windows 11 and 10** users make sure your default terminal application is the old `Windows Console Host`, because the new `Windows Terminal` **does not support custom window sizes** in it's current state.
-AYC can work in Windows Terminal but with the following issues:
-    - The whole UI, window decorations, multiple options will overflow and hide themselves.
-    - Some entries in the settings page will be broken and you won't be able to change them.
-    - Batch and Universal modes with lot of quality options will be broken the most.
-
-- To fix the above issues change your default terminal application to `Windows Console Host`: 
-    - a) Open `Windows Terminal` App. (Either right click `Start` and select `Terminal` or search for `Terminal` in the start menu).
-    - b) Press `Ctrl + ,` (comma) to open **Settings**.
-    - c) Change your `Default terminal application` to `Windows Console Host` and click **Save**.
-- [How to pin a batch script to taskbar for easy access?](#1-shortcut-trick)
-- AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Part of old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ). Be adviced most AVs will trigger due to early releases being batch scripts compiled to exe's.
--  Some people noticed it won't start as admin? AYC doesn't need admin permissions please open it in a regular folder instead of some where which needs admin permissions. Even a folder on your desktop is fine.
-
 ## Table of Contents
 
+- [Instructions](#instructions)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+    - [Basic](#basic)
+    - [Complete](#complete)
 - [Features](#features)
-- [Downloads](#downloads)
-- [Source and Building](#source-and-building)
-- [Tips](#tips)
-  - [Shortcut Trick](#1-shortcut-trick)
+- [Alternatively: Build an .exe](#build-an-exe-old-way)
 - [Links](#links)
 - [Supported Sites](#supported-sites)
+- [Frequently Asked Questions (FAQ)](#FAQ)
+
+## Instructions
+
+### Prerequisites
+Before running AYC you need to make sure of the following.
+1. **Windows Console Host MUST be the default terminal application for batch scripts**. This is because of a 30 year old cmd feature set Microsoft still hasn't added to the new Windows Terminal (See [#5094](https://github.com/microsoft/terminal/issues/5094)).
+   1. Open **Windows Terminal** App. (Either right click **Start** and select **Terminal** or search for **Terminal** in the start menu).
+   2. Press **Ctrl + ,** (comma) to open **Settings**.
+   3. Change your **Default terminal application** to **Windows Console Host** and click **Save**.
+2. Windows Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to click **More info** and click **Run Anyway** for it to go away.
+
+### Installation 
+[Why is this complicated](#faq)
+#### Basic
+1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/tag/v3.15) or [here](https://advanced-youtube-client-ayc.sourceforge.io/).
+2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
+3. Open **AYClient.bat** and follow the on screen instructions. 
+
+**That's all you need to start using AYC. If you want to Pin AYC to taskbar or have an icon, follow instructions below**
+
+#### Complete
+1. Inside the **ayc** folder, right click **AYClient.bat** and select create a shortcut.
+2. Right click the created shortcut, choose **Properties** >**Shortcut** Tab.
+3. The **Target** box will have your path auto filled. Add `cmd.exe /c ` before the start of the path.
+4. Example: If target is `"C:\Users\Joe\AYClient.bat"`, change it to `cmd.exe /c "C:\Users\Joe\AYClient.bat"`.
+5. Click **Change icon** button and select the included **ayc.ico** file and click **Apply**.
+6. Now you can right click the created shortcut and select "Pin to taskbar".
 
 ## Features
 
 - Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube.
 - Create Batch Download Jobs to organize and download multiple videos from multiple websites.
-- Supports more than 1000+ websites.
+- Supports more than 1000 websites.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
 - Download and resume playlists.
 - MP3, M4A Audio Downloader with Cover Art.
@@ -52,18 +66,8 @@ AYC can work in Windows Terminal but with the following issues:
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
 - Universal Mode - Download from any website.
 
-## Downloads
 
-**AYC is now only released as batch files (.bat). See [Source and Building](#source-and-building) to build your own .exe file.**
-
-**Or use [this trick](#1-shortcut-trick) to make windows treat AYC as an exe.**
-
-  - [Download from website (Sourceforge)](https://advanced-youtube-client-ayc.sourceforge.io)
-  - [Download from releases (GitHub)](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases) 
-  
-Microsoft Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to press **More info** and click **Run Anyway** for it to go away.
-
-## Source and Building
+## Build an .exe (Old way)
 
 AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/files/details/bat_to_exe_converter.html) by Faith Kodak ([GitHub](https://github.com/99fk)/[f2ko.de](https://f2ko.de/programme/bat-to-exe-converter/)). ([IPFS Mirror](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65))
 
@@ -74,25 +78,13 @@ AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/f
 5. You need [ffmpeg.exe](https://github.com/yt-dlp/FFmpeg-Builds/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases), [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) and [aria2c.exe](https://github.com/aria2/aria2/releases) in the same folder as the compiled binary.
 6. Start AYClient.exe and it will create the necessary files for further execution.
 
-## Tips
-
-### 1. Shortcut Trick
-
-You can make Windows treat AYClient.bat as an .exe file and have all the goodies (able to pin to taskbar, have an icon..)
-1. Create a shortcut for AYClient.bat
-2. Right click the created shortcut, choose **Properties** >**Shortcut** Tab.
-3. The **Target** box will have your path auto filled. Add `cmd.exe /c ` before the start of the path.
-4. Example: If target is `"C:\Users\Joe\AYClient.bat"`, change it to `cmd.exe /c "C:\Users\Joe\AYClient.bat"`.
-5. You can also [pick an icon](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/ayc.ico?raw=true) using the **Change Icon** button.
-6. Right click the created shortcut and select "Pin to taskbar".
-
 ## Links
 
 [Website](https://advanced-youtube-client-ayc.sourceforge.io)
 
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
 
-[Seen on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
+[VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
@@ -104,3 +96,17 @@ You can make Windows treat AYClient.bat as an .exe file and have all the goodies
 
 ## Supported sites
 Anything yt-dlp [supports](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md), AYC supports.
+
+## FAQ
+
+**1. Where are the old releases?**
+AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Part of old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
+
+**2. Why is the installation so complicated?**
+AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But it was a common tactic used by malware in the olden days. So antiviruses everywhere started flagging them. 
+
+Now AYC is released as straight batch files you can open with notepad and read. Some old releases were lost before I could archive them for future reference. The remaining recovered releases along with their source codes along with all the new releases are kept in an updated archive file on Mega. If you want you can download them below. 
+
+Be advised since then antivirus softwares have improved to detect that these are indeed harmless but some still falsely flag them. Windows defender sometimes does. It's not consistent. 
+
+MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
