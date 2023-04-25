@@ -32,7 +32,7 @@ set aycdata=%cd%\data
 if exist youtube-dl.exe set youtube_dl="youtube-dl.exe"
 if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
 if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
-set default_config=--ignore-errors --no-warnings --trim-filenames 128 --windows-filenames
+set default_config=--ignore-errors --no-warnings --windows-filenames
 
 if not exist %youtube_dl% goto ytMissing
 if not exist ffmpeg.exe goto ffmpegMissing
@@ -428,10 +428,10 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -o "%loc%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%%(title)s-%%(id)s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%%(title).107s-MP4-%%(height).5sp-%%(id).10s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -o "%loc%\%%(title).107s-VP9-%%(height).5sp-%%(id).10s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%%(title).107s-AV1-%%(height).5sp-%%(id).10s.%%(ext)s" "%url%" && goto downloadSuccess
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%%(title).117s-%%(id).10s.%%(ext)s" "%url%" && goto downloadSuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadTried
@@ -558,7 +558,7 @@ echo -------------------
 echo.
 echo  URL: %uni_url%
 echo.
-%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -o "%loc%\%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uni_url%" && goto downloadSuccess
+%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -o "%loc%\%%(title).111s-%%(height).5sp-%%(id).10s.%%(ext)s" "%uni_url%" && goto downloadSuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto uniDownloadTried
@@ -799,11 +799,11 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
-if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title).107s-MP4-%%(height).5sp-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title).107s-VP9-%%(height).5sp-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title).107s-AV1-%%(height).5sp-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title).117s-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
+if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title).106s-%batch_name_end%-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && goto downloadSuccess
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto batchDownloadTried
