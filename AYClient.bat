@@ -73,11 +73,7 @@ goto checkParameter
 title Welcome to AYC
 echo "0">"%aycdata%\first_run.txt"
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo Preparing for first run..
 echo.
@@ -121,11 +117,7 @@ goto begin
 title yt-dlp missing!
 start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  yt-dlp.exe is missing! AYC Opened a webpage right now for you to download the missing
 echo  dependency.
@@ -147,11 +139,7 @@ goto begin
 title ffmpeg missing!
 start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  ffmpeg.exe is missing! AYC Opened a webpage right now for you to download the missing
 echo  dependency.
@@ -173,11 +161,7 @@ goto begin
 title AtomicParsley missing!
 start "" "https://github.com/wez/atomicparsley/releases/latest"
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  AtomicParsley.exe is missing! AYC Opened a webpage right now for you to download the 
 echo  missing dependency. Pick the right one for you.
@@ -197,11 +181,7 @@ goto begin
 title aria2c missing!
 start "" "https://github.com/aria2/aria2/releases/latest"
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  aria2c.exe is missing! AYC Opened a webpage right now for you to download the 
 echo  missing dependency. Pick the right one for you.
@@ -238,11 +218,7 @@ color 07
 set "url="
 title Saving to %loc%
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo Enter M for more options.
 echo.
@@ -260,11 +236,7 @@ color 07
 if %is_batch% == 0 title Link Recieved
 if %is_batch% == 1 title Choose format
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
@@ -315,11 +287,7 @@ if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/OPUS Audio)
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
@@ -417,11 +385,7 @@ mode con:cols=60 lines=32
 color 0B
 title Downloading
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -442,11 +406,7 @@ mode con:cols=60 lines=32
 color 07
 title More Options
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  (0) - GO BACK
 echo.
@@ -482,11 +442,7 @@ set "uni_url="
 color 07
 title Universal Mode
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  Universal mode enables you to download from any webpage with playing video. 
 echo  eg: youtube and others
@@ -519,11 +475,7 @@ set "uni_qual="
 color 07
 title Universal Mode: URL Recieved
 cls
-echo --------------------------------------------------------------------------------------------------------------
-echo                                         Advanced Youtube Client - AYC 
-echo.
-echo                                              %version%
-echo --------------------------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  URL: %uni_url%
 echo.
@@ -547,11 +499,7 @@ mode con:cols=60 lines=32
 color 0B
 title Finger's Crossed! How's the weather?
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -571,11 +519,7 @@ color 07
 title Batch Mode
 set "job_name="
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  Batch Mode allows you to create jobs, add videos to that  job and download it.
 echo.
@@ -608,11 +552,7 @@ mode con:cols=60 lines=32
 color 07
 title Now working on %job_name%
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
@@ -652,11 +592,7 @@ color 07
 title Enter 0 to go back after adding links.
 set "batch_link_tmp="
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Paste each url and press enter, the links will be added to 
 echo  your list.
@@ -686,11 +622,7 @@ color 07
 title Select Quality
 set "batch_link_tmp="
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 if %youtube% == 1 set is_batch=1 && goto formatSelector
 if %youtube% == 0 echo.
 echo ---------------------------------
@@ -720,11 +652,7 @@ set "batch_custom_format_url="
 color 07
 title Pick custom format code
 cls
-echo --------------------------------------------------------------------------------------------
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  Working on: %job_name%
 echo.
@@ -744,11 +672,7 @@ set "batch_custom_qual="
 title Retrieving all available qualities
 color 07
 cls
-echo --------------------------------------------------------------------------------------------------------------
-echo                                         Advanced Youtube Client - AYC 
-echo.
-echo                                              %version%
-echo --------------------------------------------------------------------------------------------------------------
+call :bannerLarge
 echo.
 echo  Working on: %job_name%
 echo.
@@ -790,11 +714,7 @@ mode con:cols=60 lines=32
 color 0B
 title Downloading
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -814,11 +734,7 @@ mode con:cols=60 lines=32
 color 4F
 title Download Failed!
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Download Failed!!!! :-(
 echo.
@@ -855,11 +771,7 @@ mode con:cols=60 lines=32
 color 2F
 title Download Finished
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
@@ -877,11 +789,7 @@ mode con:cols=60 lines=32
 color 07
 title AYC Settings
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  (0) - GO BACK
 echo.
@@ -927,11 +835,7 @@ color 07
 title Change Download Location
 cls
 set "settings_dir="
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Current download folder is:
 echo  %loc%
@@ -960,11 +864,7 @@ color 07
 title Change recheck attempts
 cls
 set "settings_try="
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  On unstable connections, playlist/batch download can 
 echo  sometimes miss a file and will fail the download.
@@ -988,11 +888,7 @@ mode con:cols=60 lines=32
 color 07
 title Update yt-dlp
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo  Checking for updates..
 %youtube_dl% -U
@@ -1024,11 +920,7 @@ if %version_mismatch% == 1 color 02
 if %version_mismatch% == 0 title Reset AYC
 if %version_mismatch% == 1 title AYC Updated
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 if %version_mismatch% == 0 echo  You are about to reset AYC to it's default settings.
 if %version_mismatch% == 0 echo.
@@ -1090,11 +982,7 @@ mode con:cols=60 lines=32
 color 07
 title You're a curious one..
 cls
-echo ------------------------------------------------------------
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-echo ------------------------------------------------------------
+call :bannerSmall
 echo.
 echo   Advanced Youtube Client - AYC Script [PORTABLE]
 echo.
@@ -1110,6 +998,21 @@ echo   Press Enter to go back.
 pause>NUL
 goto more
 
+:bannerLarge
+echo --------------------------------------------------------------------------------------------
+echo                                Advanced Youtube Client - AYC 
+echo.
+echo                                     %version%
+echo --------------------------------------------------------------------------------------------
+goto :EOF
+
+:bannerSmall
+echo ------------------------------------------------------------
+echo                 Advanced Youtube Client - AYC 
+echo.
+echo                      %version%
+echo ------------------------------------------------------------
+goto :EOF
 
 :exit
 exit
