@@ -1,7 +1,10 @@
-Advanced Youtube Client - AYC v3.16 - 26/Apr/2023
+Advanced Youtube Client - AYC v3.17 - 27/Apr/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.17]
+- Refactor banner.
 
 [3.16]
 - Restrict filenames more granularly to work better with Windows MAX_PATH limit.
