@@ -39,7 +39,7 @@ Before running AYC you need to make sure of the following.
 ### Installation 
 [Why is this complicated?](#2-why-is-the-installation-so-complicated)
 #### Basic
-1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/tag/v3.15) or [here](https://advanced-youtube-client-ayc.sourceforge.io/).
+1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/latest) or [here](https://advanced-youtube-client-ayc.sourceforge.io/).
 2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
 3. Open **AYClient.bat** and follow the on screen instructions. 
 
