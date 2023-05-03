@@ -758,11 +758,15 @@ echo  - yt-dlp might be out of date. Update it by going
 echo  into Settings, Update yt-dlp.
 echo  - If you have an unreliable network, enable rechecks
 echo   in Settings.
-if %error_mode% == batch echo  - You may have entered an invalid job name.
-if %error_mode% == regular echo  - You may have entered an invalid/private link. These 
-if %error_mode% == regular echo   aren't supported yet.
-if %error_mode% == batch echo - One of your links might be failing, rest might have
-if %error_mode% == batch echo  downloaded successfully.
+if %error_mode% == batch (
+    echo  - You may have entered an invalid job name.
+    echo - One of your links might be failing, rest might have
+    echo  downloaded successfully.
+)
+if %error_mode% == regular (
+    echo  - You may have entered an invalid/private link. These
+    echo   aren't supported yet.
+)
 echo.
 echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge or GitHub page. 
