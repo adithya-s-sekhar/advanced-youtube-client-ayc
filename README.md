@@ -98,7 +98,7 @@ MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](http
 ## Developer notes
 
 - Some parts of the code might look weird but those were added, refactored and cleaned to fix some edge cases found over the years. Trust me, those are there for a reason. Still you're welcome to improving these and if it works, submit a PR, any help is appreciated. :) 
-- The script is lacking in documentation. Unfortunately, I am too busy looking for a job to have time to maintain this and write documentation. Hope it's readable. Any PR to add documentation is also welcome.    
+- The script is lacking documentation. Unfortunately, I am too busy looking for a job to have time to write it. Hope it's readable. Any PR adding documentation is also welcome.    
 
 ## Links
 
