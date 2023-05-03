@@ -923,8 +923,8 @@ echo ------------------------------------------------------------
 echo.
 set /p settings_try=No. of Rechecks (Changing will exit AYC): 
 if %settings_try%p equ p goto settings
-if %settings_try% == r goto reset
-if %settings_try% == R goto reset
+if %try_invalid% == 1 if %settings_try% == r goto reset
+if %try_invalid% == 1 if %settings_try% == R goto reset
 echo "%settings_try%">"%aycdata%\try.txt"
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
