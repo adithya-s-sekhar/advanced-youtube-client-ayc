@@ -55,6 +55,9 @@ if exist "%loc%" set loc_invalid=0
 if not exist "%aycdata%\try.txt" goto tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
+echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
+if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
+set try_invalid=0
 
 if not exist "%aycdata%\aria2_status.txt" goto aria2StatusMissing
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
@@ -879,6 +882,8 @@ cls
 set "settings_try="
 call :bannerSmall
 echo.
+echo  Change recheck attempts
+echo.
 echo  On unstable connections, playlist/batch download can 
 echo  sometimes miss a file and will fail the download.
 echo.
@@ -886,13 +891,31 @@ echo  The number you set here is the number of times AYC will
 echo  recheck the download to see if any files are missing.
 echo.
 echo  If it found any, that missing file will be downloaded.
+if %try_invalid% == 1 (
+    echo.
+    echo  Invalid value detected: %defined_try%
+    echo. 
+    echo  Enter a number or Enter R to reset
+)
+if %try_invalid% == 0 (
+    echo.
+    echo  Current value: %defined_try%
+    echo.
+    echo  Leave blank and Enter to go back.
+)
+echo.
 echo ------------------------------------------------------------
 echo.
-set /p settings_try=No. of Rechecks (Enter to go back): 
+set /p settings_try=No. of Rechecks (Changing will exit AYC): 
 if %settings_try%p equ p goto settings
+if %settings_try% == r goto reset
+if %settings_try% == R goto reset
 echo "%settings_try%">"%aycdata%\try.txt"
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
+echo %defined_%| findstr /r "^[0-9][0-9]*$">nul
+if not %errorlevel% == 0 set try_invalid=1 goto settingsChangeDefinedTry
+if %try_invalid% == 1 set try_invalid=0 && goto begin
 goto settings
 
 
