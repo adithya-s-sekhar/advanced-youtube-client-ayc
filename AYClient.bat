@@ -951,20 +951,28 @@ if %subs_status% == 1 set subs_status=0 && echo "0">"%aycdata%\subs_status.txt" 
 
 :reset
 mode con:cols=60 lines=32
-if %version_mismatch% == 0 color 04
-if %version_mismatch% == 1 color 02
-if %version_mismatch% == 0 title Reset AYC
-if %version_mismatch% == 1 title AYC Updated
+if %version_mismatch% == 0 (
+    color 04
+    title Reset AYC
+)
+if %version_mismatch% == 1 (
+    color 02
+    title AYC Updated
+)
 cls
 call :bannerSmall
 echo.
-if %version_mismatch% == 0 echo  You are about to reset AYC to it's default settings.
-if %version_mismatch% == 0 echo.
-if %version_mismatch% == 0 echo  This should fix any issues caused by incorrect or corrupted settings.
-if %version_mismatch% == 1 echo  AYC was updated. It is recommended to reset AYC and start
-if %version_mismatch% == 1 echo  fresh.
-if %version_mismatch% == 1 echo.
-if %version_mismatch% == 1 echo  This should fix any issues caused by old settings.
+if %version_mismatch% == 0 (
+    echo  You are about to reset AYC to it's default settings.
+    echo.
+    echo  This should fix any issues caused by incorrect or corrupted settings.
+)
+if %version_mismatch% == 1 (
+    echo  AYC was updated. It is recommended to reset AYC and start
+    echo  fresh.
+    echo.
+    echo  This should fix any issues caused by old settings.
+)
 echo.
 echo ------------------------
 echo.
