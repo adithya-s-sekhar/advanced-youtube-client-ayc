@@ -49,6 +49,8 @@ if not exist "%aycdata%\first_run.txt" goto firstRun
 if not exist "%aycdata%\dir.txt" goto dirMissing
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
+if not exist "%loc%\" goto locMissing
+if exist "%loc%" set loc_invalid=0
 
 if not exist "%aycdata%\try.txt" goto tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
@@ -92,6 +94,10 @@ md "%cd%\Output"
 echo "%cd%\Output">"%aycdata%\dir.txt"
 goto begin
 
+:locMissing
+md "%loc%"
+if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir
+goto begin
 
 :tryMissing
 echo "0">"%aycdata%\try.txt"
@@ -837,7 +843,8 @@ cls
 set "settings_dir="
 call :bannerSmall
 echo.
-echo  Current download folder is:
+if %loc_invalid% == 0 echo  Current download folder is:
+if %loc_invalid% == 1 echo  Invalid download folder:
 echo  %loc%
 echo.
 echo ----------------------------------------------
@@ -846,15 +853,21 @@ echo  it's downloads into the below area.
 echo.
 echo  Then Press Enter to save.
 echo.
-echo  Enter 0 to Go Back.
+if %loc_invalid% == 0 echo  Enter 0 to Go Back.
+if %loc_invalid% == 1 echo  Or Enter R to reset AYC to default.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
 if %settings_dir%p equ p goto settingsChangeDir
-if %settings_dir% == 0 goto settings
+if %loc_invalid% == 0 if %settings_dir% == 0 goto settings
+if %loc_invalid% == 1 if %settings_dir% == r goto reset
+if %loc_invalid% == 1 if %settings_dir% == R goto reset
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
+if not exist "%loc%\" md "%loc%"
+if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir
+if %loc_invalid% == 1 if exist "%loc%\" set loc_invalid=0 && goto begin
 goto settings
 
 
