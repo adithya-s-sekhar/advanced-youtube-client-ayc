@@ -24,6 +24,7 @@ You can call it a console front end if you want.
 - [Alternative: Build an .exe](#build-an-exe-old-way)
 - [Supported Sites](#supported-sites)
 - [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
+- [Developer notes](#developer-notes)
 - [Links](#links)
 
 ## Instructions
@@ -93,6 +94,11 @@ Now AYC is released as straight batch files you can open with notepad and read. 
 Be advised since then antivirus softwares have improved to detect that these are indeed harmless but some still falsely flag them. Windows defender sometimes does. It's not consistent. 
 
 MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
+
+## Developer notes
+
+- Some parts of the code might look weird but those were added, refactored and cleaned to fix some edge cases found over the years. Trust me, those are there for a reason. Still you're welcome to improving these and if it works, submit a PR, any help is appreciated. :) 
+- The script is lacking in documentation. Unfortunately, I am too busy looking for a job to have time to maintain this and write documentation. Hope it's readable. Any PR to add documentation is also welcome.    
 
 ## Links
 
