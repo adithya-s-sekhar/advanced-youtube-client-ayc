@@ -470,6 +470,7 @@ echo.
 echo --------------------------------------------------------------------------------------------
 echo.
 set /p uni_url=Paste a page url with playing video: 
+if "%uni_url%" == "" goto uni
 echo.
 echo  Choose Quality: 
 echo.
