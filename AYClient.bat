@@ -549,6 +549,7 @@ echo.
 echo ------------------------------------------
 echo.
 set /p job_name=Enter Job Name (eg: Songs): 
+if "%job_name%" equ "" goto batch
 md "%loc%\%job_name%"
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batchIsYoutubeCheck
 echo.>"%loc%\%job_name%\%job_name%.txt"
