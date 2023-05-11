@@ -627,6 +627,11 @@ echo.
 
 :batchAddLinksLoop
 set /p batch_link_tmp=Paste Link: 
+if "%batch_link_tmp%" equ "" (
+    echo URL is blank.
+    echo.
+    goto batchAddLinksLoop
+)
 echo.
 if "%batch_link_tmp%" equ "0" goto batchManage
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
