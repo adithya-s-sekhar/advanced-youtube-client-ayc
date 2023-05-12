@@ -639,8 +639,16 @@ goto batchAddLinksLoop
 
 
 :batchChangeType
-if %youtube% == 0 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt" && goto batchManage
-if %youtube% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt" && goto batchManage
+if %youtube% == 0 (
+    set youtube=1
+    echo "1">"%loc%\%job_name%\is_youtube.txt"
+    goto batchManage
+)
+if %youtube% == 1 (
+    set youtube=0
+    echo "0">"%loc%\%job_name%\is_youtube.txt"
+    goto batchManage
+)
 
 
 :batchQuickQualitySelector
@@ -957,18 +965,42 @@ goto settings
 
 
 :settingsChangeAria2
-if %aria2_status% == 0 set aria2_status=1 && echo "1">"%aycdata%\aria2_status.txt" && goto settings
-if %aria2_status% == 1 set aria2_status=0 && echo "0">"%aycdata%\aria2_status.txt" && goto settings
+if %aria2_status% == 0 (
+    set aria2_status=1
+    echo "1">"%aycdata%\aria2_status.txt"
+    goto settings
+)
+if %aria2_status% == 1 (
+    set aria2_status=0
+    echo "0">"%aycdata%\aria2_status.txt"
+    goto settings
+)
 
 
 :settingsChangeThumbs
-if %thumbs_status% == 0 set thumbs_status=1 && echo "1">"%aycdata%\thumbs_status.txt" && goto settings
-if %thumbs_status% == 1 set thumbs_status=0 && echo "0">"%aycdata%\thumbs_status.txt" && goto settings
+if %thumbs_status% == 0 (
+    set thumbs_status=1
+    echo "1">"%aycdata%\thumbs_status.txt"
+    goto settings
+)
+if %thumbs_status% == 1 (
+    set thumbs_status=0
+    echo "0">"%aycdata%\thumbs_status.txt"
+    goto settings
+)
 
 
 :settingsChangeSubs
-if %subs_status% == 0 set subs_status=1 && echo "1">"%aycdata%\subs_status.txt" && goto settings
-if %subs_status% == 1 set subs_status=0 && echo "0">"%aycdata%\subs_status.txt" && goto settings
+if %subs_status% == 0 (
+    set subs_status=1
+    echo "1">"%aycdata%\subs_status.txt"
+    goto settings
+)
+if %subs_status% == 1 (
+    set subs_status=0
+    echo "0">"%aycdata%\subs_status.txt"
+    goto settings
+)
 
 
 :reset
