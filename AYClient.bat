@@ -500,7 +500,10 @@ call :bannerLarge
 echo.
 echo  URL: %uni_url%
 echo.
-%youtube_dl% -F "%uni_url%"
+%youtube_dl% -F "%uni_url%" && goto uniQualitySelectorContinue
+set error_mode=uni
+goto error
+:uniQualitySelectorContinue
 echo.
 echo -------------------------------------------------
 echo.
