@@ -638,6 +638,7 @@ if "%batch_link_tmp%" equ "" (
 echo.
 if "%batch_link_tmp%" equ "0" goto batchManage
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
+set "batch_link_tmp="
 goto batchAddLinksLoop
 
 
