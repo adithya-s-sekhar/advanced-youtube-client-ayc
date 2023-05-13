@@ -6,6 +6,9 @@ set error_format=0
 set error_mode=0
 set is_batch=0
 set pass_to_uni=0
+set window_medium=con:cols=92 lines=26
+set window_small=con:cols=60 lines=32
+set window_large=con:cols=110 lines=52
 
 
 :: /------------------------------------------------------/
@@ -35,7 +38,7 @@ set pass_to_uni=0
 
 
 :begin
-mode con:cols=92 lines=26
+mode %window_medium%
 
 if not exist "%cd%\data" md "%cd%\data"
 if not exist "%cd%\Output" md "%cd%\Output"
@@ -252,7 +255,7 @@ goto uni
 
 
 :start
-mode con:cols=92 lines=26
+mode %window_medium%
 color 07
 set "url="
 title Saving to %loc%
@@ -270,7 +273,7 @@ goto start
 
 
 :formatSelector
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 if %is_batch% == 0 title Link Recieved
 if %is_batch% == 1 title Choose format
@@ -320,7 +323,7 @@ goto qualitySelector
 
 
 :qualitySelector
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
@@ -420,7 +423,7 @@ if %subs_status% == 1 set subs=--embed-subs
 
 :downloadTried
 set error_mode=regular
-mode con:cols=60 lines=32
+mode %window_small%
 color 0B
 title Downloading
 cls
@@ -441,7 +444,7 @@ goto downloadTried
 
 
 :more
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title More Options
 cls
@@ -476,7 +479,7 @@ goto more
 
 
 :uni
-mode con:cols=92 lines=26
+mode %window_medium%
 if not %pass_to_uni% == 1 set "uni_url="
 color 07
 title Universal Mode
@@ -517,7 +520,7 @@ if "%uni_url%" equ "" goto uni
 
 
 :uniQualitySelector
-mode con:cols=110 lines=52
+mode %window_large%
 set "uni_qual="
 color 07
 title Universal Mode: URL Recieved
@@ -545,7 +548,7 @@ set try=%try_count%
 
 :uniDownloadTried
 set error_mode=uni
-mode con:cols=60 lines=32
+mode %window_small%
 color 0B
 title Finger's Crossed! How's the weather?
 cls
@@ -563,7 +566,7 @@ goto uniDownloadTried
 
 
 :batch
-mode con:cols=92 lines=26
+mode %window_medium%
 set batch_exists_true=0
 color 07
 title Batch Mode
@@ -599,7 +602,7 @@ set youtube=%youtube:"=%
 
 
 :batchManage
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title Now working on %job_name%
 cls
@@ -638,7 +641,7 @@ goto batchManage
 
 
 :batchAddLinks
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title Enter 0 to go back after adding links.
 set "batch_link_tmp="
@@ -682,7 +685,7 @@ if %youtube% == 1 (
 
 
 :batchQuickQualitySelector
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title Select Quality
 set "batch_link_tmp="
@@ -712,7 +715,7 @@ set format_chosen=batch
 goto batchDownload
 
 :batchCustomFormat
-mode con:cols=92 lines=26
+mode %window_medium%
 set "batch_custom_format_url="
 color 07
 title Pick custom format code
@@ -732,7 +735,7 @@ if "%batch_custom_format_url%" equ "" goto batchCustomFormat
 if "%batch_custom_format_url%" equ "0" goto batchQuickQualitySelector
 
 :batchCustomFormatSelector
-mode con:cols=110 lines=52
+mode %window_large%
 set "batch_custom_qual="
 title Retrieving all available qualities
 color 07
@@ -775,7 +778,7 @@ if %subs_status% == 1 set subs=--embed-subs
 
 :batchDownloadTried
 set error_mode=batch
-mode con:cols=60 lines=32
+mode %window_small%
 color 0B
 title Downloading
 cls
@@ -795,7 +798,7 @@ goto batchDownloadTried
 
 
 :error
-mode con:cols=60 lines=32
+mode %window_small%
 color 4F
 title Download Failed!
 cls
@@ -836,7 +839,7 @@ if %error_mode% == regular goto exit
 
 
 :downloadSuccess
-mode con:cols=60 lines=32
+mode %window_small%
 color 2F
 title Download Finished
 cls
@@ -856,7 +859,7 @@ if %error_mode% == regular goto exit
 
 
 :settings
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title AYC Settings
 cls
@@ -901,7 +904,7 @@ if %errorlevel% == 255 goto settings
 
 
 :settingsChangeDir
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title Change Download Location
 cls
@@ -937,7 +940,7 @@ goto settings
 
 
 :settingsChangeDefinedTry
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title Change recheck attempts
 cls
@@ -982,7 +985,7 @@ goto settings
 
 
 :update
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title Update yt-dlp
 cls
@@ -1036,7 +1039,7 @@ if %subs_status% == 1 (
 
 
 :reset
-mode con:cols=60 lines=32
+mode %window_small%
 if %version_mismatch% == 0 (
     color 04
     title Reset AYC
@@ -1108,7 +1111,7 @@ goto exit
 
 
 :about
-mode con:cols=60 lines=32
+mode %window_small%
 color 07
 title You're a curious one..
 cls
