@@ -5,6 +5,7 @@ set version_mismatch=0
 set error_format=0
 set error_mode=0
 set is_batch=0
+set pass_to_uni=0
 
 
 :: /------------------------------------------------------/
@@ -229,7 +230,25 @@ if %1% equ "s" goto settings
 if %1% equ "S" goto settings
 set url=%1%
 set url=%url:"=%
-goto formatSelector
+echo %url%| findstr /i /r /c:"^https://www.youtube.com"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^https://m.youtube.com"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^https://youtube.com"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^https://youtu.be"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^www.youtube.com"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^m.youtube.com"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^youtube.com"
+if %errorlevel% == 0 goto formatSelector
+echo %url%| findstr /i /r /c:"^youtu.be"
+if %errorlevel% == 0 goto formatSelector
+set uni_url=%url%
+set pass_to_uni=1
+goto uni
 
 
 :start
@@ -242,7 +261,7 @@ call :bannerLarge
 echo.
 echo Enter M for more options.
 echo.
-set /p url=Paste a Youtube Video/Playlist URL or QuickKey: 
+set /p url=Paste any URL or QuickKey: 
 if "%url%" equ "" goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
@@ -458,7 +477,7 @@ goto more
 
 :uni
 mode con:cols=92 lines=26
-set "uni_url="
+if not %pass_to_uni% == 1 set "uni_url="
 color 07
 title Universal Mode
 cls
@@ -469,8 +488,15 @@ echo  eg: youtube and others
 echo.
 echo --------------------------------------------------------------------------------------------
 echo.
-set /p uni_url=Paste a page url with playing video: 
-if "%uni_url%" == "" goto uni
+if %pass_to_uni% == 0 if "%uni_url%" equ "" (
+    set /p uni_url=Paste a page url with playing video: 
+    if "%uni_url%" == "" goto uni
+)
+
+if %pass_to_uni% == 1 if not "%uni_url%" equ "" (
+    echo Link recieved: %uni_url%
+)
+
 echo.
 echo  Choose Quality: 
 echo.
@@ -819,11 +845,13 @@ echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
 echo.
-if NOT %error_mode% == regular echo  Press enter to do it again.
+if NOT %error_mode% == regular if %pass_to_uni% == 0 echo  Press enter to do it again.
 if %error_mode% == regular echo  Press enter to close this window.
+if %error_mode% == uni if %pass_to_uni% == 1 echo  Press enter to close this window.
 pause>NUL
 if %error_mode% == batch goto batch
-if %error_mode% == uni goto uni
+if %error_mode% == uni if %pass_to_uni% == 1 exit
+if %error_mode% == uni if %pass_to_uni% == 0 goto uni
 if %error_mode% == regular goto exit
 
 
