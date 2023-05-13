@@ -1117,7 +1117,7 @@ title You're a curious one..
 cls
 call :bannerSmall
 echo.
-echo   Advanced Youtube Client - AYC Script [PORTABLE]
+echo   Advanced Youtube Client - AYC Script
 echo.
 echo   Author           : Adithya S Sekhar
 echo.
