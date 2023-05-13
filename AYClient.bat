@@ -9,6 +9,7 @@ set pass_to_uni=0
 set window_medium=con:cols=92 lines=26
 set window_small=con:cols=60 lines=32
 set window_large=con:cols=110 lines=52
+set first_run=0
 
 
 :: /------------------------------------------------------/
@@ -90,15 +91,19 @@ goto checkParameter
 
 
 :firstRun
+mode %window_small%
 title Welcome to AYC
+set first_run=1
 echo "0">"%aycdata%\first_run.txt"
 cls
-call :bannerLarge
+call :bannerSmall
 echo.
 echo Preparing for first run..
 echo.
 echo Please wait, updating yt-dlp..
 %youtube_dl% -U
+call :about
+set first_run=0
 goto begin
 
 
@@ -1129,9 +1134,11 @@ echo   Made with (love) in Kerala.
 echo.
 echo   Released under the MIT License.
 echo.
-echo   Press Enter to go back.
+if %first_run% == 0 echo   Press Enter to go back.
+if %first_run% == 1 echo   Press Enter to continue. This won't show again.
 pause>NUL
-goto more
+if %first_run% == 0 goto more
+if %first_run% == 1 goto :EOF
 
 :bannerLarge
 echo --------------------------------------------------------------------------------------------
