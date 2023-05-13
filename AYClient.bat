@@ -1125,6 +1125,8 @@ echo   First Release    : v1.0 (13/Aug/2016)
 echo.
 echo   Current Release  : %version%
 echo.
+echo   Made with (love) in Kerala.
+echo.
 echo   Released under the MIT License.
 echo.
 echo   Press Enter to go back.
