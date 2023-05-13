@@ -487,7 +487,7 @@ cls
 call :bannerLarge
 echo.
 echo  Universal mode enables you to download from any webpage with playing video. 
-echo  eg: youtube and others
+if %pass_to_uni% == 0 echo  eg: youtube and others
 echo.
 echo --------------------------------------------------------------------------------------------
 echo.
