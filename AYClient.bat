@@ -817,7 +817,7 @@ echo.
 echo  Possible problems and solutions:
 echo.
 if %error_format% == av1 echo  - If you chose AV1, not all videos are supported by
-echo   youtube yet.
+if %error_format% == av1 echo   youtube yet.
 echo  - yt-dlp might be out of date. Update it by going 
 echo  into Settings, Update yt-dlp.
 echo  - If you have an unreliable network, enable rechecks
