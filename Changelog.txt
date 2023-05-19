@@ -1,7 +1,11 @@
-Advanced Youtube Client - AYC v3.20 - 13/May/2023
+Advanced Youtube Client - AYC v3.21 - 18/May/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.21]
+- Fixed: Universal mode couldn't be manually started.
+- Minor UI fixes.
 
 [3.20]
 - Improved: AYC now detects if the link is youtube or not and redirect the user to youtube mode or universal mode. No more extra steps to download non-youtube videos.
