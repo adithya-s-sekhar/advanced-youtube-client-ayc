@@ -94,7 +94,7 @@ goto checkParameter
 title Welcome to AYC
 echo "0">"%aycdata%\first_run.txt"
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo Preparing for first run..
 echo.
@@ -142,7 +142,7 @@ goto begin
 title yt-dlp missing!
 start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  yt-dlp.exe is missing! AYC Opened a webpage right now for you to download the missing
 echo  dependency.
@@ -164,7 +164,7 @@ goto begin
 title ffmpeg missing!
 start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  ffmpeg.exe is missing! AYC Opened a webpage right now for you to download the missing
 echo  dependency.
@@ -186,7 +186,7 @@ goto begin
 title AtomicParsley missing!
 start "" "https://github.com/wez/atomicparsley/releases/latest"
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  AtomicParsley.exe is missing! AYC Opened a webpage right now for you to download the 
 echo  missing dependency. Pick the right one for you.
@@ -206,7 +206,7 @@ goto begin
 title aria2c missing!
 start "" "https://github.com/aria2/aria2/releases/latest"
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  aria2c.exe is missing! AYC Opened a webpage right now for you to download the 
 echo  missing dependency. Pick the right one for you.
@@ -261,7 +261,7 @@ color 07
 set "url="
 title Saving to %loc%
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo Enter M for more options.
 echo.
@@ -485,7 +485,7 @@ if not %pass_to_uni% == 1 set "uni_url="
 color 07
 title Universal Mode
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  Universal mode enables you to download from any webpage with playing video. 
 if %pass_to_uni% == 0 echo  eg: youtube and others
@@ -576,7 +576,7 @@ color 07
 title Batch Mode
 set "job_name="
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  Batch Mode allows you to create jobs, add videos to that  job and download it.
 echo.
@@ -724,7 +724,7 @@ set "batch_custom_format_url="
 color 07
 title Pick custom format code
 cls
-call :bannerLarge
+call :bannerMedium
 echo.
 echo  Working on: %job_name%
 echo.
@@ -1137,21 +1137,43 @@ echo   Press Enter to go back.
 pause>NUL
 goto more
 
+
 :bannerLarge
-echo --------------------------------------------------------------------------------------------
+call :borderLarge
+echo                                          Advanced Youtube Client - AYC 
+echo.
+echo                                               %version%
+call :borderLarge
+goto :EOF
+
+:bannerMedium
+call :borderMedium
 echo                                Advanced Youtube Client - AYC 
 echo.
 echo                                     %version%
-echo --------------------------------------------------------------------------------------------
+call :borderMedium
 goto :EOF
 
 :bannerSmall
-echo ------------------------------------------------------------
+call :borderSmall
 echo                 Advanced Youtube Client - AYC 
 echo.
 echo                      %version%
+call :borderSmall
+goto :EOF
+
+:borderLarge
+echo --------------------------------------------------------------------------------------------------------------
+goto :EOF
+
+:borderMedium
+echo --------------------------------------------------------------------------------------------
+goto :EOF
+
+:borderSmall
 echo ------------------------------------------------------------
 goto :EOF
+
 
 :exit
 exit
