@@ -535,11 +535,14 @@ set error_mode=uni
 goto error
 :uniQualitySelectorContinue
 echo.
+echo  Enter 0 to go back.
+echo.
 echo -------------------------------------------------
 echo.
 echo  Merge two formats using + symbol.
 set /p uni_qual=Choose ID (green color in the list above): 
 if "%uni_qual%" equ "" goto uniQualitySelector
+if %uni_qual% == 0 goto uni
 
 
 :uniDownload
