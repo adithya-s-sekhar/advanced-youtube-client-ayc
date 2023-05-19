@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 set version=v3.20 (13/May/2023)
 set internal_version=320
 set version_mismatch=0
@@ -493,7 +494,7 @@ echo ---------------------------------------------------------------------------
 echo.
 if %pass_to_uni% == 0 if "%uni_url%" equ "" (
     set /p uni_url=Paste a page url with playing video: 
-    if "%uni_url%" == "" goto uni
+    if "!uni_url!" == "" goto uni
 )
 
 if %pass_to_uni% == 1 if not "%uni_url%" equ "" (
