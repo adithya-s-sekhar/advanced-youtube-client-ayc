@@ -62,7 +62,7 @@ Before running AYC you need to make sure of the following.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
 - Download and resume playlists.
 - MP3, M4A Audio Downloader with Cover Art.
-- Compatible with Windows Vista SP2/7/8/8.1/10/11 (32/64-bit).
+- Compatible with Windows 7/8/8.1/10/11 (32/64-bit).
 - Light on CPU Resources as it runs solely on CMD.
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
 - Universal Mode - Download from any website.
