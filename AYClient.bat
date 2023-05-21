@@ -43,6 +43,8 @@ set youtube_dl=0
 
 :begin
 mode %window_medium%
+color 07
+cls
 
 if not exist "%cd%\data" md "%cd%\data"
 if not exist "%cd%\Output" md "%cd%\Output"
@@ -94,6 +96,8 @@ goto checkParameter
 
 
 :firstRun
+mode %window_medium
+color 07
 title Welcome to AYC
 echo "0">"%aycdata%\first_run.txt"
 cls
@@ -143,6 +147,8 @@ goto begin
 
 :ytMissing
 if %dependencyMissing_shown% == 0 call :dependencyMissing
+mode %window_medium%
+color 07
 title yt-dlp missing!
 start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
 cls
@@ -166,6 +172,8 @@ goto begin
 
 :ffmpegMissing
 if %dependencyMissing_shown% == 0 call :dependencyMissing
+mode %window_medium%
+color 07
 title ffmpeg missing!
 start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
 cls
@@ -189,6 +197,8 @@ goto begin
 
 :atomicparsleyMissing
 if %dependencyMissing_shown% == 0 call :dependencyMissing
+mode %window_medium%
+color 07
 title AtomicParsley missing!
 start "" "https://github.com/wez/atomicparsley/releases/latest"
 cls
@@ -210,6 +220,8 @@ goto begin
 
 :aria2Missing
 if %dependencyMissing_shown% == 0 call :dependencyMissing
+mode %window_medium%
+color 07
 title aria2c missing!
 start "" "https://github.com/aria2/aria2/releases/latest"
 cls
@@ -1154,6 +1166,7 @@ goto resetFinish
 
 
 :resetFinish
+mode %window_small%
 del /q "%aycdata%\first_run.txt"
 del /q "%aycdata%\dir.txt"
 del /q "%aycdata%\try.txt"
@@ -1165,7 +1178,7 @@ rd /s /q "%aycdata%"
 title Reset Succesfully
 color 02
 cls
-echo.
+call :bannerSmall
 echo.
 echo  AYC reset succesfully.
 echo.
