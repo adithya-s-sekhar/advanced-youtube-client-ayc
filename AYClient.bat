@@ -250,7 +250,7 @@ color 07
 cls
 call :bannerMedium
 echo.
-echo  Hi, AYC has detected some important files are missing that prevents AYC from
+echo  Hi, AYC has detected some important files are missing that prevents it from
 echo  working properly.
 echo.
 echo  When you press Enter, you'll be taken to the webpages of each projects where 
