@@ -10,6 +10,7 @@ set pass_to_uni=0
 set window_medium=con:cols=92 lines=26
 set window_small=con:cols=60 lines=32
 set window_large=con:cols=110 lines=52
+set batch_deleted_job=0
 
 
 :: /------------------------------------------------------/
@@ -578,6 +579,11 @@ set "job_name="
 cls
 call :bannerMedium
 echo.
+if %batch_deleted_job% == 1 (
+    echo  Deleted job: %batch_deleted_job_name%
+    echo.
+    set batch_deleted_job=0
+)
 echo  Batch Mode allows you to create jobs, add videos to that  job and download it.
 echo.
 echo  Job URLs are saved and can be resumed by re-entering the same job.
@@ -632,14 +638,17 @@ echo.
 if %batch_exists_true% == 1 echo  (4) - Resume Batch Job
 if %batch_exists_true% == 0 echo  (4) - Start Batch Job
 echo.
+echo  (5) - Delete Job
+echo.
 echo --------------------------
 echo.
-choice /c 01234 /n /m "Enter Choice (0-4): "
+choice /c 012345 /n /m "Enter Choice (0-5): "
 if %errorlevel% == 1 goto batch
 if %errorlevel% == 2 goto batchAddLinks
 if %errorlevel% == 3 start notepad.exe "%loc%\%job_name%\%job_name%.txt"
 if %errorlevel% == 4 goto batchChangeType
 if %errorlevel% == 5 goto batchQuickQualitySelector
+if %errorlevel% == 6 goto batchDeleteConfirm
 if %errorlevel% == 255 goto batchManage
 goto batchManage
 
@@ -763,6 +772,27 @@ set conf=-f %batch_custom_qual%
 set batch_name_end=%batch_custom_qual%
 set format_chosen=batch
 goto batchDownload
+
+
+:batchDeleteConfirm
+echo.
+choice /c yn /n /m "Delete the job \"%job_name%\" ? (Y/N)"
+if %errorlevel% == 1 goto batchDeleteConfirmAgain
+if %errorlevel% == 2 goto batchManage
+
+
+:batchDeleteConfirmAgain
+echo.
+choice /c yn /n /m "Are you sure? (Y/N)"
+if %errorlevel% == 1 goto batchDoDelete
+if %errorlevel% == 2 goto batchManage
+
+
+:batchDoDelete
+rd /s /q "%loc%\%job_name%"
+set batch_deleted_job=1
+set batch_deleted_job_name=%job_name%
+goto batch
 
 
 :batchDownload
