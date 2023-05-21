@@ -266,7 +266,9 @@ call :bannerMedium
 echo.
 echo Enter M for more options.
 echo.
-set /p url=Paste any URL or QuickKey: 
+echo Supports most websites.
+echo.
+set /p url=Paste any Video/Playlist/Channel URL or QuickKey: 
 if "%url%" equ "" goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
@@ -635,8 +637,8 @@ echo.
 if %youtube% == 1 echo  (3) - Change job to Non-Youtube mode
 if %youtube% == 0 echo  (3) - Change job to Youtube mode
 echo.
-if %batch_exists_true% == 1 echo  (4) - Resume Batch Job
-if %batch_exists_true% == 0 echo  (4) - Start Batch Job
+if %batch_exists_true% == 1 echo  (4) - Resume Job
+if %batch_exists_true% == 0 echo  (4) - Start Job
 echo.
 echo  (5) - Delete Job
 echo.
@@ -776,7 +778,7 @@ goto batchDownload
 
 :batchDeleteConfirm
 echo.
-choice /c yn /n /m "Delete the job \"%job_name%\" ? (Y/N)"
+choice /c yn /n /m "Delete job \"%job_name%\" ? (Y/N)"
 if %errorlevel% == 1 goto batchDeleteConfirmAgain
 if %errorlevel% == 2 goto batchManage
 
@@ -904,7 +906,7 @@ echo.
 echo  (1) - Change Download Folder
 echo        Currently: %loc%
 echo.
-echo  (2) - No. of Rechecks
+echo  (2) - Number of Rechecks
 echo        Currently: %defined_try%
 echo.
 echo  (3) - Update yt-dlp (fixes most issues)
