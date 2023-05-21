@@ -11,6 +11,8 @@ set window_medium=con:cols=92 lines=26
 set window_small=con:cols=60 lines=32
 set window_large=con:cols=110 lines=52
 set batch_deleted_job=0
+set dependencyMissing_shown=0
+set youtube_dl=0
 
 
 :: /------------------------------------------------------/
@@ -51,7 +53,7 @@ if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
 if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
 set default_config=--ignore-errors --no-warnings --windows-filenames
 
-if not exist %youtube_dl% goto ytMissing
+if %youtube_dl% == 0 goto ytMissing
 if not exist ffmpeg.exe goto ffmpegMissing
 if not exist atomicparsley.exe goto atomicparsleyMissing
 if not exist aria2c.exe goto aria2Missing
@@ -140,13 +142,14 @@ goto begin
 
 
 :ytMissing
+if %dependencyMissing_shown% == 0 call :dependencyMissing
 title yt-dlp missing!
 start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
 cls
 call :bannerMedium
 echo.
-echo  yt-dlp.exe is missing! AYC Opened a webpage right now for you to download the missing
-echo  dependency.
+echo  yt-dlp.exe is missing. AYC Opened a webpage right now for you to download the missing
+echo  dependency. Pick the right one for your PC.
 echo.
 echo  URL: https://github.com/yt-dlp/yt-dlp/releases/latest
 echo.
@@ -162,35 +165,37 @@ goto begin
 
 
 :ffmpegMissing
+if %dependencyMissing_shown% == 0 call :dependencyMissing
 title ffmpeg missing!
 start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
 cls
 call :bannerMedium
 echo.
-echo  ffmpeg.exe is missing! AYC Opened a webpage right now for you to download the missing
-echo  dependency.
+echo  ffmpeg files are missing. AYC Opened a webpage right now for you to download the missing
+echo  dependency. Pick the right one for your PC.
 echo.
 echo  URL: https://github.com/yt-dlp/FFmpeg-Builds/releases/latest
 echo.
-echo  Filename: ffmpeg-n...-win64-gpl-6.0.zip (For 64-bit)
+echo  Filename: ffmpeg-n...-win64-gpl-shared-6.0.zip (For 64-bit)
 echo.
-echo  Filename: ffmpeg-n...-win32-gpl-6.0.zip (For 32-bit)
+echo  Filename: ffmpeg-n...-win32-gpl-shared-6.0.zip (For 32-bit)
 echo.
-echo  After download, extract the archive and copy bin\ffmpeg.exe to the same folder as AYClient.bat
-echo  and press ENTER.
+echo  After download, extract the archive and copy everything inside the 'bin' folder to the 
+echo  same folder as AYClient.bat and press ENTER.
 echo.
 pause>NUL
 goto begin
 
 
 :atomicparsleyMissing
+if %dependencyMissing_shown% == 0 call :dependencyMissing
 title AtomicParsley missing!
 start "" "https://github.com/wez/atomicparsley/releases/latest"
 cls
 call :bannerMedium
 echo.
-echo  AtomicParsley.exe is missing! AYC Opened a webpage right now for you to download the 
-echo  missing dependency. Pick the right one for you.
+echo  AtomicParsley.exe is missing. AYC Opened a webpage right now for you to download the 
+echo  missing dependency. Pick the right one for your PC.
 echo.
 echo  Filename: AtomicParsleyWindows.zip (For 64-bit)
 echo.
@@ -204,13 +209,14 @@ goto begin
 
 
 :aria2Missing
+if %dependencyMissing_shown% == 0 call :dependencyMissing
 title aria2c missing!
 start "" "https://github.com/aria2/aria2/releases/latest"
 cls
 call :bannerMedium
 echo.
-echo  aria2c.exe is missing! AYC Opened a webpage right now for you to download the 
-echo  missing dependency. Pick the right one for you.
+echo  aria2c.exe is missing. AYC Opened a webpage right now for you to download the 
+echo  missing dependency. Pick the right one for your PC.
 echo.
 echo  URL: https://github.com/aria2/aria2/releases/latest
 echo.
@@ -223,6 +229,27 @@ echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
 goto begin
+
+
+:dependencyMissing
+title Welcome to Dependency Fixer
+mode %window_medium%
+color 07
+cls
+call :bannerMedium
+echo.
+echo  Hi, AYC has detected some important files are missing that prevents AYC from
+echo  working properly.
+echo.
+echo  When you press Enter, you'll be taken to the webpages of each projects where 
+echo. you can download them. 
+echo.
+echo  Simply follow the instructions provided on the next windows.
+echo.
+echo  Press Enter to begin.
+pause>NUL
+set dependencyMissing_shown=1
+goto :EOF
 
 
 :checkParameter
