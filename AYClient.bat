@@ -409,7 +409,6 @@ if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio
 if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]"
 if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
 if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
-if %errorlevel% == 255 goto qualitySelector
 if %is_batch% == 0 goto download
 if %is_batch% == 1 goto batchDownload
 
@@ -426,7 +425,6 @@ if %errorlevel% == 6 set conf="-f bestvideo[vcodec=vp9][height<=720]+bestaudio[e
 if %errorlevel% == 7 set conf="-f bestvideo[vcodec=vp9][height<=1080]+bestaudio[ext=webm]"
 if %errorlevel% == 8 set conf="-f bestvideo[vcodec=vp9][height<=1440]+bestaudio[ext=webm]"
 if %errorlevel% == 9 set conf="-f bestvideo[vcodec=vp9][height<=2160]+bestaudio[ext=webm]"
-if %errorlevel% == 255 goto qualitySelector
 if %is_batch% == 0 goto download
 if %is_batch% == 1 goto batchDownload
 
@@ -445,7 +443,6 @@ if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudi
 if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]"
 if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]"
 if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]"
-if %errorlevel% == 255 goto qualitySelector
 if %is_batch% == 0 goto download
 if %is_batch% == 1 goto batchDownload
 
@@ -517,7 +514,6 @@ if %errorlevel% == 4 goto settings
 if %errorlevel% == 5 goto about
 if %errorlevel% == 6 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
 if %errorlevel% == 7 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc/"
-if %errorlevel% == 255 goto more
 goto more
 
 
@@ -558,7 +554,6 @@ choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
 if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
 if %errorlevel% == 3 goto uniQualitySelector
-if %errorlevel% == 255 goto uni
 if "%uni_url%" equ "" goto uni
 
 
@@ -643,7 +638,6 @@ echo.
 choice /c yn /n /m "Is this a YouTube Download Job? (Yes/No) "
 if %errorlevel% == 1 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
 if %errorlevel% == 2 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
-if %errorlevel% == 255 goto batch
 
 
 :batchIsYoutubeCheck
@@ -690,7 +684,6 @@ if %errorlevel% == 3 start notepad.exe "%loc%\%job_name%\%job_name%.txt"
 if %errorlevel% == 4 goto batchChangeType
 if %errorlevel% == 5 goto batchQuickQualitySelector
 if %errorlevel% == 6 goto batchDeleteConfirm
-if %errorlevel% == 255 goto batchManage
 goto batchManage
 
 
@@ -764,7 +757,6 @@ if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
 if %errorlevel% == 3 set conf=-f "wv*+wa/w" & set batch_name_end=low
 if %errorlevel% == 4 goto batchCustomFormat
-if %errorlevel% == 255 goto batchQuickQualitySelector
 set format_chosen=batch
 goto batchDownload
 
@@ -975,7 +967,6 @@ if %errorlevel% == 5 goto settingsChangeAria2
 if %errorlevel% == 6 goto settingsChangeThumbs
 if %errorlevel% == 7 goto settingsChangeSubs
 if %errorlevel% == 8 goto reset
-if %errorlevel% == 255 goto settings
 
 
 :settingsChangeDir
