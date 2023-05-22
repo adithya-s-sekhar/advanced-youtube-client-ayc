@@ -166,7 +166,7 @@ echo  After download, copy it to the same folder as AYClient.bat
 echo  and press ENTER.
 echo.
 pause>NUL
-goto :EOF
+goto begin
 
 
 :ffmpegMissing
@@ -191,7 +191,7 @@ echo  After download, extract the archive and copy everything inside the 'bin' f
 echo  same folder as AYClient.bat and press ENTER.
 echo.
 pause>NUL
-goto :EOF
+goto begin
 
 
 :atomicparsleyMissing
@@ -214,7 +214,7 @@ echo  After download, extract the archive and copy AtomicParsley.exe to the same
 echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
-goto :EOF
+goto begin
 
 
 :aria2Missing
@@ -239,7 +239,7 @@ echo  After download, extract the archive and copy aria2c.exe to the same folder
 echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
-goto :EOF
+goto begin
 
 
 :dependencyMissing
@@ -584,7 +584,9 @@ echo -------------------------------------------------
 echo.
 echo Merge two formats using + symbol.
 set /p uni_qual=Choose ID (green color in the list above): 
+set uni_qual=%uni_qual: =%
 if "%uni_qual%" equ "" goto uniQualitySelector
+if "%uni_qual%" equ " =" goto uniQualitySelector
 if %uni_qual% == 0 goto uni
 
 
