@@ -549,7 +549,6 @@ choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
 if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
 if %errorlevel% == 3 goto uniQualitySelector
-if "%uni_url%" equ "" goto uni
 
 
 :uniManualURL
