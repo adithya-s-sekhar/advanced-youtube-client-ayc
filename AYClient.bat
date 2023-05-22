@@ -553,7 +553,9 @@ if %errorlevel% == 3 goto uniQualitySelector
 
 :uniManualURL
 set /p uni_url=Paste a page url with playing video: 
+set uni_url=%uni_url: =%
 if "%uni_url%" equ "" goto uni
+if "%uni_url%" equ " =" goto uni
 goto :EOF
 
 
