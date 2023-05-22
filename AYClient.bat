@@ -804,7 +804,10 @@ echo  Working on: %job_name%
 echo.
 echo  Sample URL: %batch_custom_format_url%
 echo.
-%youtube_dl% -F "%batch_custom_format_url%"
+%youtube_dl% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
+set error_mode=batch
+goto error
+:batchCustomFormatSelectorContinue
 echo.
 echo  Enter 0 to Go Back.
 echo -------------------------------------------------
