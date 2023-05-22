@@ -532,15 +532,8 @@ if %pass_to_uni% == 0 echo  eg: youtube and others
 echo.
 echo --------------------------------------------------------------------------------------------
 echo.
-if %pass_to_uni% == 0 if "%uni_url%" equ "" (
-    set /p uni_url=Paste a page url with playing video: 
-    if "!uni_url!" == "" goto uni
-)
-
-if %pass_to_uni% == 1 if not "%uni_url%" equ "" (
-    echo Link recieved: %uni_url%
-)
-
+if %pass_to_uni% == 0 call :uniManualURL
+if %pass_to_uni% == 1 call :uniAutoURL
 echo.
 echo  Choose Quality: 
 echo.
@@ -557,6 +550,17 @@ if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
 if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
 if %errorlevel% == 3 goto uniQualitySelector
 if "%uni_url%" equ "" goto uni
+
+
+:uniManualURL
+set /p uni_url=Paste a page url with playing video: 
+if "%uni_url%" equ "" goto uni
+goto :EOF
+
+
+:uniAutoURL
+echo Link recieved: %uni_url%
+goto :EOF
 
 
 :uniQualitySelector
