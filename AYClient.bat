@@ -787,7 +787,9 @@ echo.
 echo -----------
 echo.
 set /p batch_custom_format_url=Sample URL: 
+set batch_custom_format_url=%batch_custom_format_url: =%
 if "%batch_custom_format_url%" equ "" goto batchCustomFormat
+if "%batch_custom_format_url%" equ " =" goto batchCustomFormat
 if "%batch_custom_format_url%" equ "0" goto batchQuickQualitySelector
 
 :batchCustomFormatSelector
@@ -809,7 +811,9 @@ echo -------------------------------------------------
 echo.
 echo You can also type "best" and "worst".
 set /p batch_custom_qual=Choose ID (green color in the list above): 
+set batch_custom_qual=%batch_custom_qual: =%
 if "%batch_custom_qual%" equ "" goto batchCustomFormatSelector
+if "%batch_custom_qual%" equ " =" goto batchCustomFormatSelector
 if "%batch_custom_qual%" equ "0" goto batchCustomFormat
 set conf=-f %batch_custom_qual%
 set batch_name_end=%batch_custom_qual%
