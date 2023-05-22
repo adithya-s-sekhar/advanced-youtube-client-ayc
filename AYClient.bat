@@ -1,5 +1,4 @@
 @echo off
-setlocal enabledelayedexpansion
 set version=v3.21 (18/May/2023)
 set internal_version=321
 set version_mismatch=0
