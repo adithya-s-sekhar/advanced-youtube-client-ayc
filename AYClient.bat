@@ -310,6 +310,7 @@ echo.
 set /p url=Paste any Video/Playlist/Channel URL or QuickKey: 
 set url=%url: =%
 if "%url%" equ "" goto start
+if "%url%" equ " =" goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
 start AYClient.bat "%url%"
