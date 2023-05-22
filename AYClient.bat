@@ -55,40 +55,40 @@ if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
 if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
 set default_config=--ignore-errors --no-warnings --windows-filenames
 
-if %youtube_dl% == 0 goto ytMissing
-if not exist ffmpeg.exe goto ffmpegMissing
-if not exist atomicparsley.exe goto atomicparsleyMissing
-if not exist aria2c.exe goto aria2Missing
+if %youtube_dl% == 0 call :ytMissing
+if not exist ffmpeg.exe call :ffmpegMissing
+if not exist atomicparsley.exe call :atomicparsleyMissing
+if not exist aria2c.exe call :aria2Missing
 
-if not exist "%aycdata%\external_version.txt" goto externalVersionMissing
+if not exist "%aycdata%\external_version.txt" call :externalVersionMissing
 set /p external_version=<"%aycdata%\external_version.txt"
 set external_version=%external_version:"=%
 if NOT %external_version% == %internal_version% set version_mismatch=1 && goto reset
 
-if not exist "%aycdata%\first_run.txt" goto firstRun
+if not exist "%aycdata%\first_run.txt" call :firstRun
 
-if not exist "%aycdata%\dir.txt" goto dirMissing
+if not exist "%aycdata%\dir.txt" call :dirMissing
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
-if not exist "%loc%\" goto locMissing
+if not exist "%loc%\" call :locMissing
 if exist "%loc%" set loc_invalid=0
 
-if not exist "%aycdata%\try.txt" goto tryMissing
+if not exist "%aycdata%\try.txt" call :tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
 if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
 set try_invalid=0
 
-if not exist "%aycdata%\aria2_status.txt" goto aria2StatusMissing
+if not exist "%aycdata%\aria2_status.txt" call :aria2StatusMissing
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
 set aria2_status=%aria2_status:"=%
 
-if not exist "%aycData%\thumbs_status.txt" goto thumbsStatusMissing
+if not exist "%aycData%\thumbs_status.txt" call :thumbsStatusMissing
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
 set thumbs_status=%thumbs_status:"=%
 
-if not exist "%aycdata%\subs_status.txt" goto subsStatusMissing
+if not exist "%aycdata%\subs_status.txt" call :subsStatusMissing
 set /p subs_status=<"%aycdata%\subs_status.txt"
 set subs_status=%subs_status:"=%
 
@@ -107,42 +107,42 @@ echo Preparing for first run..
 echo.
 echo Please wait, updating yt-dlp..
 %youtube_dl% -U
-goto begin
+goto :EOF
 
 
 :externalVersionMissing
 echo "%internal_version%">"%aycdata%\external_version.txt"
-goto begin
+goto :EOF
 
 
 :dirMissing
 md "%cd%\Output"
 echo "%cd%\Output">"%aycdata%\dir.txt"
-goto begin
+goto :EOF
 
 :locMissing
 md "%loc%"
 if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir
-goto begin
+goto :EOF
 
 :tryMissing
 echo "0">"%aycdata%\try.txt"
-goto begin
+goto :EOF
 
 
 :aria2StatusMissing
 echo "0">"%aycdata%\aria2_status.txt"
-goto begin
+goto :EOF
 
 
 :thumbsStatusMissing
 echo "1">"%aycdata%\thumbs_status.txt"
-goto begin
+goto :EOF
 
 
 :subsStatusMissing
 echo "0">"%aycdata%\subs_status.txt"
-goto begin
+goto :EOF
 
 
 :ytMissing
@@ -167,7 +167,7 @@ echo  After download, copy it to the same folder as AYClient.bat
 echo  and press ENTER.
 echo.
 pause>NUL
-goto begin
+goto :EOF
 
 
 :ffmpegMissing
@@ -192,7 +192,7 @@ echo  After download, extract the archive and copy everything inside the 'bin' f
 echo  same folder as AYClient.bat and press ENTER.
 echo.
 pause>NUL
-goto begin
+goto :EOF
 
 
 :atomicparsleyMissing
@@ -215,7 +215,7 @@ echo  After download, extract the archive and copy AtomicParsley.exe to the same
 echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
-goto begin
+goto :EOF
 
 
 :aria2Missing
@@ -240,7 +240,7 @@ echo  After download, extract the archive and copy aria2c.exe to the same folder
 echo  AYClient.bat and press ENTER.
 echo.
 pause>NUL
-goto begin
+goto :EOF
 
 
 :dependencyMissing
