@@ -1007,10 +1007,10 @@ if %loc_invalid% == 1 echo  Or Enter R to reset AYC to default.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
-if %settings_dir%p equ p goto settingsChangeDir
-if %loc_invalid% == 0 if %settings_dir% == 0 goto settings
-if %loc_invalid% == 1 if %settings_dir% == r goto reset
-if %loc_invalid% == 1 if %settings_dir% == R goto reset
+if "%settings_dir%"p equ ""p goto settingsChangeDir
+if %loc_invalid% == 0 if "%settings_dir%" == 0 goto settings
+if %loc_invalid% == 1 if "%settings_dir%" == r goto reset
+if %loc_invalid% == 1 if "%settings_dir%" == R goto reset
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
