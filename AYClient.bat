@@ -293,21 +293,19 @@ goto uni
 
 
 :start
-mode %window_small%
+mode %window_medium%
 color 07
 set "url="
 title Saving to %loc%
 cls
-call :bannersmall
+call :bannermedium
 echo.
 echo Enter M for more options.
 echo.
-echo Supports most websites.
+echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
-echo Paste any Video/Playlist/Channel URL or QuickKey.
-echo.
-call :borderSmall
-echo.
+@REM call :bordermedium
+@REM echo.
 set /p url=">> "
 set url=%url: =%
 if "%url%" equ "" goto start
