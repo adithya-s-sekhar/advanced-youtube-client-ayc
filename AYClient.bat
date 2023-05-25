@@ -267,8 +267,6 @@ goto :EOF
 if %1p equ p goto start
 if %1% equ "b" goto batch
 if %1% equ "B" goto batch
-if %1% equ "u" goto uni
-if %1% equ "U" goto uni
 if %1% equ "s" goto settings
 if %1% equ "S" goto settings
 set url=%1%
@@ -326,6 +324,10 @@ call :bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
+if %pass_to_uni% == 0 (
+    echo.
+    echo  YouTube link detected.
+)
 echo.
 if %is_batch% == 1 echo   (0) - Go Back
 if %is_batch% == 1 echo.
@@ -493,48 +495,40 @@ call :bannerSmall
 echo.
 echo  (0) - GO BACK
 echo.
-echo  (1) - Universal Mode     QuickKey: U
+echo  (1) - Batch Mode         QuickKey: B
 echo.
-echo  (2) - Batch Mode         QuickKey: B
+echo  (2) - Settings           QuickKey: S
 echo.
-echo  (3) - Settings           QuickKey: S
+echo  (3) - About
 echo.
-echo  (4) - About
+echo  (4) - Visit on GitHub
 echo.
-echo  (5) - Visit on GitHub
-echo.
-echo  (6) - Visit on Sourceforge
+echo  (5) - Visit on Sourceforge
 echo.
 echo -------------------
 echo.
-choice /c 0123456 /n /m "Enter Choice (0-6): "
+choice /c 012345 /n /m "Enter Choice (0-5): "
 if %errorlevel% == 1 goto start
-if %errorlevel% == 2 start AYClient.bat "u" && goto more
-if %errorlevel% == 3 start AYClient.bat "b" && goto more
-if %errorlevel% == 4 goto settings
-if %errorlevel% == 5 goto about
-if %errorlevel% == 6 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if %errorlevel% == 7 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc/"
+if %errorlevel% == 2 start AYClient.bat "b" && goto more
+if %errorlevel% == 3 goto settings
+if %errorlevel% == 4 goto about
+if %errorlevel% == 5 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
 goto more
 
 
 :uni
-mode %window_medium%
-if not %pass_to_uni% == 1 set "uni_url="
+mode %window_small%
 color 07
-title Universal Mode
+title Link Recieved
 cls
-call :bannerMedium
+call :bannerSmall
 echo.
-echo  Universal mode enables you to download from any webpage with playing video. 
-if %pass_to_uni% == 0 echo  eg: youtube and others
+echo  Link recieved: %uni_url%
 echo.
-echo --------------------------------------------------------------------------------------------
+echo  Non-YouTube link detected.
 echo.
-if %pass_to_uni% == 0 call :uniManualURL
-if %pass_to_uni% == 1 call :uniAutoURL
-echo.
-echo  Choose Quality: 
+echo  Choose Format
+call :borderSmall
 echo.
 echo   (1) - Highest Quality
 echo.
@@ -548,19 +542,6 @@ choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
 if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
 if %errorlevel% == 3 goto uniQualitySelector
-
-
-:uniManualURL
-set /p uni_url=Paste a page url with playing video: 
-set uni_url=%uni_url: =%
-if "%uni_url%" equ "" goto uni
-if "%uni_url%" equ " =" goto uni
-goto :EOF
-
-
-:uniAutoURL
-echo Link recieved: %uni_url%
-goto :EOF
 
 
 :uniQualitySelector
@@ -916,7 +897,7 @@ if NOT %error_mode% == regular echo  Press enter to try again.
 if %error_mode% == regular echo  Press enter to close this window.
 pause>NUL
 if %error_mode% == batch goto batch
-if %error_mode% == uni goto uni
+if %error_mode% == uni goto exit
 if %error_mode% == regular goto exit
 
 
@@ -932,11 +913,10 @@ echo  %loc%
 echo.
 if NOT %error_mode% == regular if %pass_to_uni% == 0 echo  Press enter to do it again.
 if %error_mode% == regular echo  Press enter to close this window.
-if %error_mode% == uni if %pass_to_uni% == 1 echo  Press enter to close this window.
+if %error_mode% == uni echo  Press enter to close this window.
 pause>NUL
 if %error_mode% == batch goto batch
-if %error_mode% == uni if %pass_to_uni% == 1 exit
-if %error_mode% == uni if %pass_to_uni% == 0 goto uni
+if %error_mode% == uni exit
 if %error_mode% == regular goto exit
 
 
