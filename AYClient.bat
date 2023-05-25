@@ -289,14 +289,12 @@ color 07
 set "url="
 title Saving to %loc%
 cls
-call :bannermedium
+call :bannerMedium
 echo.
 echo Enter M for more options.
 echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
-@REM call :bordermedium
-@REM echo.
 set /p url=">> "
 set url=%url: =%
 if "%url%" equ "" goto start
