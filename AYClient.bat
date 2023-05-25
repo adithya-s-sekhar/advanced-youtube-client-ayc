@@ -531,8 +531,8 @@ echo  Link recieved: %uni_url%
 echo.
 echo  Non-YouTube link detected.
 echo.
-echo  Choose Format
 call :borderSmall
+echo  Choose Format
 echo.
 echo   (1) - Highest Quality
 echo.
