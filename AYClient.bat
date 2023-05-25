@@ -258,8 +258,6 @@ goto :EOF
 if %1p equ p goto start
 if %1% equ "b" goto batch
 if %1% equ "B" goto batch
-if %1% equ "s" goto settings
-if %1% equ "S" goto settings
 set url=%1%
 set url=%url:"=%
 echo %url%| findstr /i /r /c:"^https://www.youtube.com"
@@ -301,6 +299,8 @@ if "%url%" equ "" goto start
 if "%url%" equ " =" goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
+if "%url%" equ "s" goto settings
+if "%url%" equ "S" goto settings
 start AYClient.bat "%url%"
 goto start
 
