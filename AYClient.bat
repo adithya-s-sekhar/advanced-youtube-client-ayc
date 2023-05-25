@@ -8,7 +8,7 @@ set is_batch=0
 set pass_to_uni=0
 set window_medium=con:cols=92 lines=26
 set window_small=con:cols=60 lines=32
-set window_large=con:cols=110 lines=52
+set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
 set dependencyMissing_shown=0
 set youtube_dl=0
@@ -1198,9 +1198,9 @@ goto more
 
 :bannerLarge
 call :borderLarge
-echo                                          Advanced Youtube Client - AYC 
+echo                                                                              Advanced Youtube Client - AYC 
 echo.
-echo                                               %version%
+echo                                                                                   %version%
 call :borderLarge
 goto :EOF
 
@@ -1221,7 +1221,7 @@ call :borderSmall
 goto :EOF
 
 :borderLarge
-echo --------------------------------------------------------------------------------------------------------------
+echo ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 goto :EOF
 
 :borderMedium
