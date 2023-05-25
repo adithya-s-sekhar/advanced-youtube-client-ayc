@@ -320,7 +320,7 @@ if %pass_to_uni% == 0 (
     echo  YouTube link detected.
 )
 echo.
-if %is_batch% == 1 echo   (0) - Go Back
+if %is_batch% == 1 echo   (0) - Back
 if %is_batch% == 1 echo.
 echo  Choose format
 echo ------------------------------------------------------------
@@ -375,7 +375,7 @@ if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
 echo.
-echo   (0) - Go Back
+echo   (0) - Back
 echo.
 echo ------------------------------------------------------------
 echo  Choose Maximum Quality
@@ -484,7 +484,7 @@ title More Options
 cls
 call :bannerSmall
 echo.
-echo  (0) - GO BACK
+echo  (0) - Back
 echo.
 echo  (1) - Batch Mode         QuickKey: B
 echo.
@@ -641,7 +641,7 @@ if %youtube% == 1 echo  Youtube Job: Yes
 if %youtube% == 0 echo  Youtube Job: No
 echo --------------------------
 echo.
-echo  (0) - GO BACK
+echo  (0) - Back
 echo.
 echo  (1) - Add Video Links
 echo.
@@ -725,7 +725,7 @@ echo ---------------------------------
 echo  Select Quality
 echo ---------------------------------
 echo.
-echo  (0) - GO BACK
+echo  (0) - Back
 echo.
 echo  (1) - Highest Quality
 echo.
@@ -919,7 +919,7 @@ title AYC Settings
 cls
 call :bannerSmall
 echo.
-echo  (0) - GO BACK
+echo  (0) - Back
 echo.
 echo  (1) - Change Download Folder
 echo        Currently: %loc%
@@ -1118,7 +1118,7 @@ if %version_mismatch% == 1 (
 echo.
 echo ------------------------
 echo.
-if %version_mismatch% == 0 echo  (0) - GO BACK
+if %version_mismatch% == 0 echo  (0) - Back
 if %version_mismatch% == 0 echo.
 if %version_mismatch% == 0 echo  (1) - Reset and Exit AYC
 if %version_mismatch% == 1 echo  (0) - Keep Settings, Don't Reset
