@@ -65,7 +65,6 @@ Before running AYC you need to make sure of the following.
 - Compatible with Windows 7/8/8.1/10/11 (32/64-bit).
 - Light on CPU Resources as it runs solely on CMD.
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
-- Universal Mode - Download from any website.
 
 ## Build an .exe (Old way)
 
