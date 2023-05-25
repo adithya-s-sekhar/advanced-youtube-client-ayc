@@ -1,4 +1,21 @@
 @echo off
+:: /----------------------------------------------------------/
+:: /----------------------------------------------------------/
+:: / Advanced Youtube Client - AYC Script                     /
+:: / Author          : Adithya S Sekhar                       /
+:: / First Release   : v1.0 (13/Aug/2016)                     /
+:: / Current Release : v3.23 (24/May/2023)                    /
+:: / Released under the MIT License.                          /
+:: / Please don't modify or redistribute without              /
+:: / proper credits.                                          /
+:: /----------------------------------------------------------/
+:: / There is almost certainly some sphagetti-code inside     /
+:: / from merging :uni with regular download mode to simplify /
+:: / usage. It works. I don't want to rewrite it.             /
+:: /----------------------------------------------------------/
+:: /----------------------------------------------------------/
+
+
 set version=v3.23 (24/May/2023)
 set internal_version=323
 set version_mismatch=0
@@ -12,32 +29,6 @@ set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
 set dependencyMissing_shown=0
 set youtube_dl=0
-
-
-:: /------------------------------------------------------/
-:: /------------------------------------------------------/
-:: / Advanced Youtube Client - AYC Script                 /
-:: / Author          : Adithya S Sekhar                   /
-:: / First Release   : v1.0 (13/Aug/2016)                 /
-:: / Current Release : v3.23 (24/May/2023)                /
-:: / Released under the MIT License.                      /
-:: / Please don't modify or redistribute without          /
-:: / proper credits.                                      /
-:: /------------------------------------------------------/
-:: / Some parts of the code might look weird but those    /
-:: / were added, refactored and cleaned to fix some edge  /
-:: / cases found over the years. Trust me, those are      /
-:: / there for a reason. Still you're welcome to          /
-:: / improving these and if it works, submit a PR, any    /
-:: / help is appreciated. :)                              /
-:: /------------------------------------------------------/
-:: / The script is lacking in documentation.              /
-:: / Unfortunately, I am too busy looking for a job to    /
-:: / have time to maintain this and write documentation.  /
-:: / Hope it's readable. Any PR to add Documentation is   /
-:: / also welcome.                                        /
-:: /------------------------------------------------------/
-:: /------------------------------------------------------/
 
 
 :begin
