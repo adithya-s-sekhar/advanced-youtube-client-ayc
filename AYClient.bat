@@ -525,11 +525,12 @@ title Link Recieved
 cls
 call :bannerSmall
 echo.
-echo  Link recieved: %uni_url%
+echo  URL: %uni_url%
 echo.
 echo  Non-YouTube link detected.
 echo.
 call :borderSmall
+echo.
 echo  Choose Format
 echo.
 echo   (1) - Highest Quality
@@ -538,7 +539,7 @@ echo   (2) - Lowest Quality
 echo.
 echo   (3) - Show all available formats
 echo.
-echo -------------------
+call :borderSmall
 echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
