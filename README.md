@@ -31,7 +31,7 @@ You can call it a console front end if you want.
 
 ### Prerequisites
 Before running AYC you need to make sure of the following.
-1. **Windows Console Host MUST be the default terminal application for batch scripts**. This is because of a 30 year old cmd feature set Microsoft still hasn't added to the new Windows Terminal (See [#5094](https://github.com/microsoft/terminal/issues/5094)).
+1. **Windows Console Host MUST be the default terminal application for batch scripts**. (See [#5094](https://github.com/microsoft/terminal/issues/5094)).
    1. Open **Windows Terminal** App. (Either right click **Start** and select **Terminal** or search for **Terminal** in the start menu).
    2. Press **Ctrl + ,** (comma) to open **Settings**.
    3. Change your **Default terminal application** to **Windows Console Host** and click **Save**.
