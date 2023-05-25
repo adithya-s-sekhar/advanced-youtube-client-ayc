@@ -540,7 +540,7 @@ if %errorlevel% == 3 goto uniQualitySelector
 mode %window_large%
 set "uni_qual="
 color 07
-title Universal Mode: URL Recieved
+title Select Quality
 cls
 call :bannerLarge
 echo.
@@ -550,12 +550,12 @@ echo.
 set error_mode=uni
 goto error
 :uniQualitySelectorContinue
-echo.
-echo  Enter 0 to go back.
-echo.
 echo -------------------------------------------------
 echo.
+echo Enter 0 to go back.
+echo.
 echo Merge two formats using + symbol.
+echo.
 set /p uni_qual=Choose ID (green color in the list above): 
 set uni_qual=%uni_qual: =%
 if "%uni_qual%" equ "" goto uniQualitySelector
