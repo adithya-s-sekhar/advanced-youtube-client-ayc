@@ -1,7 +1,15 @@
-Advanced Youtube Client - AYC v3.23 - 24/May/2023
+Advanced Youtube Client - AYC v3.24 - 25/May/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.24]
+- Fixed: All formats UI was cutting off on Vimeo and other websites with lot of formats.
+- Fixed: Opening settings via QuickKey will not apply changes to current console.
+- Removed: Universal Mode option in More page and QuickKeys.
+- Improved: Merged Universal mode functionality with regular youtube mode.
+- Improved: UI.
+
 
 [3.23]
 - Fixed: Using unquoted paths with space in Settings>Location lead to a crash.
