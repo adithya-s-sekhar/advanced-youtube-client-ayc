@@ -1,4 +1,5 @@
 @echo off
+
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
 :: / Advanced Youtube Client - AYC Script                     /
@@ -9,12 +10,7 @@
 :: / Please don't modify or redistribute without              /
 :: / proper credits.                                          /
 :: /----------------------------------------------------------/
-:: / There is almost certainly some sphagetti-code inside     /
-:: / from merging :uni with regular download mode to simplify /
-:: / usage. It works. I don't want to rewrite it.             /
 :: /----------------------------------------------------------/
-:: /----------------------------------------------------------/
-
 
 set version=v3.24 (25/May/2023)
 set internal_version=324
