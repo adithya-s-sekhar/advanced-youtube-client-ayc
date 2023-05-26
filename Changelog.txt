@@ -1,7 +1,14 @@
-Advanced Youtube Client - AYC v3.24 - 25/May/2023
+Advanced Youtube Client - AYC v3.25 - 26/May/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.25]
+- Fixed: Going back on settings > location changed location.
+- Fixed: URLs with '&' in them, often used for tracking purposes crashed normal and batch modes.
+- Fixed: Batch job names with quotes crashed ayc.
+- Improved: UI.
+
 
 [3.24]
 - Fixed: All formats UI was cutting off on Vimeo and other websites with lot of formats.
