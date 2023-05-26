@@ -721,9 +721,8 @@ cls
 call :bannerSmall
 if %youtube% == 1 set is_batch=1 && goto formatSelector
 if %youtube% == 0 echo.
-echo ---------------------------------
 echo  Select Quality
-echo ---------------------------------
+echo -------------------------
 echo.
 echo  (0) - Back
 echo.
@@ -732,7 +731,8 @@ echo.
 echo  (2) - Lowest Quality
 echo.
 echo  (3) - Pick a custom format code
-echo ---------------------------------
+echo.
+echo -------------------------
 choice /c 0123 /n /m "Choose Quality (0-3): "
 if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
