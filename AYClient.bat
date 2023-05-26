@@ -294,6 +294,9 @@ echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
 set /p url=">> "
+for /f "tokens=1 delims=&" %%a in ("%url%") do (
+  set url=%%a
+)
 set url=%url: =%
 if "%url%" equ "" goto start
 if "%url%" equ " =" goto start
@@ -694,6 +697,9 @@ if "%batch_link_tmp%" equ "" (
 )
 echo.
 if "%batch_link_tmp%" equ "0" goto batchManage
+for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
+  set batch_link_tmp=%%a
+)
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 set "batch_link_tmp="
 goto batchAddLinksLoop
