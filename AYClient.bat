@@ -678,10 +678,37 @@ echo.
 choice /c 012345 /n /m "Enter Choice (0-5): "
 if %errorlevel% == 1 goto batch
 if %errorlevel% == 2 goto batchAddLinks
-if %errorlevel% == 3 start notepad.exe "%loc%\%job_name%\%job_name%.txt"
+if %errorlevel% == 3 goto batchOpenJobFile
 if %errorlevel% == 4 goto batchChangeType
 if %errorlevel% == 5 goto batchQuickQualitySelector
 if %errorlevel% == 6 goto batchDeleteConfirm
+goto batchManage
+
+
+:batchOpenJobFile
+mode %window_small%
+title Edit Job File
+color 07
+cls
+call :bannerSmall
+echo.
+if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
+if %batch_exists_true% == 0 echo  New Job: %job_name%
+echo.
+if %youtube% == 1 echo  Youtube Job: Yes
+if %youtube% == 0 echo  Youtube Job: No
+echo --------------------------
+echo.
+echo  Job File is opened in Notepad. Follow instructions.
+echo.
+echo  1) Add links one by one on each line.
+echo.
+echo  2) Delete links you don't want.
+echo.
+echo  3) Empty lines will be skipped.
+echo.
+echo  4) After Adding links, close Notepad and click Save.
+notepad.exe "%loc%\%job_name%\%job_name%.txt"
 goto batchManage
 
 
