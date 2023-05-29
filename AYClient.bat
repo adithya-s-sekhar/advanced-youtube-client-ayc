@@ -312,15 +312,15 @@ for /f "tokens=1 delims=&" %%a in ("%url%") do (
 set url=%url: =%
 if "%url%" equ "" set url_invalid=1 && goto start
 if "%url%" equ " =" set url_invalid=1 && goto start
-if "%url%" equ "b" start AYClient.bat "%url%" && goto start
-if "%url%" equ "B" start AYClient.bat "%url%" && goto start
-if "%url%" equ "m" goto more
-if "%url%" equ "M" goto more
-if "%url%" equ "s" goto settings
-if "%url%" equ "S" goto settings
+if "%url%" equ "b" set url_invalid=0 && start AYClient.bat "%url%" && goto start
+if "%url%" equ "B" set url_invalid=0 && start AYClient.bat "%url%" && goto start
+if "%url%" equ "m" set url_invalid=0 && goto more
+if "%url%" equ "M" set url_invalid=0 && goto more
+if "%url%" equ "s" set url_invalid=0 && goto settings
+if "%url%" equ "S" set url_invalid=0 && goto settings
 echo %url%| findstr /i /r /c:"^https://"
 if not %errorlevel% == 0 set url_invalid=1 && goto start
-start AYClient.bat "%url%"
+set url_invalid=0 && start AYClient.bat "%url%"
 goto start
 
 
