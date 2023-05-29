@@ -294,6 +294,8 @@ echo.
 if %url_invalid% == 1 (
     echo Invalid URL (URL should begin with http^(s^):// ^)
     echo.
+    echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings
+    echo.
 )
 set /p url=">> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
