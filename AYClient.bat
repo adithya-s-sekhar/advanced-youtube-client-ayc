@@ -1041,15 +1041,15 @@ if %try_invalid% == 0 (
 echo.
 echo ------------------------------------------------------------
 echo.
-set /p settings_try=No. of Rechecks (Changing will exit AYC): 
+set /p settings_try=No. of Rechecks: 
 if %settings_try%p equ p goto settings
 if %try_invalid% == 1 if %settings_try% == r goto reset
 if %try_invalid% == 1 if %settings_try% == R goto reset
 echo "%settings_try%">"%aycdata%\try.txt"
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
-echo %defined_%| findstr /r "^[0-9][0-9]*$">nul
-if not %errorlevel% == 0 set try_invalid=1 goto settingsChangeDefinedTry
+echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
+if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
 if %try_invalid% == 1 set try_invalid=0 && goto begin
 goto settings
 
