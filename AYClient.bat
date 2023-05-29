@@ -837,7 +837,7 @@ set /p batch_custom_format_url=Sample URL:
 set batch_custom_format_url=%batch_custom_format_url: =%
 if "%batch_custom_format_url%" equ "" set url_invalid=1 && goto batchCustomFormat
 if "%batch_custom_format_url%" equ " =" set url_invalid=1 && goto batchCustomFormat
-if "%batch_custom_format_url%" equ "0" goto batchQuickQualitySelector
+if "%batch_custom_format_url%" equ "0" set url_invalid=0 && goto batchQuickQualitySelector
 
 echo %batch_custom_format_url% | findstr /i /r "^http://">NUL
 if %errorlevel% == 0 set url_invalid=0 && goto batchCustomFormatSelector
