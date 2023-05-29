@@ -319,7 +319,7 @@ if "%url%" equ "m" set url_invalid=0 && goto more
 if "%url%" equ "M" set url_invalid=0 && goto more
 if "%url%" equ "s" set url_invalid=0 && set from_url=1 && goto settings
 if "%url%" equ "S" set url_invalid=0 && set from_url=1 && goto settings
-echo %url%| findstr /i /r /c:"^https://"
+echo %url%| findstr /i /r /c:"^https://">NUL
 if not %errorlevel% == 0 set url_invalid=1 && goto start
 set url_invalid=0 && start AYClient.bat "%url%"
 goto start
@@ -750,8 +750,17 @@ if "%batch_link_tmp%" equ "0" goto batchManage
 for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
   set batch_link_tmp=%%a
 )
+echo %batch_link_tmp%| findstr /i /r /c:"^https://">NUL
+if not %errorlevel% == 0 set url_invalid=1
+if %url_invalid% == 1 (
+    echo Invalid URL (URL should begin with http^(s^):// ^)
+    echo.
+    set url_invalid=0
+    goto batchAddLinksLoop
+)
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 set "batch_link_tmp="
+set url_invalid=0
 goto batchAddLinksLoop
 
 
@@ -813,11 +822,18 @@ echo  Paste a sample URL from your batch job to retrieve all available qualities
 echo.
 echo -----------
 echo.
+if %url_invalid% == 1 (
+    echo Invalid URL (URL should begin with http^(s^):// ^)
+    echo.
+)
 set /p batch_custom_format_url=Sample URL: 
 set batch_custom_format_url=%batch_custom_format_url: =%
-if "%batch_custom_format_url%" equ "" goto batchCustomFormat
-if "%batch_custom_format_url%" equ " =" goto batchCustomFormat
+if "%batch_custom_format_url%" equ "" set url_invalid=1 && goto batchCustomFormat
+if "%batch_custom_format_url%" equ " =" set url_invalid=1 && goto batchCustomFormat
 if "%batch_custom_format_url%" equ "0" goto batchQuickQualitySelector
+echo %batch_custom_format_url%| findstr /i /r /c:"^https://">NUL
+if not %errorlevel% == 0 set url_invalid=1 && goto batchCustomFormat
+set url_invalid=0
 
 :batchCustomFormatSelector
 mode %window_large%
