@@ -275,13 +275,13 @@ echo %url%| findstr /i /r /c:"^https://youtube.com"
 if %errorlevel% == 0 goto formatSelector
 echo %url%| findstr /i /r /c:"^https://youtu.be"
 if %errorlevel% == 0 goto formatSelector
-echo %url%| findstr /i /r /c:"^www.youtube.com"
+echo %url%| findstr /i /r /c:"^http://www.youtube.com"
 if %errorlevel% == 0 goto formatSelector
-echo %url%| findstr /i /r /c:"^m.youtube.com"
+echo %url%| findstr /i /r /c:"^http://m.youtube.com"
 if %errorlevel% == 0 goto formatSelector
-echo %url%| findstr /i /r /c:"^youtube.com"
+echo %url%| findstr /i /r /c:"^http://youtube.com"
 if %errorlevel% == 0 goto formatSelector
-echo %url%| findstr /i /r /c:"^youtu.be"
+echo %url%| findstr /i /r /c:"^http://youtu.be"
 if %errorlevel% == 0 goto formatSelector
 set uni_url=%url%
 set pass_to_uni=1
