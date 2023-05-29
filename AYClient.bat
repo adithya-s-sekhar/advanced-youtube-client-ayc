@@ -30,6 +30,7 @@ set job_name_invalid=0
 set youtube_dl_version=unknown
 set from_url=0
 set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
+set show_quickkey=0
 
 
 :begin
@@ -304,6 +305,8 @@ echo.
 if %url_invalid% == 1 (
     echo %url_validation_msg%
     echo.
+)
+if %show_quickkey% == 1 (
     echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings
     echo.
 )
@@ -312,21 +315,22 @@ for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
 set url=%url: =%
-if "%url%" equ "" set url_invalid=1 && goto start
-if "%url%" equ " =" set url_invalid=1 && goto start
-if "%url%" equ "b" set url_invalid=0 && start AYClient.bat "%url%" && goto start
-if "%url%" equ "B" set url_invalid=0 && start AYClient.bat "%url%" && goto start
-if "%url%" equ "m" set url_invalid=0 && goto more
-if "%url%" equ "M" set url_invalid=0 && goto more
-if "%url%" equ "s" set url_invalid=0 && set from_url=1 && goto settings
-if "%url%" equ "S" set url_invalid=0 && set from_url=1 && goto settings
+if "%url%" equ "" set show_quickkey=1 && goto start
+if "%url%" equ " =" set show_quickkey=1 && goto start
+if "%url%" equ "b" set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
+if "%url%" equ "B" set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
+if "%url%" equ "m" set show_quickkey=0 && set url_invalid=0 && goto more
+if "%url%" equ "M" set show_quickkey=0 && set url_invalid=0 && goto more
+if "%url%" equ "s" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && goto settings
+if "%url%" equ "S" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && goto settings
 
 echo %url% | findstr /I /R "^http://" > nul
-if %errorlevel% == 0 set url_invalid=0 && start AYClient.bat "%url%" && goto start
+if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
 
 echo %url% | findstr /I /R "^https://" > nul
-if %errorlevel% == 0 set url_invalid=0 && start AYClient.bat "%url%" && goto start
+if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
 
+set show_quickkey=1
 set url_invalid=1
 goto start
 
