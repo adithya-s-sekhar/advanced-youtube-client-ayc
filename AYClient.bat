@@ -27,6 +27,7 @@ set dependencyMissing_shown=0
 set youtube_dl=0
 set url_invalid=0
 set job_name_invalid=0
+set youtube_dl_version=unknown
 
 
 :begin
@@ -47,6 +48,7 @@ if %youtube_dl% == 0 call :ytMissing
 if not exist ffmpeg.exe call :ffmpegMissing
 if not exist atomicparsley.exe call :atomicparsleyMissing
 if not exist aria2c.exe call :aria2Missing
+set youtube_dl=%youtube_dl:"=%
 
 if not exist "%aycdata%\external_version.txt" call :externalVersionMissing
 set /p external_version=<"%aycdata%\external_version.txt"
@@ -72,13 +74,16 @@ if not exist "%aycdata%\aria2_status.txt" call :aria2StatusMissing
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
 set aria2_status=%aria2_status:"=%
 
-if not exist "%aycData%\thumbs_status.txt" call :thumbsStatusMissing
+if not exist "%aycdata%\thumbs_status.txt" call :thumbsStatusMissing
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
 set thumbs_status=%thumbs_status:"=%
 
 if not exist "%aycdata%\subs_status.txt" call :subsStatusMissing
 set /p subs_status=<"%aycdata%\subs_status.txt"
 set subs_status=%subs_status:"=%
+
+set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
+set youtube_dl_version=%youtube_dl_version:"=%
 
 goto checkParameter
 
@@ -95,6 +100,9 @@ echo Preparing for first run..
 echo.
 echo Please wait, updating yt-dlp..
 %youtube_dl% -U
+%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
+set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
+set youtube_dl_version=%youtube_dl_version:"=%
 goto :EOF
 
 
@@ -975,6 +983,7 @@ echo  (2) - Number of Rechecks
 echo        Currently: %defined_try%
 echo.
 echo  (3) - Update yt-dlp (fixes most issues)
+echo        Currently: %youtube_dl_version%
 echo.
 echo  (4) - Force aria2 on all downloads
 if %aria2_status% == 0 echo        [Disabled]
@@ -1092,6 +1101,9 @@ call :bannerSmall
 echo.
 echo  Checking for updates..
 %youtube_dl% -U
+%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
+set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
+set youtube_dl_version=%youtube_dl_version:"=%
 echo.
 echo  Press Enter to go back.
 pause>NUL
