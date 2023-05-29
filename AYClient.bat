@@ -302,6 +302,8 @@ for /f "tokens=1 delims=&" %%a in ("%url%") do (
 set url=%url: =%
 if "%url%" equ "" set url_invalid=1 && goto start
 if "%url%" equ " =" set url_invalid=1 && goto start
+if "%url%" equ "b" start AYClient.bat "%url%" && goto start
+if "%url%" equ "B" start AYClient.bat "%url%" && goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
 if "%url%" equ "s" goto settings
