@@ -45,7 +45,7 @@ set aycdata=%cd%\data
 if exist youtube-dl.exe set youtube_dl="youtube-dl.exe"
 if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
 if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
-set default_config=--ignore-errors --no-warnings --windows-filenames
+set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters
 
 if %youtube_dl% == 0 call :ytMissing
 if not exist ffmpeg.exe call :ffmpegMissing
