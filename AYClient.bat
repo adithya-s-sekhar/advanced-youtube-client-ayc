@@ -26,6 +26,7 @@ set batch_deleted_job=0
 set dependencyMissing_shown=0
 set youtube_dl=0
 set url_invalid=0
+set job_name_invalid=0
 
 
 :begin
@@ -613,10 +614,15 @@ echo  Job URLs are saved and can be resumed by re-entering the same job.
 echo.
 echo ------------------------------------------
 echo.
+if %job_name_invalid% == 1 (
+    echo Invalid job name.
+    echo.
+)
 set /p job_name=Enter Job Name (eg: Songs): 
-if "%job_name%" equ "" goto batch
+if "%job_name%" equ "" set job_name_invalid=1 && goto batch
 set job_name=%job_name:"=%
 md "%loc%\%job_name%"
+if not %errorlevel% == 0 set job_name_invalid=1 && goto batch
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batchIsYoutubeCheck
 echo.>"%loc%\%job_name%\%job_name%.txt"
 
