@@ -91,7 +91,7 @@ goto checkParameter
 
 
 :firstRun
-mode %window_medium
+mode %window_medium%
 color 07
 title Welcome to AYC
 echo "0">"%aycdata%\first_run.txt"
