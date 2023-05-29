@@ -28,6 +28,7 @@ set youtube_dl=0
 set url_invalid=0
 set job_name_invalid=0
 set youtube_dl_version=unknown
+set from_url=0
 
 
 :begin
@@ -316,8 +317,8 @@ if "%url%" equ "b" set url_invalid=0 && start AYClient.bat "%url%" && goto start
 if "%url%" equ "B" set url_invalid=0 && start AYClient.bat "%url%" && goto start
 if "%url%" equ "m" set url_invalid=0 && goto more
 if "%url%" equ "M" set url_invalid=0 && goto more
-if "%url%" equ "s" set url_invalid=0 && goto settings
-if "%url%" equ "S" set url_invalid=0 && goto settings
+if "%url%" equ "s" set url_invalid=0 && set from_url=1 && goto settings
+if "%url%" equ "S" set url_invalid=0 && set from_url=1 && goto settings
 echo %url%| findstr /i /r /c:"^https://"
 if not %errorlevel% == 0 set url_invalid=1 && goto start
 set url_invalid=0 && start AYClient.bat "%url%"
@@ -1002,7 +1003,8 @@ echo.
 echo -----------------------------------
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
-if %errorlevel% == 1 goto more
+if %errorlevel% == 1 if %from_url% == 1 goto start
+if %errorlevel% == 1 if %from_url% == 0 goto more
 if %errorlevel% == 2 goto settingsChangeDir
 if %errorlevel% == 3 goto settingsChangeDefinedTry
 if %errorlevel% == 4 goto update
