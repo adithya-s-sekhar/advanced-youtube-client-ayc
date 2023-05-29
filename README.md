@@ -59,6 +59,7 @@ Before running AYC you need to make sure of the following.
 - Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube.
 - Create Batch Download Jobs to organize and download multiple videos from multiple websites.
 - Supports more than 1000 websites.
+- Auto detects yt-dlp, yt-dlp_x86 and youtube-dl.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
 - Download and resume playlists.
 - MP3, M4A Audio Downloader with Cover Art.
