@@ -482,7 +482,7 @@ if %thumbs_status% == 0 set "thumbs="
 if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 
 if %subs_status% == 0 set "subs="
-if %subs_status% == 1 set subs=--embed-subs
+if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 
 
 :downloadTried
@@ -915,7 +915,7 @@ if %thumbs_status% == 0 set "thumbs="
 if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 
 if %subs_status% == 0 set "subs="
-if %subs_status% == 1 set subs=--embed-subs
+if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 
 
 :batchDownloadTried
