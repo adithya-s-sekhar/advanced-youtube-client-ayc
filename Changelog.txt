@@ -1,7 +1,18 @@
-Advanced Youtube Client - AYC v3.25 - 26/May/2023
+Advanced Youtube Client - AYC v3.26 - 29/May/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.26]
+- Fixed: Rechecker crashing on changing value.
+- Added: Video Chapters on all downloads.
+- Added: Interface for Job Editor with Notepad.
+- Improved: Embed auto generated subtitles if none are uploaded. Needs to be enabled in Settings.
+- Improved: Input validation on URLs, folder paths, job names.
+- Improved: Error handling.
+- Improved: Routing between pages.
+- Improved: UI.
+
 
 [3.25]
 - Fixed: Going back on settings > location changed location.
