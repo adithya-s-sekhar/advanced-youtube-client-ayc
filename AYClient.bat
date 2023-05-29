@@ -25,6 +25,7 @@ set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
 set dependencyMissing_shown=0
 set youtube_dl=0
+set url_invalid=0
 
 
 :begin
@@ -289,17 +290,23 @@ echo Enter M for more options.
 echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
+if %url_invalid% == 1 (
+    echo Invalid URL (URL should begin with http^(s^):// ^)
+    echo.
+)
 set /p url=">> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
 set url=%url: =%
-if "%url%" equ "" goto start
-if "%url%" equ " =" goto start
+if "%url%" equ "" set url_invalid=1 && goto start
+if "%url%" equ " =" set url_invalid=1 && goto start
 if "%url%" equ "m" goto more
 if "%url%" equ "M" goto more
 if "%url%" equ "s" goto settings
 if "%url%" equ "S" goto settings
+echo %url%| findstr /i /r /c:"^https://"
+if not %errorlevel% == 0 set url_invalid=1 && goto start
 start AYClient.bat "%url%"
 goto start
 
