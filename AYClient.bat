@@ -29,6 +29,7 @@ set url_invalid=0
 set job_name_invalid=0
 set youtube_dl_version=unknown
 set from_url=0
+set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
 
 
 :begin
@@ -301,7 +302,7 @@ echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
 if %url_invalid% == 1 (
-    echo Invalid URL (URL should begin with http^(s^):// ^)
+    echo %url_validation_msg%
     echo.
     echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings
     echo.
@@ -319,9 +320,14 @@ if "%url%" equ "m" set url_invalid=0 && goto more
 if "%url%" equ "M" set url_invalid=0 && goto more
 if "%url%" equ "s" set url_invalid=0 && set from_url=1 && goto settings
 if "%url%" equ "S" set url_invalid=0 && set from_url=1 && goto settings
-echo %url%| findstr /i /r /c:"^https://">NUL
-if not %errorlevel% == 0 set url_invalid=1 && goto start
-set url_invalid=0 && start AYClient.bat "%url%"
+
+echo %url% | findstr /I /R "^http://" > nul
+if %errorlevel% == 0 set url_invalid=0 && start AYClient.bat "%url%" && goto start
+
+echo %url% | findstr /I /R "^https://" > nul
+if %errorlevel% == 0 set url_invalid=0 && start AYClient.bat "%url%" && goto start
+
+set url_invalid=1
 goto start
 
 
@@ -722,6 +728,7 @@ goto batchManage
 
 
 :batchAddLinks
+set url_invalid=1
 mode %window_small%
 color 07
 title Enter 0 to go back after adding links.
@@ -750,20 +757,20 @@ if "%batch_link_tmp%" equ "0" goto batchManage
 for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
   set batch_link_tmp=%%a
 )
-echo %batch_link_tmp%| findstr /i /r /c:"^https://">NUL
-if not %errorlevel% == 0 set url_invalid=1
+echo %batch_link_tmp% | findstr /i /r "^http://" > nul
+if %errorlevel% == 0 set url_invalid=0
+echo %batch_link_tmp% | findstr /i /r "^https://" > nul
+if %errorlevel% == 0 set url_invalid=0
 if %url_invalid% == 1 (
-    echo Invalid URL (URL should begin with http^(s^):// ^)
+    echo %url_validation_msg%
     echo.
-    set url_invalid=0
     goto batchAddLinksLoop
 )
-echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
-set "batch_link_tmp="
-set url_invalid=0
-goto batchAddLinksLoop
-
-
+if %url_invalid% == 0 (
+    echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
+    set "batch_link_tmp="
+    goto batchAddLinksLoop
+)
 :batchChangeType
 if %youtube% == 0 (
     set youtube=1
@@ -823,7 +830,7 @@ echo.
 echo -----------
 echo.
 if %url_invalid% == 1 (
-    echo Invalid URL (URL should begin with http^(s^):// ^)
+    echo %url_validation_msg%
     echo.
 )
 set /p batch_custom_format_url=Sample URL: 
@@ -831,9 +838,13 @@ set batch_custom_format_url=%batch_custom_format_url: =%
 if "%batch_custom_format_url%" equ "" set url_invalid=1 && goto batchCustomFormat
 if "%batch_custom_format_url%" equ " =" set url_invalid=1 && goto batchCustomFormat
 if "%batch_custom_format_url%" equ "0" goto batchQuickQualitySelector
-echo %batch_custom_format_url%| findstr /i /r /c:"^https://">NUL
-if not %errorlevel% == 0 set url_invalid=1 && goto batchCustomFormat
-set url_invalid=0
+
+echo %batch_custom_format_url% | findstr /i /r "^http://">NUL
+if %errorlevel% == 0 set url_invalid=0 && goto batchCustomFormatSelector
+echo %batch_custom_format_url% | findstr /i /r "^https://">NUL
+if %errorlevel% == 0 set url_invalid=0 && goto batchCustomFormatSelector
+set url_invalid=1
+goto batchCustomFormat
 
 :batchCustomFormatSelector
 mode %window_large%
