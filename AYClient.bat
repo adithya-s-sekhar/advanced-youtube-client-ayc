@@ -534,6 +534,7 @@ if %errorlevel% == 2 start AYClient.bat "b" && goto more
 if %errorlevel% == 3 goto settings
 if %errorlevel% == 4 goto about
 if %errorlevel% == 5 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
+if %errorlevel% == 6 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
 goto more
 
 
