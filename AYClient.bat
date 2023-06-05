@@ -1091,6 +1091,7 @@ if %loc_invalid% == 1 echo  Or Enter R to reset AYC to default.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
+set settings_dir=%settings_dir:"=%
 if "%settings_dir%"p equ ""p goto settings
 if %loc_invalid% == 1 if "%settings_dir%" == "r" goto reset
 if %loc_invalid% == 1 if "%settings_dir%" == "R" goto reset
