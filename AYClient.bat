@@ -5,15 +5,15 @@
 :: / Advanced Youtube Client - AYC Script                     /
 :: / Author          : Adithya S Sekhar                       /
 :: / First Release   : v1.0 (13/Aug/2016)                     /
-:: / Current Release : v3.26 (29/May/2023)                    /
+:: / Current Release : v3.27 (05/Jun/2023)                    /
 :: / Released under the MIT License.                          /
 :: / Please don't modify or redistribute without              /
 :: / proper credits.                                          /
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
 
-set version=v3.26 (29/May/2023)
-set internal_version=326
+set version=v3.27 (05/Jun/2023)
+set internal_version=327
 set version_mismatch=0
 set error_format=0
 set error_mode=0
@@ -1284,13 +1284,15 @@ if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" set magi
 if %magic_passed% == 0 (
     cls
     echo.
-    echo Sorry. You can't use this script.
+    echo  Sorry. You can't use this script.
     echo.
-    echo I have recieved complaints about AYC being broken from a lot of people who can't even follow simple instructions.
+    echo  I have recieved complaints about AYC being broken from a lot of 
+    echo  people who can't even follow simple instructions.
     echo.
-    echo I've been doing this for free for 7 years now because I use it everyday and it's better than every other ad infested, broken or slow video downloaders. I don't want the additional burden of supporting people who can't read.
+    echo  I've been doing this for free for 7 years now and I don't want 
+    echo  the additional burden of supporting people who can't read.
     echo.
-    echo Press Enter to exit.
+    echo  Press Enter to exit.
     pause>NUL
     exit
 )

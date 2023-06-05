@@ -1,7 +1,11 @@
-Advanced Youtube Client - AYC v3.26 - 29/May/2023
+Advanced Youtube Client - AYC v3.27 - 05/Jun/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.27]
+- Removed: Support for people who can't read instructions.
+- Fixed: Github button wasn't working.
 
 [3.26]
 - Fixed: Rechecker crashing on changing value.
