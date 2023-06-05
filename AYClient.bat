@@ -1291,13 +1291,13 @@ set magic_passed=1
 if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" set magic_passed=0
 if %magic_passed% == 0 (
     mode %window_medium%
-    title EBKAC
+    title PEBKAC
     cls
     call :bannerMedium
     echo.
     echo  Sorry, you can't use this script.
     echo.
-    echo  Error code: EBKAC
+    echo  Error code: PEBKAC
     echo.
     echo  Press Enter to exit.
     pause>NUL
