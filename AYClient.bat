@@ -20,7 +20,7 @@ set error_mode=0
 set is_batch=0
 set pass_to_uni=0
 set window_medium=con:cols=92 lines=26
-set window_small=con:cols=60 lines=32
+set window_small=con:cols=60 lines=35
 set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
 set dependencyMissing_shown=0
@@ -383,6 +383,7 @@ echo.
 echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
 echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
+echo.
 echo ------------------------------------------------------------
 echo  Audio Only
 echo.
@@ -391,6 +392,7 @@ echo.
 echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
+echo.
 echo ------------------------------------------------------------
 echo.
 if %is_batch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
@@ -429,23 +431,28 @@ if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Back
 echo.
-echo ------------------------------------------------------------
+call :borderSmall
 echo  Choose Maximum Quality
 echo.
 echo   (1) - 144p 
 echo   (2) - 240p   (If not available, returns to 144p) 
 echo   (3) - 360p   (If not available, returns to 240p) 
 echo.
+call :borderSmall
+echo.
 echo   (4) - 480p   (If not available, returns to 360p) 
 echo   (5) - 720p   (If not available, returns to 480p) 
 echo   (6) - 1080p  (If not available, returns to 720p) 
+echo.
+if NOT %format_chosen% == h264 call :borderSmall
 if NOT %format_chosen% == h264 echo.
 if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
 if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
+if not %format_chosen% == h264 echo.
+call :borderSmall
 if %format_chosen% == vp9  goto choiceVp9
 if %format_chosen% == av1  goto choiceAv1
-echo ------------------------------------------------------------
 echo.
 choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto formatSelector
@@ -459,7 +466,6 @@ if %is_batch% == 0 goto download
 if %is_batch% == 1 goto batchDownload
 
 :choiceVp9
-echo ------------------------------------------------------------
 echo.
 choice /c 012345678 /n /m "Enter Choice (0-8): "
 if %errorlevel% == 1 goto formatSelector
@@ -476,7 +482,6 @@ if %is_batch% == 1 goto batchDownload
 
 :choiceAv1
 set error_format=av1
-echo ------------------------------------------------------------
 echo.
 choice /c 0123456789 /n /m "Enter Choice (0-9): "
 if %errorlevel% == 1 goto formatSelector
