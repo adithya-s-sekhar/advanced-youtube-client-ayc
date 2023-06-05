@@ -1098,8 +1098,8 @@ echo.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
+if not defined settings_dir goto settings
 set settings_dir=%settings_dir:"=%
-if "%settings_dir%"p equ ""p goto settings
 if %loc_invalid% == 1 if "%settings_dir%" == "r" goto reset
 if %loc_invalid% == 1 if "%settings_dir%" == "R" goto reset
 echo "%settings_dir%">"%aycdata%\dir.txt"
