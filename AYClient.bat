@@ -5,15 +5,15 @@
 :: / Advanced Youtube Client - AYC Script                     /
 :: / Author          : Adithya S Sekhar                       /
 :: / First Release   : v1.0 (13/Aug/2016)                     /
-:: / Current Release : v3.27 (05/Jun/2023)                    /
+:: / Current Release : v3.28 (05/Jun/2023)                    /
 :: / Released under the MIT License.                          /
 :: / Please don't modify or redistribute without              /
 :: / proper credits.                                          /
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
 
-set version=v3.27 (05/Jun/2023)
-set internal_version=327
+set version=v3.28 (05/Jun/2023)
+set internal_version=328
 set version_mismatch=0
 set error_format=0
 set error_mode=0

@@ -1,7 +1,11 @@
-Advanced Youtube Client - AYC v3.27 - 05/Jun/2023
+Advanced Youtube Client - AYC v3.28 - 05/Jun/2023
 Open AYClient.bat :)
 
 What's new?
+
+[3.28]
+- Fixed: Location drag and drop crashing.
+- Improved: UI.
 
 [3.27]
 - Removed: Support for people who can't read instructions.
