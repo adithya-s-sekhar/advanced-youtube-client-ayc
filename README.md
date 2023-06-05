@@ -107,8 +107,6 @@ MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](http
 
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
 
-[VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
-
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
 [yt-dlp/ffmpeg](https://github.com/yt-dlp/FFmpeg-Builds)
