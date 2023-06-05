@@ -31,14 +31,13 @@ You can call it a console front end if you want.
 
 ### Prerequisites
 Before running AYC you need to make sure of the following.
-1. **Windows Console Host MUST be the default terminal application for batch scripts**. (See [#5094](https://github.com/microsoft/terminal/issues/5094)).
+1. **Windows Console Host MUST be the default terminal application for batch scripts**.
    1. Open **Windows Terminal** App. (Either right click **Start** and select **Terminal** or search for **Terminal** in the start menu).
    2. Press **Ctrl + ,** (comma) to open **Settings**.
    3. Change your **Default terminal application** to **Windows Console Host** and click **Save**. Copy magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10).
 2. Windows Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to click **More info** and click **Run Anyway** for it to go away.
 
 ### Installation 
-[Why is this complicated?](#2-why-is-the-installation-so-complicated)
 #### Basic
 1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/latest) or [here](https://advanced-youtube-client-ayc.sourceforge.io/).
 2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
@@ -53,6 +52,8 @@ Before running AYC you need to make sure of the following.
 4. Example: If target is `"C:\Users\Joe\AYClient.bat"`, change it to `cmd.exe /c "C:\Users\Joe\AYClient.bat"`.
 5. Click **Change icon** button and select the included **ayc.ico** file and click **Apply**.
 6. Now you can right click the created shortcut and select "Pin to taskbar".
+
+[Why is this complicated?](#2-why-is-the-installation-so-complicated)
 
 ## Features
 
