@@ -375,7 +375,7 @@ echo.
 if %is_batch% == 1 echo   (0) - Back
 if %is_batch% == 1 echo.
 echo  Choose format
-echo ------------------------------------------------------------
+call :borderSmall
 echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
@@ -384,7 +384,7 @@ echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
 echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
 echo.
-echo ------------------------------------------------------------
+call :borderSmall
 echo  Audio Only
 echo.
 echo   (4) - M4A  - AAC Audio  - 128kbps
@@ -393,7 +393,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
-echo ------------------------------------------------------------
+call :borderSmall
 echo.
 if %is_batch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
 if %is_batch% == 1 choice /c 0123456 /n /m "Enter Choice (0-6): "
@@ -1086,6 +1086,7 @@ if %loc_invalid% == 1 echo  Invalid download folder:
 echo  %loc%
 echo.
 echo ----------------------------------------------
+echo.
 echo  Drag and Drop the folder you want AYC to save
 echo  it's downloads into the below area.
 echo.
@@ -1093,6 +1094,7 @@ echo  Then Press Enter to save.
 echo.
 if %loc_invalid% == 0 echo  Leave blank and Enter to Go Back.
 if %loc_invalid% == 1 echo  Or Enter R to reset AYC to default.
+echo.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
