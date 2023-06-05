@@ -1144,7 +1144,7 @@ echo.
 echo ------------------------------------------------------------
 echo.
 set /p settings_try=No. of Rechecks: 
-if %settings_try%p equ p goto settings
+if not defined settings_try goto settings
 if %try_invalid% == 1 if %settings_try% == r goto reset
 if %try_invalid% == 1 if %settings_try% == R goto reset
 echo "%settings_try%">"%aycdata%\try.txt"
