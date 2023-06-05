@@ -58,7 +58,7 @@ set /p external_version=<"%aycdata%\external_version.txt"
 set external_version=%external_version:"=%
 if NOT %external_version% == %internal_version% set version_mismatch=1 && goto reset
 
-if not exist "%aycdata%\first_run.txt" call :firstRun
+if not exist "%aycdata%\first_run.txt" goto firstRun
 
 if not exist "%aycdata%\dir.txt" call :dirMissing
 set /p loc=<"%aycdata%\dir.txt"
@@ -95,9 +95,30 @@ goto checkParameter
 mode %window_medium%
 color 07
 title Welcome to AYC
-echo "0">"%aycdata%\first_run.txt"
 cls
 call :bannerMedium
+echo.
+echo WARNING!!!
+echo.
+echo Please follow the instructions at GitHub first on how to properly install AYC. 
+echo.
+echo Press Enter to open instructions.
+pause>NUL
+start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#instructions"
+echo.
+echo Make sure you finished all the prerequisites.
+echo.
+echo After setting up, enter the magic phrase below.
+echo.
+echo This is to ensure you read the instructions and followed it through.
+echo.
+:firstRun2
+set "magic_phrase_input="
+set /p magic_phrase_input=Enter magic phrase: 
+set magic_phrase_input=%magic_phrase_input: =%
+if "%magic_phrase_input%" equ "" goto firstRun2
+if "%magic_phrase_input%" equ " =" goto firstRun2
+call :magic_verify
 echo.
 echo Preparing for first run..
 echo.
@@ -106,7 +127,8 @@ echo Please wait, updating yt-dlp..
 %youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
-goto :EOF
+call :magic_completed
+exit
 
 
 :externalVersionMissing
@@ -1254,6 +1276,39 @@ echo  AYC reset succesfully.
 echo.
 timeout /t 5 /nobreak
 goto exit
+
+
+:magic_verify
+set magic_passed=1
+if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" set magic_passed=0
+if %magic_passed% == 0 (
+    cls
+    echo.
+    echo Sorry. You can't use this script.
+    echo.
+    echo I have recieved complaints about AYC being broken from a lot of people who can't even follow simple instructions.
+    echo.
+    echo I've been doing this for free for 7 years now because I use it everyday and it's better than every other ad infested, broken or slow video downloaders. I don't want the additional burden of supporting people who can't read.
+    echo.
+    echo Press Enter to exit.
+    pause>NUL
+    exit
+)
+goto :EOF
+
+
+:magic_completed
+if not %magic_passed% == 0 (
+    echo "0">"%aycdata%\first_run.txt"
+)
+echo.
+echo I hope you read the instructions.
+echo.
+echo Don't cheat. You're not gaining anything.
+echo.
+echo You can restart AYC now. Press Enter to close.
+pause>NUL
+goto :EOF
 
 
 :about

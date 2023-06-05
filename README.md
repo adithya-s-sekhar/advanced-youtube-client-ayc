@@ -34,7 +34,7 @@ Before running AYC you need to make sure of the following.
 1. **Windows Console Host MUST be the default terminal application for batch scripts**. (See [#5094](https://github.com/microsoft/terminal/issues/5094)).
    1. Open **Windows Terminal** App. (Either right click **Start** and select **Terminal** or search for **Terminal** in the start menu).
    2. Press **Ctrl + ,** (comma) to open **Settings**.
-   3. Change your **Default terminal application** to **Windows Console Host** and click **Save**.
+   3. Change your **Default terminal application** to **Windows Console Host** and click **Save**. Copy magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10).
 2. Windows Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to click **More info** and click **Run Anyway** for it to go away.
 
 ### Installation 
