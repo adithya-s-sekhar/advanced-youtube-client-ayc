@@ -1092,16 +1092,17 @@ echo  it's downloads into the below area.
 echo.
 echo  Then Press Enter to save.
 echo.
-if %loc_invalid% == 0 echo  Leave blank and Enter to Go Back.
-if %loc_invalid% == 1 echo  Or Enter R to reset AYC to default.
+echo  Leave blank and Enter to Go Back.
+echo.
+echo  Or Enter R to reset AYC to default.
 echo.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
 if not defined settings_dir goto settings
 set settings_dir=%settings_dir:"=%
-if %loc_invalid% == 1 if "%settings_dir%" == "r" goto reset
-if %loc_invalid% == 1 if "%settings_dir%" == "R" goto reset
+if "%settings_dir%" == "r" goto reset
+if "%settings_dir%" == "R" goto reset
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
