@@ -63,12 +63,20 @@ You can call it a console front end if you want.
 ## Instructions
 
 When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Please don't skip this.**([?](#3-why-do-i-have-to-do-magic-phrases-and-others))
+
+### Windows 10/11 users
+
 1. Change where batch scripts open by default.
     1. Open **Windows Terminal** App. (Either right click **Start** and select **Terminal** or search for **Terminal** in the start menu).
     2. Press `Ctrl + ,` (comma) to open **Settings**.
     3. Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
     4. You can now close this terminal.
-2. Go back to AYC, copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10) and paste it into the field. This is to ensure that you actually read the instructions.
+2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
+
+### Windows 7/8/8.1 users
+
+1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
+
 - [How to pin AYC to taskbar for easy access?](#complete)
 
 ## Build an .exe (Old way)
