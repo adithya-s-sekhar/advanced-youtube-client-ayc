@@ -760,7 +760,6 @@ goto batchManage
 
 
 :batchAddLinks
-set url_invalid=1
 mode %window_small%
 color 07
 title Enter 0 to go back after adding links.
@@ -778,6 +777,7 @@ echo.
 
 
 :batchAddLinksLoop
+set url_invalid=1
 set /p batch_link_tmp=Paste Link: 
 if "%batch_link_tmp%" equ "" (
     echo URL is blank.
