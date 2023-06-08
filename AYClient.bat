@@ -106,8 +106,6 @@ echo  Press Enter to open instructions.
 pause>NUL
 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#instructions"
 echo.
-echo  Make sure you finished all the prerequisites.
-echo.
 echo  After setting up, enter the magic phrase below.
 echo.
 echo  This is to ensure you read the instructions and followed it through.
