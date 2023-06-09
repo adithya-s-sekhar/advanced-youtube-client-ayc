@@ -1092,7 +1092,7 @@ echo  Then Press Enter to save.
 echo.
 echo  Leave blank and Enter to Go Back.
 echo.
-echo  Or Enter R to reset AYC to default.
+echo  Or Enter R to reset to default location.
 echo.
 echo ----------------------------------------------
 echo.
@@ -1100,8 +1100,8 @@ set /p settings_dir=Drag and Drop here:
 if %loc_invalid% == 0 if not defined settings_dir goto settings
 if %loc_invalid% == 1 if not defined settings_dir goto settingsChangeDir
 set settings_dir=%settings_dir:"=%
-if "%settings_dir%" == "r" goto reset
-if "%settings_dir%" == "R" goto reset
+if "%settings_dir%" == "r" set settings_dir=%cd%\Output
+if "%settings_dir%" == "R" set settings_dir=%cd%\Output
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
