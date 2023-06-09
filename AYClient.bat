@@ -1132,7 +1132,7 @@ if %try_invalid% == 1 (
     echo.
     echo  Invalid value detected: %defined_try%
     echo. 
-    echo  Enter a number or Enter R to reset
+    echo  Enter a number or Enter R to reset to default value.
 )
 if %try_invalid% == 0 (
     echo.
@@ -1146,8 +1146,8 @@ echo.
 set /p settings_try=No. of Rechecks: 
 if %try_invalid% == 0 if not defined settings_try goto settings
 if %try_invalid% == 1 if not defined settings_try goto settingsChangeDefinedTry
-if %try_invalid% == 1 if %settings_try% == r goto reset
-if %try_invalid% == 1 if %settings_try% == R goto reset
+if %try_invalid% == 1 if %settings_try% == r set settings_try=0
+if %try_invalid% == 1 if %settings_try% == R set settings_try=0
 echo "%settings_try%">"%aycdata%\try.txt"
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
