@@ -1097,7 +1097,8 @@ echo.
 echo ----------------------------------------------
 echo.
 set /p settings_dir=Drag and Drop here: 
-if not defined settings_dir goto settings
+if %loc_invalid% == 0 if not defined settings_dir goto settings
+if %loc_invalid% == 1 if not defined settings_dir goto settingsChangeDir
 set settings_dir=%settings_dir:"=%
 if "%settings_dir%" == "r" goto reset
 if "%settings_dir%" == "R" goto reset
