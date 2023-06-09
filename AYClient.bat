@@ -1312,9 +1312,9 @@ if not %magic_passed% == 0 (
     echo "0">"%aycdata%\first_run.txt"
 )
 echo.
-echo  I hope you read the instructions.
+echo  Hope you read the instructions.
 echo.
-echo  Don't cheat. You're not gaining anything.
+echo  First run finished.
 echo.
 echo  You can restart AYC now. Press Enter to close.
 pause>NUL
