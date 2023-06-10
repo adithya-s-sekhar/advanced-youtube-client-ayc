@@ -36,8 +36,14 @@ if not exist "%aycdata%\try.txt" call :tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
-if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
-set try_invalid=0
+if not %errorlevel% == 0 (
+    set try_invalid=1
+) else (
+    set try_invalid=0
+)
+
+if %try_invalid% == 1 goto settingsChangeDefinedTry
+
 
 if not exist "%aycdata%\aria2_status.txt" call :aria2StatusMissing
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
