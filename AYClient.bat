@@ -84,12 +84,12 @@ for /f "tokens=1 delims=&" %%a in ("%url%") do (
 set url=%url: =%
 if "%url%" equ "" set show_quickkey=1 && goto start
 if "%url%" equ " =" set show_quickkey=1 && goto start
-if "%url%" equ "b" set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
-if "%url%" equ "B" set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
-if "%url%" equ "m" set show_quickkey=0 && set url_invalid=0 && goto more
-if "%url%" equ "M" set show_quickkey=0 && set url_invalid=0 && goto more
-if "%url%" equ "s" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && call settingsMenu
-if "%url%" equ "S" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && call settingsMenu
+if "%url%" equ "b" goto quickKeyRedirector
+if "%url%" equ "B" goto quickKeyRedirector
+if "%url%" equ "m" goto quickKeyRedirector
+if "%url%" equ "M" goto quickKeyRedirector
+if "%url%" equ "s" goto quickKeyRedirector
+if "%url%" equ "S" goto quickKeyRedirector
 
 echo %url% | findstr /I /R "^http://" > nul
 if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
@@ -99,6 +99,17 @@ if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.
 
 set show_quickkey=1
 set url_invalid=1
+goto start
+
+:quickKeyRedirector
+set show_quickkey=0
+set url_invalid=0
+if "%url%" equ "b" start AYClient.bat "b"
+if "%url%" equ "B" start AYClient.bat "b"
+if "%url%" equ "m" goto more
+if "%url%" equ "M" goto more
+if "%url%" equ "s" set from_url=1 && call settingsMenu
+if "%url%" equ "S" set from_url=1 && call settingsMenu
 goto start
 
 
