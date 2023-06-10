@@ -26,9 +26,9 @@ cls
 
 if not exist "%aycdata%\first_run.txt" call firstRun
 
-if %loc_invalid% == 1 goto settingsChangeDir
+if %loc_invalid% == 1 call settingsChangeDir
 
-if %try_invalid% == 1 goto settingsChangeDefinedTry
+if %try_invalid% == 1 call settingsChangeDefinedTry
 
 :checkParameter
 if %ayc.arg1%p equ p goto start
@@ -88,8 +88,8 @@ if "%url%" equ "b" set show_quickkey=0 && set url_invalid=0 && start AYClient.ba
 if "%url%" equ "B" set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
 if "%url%" equ "m" set show_quickkey=0 && set url_invalid=0 && goto more
 if "%url%" equ "M" set show_quickkey=0 && set url_invalid=0 && goto more
-if "%url%" equ "s" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && goto settings
-if "%url%" equ "S" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && goto settings
+if "%url%" equ "s" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && call settingsMenu
+if "%url%" equ "S" set show_quickkey=0 && set url_invalid=0 && set from_url=1 && call settingsMenu
 
 echo %url% | findstr /I /R "^http://" > nul
 if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
@@ -303,7 +303,7 @@ echo.
 choice /c 012345 /n /m "Enter Choice (0-5): "
 if %errorlevel% == 1 goto start
 if %errorlevel% == 2 start AYClient.bat "b" && goto more
-if %errorlevel% == 3 goto settings
+if %errorlevel% == 3 call settingsMenu
 if %errorlevel% == 4 goto about
 if %errorlevel% == 5 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
 if %errorlevel% == 6 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
@@ -770,240 +770,6 @@ pause>NUL
 if %error_mode% == batch goto batch
 if %error_mode% == uni exit
 if %error_mode% == regular goto exit
-
-
-:settings
-mode %window_small%
-color 07
-title AYC Settings
-cls
-call gui bannerSmall
-echo.
-echo  (0) - Back
-echo.
-echo  (1) - Change Download Folder
-echo        Currently: %loc%
-echo.
-echo  (2) - Number of Rechecks
-echo        Currently: %defined_try%
-echo.
-echo  (3) - Update yt-dlp (fixes most issues)
-echo        Currently: %youtube_dl_version%
-echo.
-echo  (4) - Force aria2 on all downloads
-if %aria2_status% == 0 echo        [Disabled]
-if %aria2_status% == 1 echo        [Enabled]
-echo.
-echo  (5) - Embed Thumbnails
-if %thumbs_status% == 0 echo        [Disabled]
-if %thumbs_status% == 1 echo        [Enabled]
-echo.
-echo  (6) - Embed Subtitles
-if %subs_status% == 0 echo        [Disabled]
-if %subs_status% == 1 echo        [Enabled]
-echo.
-echo  (7) - Reset AYC
-echo.
-echo -----------------------------------
-echo.
-choice /c 01234567 /n /m "Select Option (0-7): "
-if %errorlevel% == 1 if %from_url% == 1 goto start
-if %errorlevel% == 1 if %from_url% == 0 goto more
-if %errorlevel% == 2 goto settingsChangeDir
-if %errorlevel% == 3 goto settingsChangeDefinedTry
-if %errorlevel% == 4 goto update
-if %errorlevel% == 5 goto settingsChangeAria2
-if %errorlevel% == 6 goto settingsChangeThumbs
-if %errorlevel% == 7 goto settingsChangeSubs
-if %errorlevel% == 8 goto reset
-
-
-:settingsChangeDir
-mode %window_small%
-color 07
-title Change Download Location
-cls
-set "settings_dir="
-call gui bannerSmall
-echo.
-if %loc_invalid% == 0 echo  Current download folder is:
-if %loc_invalid% == 1 echo  Invalid download folder:
-echo  %loc%
-echo.
-echo ----------------------------------------------
-echo.
-echo  Drag and Drop the folder you want AYC to save
-echo  it's downloads into the below area.
-echo.
-echo  Then Press Enter to save.
-echo.
-echo  Leave blank and Enter to Go Back.
-echo.
-echo  Or Enter R to reset to default location.
-echo.
-echo ----------------------------------------------
-echo.
-set /p settings_dir=Drag and Drop here: 
-if %loc_invalid% == 0 if not defined settings_dir goto settings
-if %loc_invalid% == 1 if not defined settings_dir goto settingsChangeDir
-set settings_dir=%settings_dir:"=%
-if "%settings_dir%" == "r" set settings_dir=%cd%\Output
-if "%settings_dir%" == "R" set settings_dir=%cd%\Output
-echo "%settings_dir%">"%aycdata%\dir.txt"
-set /p loc=<"%aycdata%\dir.txt"
-set loc=%loc:"=%
-if not exist "%loc%\" md "%loc%"
-if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir
-if %loc_invalid% == 1 if exist "%loc%\" set loc_invalid=0 && goto begin
-goto settings
-
-
-:settingsChangeDefinedTry
-mode %window_small%
-color 07
-title Change recheck attempts
-cls
-set "settings_try="
-call gui bannerSmall
-echo.
-echo  Change recheck attempts
-echo.
-echo  On unstable connections, playlist/batch download can 
-echo  sometimes miss a file and will fail the download.
-echo.
-echo  The number you set here is the number of times AYC will 
-echo  recheck the download to see if any files are missing.
-echo.
-echo  If it found any, that missing file will be downloaded.
-if %try_invalid% == 1 (
-    echo.
-    echo  Invalid value detected: %defined_try%
-    echo. 
-    echo  Enter a number or Enter R to reset to default value.
-)
-if %try_invalid% == 0 (
-    echo.
-    echo  Current value: %defined_try%
-    echo.
-    echo  Leave blank and Enter to go back.
-)
-echo.
-echo ------------------------------------------------------------
-echo.
-set /p settings_try=No. of Rechecks: 
-if %try_invalid% == 0 if not defined settings_try goto settings
-if %try_invalid% == 1 if not defined settings_try goto settingsChangeDefinedTry
-if %try_invalid% == 1 if %settings_try% == r set settings_try=0
-if %try_invalid% == 1 if %settings_try% == R set settings_try=0
-echo "%settings_try%">"%aycdata%\try.txt"
-set /p defined_try=<"%aycdata%\try.txt"
-set defined_try=%defined_try:"=%
-echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
-if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
-if %try_invalid% == 1 set try_invalid=0 && goto begin
-goto settings
-
-
-:update
-mode %window_small%
-color 07
-title Update yt-dlp
-cls
-call gui bannerSmall
-echo.
-echo  Checking for updates..
-%youtube_dl% -U
-%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
-set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
-set youtube_dl_version=%youtube_dl_version:"=%
-echo.
-echo  Press Enter to go back.
-pause>NUL
-goto settings
-
-
-:settingsChangeAria2
-if %aria2_status% == 0 (
-    set aria2_status=1
-    echo "1">"%aycdata%\aria2_status.txt"
-    goto settings
-)
-if %aria2_status% == 1 (
-    set aria2_status=0
-    echo "0">"%aycdata%\aria2_status.txt"
-    goto settings
-)
-
-
-:settingsChangeThumbs
-if %thumbs_status% == 0 (
-    set thumbs_status=1
-    echo "1">"%aycdata%\thumbs_status.txt"
-    goto settings
-)
-if %thumbs_status% == 1 (
-    set thumbs_status=0
-    echo "0">"%aycdata%\thumbs_status.txt"
-    goto settings
-)
-
-
-:settingsChangeSubs
-if %subs_status% == 0 (
-    set subs_status=1
-    echo "1">"%aycdata%\subs_status.txt"
-    goto settings
-)
-if %subs_status% == 1 (
-    set subs_status=0
-    echo "0">"%aycdata%\subs_status.txt"
-    goto settings
-)
-
-
-:reset
-mode %window_small%
-color 04
-title Reset AYC
-cls
-call gui bannerSmall
-echo.
-echo  You are about to reset AYC to it's default settings.
-echo.
-echo  This should fix any issues caused by incorrect or corrupted settings.
-echo.
-echo ------------------------
-echo.
-echo  (0) - Back
-echo.
-echo  (1) - Reset and Exit AYC
-echo.
-echo ------------------------
-echo.
-choice /C 01 /n /m "Choose option (0-1): "
-if %errorlevel% == 1 goto settings
-goto resetFinish
-
-
-:resetFinish
-mode %window_small%
-del /q "%aycdata%\first_run.txt"
-del /q "%aycdata%\dir.txt"
-del /q "%aycdata%\try.txt"
-del /q "%aycdata%\aria2_status.txt"
-del /q "%aycdata%\thumbs_status.txt"
-del /q "%aycdata%\subs_status.txt"
-del /q "%aycdata%\external_version.txt"
-rd /s /q "%aycdata%"
-title Reset Succesfully
-color 02
-cls
-call gui bannerSmall
-echo.
-echo  AYC reset succesfully.
-echo.
-timeout /t 5 /nobreak
-goto exit
 
 
 :about

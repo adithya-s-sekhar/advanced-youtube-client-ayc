@@ -1,3 +1,4 @@
+set path=%path%;%cd%\scripts\settings
 set version=v3.28 (05/Jun/2023)
 set error_format=0
 set error_mode=0
