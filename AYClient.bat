@@ -28,8 +28,9 @@ if not exist "%aycdata%\first_run.txt" call firstRun
 if not exist "%aycdata%\dir.txt" call :dirMissing
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
-if not exist "%loc%\" call :locMissing
-if exist "%loc%" set loc_invalid=0
+if not exist "%loc%\" md "%loc%"
+if not exist "%loc%\" set loc_invalid=1
+if exist "%loc%\" set loc_invalid=0
 
 if not exist "%aycdata%\try.txt" call :tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
@@ -66,10 +67,6 @@ md "%cd%\Output"
 echo "%cd%\Output">"%aycdata%\dir.txt"
 goto :EOF
 
-:locMissing
-md "%loc%"
-if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir
-goto :EOF
 
 :tryMissing
 echo "0">"%aycdata%\try.txt"
