@@ -29,8 +29,13 @@ if not exist "%aycdata%\dir.txt" call :dirMissing
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
 if not exist "%loc%\" md "%loc%"
-if not exist "%loc%\" set loc_invalid=1
-if exist "%loc%\" set loc_invalid=0
+if not exist "%loc%\" (
+    set loc_invalid=1
+) else (
+    set loc_invalid=0
+)
+
+if %loc_invalid% == 1 goto settingsChangeDir
 
 if not exist "%aycdata%\try.txt" call :tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
