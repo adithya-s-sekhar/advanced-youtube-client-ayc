@@ -657,8 +657,11 @@ echo.
 echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge or GitHub page. 
 echo.
-if NOT %error_mode% == regular echo  Press enter to try again.
-if %error_mode% == regular echo  Press enter to close this window.
+if %error_mode% == batch (
+    echo  Press enter to try again.
+) else (
+    echo  Press enter to close this window.
+)
 pause>NUL
 if %error_mode% == batch goto batch
 if %error_mode% == uni goto exit
