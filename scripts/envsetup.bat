@@ -1,4 +1,5 @@
-set path=%path%;%cd%\scripts\settings
+set scripts_path=%cd%\scripts
+set path=%path%;%scripts_path%\settings;%scripts_path%\tui;%scripts_path%\pages
 set version=v3.28 (05/Jun/2023)
 set error_format=0
 set error_mode=0
