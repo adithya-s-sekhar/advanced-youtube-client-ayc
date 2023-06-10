@@ -99,22 +99,14 @@ MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](http
 
 ### 3. Why do I have to do magic phrases and others?
 
-To put it simply
+AYC uses a command `mode` to dynamically resize window size to fit and disaply all it's content. This works on **Windows Console Host**, the application which ran .bat batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
 
-- AYC uses `mode` to change window sizes dynamically and fit all its contents to screen.
-- Windows Console Host was the application where batch scripts ran for 30 years.
-- Windows Console Host supports `mode`.
-- So, AYC works perfectly in Windows Console Host.
-- Windows Terminal was released. It's a good terminal app but it's not finished. It's lacking some really important features.
-- One of the features it's missing is `mode`. **So AYC is broken in Windows Terminal**.
-- There is still a toggle to switch to the actually working Windows Console Host. But you have to change it manually.
-- People not realizing this starts complaining to me.
-- I wrote extensive instructions and revised multiple times to solve it. People don't read. Can't blame them, we all accept Terms and Conditions without reading. Kyle did it.
-- Report to Microsoft? Done. ([#5094](https://github.com/microsoft/terminal/issues/5094), [#5079](https://github.com/microsoft/terminal/issues/5079), [#5651](https://github.com/microsoft/terminal/issues/5651), [#5753](https://github.com/microsoft/terminal/issues/5753), [#2630](https://github.com/microsoft/terminal/issues/2630), [#6392](https://github.com/microsoft/terminal/issues/6392), [#40](https://github.com/vladdeSV/scone/issues/40), [#6832](https://github.com/microsoft/terminal/issues/6832), [#7082](https://github.com/microsoft/terminal/issues/7082), [#7232](https://github.com/microsoft/terminal/issues/7232), [#7466](https://github.com/microsoft/terminal/issues/7466), [#7623](https://github.com/microsoft/terminal/issues/7623), [#7605](https://github.com/microsoft/terminal/issues/7605), [#8581](https://github.com/microsoft/terminal/issues/8581), [#8673](https://github.com/microsoft/terminal/issues/8673), [#9113](https://github.com/microsoft/terminal/issues/9113), [#11033](https://github.com/microsoft/terminal/issues/11033), [#12929](https://github.com/microsoft/terminal/issues/12929), [#13232](https://github.com/microsoft/terminal/issues/13232), [#13392](https://github.com/microsoft/terminal/issues/13392), [#13375](https://github.com/microsoft/terminal/issues/13375), [#13441](https://github.com/microsoft/terminal/issues/13441), [#13564](https://github.com/microsoft/terminal/issues/13564), [#13006](https://github.com/microsoft/terminal/issues/13006), [#13911](https://github.com/microsoft/terminal/issues/13911), [#13940](https://github.com/microsoft/terminal/issues/13940), [#14487](https://github.com/microsoft/terminal/issues/14487), [#14568](https://github.com/microsoft/terminal/issues/14568), [#14622](https://github.com/microsoft/terminal/issues/14622), [#15297](https://github.com/microsoft/terminal/issues/15297)).
-- Prevent AYC from running inside Windows Terminal? They won't let anyone detect if anything is running in Windows Terminal or Windows Console Host. ([#7434](https://github.com/microsoft/terminal/issues/7434),...)
-- So I blocked people from using the script until they read instructions and **maybe** did the changes it need. I said maybe because there still isn't a way to detect it.
+Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the feature it's missing is `mode`. 
+
+So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
+
+So AYC now makes all first time users go through this once before continuing.
   
-
 ## Developer notes
 
 - The script is lacking documentation. Unfortunately, I am too busy looking for a job to have time to write it. Hope it's readable. Any PR adding documentation is also welcome.    
