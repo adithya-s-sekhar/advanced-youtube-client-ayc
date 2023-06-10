@@ -1,5 +1,5 @@
 set scripts_path=%cd%\scripts
-set path=%path%;%scripts_path%\lib;%scripts_path%\pages;%scripts_path%\settings;%scripts_path%\tui;%scripts_path%\downloader\uni;
+set path=%path%;%scripts_path%\downloader;%scripts_path%\lib;%scripts_path%\pages;%scripts_path%\settings;%scripts_path%\tui;%scripts_path%\downloader\uni;
 set version=v3.28 (05/Jun/2023)
 set error_format=0
 set error_mode=0
