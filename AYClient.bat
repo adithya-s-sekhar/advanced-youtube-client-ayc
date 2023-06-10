@@ -1,5 +1,7 @@
 @echo off
 
+set ayc.arg1=%1
+
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
 :: / Advanced Youtube Client - AYC Script                     /
@@ -29,10 +31,10 @@ if %loc_invalid% == 1 goto settingsChangeDir
 if %try_invalid% == 1 goto settingsChangeDefinedTry
 
 :checkParameter
-if %1p equ p goto start
-if %1% equ "b" goto batch
-if %1% equ "B" goto batch
-set url=%1%
+if %ayc.arg1%p equ p goto start
+if %ayc.arg1% equ "b" goto batch
+if %ayc.arg1% equ "B" goto batch
+set url=%ayc.arg1%
 set url=%url:"=%
 echo %url%| findstr /i /r /c:"^https://www.youtube.com"
 if %errorlevel% == 0 goto formatSelector
