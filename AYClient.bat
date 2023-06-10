@@ -111,8 +111,8 @@ set show_quickkey=0
 set url_invalid=0
 if "%url%" equ "b" start AYClient.bat "b"
 if "%url%" equ "B" start AYClient.bat "b"
-if "%url%" equ "m" goto more
-if "%url%" equ "M" goto more
+if "%url%" equ "m" call moreMenu
+if "%url%" equ "M" call moreMenu
 if "%url%" equ "s" set from_url=1 && call settingsMenu
 if "%url%" equ "S" set from_url=1 && call settingsMenu
 goto start
@@ -293,37 +293,6 @@ if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%
 set /a try=%try%+1
 if %try% GTR %defined_try% goto error
 goto downloadTried
-
-
-:more
-mode %window_small%
-color 07
-title More Options
-cls
-call tui bannerSmall
-echo.
-echo  (0) - Back
-echo.
-echo  (1) - Batch Mode         QuickKey: B
-echo.
-echo  (2) - Settings           QuickKey: S
-echo.
-echo  (3) - About
-echo.
-echo  (4) - Visit on GitHub
-echo.
-echo  (5) - Visit on Sourceforge
-echo.
-echo -------------------
-echo.
-choice /c 012345 /n /m "Enter Choice (0-5): "
-if %errorlevel% == 1 goto start
-if %errorlevel% == 2 start AYClient.bat "b" && goto more
-if %errorlevel% == 3 call settingsMenu
-if %errorlevel% == 4 call about
-if %errorlevel% == 5 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if %errorlevel% == 6 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-goto more
 
 
 :uni
