@@ -3,7 +3,7 @@ mode %window_small%
 color 04
 title Reset AYC
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  You are about to reset AYC to it's default settings.
 echo.
@@ -35,7 +35,7 @@ rd /s /q "%aycdata%"
 title Reset Succesfully
 color 02
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  AYC reset succesfully.
 echo.

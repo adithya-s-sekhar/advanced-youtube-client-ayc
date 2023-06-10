@@ -3,7 +3,7 @@ mode %window_small%
 color 07
 title You're a curious one..
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo   Advanced Youtube Client - AYC Script
 echo.

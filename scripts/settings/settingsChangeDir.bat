@@ -4,7 +4,7 @@ color 07
 title Change Download Location
 cls
 set "settings_dir="
-call gui bannerSmall
+call tui bannerSmall
 echo.
 if %loc_invalid% == 0 echo  Current download folder is:
 if %loc_invalid% == 1 echo  Invalid download folder:

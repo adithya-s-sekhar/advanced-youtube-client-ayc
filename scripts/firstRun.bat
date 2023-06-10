@@ -3,7 +3,7 @@ mode %window_medium%
 color 07
 title Welcome to AYC
 cls
-call gui bannerMedium
+call tui bannerMedium
 echo.
 echo  WARNING!!!
 echo.
@@ -42,7 +42,7 @@ if %magic_passed% == 0 (
     mode %window_medium%
     title PEBKAC
     cls
-    call gui bannerMedium
+    call tui bannerMedium
     echo.
     echo  Sorry, you can't use this script.
     echo.

@@ -3,7 +3,7 @@ mode %window_small%
 color 07
 title AYC Settings
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.

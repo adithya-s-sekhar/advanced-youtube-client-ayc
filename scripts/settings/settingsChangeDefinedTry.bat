@@ -4,7 +4,7 @@ color 07
 title Change recheck attempts
 cls
 set "settings_try="
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Change recheck attempts
 echo.

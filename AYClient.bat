@@ -63,7 +63,7 @@ color 07
 set "url="
 title Saving to %loc%
 cls
-call gui bannerMedium
+call tui bannerMedium
 echo.
 echo Enter M for more options.
 echo.
@@ -108,7 +108,7 @@ color 07
 if %is_batch% == 0 title Link Recieved
 if %is_batch% == 1 title Choose format
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
@@ -120,7 +120,7 @@ echo.
 if %is_batch% == 1 echo   (0) - Back
 if %is_batch% == 1 echo.
 echo  Choose format
-call gui borderSmall
+call tui borderSmall
 echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
@@ -129,7 +129,7 @@ echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
 echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
 echo.
-call gui borderSmall
+call tui borderSmall
 echo  Audio Only
 echo.
 echo   (4) - M4A  - AAC Audio  - 128kbps
@@ -138,7 +138,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
-call gui borderSmall
+call tui borderSmall
 echo.
 if %is_batch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
 if %is_batch% == 1 choice /c 0123456 /n /m "Enter Choice (0-6): "
@@ -165,7 +165,7 @@ if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/OPUS Audio)
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
@@ -176,26 +176,26 @@ if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Back
 echo.
-call gui borderSmall
+call tui borderSmall
 echo  Choose Maximum Quality
 echo.
 echo   (1) - 144p 
 echo   (2) - 240p   (If not available, returns to 144p) 
 echo   (3) - 360p   (If not available, returns to 240p) 
 echo.
-call gui borderSmall
+call tui borderSmall
 echo.
 echo   (4) - 480p   (If not available, returns to 360p) 
 echo   (5) - 720p   (If not available, returns to 480p) 
 echo   (6) - 1080p  (If not available, returns to 720p) 
 echo.
-if NOT %format_chosen% == h264 call gui borderSmall
+if NOT %format_chosen% == h264 call tui borderSmall
 if NOT %format_chosen% == h264 echo.
 if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
 if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if not %format_chosen% == h264 echo.
-call gui borderSmall
+call tui borderSmall
 if %format_chosen% == vp9  goto choiceVp9
 if %format_chosen% == av1  goto choiceAv1
 echo.
@@ -263,7 +263,7 @@ mode %window_small%
 color 0B
 title Downloading
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -284,7 +284,7 @@ mode %window_small%
 color 07
 title More Options
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
@@ -315,13 +315,13 @@ mode %window_small%
 color 07
 title Link Recieved
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  URL: %uni_url%
 echo.
 echo  Non-YouTube link detected.
 echo.
-call gui borderSmall
+call tui borderSmall
 echo.
 echo  Choose Format
 echo.
@@ -331,7 +331,7 @@ echo   (2) - Lowest Quality
 echo.
 echo   (3) - Show all available formats
 echo.
-call gui borderSmall
+call tui borderSmall
 echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
@@ -345,7 +345,7 @@ set "uni_qual="
 color 07
 title Select Quality
 cls
-call gui bannerLarge
+call tui bannerLarge
 echo.
 echo  URL: %uni_url%
 echo.
@@ -377,7 +377,7 @@ mode %window_small%
 color 0B
 title Finger's Crossed! How's the weather?
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -397,7 +397,7 @@ color 07
 title Batch Mode
 set "job_name="
 cls
-call gui bannerMedium
+call tui bannerMedium
 echo.
 if %batch_deleted_job% == 1 (
     echo  Deleted job: %batch_deleted_job_name%
@@ -441,7 +441,7 @@ mode %window_small%
 color 07
 title Now working on %job_name%
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
@@ -482,7 +482,7 @@ mode %window_small%
 title Edit Job File
 color 07
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
@@ -510,7 +510,7 @@ color 07
 title Enter 0 to go back after adding links.
 set "batch_link_tmp="
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Paste each url and press enter, the links will be added to 
 echo  your list.
@@ -567,7 +567,7 @@ color 07
 title Select Quality
 set "batch_link_tmp="
 cls
-call gui bannerSmall
+call tui bannerSmall
 if %youtube% == 1 set is_batch=1 && goto formatSelector
 if %youtube% == 0 echo.
 echo  Select Quality
@@ -596,7 +596,7 @@ set "batch_custom_format_url="
 color 07
 title Pick custom format code
 cls
-call gui bannerMedium
+call tui bannerMedium
 echo.
 echo  Working on: %job_name%
 echo.
@@ -629,7 +629,7 @@ set "batch_custom_qual="
 title Retrieving all available qualities
 color 07
 cls
-call gui bannerLarge
+call tui bannerLarge
 echo.
 echo  Working on: %job_name%
 echo.
@@ -697,7 +697,7 @@ mode %window_small%
 color 0B
 title Downloading
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -717,7 +717,7 @@ mode %window_small%
 color 4F
 title Download Failed!
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Download Failed!!!! :-(
 echo.
@@ -758,7 +758,7 @@ mode %window_small%
 color 2F
 title Download Finished
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%

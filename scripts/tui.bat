@@ -1,6 +1,6 @@
-set gui.arg1=%~1
+set tui.arg1=%~1
 
-call :%gui.arg1%
+call :%tui.arg1%
 
 goto :EOF
 

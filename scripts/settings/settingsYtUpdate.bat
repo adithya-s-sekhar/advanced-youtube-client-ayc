@@ -3,7 +3,7 @@ mode %window_small%
 color 07
 title Update yt-dlp
 cls
-call gui bannerSmall
+call tui bannerSmall
 echo.
 echo  Checking for updates..
 %youtube_dl% -U
