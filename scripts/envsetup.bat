@@ -59,10 +59,6 @@ set youtube_dl_version=%youtube_dl_version:"=%
 
 goto :EOF
 
-:externalVersionMissing
-echo "%internal_version%">"%aycdata%\external_version.txt"
-goto :EOF
-
 
 :dirMissing
 md "%cd%\Output"
