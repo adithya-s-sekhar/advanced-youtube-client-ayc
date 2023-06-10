@@ -25,9 +25,7 @@ color 07
 cls
 
 if not exist "%aycdata%\first_run.txt" call firstRun
-
 if %loc_invalid% == 1 call settingsChangeDir
-
 if %try_invalid% == 1 call settingsChangeDefinedTry
 
 :checkParameter
@@ -117,6 +115,7 @@ if "%url%" equ "s" call settingsMenu
 if "%url%" equ "S" call settingsMenu
 goto start
 
+
 :regular
 call downloader regular
 if %regular_download_status% == 1 (
@@ -124,6 +123,7 @@ if %regular_download_status% == 1 (
 ) else (
     goto error
 )
+
 
 :uni
 call uniHome
@@ -133,6 +133,7 @@ if %uni_download_status% == 1 (
     goto error
 )
 
+
 :batch
 call downloader batch
 if %batch_download_status% == 1 (
@@ -140,6 +141,7 @@ if %batch_download_status% == 1 (
 ) else (
     goto error
 )
+
 
 :error
 mode %window_small%

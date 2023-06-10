@@ -42,5 +42,4 @@ if %errorlevel% == 5 call settingsToggles ChangeAria2
 if %errorlevel% == 6 call settingsToggles ChangeThumbs
 if %errorlevel% == 7 call settingsToggles ChangeSubs
 if %errorlevel% == 8 call settingsReset
-
 goto :settingsMenu

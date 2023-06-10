@@ -159,7 +159,6 @@ if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 if %subs_status% == 0 set "subs="
 if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 
-
 :downloadTried
 set error_mode=regular
 mode %window_small%
@@ -180,6 +179,7 @@ if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%
 set /a try=%try%+1
 if %try% GTR %defined_try% set regular_download_status=0 && goto :EOF
 goto downloadTried
+
 
 :batchHome
 mode %window_medium%
@@ -213,13 +213,11 @@ if not exist "%loc%\%job_name%" set job_name_invalid=1 && goto batchHome
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batchIsYoutubeCheck
 echo.>"%loc%\%job_name%\%job_name%.txt"
 
-
 :batchIsYoutubeConfirm
 echo.
 choice /c yn /n /m "Is this a YouTube Download Job? (Yes/No) "
 if %errorlevel% == 1 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
 if %errorlevel% == 2 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
-
 
 :batchIsYoutubeCheck
 if not exist "%loc%\%job_name%\is_youtube.txt" goto batchIsYoutubeConfirm
@@ -335,6 +333,7 @@ if %link_validator% == 1 (
     goto batchAddLinksLoop
 )
 
+
 :batchChangeType
 if %youtube% == 0 (
     set youtube=1
@@ -376,6 +375,7 @@ if %errorlevel% == 3 set conf=-f "wv*+wa/w" & set batch_name_end=low
 if %errorlevel% == 4 goto batchCustomFormat
 set format_chosen=batch
 goto batchDownload
+
 
 :batchCustomFormat
 mode %window_medium%
@@ -478,7 +478,6 @@ if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 
 if %subs_status% == 0 set "subs="
 if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
-
 
 :batchDownloadTried
 set error_mode=batch

@@ -35,6 +35,7 @@ set youtube_dl_version=%youtube_dl_version:"=%
 call :magic_completed
 exit
 
+
 :magic_verify
 set magic_passed=1
 if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" set magic_passed=0
