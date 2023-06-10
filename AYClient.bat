@@ -113,8 +113,8 @@ if "%url%" equ "b" start AYClient.bat "b"
 if "%url%" equ "B" start AYClient.bat "b"
 if "%url%" equ "m" call moreMenu
 if "%url%" equ "M" call moreMenu
-if "%url%" equ "s" set from_url=1 && call settingsMenu
-if "%url%" equ "S" set from_url=1 && call settingsMenu
+if "%url%" equ "s" call settingsMenu
+if "%url%" equ "S" call settingsMenu
 goto start
 
 
