@@ -12,38 +12,18 @@
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
 
-set path=%path%;%cd%\bin
-set version=v3.28 (05/Jun/2023)
-set error_format=0
-set error_mode=0
-set is_batch=0
-set pass_to_uni=0
-set window_medium=con:cols=92 lines=26
-set window_small=con:cols=60 lines=35
-set window_large=con:cols=180 lines=500
-set batch_deleted_job=0
-set youtube_dl=0
-set url_invalid=0
-set job_name_invalid=0
-set youtube_dl_version=unknown
-set from_url=0
-set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
-set show_quickkey=0
-
+set path=%path%;%cd%\bin;%cd%\scripts
 
 :begin
+
+call envsetup
+
 mode %window_medium%
 color 07
 cls
 
-if not exist "%cd%\data" md "%cd%\data"
-if not exist "%cd%\Output" md "%cd%\Output"
 
-set aycdata=%cd%\data
-set youtube_dl=yt-dlp.exe
-set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters
-
-if not exist "%aycdata%\first_run.txt" goto firstRun
+if not exist "%aycdata%\first_run.txt" call firstRun
 
 if not exist "%aycdata%\dir.txt" call :dirMissing
 set /p loc=<"%aycdata%\dir.txt"
@@ -74,44 +54,6 @@ set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
 
 goto checkParameter
-
-
-:firstRun
-mode %window_medium%
-color 07
-title Welcome to AYC
-cls
-call :bannerMedium
-echo.
-echo  WARNING!!!
-echo.
-echo  Please follow the instructions at GitHub first on how to properly install AYC. 
-echo.
-echo  Press Enter to open instructions.
-pause>NUL
-start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#instructions"
-echo.
-echo  After setting up, enter the magic phrase below.
-echo.
-echo  This is to ensure you read the instructions and followed it through.
-echo.
-:firstRun2
-set "magic_phrase_input="
-set /p magic_phrase_input=Enter magic phrase: 
-set magic_phrase_input=%magic_phrase_input: =%
-if "%magic_phrase_input%" equ "" goto firstRun2
-if "%magic_phrase_input%" equ " =" goto firstRun2
-call :magic_verify
-echo.
-echo  Preparing for first run..
-echo.
-echo  Please wait, updating yt-dlp..
-%youtube_dl% -U
-%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
-set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
-set youtube_dl_version=%youtube_dl_version:"=%
-call :magic_completed
-exit
 
 
 :externalVersionMissing
@@ -182,7 +124,7 @@ color 07
 set "url="
 title Saving to %loc%
 cls
-call :bannerMedium
+call gui bannerMedium
 echo.
 echo Enter M for more options.
 echo.
@@ -227,7 +169,7 @@ color 07
 if %is_batch% == 0 title Link Recieved
 if %is_batch% == 1 title Choose format
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
@@ -239,7 +181,7 @@ echo.
 if %is_batch% == 1 echo   (0) - Back
 if %is_batch% == 1 echo.
 echo  Choose format
-call :borderSmall
+call gui borderSmall
 echo  Video + Audio
 echo.
 echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
@@ -248,7 +190,7 @@ echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
 echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
 echo.
-call :borderSmall
+call gui borderSmall
 echo  Audio Only
 echo.
 echo   (4) - M4A  - AAC Audio  - 128kbps
@@ -257,7 +199,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
-call :borderSmall
+call gui borderSmall
 echo.
 if %is_batch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
 if %is_batch% == 1 choice /c 0123456 /n /m "Enter Choice (0-6): "
@@ -284,7 +226,7 @@ if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/OPUS Audio)
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 if %is_batch% == 0 echo  URL: %url%
 if %is_batch% == 1 echo  Working on: %job_name%
@@ -295,26 +237,26 @@ if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
 echo.
 echo   (0) - Back
 echo.
-call :borderSmall
+call gui borderSmall
 echo  Choose Maximum Quality
 echo.
 echo   (1) - 144p 
 echo   (2) - 240p   (If not available, returns to 144p) 
 echo   (3) - 360p   (If not available, returns to 240p) 
 echo.
-call :borderSmall
+call gui borderSmall
 echo.
 echo   (4) - 480p   (If not available, returns to 360p) 
 echo   (5) - 720p   (If not available, returns to 480p) 
 echo   (6) - 1080p  (If not available, returns to 720p) 
 echo.
-if NOT %format_chosen% == h264 call :borderSmall
+if NOT %format_chosen% == h264 call gui borderSmall
 if NOT %format_chosen% == h264 echo.
 if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
 if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if not %format_chosen% == h264 echo.
-call :borderSmall
+call gui borderSmall
 if %format_chosen% == vp9  goto choiceVp9
 if %format_chosen% == av1  goto choiceAv1
 echo.
@@ -382,7 +324,7 @@ mode %window_small%
 color 0B
 title Downloading
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -403,7 +345,7 @@ mode %window_small%
 color 07
 title More Options
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  (0) - Back
 echo.
@@ -434,13 +376,13 @@ mode %window_small%
 color 07
 title Link Recieved
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  URL: %uni_url%
 echo.
 echo  Non-YouTube link detected.
 echo.
-call :borderSmall
+call gui borderSmall
 echo.
 echo  Choose Format
 echo.
@@ -450,7 +392,7 @@ echo   (2) - Lowest Quality
 echo.
 echo   (3) - Show all available formats
 echo.
-call :borderSmall
+call gui borderSmall
 echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
@@ -464,7 +406,7 @@ set "uni_qual="
 color 07
 title Select Quality
 cls
-call :bannerLarge
+call gui bannerLarge
 echo.
 echo  URL: %uni_url%
 echo.
@@ -496,7 +438,7 @@ mode %window_small%
 color 0B
 title Finger's Crossed! How's the weather?
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -516,7 +458,7 @@ color 07
 title Batch Mode
 set "job_name="
 cls
-call :bannerMedium
+call gui bannerMedium
 echo.
 if %batch_deleted_job% == 1 (
     echo  Deleted job: %batch_deleted_job_name%
@@ -560,7 +502,7 @@ mode %window_small%
 color 07
 title Now working on %job_name%
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
@@ -601,7 +543,7 @@ mode %window_small%
 title Edit Job File
 color 07
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
@@ -629,7 +571,7 @@ color 07
 title Enter 0 to go back after adding links.
 set "batch_link_tmp="
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Paste each url and press enter, the links will be added to 
 echo  your list.
@@ -686,7 +628,7 @@ color 07
 title Select Quality
 set "batch_link_tmp="
 cls
-call :bannerSmall
+call gui bannerSmall
 if %youtube% == 1 set is_batch=1 && goto formatSelector
 if %youtube% == 0 echo.
 echo  Select Quality
@@ -715,7 +657,7 @@ set "batch_custom_format_url="
 color 07
 title Pick custom format code
 cls
-call :bannerMedium
+call gui bannerMedium
 echo.
 echo  Working on: %job_name%
 echo.
@@ -748,7 +690,7 @@ set "batch_custom_qual="
 title Retrieving all available qualities
 color 07
 cls
-call :bannerLarge
+call gui bannerLarge
 echo.
 echo  Working on: %job_name%
 echo.
@@ -816,7 +758,7 @@ mode %window_small%
 color 0B
 title Downloading
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Starting Download
 echo -------------------
@@ -836,7 +778,7 @@ mode %window_small%
 color 4F
 title Download Failed!
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Download Failed!!!! :-(
 echo.
@@ -877,7 +819,7 @@ mode %window_small%
 color 2F
 title Download Finished
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Download Finished, The files are saved in:
 echo  %loc%
@@ -896,7 +838,7 @@ mode %window_small%
 color 07
 title AYC Settings
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  (0) - Back
 echo.
@@ -943,7 +885,7 @@ color 07
 title Change Download Location
 cls
 set "settings_dir="
-call :bannerSmall
+call gui bannerSmall
 echo.
 if %loc_invalid% == 0 echo  Current download folder is:
 if %loc_invalid% == 1 echo  Invalid download folder:
@@ -983,7 +925,7 @@ color 07
 title Change recheck attempts
 cls
 set "settings_try="
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Change recheck attempts
 echo.
@@ -1028,7 +970,7 @@ mode %window_small%
 color 07
 title Update yt-dlp
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  Checking for updates..
 %youtube_dl% -U
@@ -1085,7 +1027,7 @@ mode %window_small%
 color 04
 title Reset AYC
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  You are about to reset AYC to it's default settings.
 echo.
@@ -1117,7 +1059,7 @@ rd /s /q "%aycdata%"
 title Reset Succesfully
 color 02
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo  AYC reset succesfully.
 echo.
@@ -1125,46 +1067,12 @@ timeout /t 5 /nobreak
 goto exit
 
 
-:magic_verify
-set magic_passed=1
-if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" set magic_passed=0
-if %magic_passed% == 0 (
-    mode %window_medium%
-    title PEBKAC
-    cls
-    call :bannerMedium
-    echo.
-    echo  Sorry, you can't use this script.
-    echo.
-    echo  Error code: PEBKAC
-    echo.
-    echo  Press Enter to exit.
-    pause>NUL
-    exit
-)
-goto :EOF
-
-
-:magic_completed
-if not %magic_passed% == 0 (
-    echo "0">"%aycdata%\first_run.txt"
-)
-echo.
-echo  Hope you read the instructions.
-echo.
-echo  First run finished.
-echo.
-echo  You can restart AYC now. Press Enter to close.
-pause>NUL
-goto :EOF
-
-
 :about
 mode %window_small%
 color 07
 title You're a curious one..
 cls
-call :bannerSmall
+call gui bannerSmall
 echo.
 echo   Advanced Youtube Client - AYC Script
 echo.
@@ -1181,43 +1089,6 @@ echo.
 echo   Press Enter to go back.
 pause>NUL
 goto more
-
-
-:bannerLarge
-call :borderLarge
-echo                                                                              Advanced Youtube Client - AYC 
-echo.
-echo                                                                                   %version%
-call :borderLarge
-goto :EOF
-
-:bannerMedium
-call :borderMedium
-echo                                Advanced Youtube Client - AYC 
-echo.
-echo                                     %version%
-call :borderMedium
-goto :EOF
-
-:bannerSmall
-call :borderSmall
-echo                 Advanced Youtube Client - AYC 
-echo.
-echo                      %version%
-call :borderSmall
-goto :EOF
-
-:borderLarge
-echo ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-goto :EOF
-
-:borderMedium
-echo --------------------------------------------------------------------------------------------
-goto :EOF
-
-:borderSmall
-echo ------------------------------------------------------------
-goto :EOF
 
 
 :exit
