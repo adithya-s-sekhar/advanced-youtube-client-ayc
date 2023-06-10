@@ -22,7 +22,6 @@ set window_medium=con:cols=92 lines=26
 set window_small=con:cols=60 lines=35
 set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
-set dependencyMissing_shown=0
 set youtube_dl=0
 set url_invalid=0
 set job_name_invalid=0
@@ -41,16 +40,8 @@ if not exist "%cd%\data" md "%cd%\data"
 if not exist "%cd%\Output" md "%cd%\Output"
 
 set aycdata=%cd%\data
-if exist youtube-dl.exe set youtube_dl="youtube-dl.exe"
-if exist yt-dlp_x86.exe set youtube_dl="yt-dlp_x86.exe"
-if exist yt-dlp.exe set youtube_dl="yt-dlp.exe"
+set youtube_dl=yt-dlp.exe
 set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters
-
-if %youtube_dl% == 0 call :ytMissing
-if not exist ffmpeg.exe call :ffmpegMissing
-if not exist atomicparsley.exe call :atomicparsleyMissing
-if not exist aria2c.exe call :aria2Missing
-set youtube_dl=%youtube_dl:"=%
 
 if not exist "%aycdata%\first_run.txt" goto firstRun
 
@@ -155,125 +146,6 @@ goto :EOF
 
 :subsStatusMissing
 echo "0">"%aycdata%\subs_status.txt"
-goto :EOF
-
-
-:ytMissing
-if %dependencyMissing_shown% == 0 call :dependencyMissing
-mode %window_medium%
-color 07
-title yt-dlp missing!
-start "" "https://github.com/yt-dlp/yt-dlp/releases/latest"
-cls
-call :bannerMedium
-echo.
-echo  yt-dlp.exe is missing. AYC Opened a webpage right now for you to download the missing
-echo  dependency. Pick the right one for your PC.
-echo.
-echo  URL: https://github.com/yt-dlp/yt-dlp/releases/latest
-echo.
-echo  Filename: yt-dlp.exe (For 64-bit)
-echo.
-echo  Filename: yt-dlp_x86.exe (For 32-bit)
-echo.
-echo  After download, copy it to the same folder as AYClient.bat
-echo  and press ENTER.
-echo.
-pause>NUL
-goto begin
-
-
-:ffmpegMissing
-if %dependencyMissing_shown% == 0 call :dependencyMissing
-mode %window_medium%
-color 07
-title ffmpeg missing!
-start "" "https://github.com/yt-dlp/FFmpeg-Builds/releases/latest"
-cls
-call :bannerMedium
-echo.
-echo  ffmpeg files are missing. AYC Opened a webpage right now for you to download the missing
-echo  dependency. Pick the right one for your PC.
-echo.
-echo  URL: https://github.com/yt-dlp/FFmpeg-Builds/releases/latest
-echo.
-echo  Filename: ffmpeg-n...-win64-gpl-shared-6.0.zip (For 64-bit)
-echo.
-echo  Filename: ffmpeg-n...-win32-gpl-shared-6.0.zip (For 32-bit)
-echo.
-echo  After download, extract the archive and copy everything inside the 'bin' folder to the 
-echo  same folder as AYClient.bat and press ENTER.
-echo.
-pause>NUL
-goto begin
-
-
-:atomicparsleyMissing
-if %dependencyMissing_shown% == 0 call :dependencyMissing
-mode %window_medium%
-color 07
-title AtomicParsley missing!
-start "" "https://github.com/wez/atomicparsley/releases/latest"
-cls
-call :bannerMedium
-echo.
-echo  AtomicParsley.exe is missing. AYC Opened a webpage right now for you to download the 
-echo  missing dependency. Pick the right one for your PC.
-echo.
-echo  Filename: AtomicParsleyWindows.zip (For 64-bit)
-echo.
-echo  Filename: AtomicParsleyWindowsX86.zip (For 32-bit)
-echo.
-echo  After download, extract the archive and copy AtomicParsley.exe to the same folder as 
-echo  AYClient.bat and press ENTER.
-echo.
-pause>NUL
-goto begin
-
-
-:aria2Missing
-if %dependencyMissing_shown% == 0 call :dependencyMissing
-mode %window_medium%
-color 07
-title aria2c missing!
-start "" "https://github.com/aria2/aria2/releases/latest"
-cls
-call :bannerMedium
-echo.
-echo  aria2c.exe is missing. AYC Opened a webpage right now for you to download the 
-echo  missing dependency. Pick the right one for your PC.
-echo.
-echo  URL: https://github.com/aria2/aria2/releases/latest
-echo.
-echo  Filename: aria2-...-win-32bit-build1.zip (For 32-bit)
-echo.
-echo  Filename: aria2-...-win-64bit-build1.zip (For 64-bit)
-echo.
-echo  After download, extract the archive and copy aria2c.exe to the same folder as 
-echo  AYClient.bat and press ENTER.
-echo.
-pause>NUL
-goto begin
-
-
-:dependencyMissing
-title Welcome to Dependency Fixer
-mode %window_medium%
-color 07
-cls
-call :bannerMedium
-echo.
-echo  Hi, AYC has detected some important files are missing that prevents it from
-echo  working properly.
-echo.
-echo  When you press Enter, you'll be taken to the webpages of each projects where 
-echo. you can download them. 
-echo.
-echo  Simply follow the instructions provided on the next windows.
-echo.
-echo  Press Enter to begin.
-pause>NUL
-set dependencyMissing_shown=1
 goto :EOF
 
 
