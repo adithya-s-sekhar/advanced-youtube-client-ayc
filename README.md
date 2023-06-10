@@ -20,7 +20,6 @@ You can call it a console front end if you want.
   - [Basic](#basic)
   - [Complete](#complete)
 - [Instructions](#instructions)
-- [Alternative: Build an .exe](#build-an-exe-old-way)
 - [Supported Sites](#supported-sites)
 - [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 - [Developer notes](#developer-notes)
@@ -30,7 +29,7 @@ You can call it a console front end if you want.
 
 - Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube.
 - Create Batch Download Jobs to organize and download multiple videos from multiple websites.
-- Supports more than 1000 websites.
+- Supports a lot of websites.
 - Auto detects yt-dlp, yt-dlp_x86 and youtube-dl.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
 - Download and resume playlists.
@@ -78,17 +77,6 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
 
 - [How to pin AYC to taskbar for easy access?](#complete)
-
-## Build an .exe (Old way)
-
-AYC used to be compiled with [Bat-To-Exe-Converter](https://www.majorgeeks.com/files/details/bat_to_exe_converter.html) by Faith Kodak ([GitHub](https://github.com/99fk)/[f2ko.de](https://f2ko.de/programme/bat-to-exe-converter/)). ([IPFS Mirror](http://ipfs.io/ipfs/QmPBp7wBSC9GukPUcp7LXFCGXBvc2e45PUfWUbCJzuLG65))
-
-1. Download AYClient.bat.
-2. Open the file with notepad and replace all instances of AYClient.bat to AYClient.exe using the replace tool.
-3. Open the file in Bat To Exe Converter, you can [add an icon](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/ayc.ico?raw=true) if you want.
-4. Compile.
-5. You need [ffmpeg.exe](https://github.com/yt-dlp/FFmpeg-Builds/releases), [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases), [atomicparsley.exe](https://github.com/wez/atomicparsley/releases) and [aria2c.exe](https://github.com/aria2/aria2/releases) in the same folder as the compiled binary.
-6. Start AYClient.exe and it will create the necessary files for further execution.
 
 ## Supported sites
 Anything yt-dlp [supports](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md), AYC supports.
