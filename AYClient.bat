@@ -36,6 +36,10 @@ if %ayc.arg1% equ "b" goto batch
 if %ayc.arg1% equ "B" goto batch
 set url=%ayc.arg1%
 set url=%url:"=%
+
+call linkValidator "%url%"
+if %link_validator% == 0 goto start
+
 echo %url%| findstr /i /r /c:"^https://www.youtube.com"
 if %errorlevel% == 0 goto formatSelector
 echo %url%| findstr /i /r /c:"^https://m.youtube.com"
@@ -91,14 +95,15 @@ if "%url%" equ "M" goto quickKeyRedirector
 if "%url%" equ "s" goto quickKeyRedirector
 if "%url%" equ "S" goto quickKeyRedirector
 
-echo %url% | findstr /I /R "^http://" > nul
-if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
-
-echo %url% | findstr /I /R "^https://" > nul
-if %errorlevel% == 0 set show_quickkey=0 && set url_invalid=0 && start AYClient.bat "%url%" && goto start
-
-set show_quickkey=1
-set url_invalid=1
+call linkValidator "%url%"
+if %link_validator% == 1 (
+    set show_quickkey=0
+    set url_invalid=0
+    start AYClient.bat "%url%"
+) else (
+    set show_quickkey=1
+    set url_invalid=1
+)
 goto start
 
 :quickKeyRedirector
@@ -519,7 +524,6 @@ goto batchManage
 mode %window_small%
 color 07
 title Enter 0 to go back after adding links.
-set "batch_link_tmp="
 cls
 call tui bannerSmall
 echo.
@@ -533,7 +537,7 @@ echo.
 
 
 :batchAddLinksLoop
-set url_invalid=1
+set "batch_link_tmp="
 set /p batch_link_tmp=Paste Link: 
 if "%batch_link_tmp%" equ "" (
     echo URL is blank.
@@ -545,20 +549,17 @@ if "%batch_link_tmp%" equ "0" goto batchManage
 for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
   set batch_link_tmp=%%a
 )
-echo %batch_link_tmp% | findstr /i /r "^http://" > nul
-if %errorlevel% == 0 set url_invalid=0
-echo %batch_link_tmp% | findstr /i /r "^https://" > nul
-if %errorlevel% == 0 set url_invalid=0
-if %url_invalid% == 1 (
+
+call linkValidator "%batch_link_tmp%"
+if %link_validator% == 1 (
+    echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
+    goto batchAddLinksLoop
+) else (
     echo %url_validation_msg%
     echo.
     goto batchAddLinksLoop
 )
-if %url_invalid% == 0 (
-    echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
-    set "batch_link_tmp="
-    goto batchAddLinksLoop
-)
+
 :batchChangeType
 if %youtube% == 0 (
     set youtube=1
@@ -627,12 +628,14 @@ if "%batch_custom_format_url%" equ "" set url_invalid=1 && goto batchCustomForma
 if "%batch_custom_format_url%" equ " =" set url_invalid=1 && goto batchCustomFormat
 if "%batch_custom_format_url%" equ "0" set url_invalid=0 && goto batchQuickQualitySelector
 
-echo %batch_custom_format_url% | findstr /i /r "^http://">NUL
-if %errorlevel% == 0 set url_invalid=0 && goto batchCustomFormatSelector
-echo %batch_custom_format_url% | findstr /i /r "^https://">NUL
-if %errorlevel% == 0 set url_invalid=0 && goto batchCustomFormatSelector
-set url_invalid=1
-goto batchCustomFormat
+call linkValidator "%batch_custom_format_url%"
+if %link_validator% == 1 (
+    set url_invalid=0
+    goto batchCustomFormatSelector
+) else (
+    set url_invalid=1
+    goto batchCustomFormat
+)
 
 :batchCustomFormatSelector
 mode %window_large%
