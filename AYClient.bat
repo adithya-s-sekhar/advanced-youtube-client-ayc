@@ -13,8 +13,6 @@
 :: /----------------------------------------------------------/
 
 set version=v3.28 (05/Jun/2023)
-set internal_version=328
-set version_mismatch=0
 set error_format=0
 set error_mode=0
 set is_batch=0
@@ -52,11 +50,6 @@ if not exist ffmpeg.exe call :ffmpegMissing
 if not exist atomicparsley.exe call :atomicparsleyMissing
 if not exist aria2c.exe call :aria2Missing
 set youtube_dl=%youtube_dl:"=%
-
-if not exist "%aycdata%\external_version.txt" call :externalVersionMissing
-set /p external_version=<"%aycdata%\external_version.txt"
-set external_version=%external_version:"=%
-if NOT %external_version% == %internal_version% set version_mismatch=1 && goto reset
 
 if not exist "%aycdata%\first_run.txt" goto firstRun
 
@@ -1216,53 +1209,25 @@ if %subs_status% == 1 (
 
 :reset
 mode %window_small%
-if %version_mismatch% == 0 (
-    color 04
-    title Reset AYC
-)
-if %version_mismatch% == 1 (
-    color 02
-    title AYC Updated
-)
+color 04
+title Reset AYC
 cls
 call :bannerSmall
 echo.
-if %version_mismatch% == 0 (
-    echo  You are about to reset AYC to it's default settings.
-    echo.
-    echo  This should fix any issues caused by incorrect or corrupted settings.
-)
-if %version_mismatch% == 1 (
-    echo  AYC was updated. It is recommended to reset AYC and start
-    echo  fresh.
-    echo.
-    echo  This should fix any issues caused by old settings.
-)
+echo  You are about to reset AYC to it's default settings.
+echo.
+echo  This should fix any issues caused by incorrect or corrupted settings.
 echo.
 echo ------------------------
 echo.
-if %version_mismatch% == 0 echo  (0) - Back
-if %version_mismatch% == 0 echo.
-if %version_mismatch% == 0 echo  (1) - Reset and Exit AYC
-if %version_mismatch% == 1 echo  (0) - Keep Settings, Don't Reset
-if %version_mismatch% == 1 echo.
-if %version_mismatch% == 1 echo  (1) - Reset and Exit AYC
+echo  (0) - Back
+echo.
+echo  (1) - Reset and Exit AYC
 echo.
 echo ------------------------
 echo.
-if %version_mismatch% == 0 goto resetNormal
-if %version_mismatch% == 1 goto resetVersionMismatch
-
-
-:resetNormal
 choice /C 01 /n /m "Choose option (0-1): "
 if %errorlevel% == 1 goto settings
-goto resetFinish
-
-
-:resetVersionMismatch
-choice /C 01 /n /m "Choose option (0-1): "
-if %errorlevel% == 1 echo "%internal_version%">"%aycdata%\external_version.txt" && goto begin
 goto resetFinish
 
 
