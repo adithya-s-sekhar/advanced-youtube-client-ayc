@@ -71,11 +71,11 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
     2. Press `Ctrl + ,` (comma) to open **Settings**.
     3. Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
     4. You can now close this terminal.
-2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
+2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
 
 ### Windows 7/8/8.1 users
 
-1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/b4808d1f75c0af1dea5951b7a190d9b66835cc09/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
+1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
 
 - [How to pin AYC to taskbar for easy access?](#complete)
 
@@ -119,19 +119,16 @@ To put it simply
 - So, AYC works perfectly in Windows Console Host.
 - Windows Terminal was released. It's a good terminal app but it's not finished. It's lacking some really important features.
 - One of the features it's missing is `mode`. **So AYC is broken in Windows Terminal**.
-- It's ok. Batch scripts still runs in Windows Console Host because Microsoft isn't stupid to replace a 30 year old mature software with an unfinished software.
-- A few updates later, in Windows 10 and 11, Microsoft forces Windows Terminal as default for everyone.
-- Someone cares at Microsoft, so there is still a toggle to switch to the actually working Windows Console Host. But you have to change it manually.
+- There is still a toggle to switch to the actually working Windows Console Host. But you have to change it manually.
 - People not realizing this starts complaining to me.
 - I wrote extensive instructions and revised multiple times to solve it. People don't read. Can't blame them, we all accept Terms and Conditions without reading. Kyle did it.
-- Ask Microsoft to implement the missing functionality? Done. ([#5094](https://github.com/microsoft/terminal/issues/5094), [#5079](https://github.com/microsoft/terminal/issues/5079), [#5651](https://github.com/microsoft/terminal/issues/5651), [#5753](https://github.com/microsoft/terminal/issues/5753), [#2630](https://github.com/microsoft/terminal/issues/2630), [#6392](https://github.com/microsoft/terminal/issues/6392), [#40](https://github.com/vladdeSV/scone/issues/40), [#6832](https://github.com/microsoft/terminal/issues/6832), [#7082](https://github.com/microsoft/terminal/issues/7082), [#7232](https://github.com/microsoft/terminal/issues/7232), [#7466](https://github.com/microsoft/terminal/issues/7466), [#7623](https://github.com/microsoft/terminal/issues/7623), [#7605](https://github.com/microsoft/terminal/issues/7605), [#8581](https://github.com/microsoft/terminal/issues/8581), [#8673](https://github.com/microsoft/terminal/issues/8673), [#9113](https://github.com/microsoft/terminal/issues/9113), [#11033](https://github.com/microsoft/terminal/issues/11033), [#12929](https://github.com/microsoft/terminal/issues/12929), [#13232](https://github.com/microsoft/terminal/issues/13232), [#13392](https://github.com/microsoft/terminal/issues/13392), [#13375](https://github.com/microsoft/terminal/issues/13375), [#13441](https://github.com/microsoft/terminal/issues/13441), [#13564](https://github.com/microsoft/terminal/issues/13564), [#13006](https://github.com/microsoft/terminal/issues/13006), [#13911](https://github.com/microsoft/terminal/issues/13911), [#13940](https://github.com/microsoft/terminal/issues/13940), [#14487](https://github.com/microsoft/terminal/issues/14487), [#14568](https://github.com/microsoft/terminal/issues/14568), [#14622](https://github.com/microsoft/terminal/issues/14622), [#15297](https://github.com/microsoft/terminal/issues/15297)).
+- Report to Microsoft? Done. ([#5094](https://github.com/microsoft/terminal/issues/5094), [#5079](https://github.com/microsoft/terminal/issues/5079), [#5651](https://github.com/microsoft/terminal/issues/5651), [#5753](https://github.com/microsoft/terminal/issues/5753), [#2630](https://github.com/microsoft/terminal/issues/2630), [#6392](https://github.com/microsoft/terminal/issues/6392), [#40](https://github.com/vladdeSV/scone/issues/40), [#6832](https://github.com/microsoft/terminal/issues/6832), [#7082](https://github.com/microsoft/terminal/issues/7082), [#7232](https://github.com/microsoft/terminal/issues/7232), [#7466](https://github.com/microsoft/terminal/issues/7466), [#7623](https://github.com/microsoft/terminal/issues/7623), [#7605](https://github.com/microsoft/terminal/issues/7605), [#8581](https://github.com/microsoft/terminal/issues/8581), [#8673](https://github.com/microsoft/terminal/issues/8673), [#9113](https://github.com/microsoft/terminal/issues/9113), [#11033](https://github.com/microsoft/terminal/issues/11033), [#12929](https://github.com/microsoft/terminal/issues/12929), [#13232](https://github.com/microsoft/terminal/issues/13232), [#13392](https://github.com/microsoft/terminal/issues/13392), [#13375](https://github.com/microsoft/terminal/issues/13375), [#13441](https://github.com/microsoft/terminal/issues/13441), [#13564](https://github.com/microsoft/terminal/issues/13564), [#13006](https://github.com/microsoft/terminal/issues/13006), [#13911](https://github.com/microsoft/terminal/issues/13911), [#13940](https://github.com/microsoft/terminal/issues/13940), [#14487](https://github.com/microsoft/terminal/issues/14487), [#14568](https://github.com/microsoft/terminal/issues/14568), [#14622](https://github.com/microsoft/terminal/issues/14622), [#15297](https://github.com/microsoft/terminal/issues/15297)).
 - Prevent AYC from running inside Windows Terminal? They won't let anyone detect if anything is running in Windows Terminal or Windows Console Host. ([#7434](https://github.com/microsoft/terminal/issues/7434),...)
 - So I blocked people from using the script until they read instructions and **maybe** did the changes it need. I said maybe because there still isn't a way to detect it.
   
 
 ## Developer notes
 
-- Some parts of the code might look weird but those were added, refactored and cleaned to fix some edge cases found over the years. Trust me, those are there for a reason. Still you're welcome to improving these and if it works, submit a PR, any help is appreciated. :) 
 - The script is lacking documentation. Unfortunately, I am too busy looking for a job to have time to write it. Hope it's readable. Any PR adding documentation is also welcome.    
 
 ## Links
@@ -139,6 +136,12 @@ To put it simply
 [Website](https://advanced-youtube-client-ayc.sourceforge.io)
 
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
+
+[AYC on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
+
+[AYC on Softpedia](https://www.softpedia.com/get/Internet/Download-Managers/AYC.shtml)
+
+[AYC on Softaro](https://softaro.net/advanced-youtube-client-ayc/)
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 

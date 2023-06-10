@@ -1,7 +1,32 @@
-Advanced Youtube Client - AYC v3.28 - 05/Jun/2023
+Advanced Youtube Client - AYC v4.0 - 10/Jun/2023
 Open AYClient.bat :)
 
 What's new?
+
+[4.0]
+- Major Update: Fully Refactored.
+- Binary files moved to bin folder.
+- Split AYClient.bat functions into 14 seperate scripts inside scripts folder.
+- Refactored almost all functions.
+- Fixed: Batch url validation was getting disabled after after valid url.
+- Fixed: Settings allowed the script to continue even with invalid config values.
+- Added: Easy way to reset to default values in case of invalid settings.
+- Removed: External version checker and Reset on updater.
+- Removed: Dependency checker.
+- Improved: UI.
+- Improved: Code readability.
+- Updated: ffmpeg.
+
+[3.29]
+- Removed: Dependency checker.
+- Removed: External version check and reset on update.
+- Added: Bin folder to keep binary files.
+- Added: Easy way to reset to default download location.
+- Added: Easy way to reset to default rechecker count.
+- Fixed: Batch mode link validation was disabled after first valid url.
+- Fixed: User was allowed to continue if download location was invalid, which lead to crashes.
+- Fixed: User was allowed to continue if rechecker count was invalid, which lead to crashes.
+- Improved: UI.
 
 [3.28]
 - Fixed: Location drag and drop crashing.
@@ -21,13 +46,11 @@ What's new?
 - Improved: Routing between pages.
 - Improved: UI.
 
-
 [3.25]
 - Fixed: Going back on settings > location changed location.
 - Fixed: URLs with '&' in them, often used for tracking purposes crashed normal and batch modes.
 - Fixed: Batch job names with quotes crashed ayc.
 - Improved: UI.
-
 
 [3.24]
 - Fixed: All formats UI was cutting off on Vimeo and other websites with lot of formats.
@@ -36,10 +59,8 @@ What's new?
 - Improved: Merged Universal mode functionality with regular youtube mode.
 - Improved: UI.
 
-
 [3.23]
 - Fixed: Using unquoted paths with space in Settings>Location lead to a crash.
-
 
 [3.22]
 - User facing: 
@@ -48,7 +69,6 @@ What's new?
   - Added: Delete job button in batch mode.
   - Added: Intro screen for dependency fixer.
   - Improved: Updated some strings.
-
 - Under the hood: 
   - Use call instead of goto to check and fix all config files, this reduces disk activity from reading already read files.
   - Refactor url reciever in universal mode into two separate labels instead of if statements. No need for delayed expansion anymore.
@@ -57,11 +77,9 @@ What's new?
   - Removed unnecessarily checking for errorlevel 255 in choice.
   - Removed unused input validator in universal mode.
 
-
 [3.21]
 - Fixed: Universal mode couldn't be manually started.
 - Minor UI fixes.
-
 
 [3.20]
 - Improved: AYC now detects if the link is youtube or not and redirect the user to youtube mode or universal mode. No more extra steps to download non-youtube videos.
@@ -73,24 +91,19 @@ What's new?
 - Removed: Portable tag from About.
 - Dev: Readability improvements and removed long chaining AND statements.
 
-
 [3.19]
 - Fixed: Reset in rechecker only if current value is invalid.
-
 
 [3.18]
 - Validate and fix download location on start.
 - Validate and fix rechecker limit on start.
 - Refactor error page.
 
-
 [3.17]
 - Refactor banner.
 
-
 [3.16]
 - Restrict filenames more granularly to work better with Windows MAX_PATH limit.
-
 
 [3.15]
 - This update is focused on cleaning up the code for people who like to modify.
@@ -103,19 +116,16 @@ What's new?
 - Add support links to GitHub and Sourceforge inside script.
 - Minor updates to dependency fixer.
 
-
 [3.14]
 - Fix downloads failing on long file names.
 - Automatically detect and use yt-dlp.exe, yt-dlp_x86.exe and youtube-dl.exe in that order.
 - Updated to ffmpeg 6.0.
 - Switched to wez/atomicparsley for both 32 and 64-bit.
 
-
 [3.13]
 - Improved high-low quality selector in Batch and Universal modes.
 - Added ffprobe to support post-processing on some websites.
 - Updated dependencies.
-
 
 [3.12]
 - Faster HLS(480p,1080p) and Non-Youtube downloads without sacrificing regular Youtube speeds.
@@ -127,7 +137,6 @@ What's new?
 - UI fixes.
 - Updated ffmpeg to 5.0.
 
-
 [3.11]
 - Start download immediately in Universal Mode instead of waiting for it to fetch all available formats.
 - Added option to disable aria2 in Settings and First Run.
@@ -137,7 +146,6 @@ What's new?
 - Detect when AYC gets updated and offer to reset old settings.
 - UI Fixes throughout.
 
-
 [3.10 and 3.9]
 - Added missing license to release zip. (Reason for 3.10)
 - aria2c multithreaded download enabled. 
@@ -146,7 +154,6 @@ What's new?
 - Ship old 32-bit binary of AtomicParsley for 32-bit release. Now it works on 32-bit PCs too. :)
 - Update dependencyfix with 32-bit links to AtomicParsley.
 - Append Video ID to end of file name to fix downloading videos with same title.
-
 
 [3.8]
 - Fix batch downloads failing on non-youtube jobs.
@@ -158,7 +165,6 @@ What's new?
 - Some TUI changes here and there.
 - Updated dependencies in release zip.
 
-
 [3.7]
 - Added dependency checks on startup for yt-dlp, ffmpeg and atomicparsley.
 - AYC will now guide users how to fix each dependency if any is missing.
@@ -168,13 +174,11 @@ What's new?
 - Replaced all references to youtube-dl to yt-dlp.
 - In release zip: Updated dependencies.
 
-
 [3.6]
 -> AYC will be released as batch files from now on and only as portables.
 This is due to the horrible AV detection from Microsoft Defender that flags anything unpopular as a Virus.
 -> Switched to yt-dlp. No more throttling, super fast to download and contains a lot of fixes youtube-dl hasn't merged yet. 
 -> Switched to the new AtomicParsley from wez (https://github.com/wez/atomicparsley).
-
 
 [3.5]
 -> Seperate Format Selector pages for MP4/VP9/AV1 and Audio Formats.
@@ -184,7 +188,6 @@ This is due to the horrible AV detection from Microsoft Defender that flags anyt
 -> ffmpeg updated to AnimMouse n4.4 2021-05-12 08:09 734bf00 (64/32-bit) (see ayc github readme)
 -> youtube-dl updated to v2021.05.16
 
-
 [3.4]
 -> Fix bug: AYC was creating aycdata folder while it already exists, this showed as an error momentarily while starting downloads.
 -> Enhancement: Batch downloads can now pick a custom quality to download from a sample url.
@@ -192,13 +195,11 @@ This is due to the horrible AV detection from Microsoft Defender that flags anyt
 -> Enhancement: Add rechecker to error page solutions list.
 -> Enhancement: Minor UI Updates.
 
-
 [3.3]
 -> Fix bug: Resetting AYC deleted youtube-dl.
 -> Fix bug: Choice in reset window was listening for a non existing 3rd option.
 -> Fix bug: Window size wasn't applied while preparing first run.
 -> Enhancement: The zipped version is now fully portable instead of creating folders on the running system.
-
 
 [3.2]
 -> Enhancement: youtube-dl can now be updated without admin permissions.
@@ -206,13 +207,11 @@ This is due to the horrible AV detection from Microsoft Defender that flags anyt
 -> Enhancement: update youtube-dl on first run.
 -> Enhancement: minor ui updates.
 
-
 [3.1]
 -> Fix bug: 1440p, 4k and 8k downloads fixed. Youtube changed these to VP9 from regular H264 which broke 3.0 because it was looking for MP4 h264 streams. As a result anything from 1440p and up can now be only saved as MKV files.
 -> Fix bug: Changing recheck counts only applied on restart, now it updates everytime it's changed.
 -> Fix bug: Fixed displayed choice range in download window.
 -> Updated: youtube-dl
-
 
 [3.0]
 -> Note: Major Update - It's way better now.
@@ -224,8 +223,8 @@ This is due to the horrible AV detection from Microsoft Defender that flags anyt
 -> Enhancement: Code size reduced by over 40%.
 -> Enhancement: Now uses a single download block instead of the old 4 per mode.
 
-
 It's a proper tool now rather than a fun piece of script.
+
 
 What's New in v2.99.7?
 
