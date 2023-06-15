@@ -67,9 +67,10 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 
 1. Change where batch scripts open by default.
     1. Open **Windows Terminal** App. (Either right click **Start** and select **Terminal** or search for **Terminal** in the start menu).
-    2. Press `Ctrl + ,` (comma) to open **Settings**.
-    3. Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
-    4. You can now close this terminal.
+    2. If you don't have **Windows Terminal** you can skip to Step 2.
+    3. Press `Ctrl + ,` (comma) to open **Settings**.
+    4. Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
+    5. You can now close this terminal.
 2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
 
 ### Windows 7/8/8.1 users
