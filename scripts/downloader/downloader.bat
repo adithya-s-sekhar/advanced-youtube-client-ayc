@@ -172,10 +172,10 @@ echo -------------------
 echo.
 echo  URL: %url%
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%%(title).107s-MP4-%%(height).5sp-%%(id).10s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -o "%loc%\%%(title).107s-VP9-%%(height).5sp-%%(id).10s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%%(title).107s-AV1-%%(height).5sp-%%(id).10s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%%(title).117s-%%(id).10s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-%%(id)s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %defined_try% set regular_download_status=0 && goto :EOF
 goto downloadTried
@@ -490,11 +490,11 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -o "%loc%\%job_name%\%%(title).107s-MP4-%%(height).5sp-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title).107s-VP9-%%(height).5sp-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -o "%loc%\%job_name%\%%(title).107s-AV1-%%(height).5sp-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title).117s-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -o "%loc%\%job_name%\%%(title).106s-%batch_name_end%-%%(id).10s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P temp:"%tmp_loc%" -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P temp:"%tmp_loc%" -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P temp:"%tmp_loc%" -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P temp:"%tmp_loc%" -P home:"%loc%\%job_name%" -o "%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -P temp:"%tmp_loc%" -P home:"%loc%\%job_name%" -o "%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %defined_try% set batch_download_status=0 && goto :EOF
 goto batchDownloadTried

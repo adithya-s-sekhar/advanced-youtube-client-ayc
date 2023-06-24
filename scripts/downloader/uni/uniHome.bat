@@ -73,7 +73,7 @@ echo -------------------
 echo.
 echo  URL: %uni_url%
 echo.
-%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -o "%loc%\%%(title).111s-%%(height).5sp-%%(id).10s.%%(ext)s" "%uni_url%" && set uni_download_status=1 && goto :EOF
+%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uni_url%" && set uni_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %defined_try% goto :EOF
 goto uniDownloadTried

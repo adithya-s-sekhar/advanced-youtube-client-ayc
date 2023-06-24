@@ -32,6 +32,14 @@ if not exist "%loc%\" (
     set loc_invalid=0
 )
 
+set tmp_loc=%cd%\tmp
+if not exist "%tmp_loc%\" md "%tmp_loc%"
+if not exist "%tmp_loc%\" (
+    echo "Unable to create tmp folder"
+    pause>nul
+    exit
+)
+
 if not exist "%aycdata%\try.txt" call :tryMissing
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
