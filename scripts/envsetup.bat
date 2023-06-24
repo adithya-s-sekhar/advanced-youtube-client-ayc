@@ -1,6 +1,6 @@
 set scripts_path=%cd%\scripts
 set path=%path%;%scripts_path%\downloader;%scripts_path%\lib;%scripts_path%\pages;%scripts_path%\settings;%scripts_path%\tui;%scripts_path%\downloader\uni;
-set version=v4.0 (10/Jun/2023)
+set version=v4.1 (24/Jun/2023)
 set error_format=0
 set error_mode=0
 set is_batch=0
