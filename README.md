@@ -28,11 +28,12 @@ You can call it a console front end if you want.
 ## Features
 
 - Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube and other websites.
+- Saves chapters, thumbnails and subtitles.
+- aria2c support for faster multi threaded downloads. (Disabled by default for youtube links, can be enabled through settings)
 - Create Batch Download Jobs to organize and download multiple videos from multiple websites.
-- Supports a lot of websites.
-- Supports AV1 with HDR, VP9 for 1440p and above resolutions.
+- Downloads untouched youtube formats: H264 upto 1080p, VP9 upto 4K, AV1 upto 8K, WEBM and M4A.
+- Transcodes to MP3 from highest quality WEBM.
 - Download and resume playlists.
-- MP3, M4A Audio Downloader with Cover Art.
 - Compatible with Windows 7/8/8.1/10/11 (32/64-bit).
 - Light on CPU Resources as it runs solely on CMD.
 - Written as a Windows Batch file so you can edit the source code and make your own Youtube Downloader.
