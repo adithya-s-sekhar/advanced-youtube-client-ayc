@@ -27,10 +27,9 @@ You can call it a console front end if you want.
 
 ## Features
 
-- Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube.
+- Download 8K, 4K, 2K, 1080p, 720p, 480p, 360p, 240p, 144p videos from YouTube and other websites.
 - Create Batch Download Jobs to organize and download multiple videos from multiple websites.
 - Supports a lot of websites.
-- Auto detects yt-dlp, yt-dlp_x86 and youtube-dl.
 - Supports AV1 with HDR, VP9 for 1440p and above resolutions.
 - Download and resume playlists.
 - MP3, M4A Audio Downloader with Cover Art.
@@ -90,7 +89,7 @@ AYC started it's life on Sourceforge in 2016, it's only been on Github since 202
 
 ### 2. Why is the installation so complicated?
 
-AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But it was a common tactic used by malware in the olden days. So antiviruses everywhere started flagging them. 
+AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. Which is a sketchy thing to do. So antiviruses everywhere started flagging them. 
 
 Now AYC is released as straight batch files you can open with notepad and read. Some old v2 releases were lost due to this before I could archive them for future reference. The remaining recovered releases along with their source codes along with all the new releases are kept in an updated archive file on MEGA. If you want you can download them below. 
 
