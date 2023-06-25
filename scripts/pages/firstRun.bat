@@ -40,14 +40,8 @@ exit
 set magic_passed=1
 if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" set magic_passed=0
 if %magic_passed% == 0 (
-    mode %window_medium%
-    title PEBKAC
-    cls
-    call tui bannerMedium
     echo.
-    echo  Sorry, you can't use this script.
-    echo.
-    echo  Error code: PEBKAC
+    echo  Invalid magic phrase. Please Try again
     echo.
     echo  Press Enter to exit.
     pause>NUL
