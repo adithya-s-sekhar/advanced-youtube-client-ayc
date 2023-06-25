@@ -39,4 +39,4 @@ echo.
 echo  AYC reset succesfully.
 echo.
 timeout /t 5 /nobreak
-goto exit
+exit
