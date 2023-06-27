@@ -201,10 +201,8 @@ cls
 call tui bannerSmall
 echo.
 echo  Working on: %job_name%
-if %pass_to_uni% == 0 (
-    echo.
-    echo  YouTube link detected.
-)
+echo.
+echo  Job Type: Youtube
 echo.
 echo   (0) - Back
 echo.
