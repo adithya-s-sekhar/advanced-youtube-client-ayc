@@ -67,7 +67,7 @@ title Saving to %loc%
 cls
 call tui bannerMedium
 echo.
-echo Enter M for more options.
+echo Enter ^(m^) for more options.
 echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
