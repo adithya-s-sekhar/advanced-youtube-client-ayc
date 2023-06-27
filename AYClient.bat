@@ -117,7 +117,7 @@ goto start
 
 
 :regular
-call downloader regular
+call regular
 if %regular_download_status% == 1 (
     goto downloadSuccess
 ) else (
@@ -126,7 +126,7 @@ if %regular_download_status% == 1 (
 
 
 :uni
-call uniHome
+call uni
 if %uni_download_status% == 1 (
     goto downloadSuccess
 ) else (
@@ -135,7 +135,7 @@ if %uni_download_status% == 1 (
 
 
 :batch
-call downloader batch
+call batch
 if %batch_download_status% == 1 (
     goto downloadSuccess
 ) else (
