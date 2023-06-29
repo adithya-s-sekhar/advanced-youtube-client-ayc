@@ -20,7 +20,7 @@ I just want to download a video, and I need to know when it's finished and show 
 
 <div align="left">
 
-- From a sanity perspective, absolutely not. No. Windows Batch is not a programming language, it can sometimes fail the whole script if one command fails. So it was challenging to keep it from being *too hacky it's unreadable* but also have ways to *not crash at the first error*. Input validation is still 25% impossible.
+- From a sanity perspective, absolutely not. No. Windows Batch is not a programming language, it can sometimes fail the whole script if one command fails. So it was challenging to keep it from being *"too hacky it's unreadable"* but also have ways to *"not crash at the first error"*. Input validation is still 25% impossible.
 - For what came out of it? A solid yes. Once you set this up, it will be the fastest no nonsense video downloading experience you'll ever have.
 
 </div>
@@ -143,13 +143,15 @@ So AYC now makes all first time users go through this once before continuing.
 
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
 
-### Thank you for the support from these guys
+### Thanks to these guys
 
 [AYC on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
 
 [AYC on Softpedia](https://www.softpedia.com/get/Internet/Download-Managers/AYC.shtml)
 
 [AYC on Softaro](https://softaro.net/advanced-youtube-client-ayc/)
+
+### This won't be possible without these awesome projects
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
