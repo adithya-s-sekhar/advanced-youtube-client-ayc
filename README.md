@@ -37,7 +37,7 @@ I started this when I was 16 years old as a batch script so it grew from there. 
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
 
-*v3.6 01/Sep/2022*
+*v3.6 01/Sep/2021*
 
 </div>
 
