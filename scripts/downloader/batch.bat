@@ -170,7 +170,7 @@ title Select Quality
 set "batch_link_tmp="
 cls
 call tui bannerSmall
-if %youtube% == 1 set is_batch=1 && goto batchFormatSelector
+if %youtube% == 1 goto batchFormatSelector
 if %youtube% == 0 echo.
 echo  Select Quality
 echo -------------------------

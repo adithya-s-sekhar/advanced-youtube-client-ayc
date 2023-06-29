@@ -30,7 +30,7 @@ echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
 call tui borderSmall
 echo.
-if %is_batch% == 0 choice /c 123456 /n /m "Enter Choice (1-6): "
+choice /c 123456 /n /m "Enter Choice (1-6): "
 if %errorlevel% == 1 set format_chosen=h264
 if %errorlevel% == 2 set format_chosen=vp9
 if %errorlevel% == 3 set format_chosen=av1

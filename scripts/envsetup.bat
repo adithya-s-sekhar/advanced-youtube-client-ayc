@@ -3,7 +3,6 @@ set path=%path%;%scripts_path%\downloader;%scripts_path%\lib;%scripts_path%\page
 set version=v4.1 (24/Jun/2023)
 set error_format=0
 set error_mode=0
-set is_batch=0
 set pass_to_uni=0
 set window_medium=con:cols=92 lines=26
 set window_small=con:cols=60 lines=35
