@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.1 - 24/Jun/2023
+Advanced Youtube Client - AYC v4.2 - 29/Jun/2023
 Open AYClient.bat :)
 
 What's new?
+
+[4.2]
+- Fixed: Reset didn't close AYC.
+- Improved: Seperated downloaders for batch, youtube and non-youtube.
+- Improved: UI.
+- Code cleanup.
 
 [4.1]
 - Fixed: aria2 failing downloads on long path names.
