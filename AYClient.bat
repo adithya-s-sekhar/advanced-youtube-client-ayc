@@ -55,7 +55,6 @@ if %errorlevel% == 0 goto regular
 echo %url%| findstr /i /r /c:"^http://youtu.be"
 if %errorlevel% == 0 goto regular
 set uni_url=%url%
-set pass_to_uni=1
 goto uni
 
 
