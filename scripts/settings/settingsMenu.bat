@@ -34,7 +34,6 @@ echo -----------------------------------
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 call settingsChangeDir
 if %errorlevel% == 3 call settingsChangeDefinedTry
 if %errorlevel% == 4 call settingsYtUpdate
