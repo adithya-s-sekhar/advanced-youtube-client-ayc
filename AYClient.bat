@@ -7,7 +7,7 @@ set ayc.arg1=%1
 :: / Advanced Youtube Client - AYC Script                     /
 :: / Author          : Adithya S Sekhar                       /
 :: / First Release   : v1.0 (13/Aug/2016)                     /
-:: / Current Release : v4.2 (29/Jun/2023)                    /
+:: / Current Release : v4.3 (01/Jul/2023)                    /
 :: / Released under the MIT License.                          /
 :: / Please don't modify or redistribute without              /
 :: / proper credits.                                          /
