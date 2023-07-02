@@ -13,7 +13,6 @@ set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
 set show_quickkey=0
 
 if not exist "%cd%\data" md "%cd%\data"
-if not exist "%cd%\Output" md "%cd%\Output"
 
 set aycdata=%cd%\data
 set youtube_dl=yt-dlp.exe
