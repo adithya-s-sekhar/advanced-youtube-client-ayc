@@ -18,25 +18,21 @@ set ayc.arg2=%2
 set path=%path%;%cd%\bin;%cd%\scripts
 
 :begin
-
 call envsetup
-
 mode %window_medium%
 color 07
 cls
-
 if not exist "%aycdata%\first_run.txt" call firstRun
 if %loc_invalid% == 1 call settingsChangeDir
 if %try_invalid% == 1 call settingsChangeDefinedTry
+
 
 :checkParameter
 if %ayc.arg1%p equ p goto start
 if %ayc.arg1% equ "b" goto batch
 if %ayc.arg1% equ "B" goto batch
-
 set url=%ayc.arg1%
 set url=%url:"=%
-
 if %ayc.arg2% == "reg" goto regular
 if %ayc.arg2% == "uni" (
     set uni_url=%url%
@@ -91,7 +87,9 @@ if %youtube_link% == 1 (
 ) else (
     start AYClient.bat "%url%" "uni"
 )
+
 goto start
+
 
 :quickKeyRedirector
 set show_quickkey=0
