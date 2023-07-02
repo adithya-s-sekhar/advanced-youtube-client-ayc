@@ -1,6 +1,7 @@
 :batchHome
 mode %window_medium%
 set batch_exists_true=0
+set batch_link_counter=0
 color 07
 title Batch Mode
 set "job_name="
@@ -58,7 +59,13 @@ echo --------------------------
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Add Video Links
+if %batch_link_counter% GTR 1 (
+    set batch_link_counter_text=links
+) else (
+    set batch_link_counter_text=link
+)
+if %batch_link_counter% GTR 0 echo  (1) - Add Video Links (%batch_link_counter% %batch_link_counter_text% added now)
+if %batch_link_counter% == 0 echo  (1) - Add Video Links
 echo.
 echo  (2) - Open Job File (Delete, View, Add Links through 
 echo        Notepad)
@@ -125,6 +132,7 @@ if %youtube% == 1 if %youtube_link% == 0 (
     goto batchAddLinksLoop
 )
 echo "%batch_link_tmp%">>"%loc%\%job_name%\%job_name%.txt"
+set /a batch_link_counter=%batch_link_counter%+1
 echo Link Saved.
 echo.
 goto batchAddLinksLoop
