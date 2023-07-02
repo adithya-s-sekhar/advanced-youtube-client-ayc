@@ -86,14 +86,14 @@ goto batchManage
 :batchAddLinks
 mode %window_small%
 color 07
-title Enter 0 to go back after adding links.
+title Leave blank and Enter to go back.
 cls
 call tui bannerSmall
 echo.
 echo  Paste each url and press enter, the links will be added to 
 echo  your list.
 echo.
-echo  Enter 0 to Go Back after adding links
+echo  Leave blank and Enter to go back.
 echo.
 echo --------------------------------------------
 echo.
@@ -101,13 +101,8 @@ echo.
 :batchAddLinksLoop
 set "batch_link_tmp="
 set /p batch_link_tmp=Paste Link: 
-if "%batch_link_tmp%" equ "" (
-    echo URL is blank.
-    echo.
-    goto batchAddLinksLoop
-)
+if "%batch_link_tmp%" equ "" goto batchManage
 echo.
-if "%batch_link_tmp%" equ "0" goto batchManage
 for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
   set batch_link_tmp=%%a
 )
