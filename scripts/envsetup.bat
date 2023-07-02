@@ -1,5 +1,6 @@
 set scripts_path=%cd%\scripts
 set path=%path%;%scripts_path%\downloader;%scripts_path%\lib;%scripts_path%\pages;%scripts_path%\settings;%scripts_path%\tui;
+set name=Advanced Youtube Client - AYC
 set version=v4.3 (01/Jul/2023)
 set error_format=0
 set error_mode=0
