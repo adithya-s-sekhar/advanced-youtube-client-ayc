@@ -114,13 +114,25 @@ for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
 
 call linkValidator "%batch_link_tmp%"
 if %link_validator% == 1 (
-    echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
-    goto batchAddLinksLoop
+    goto batchAddLinksLoop2
 ) else (
     echo %url_validation_msg%
     echo.
     goto batchAddLinksLoop
 )
+
+:batchAddLinksLoop2
+if %youtube% == 1 if %youtube_link% == 0 (
+    echo ERROR: Invalid link. This is a Youtube only Job.
+    echo.
+    echo Change job to non-youtube mode to add non-youtube links.
+    echo.
+    goto batchAddLinksLoop
+)
+echo "%batch_link_tmp%">>"%loc%\%job_name%\%job_name%.txt"
+echo Link Saved.
+echo.
+goto batchAddLinksLoop
 
 
 :batchOpenJobFile
