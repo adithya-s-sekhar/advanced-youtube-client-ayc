@@ -1,6 +1,7 @@
 @echo off
 
 set ayc.arg1=%1
+set ayc.arg2=%2
 
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
@@ -32,14 +33,12 @@ if %try_invalid% == 1 call settingsChangeDefinedTry
 if %ayc.arg1%p equ p goto start
 if %ayc.arg1% equ "b" goto batch
 if %ayc.arg1% equ "B" goto batch
+
 set url=%ayc.arg1%
 set url=%url:"=%
 
-call linkValidator "%url%"
-if %link_validator% == 0 goto start
-if %youtube_link% == 1 (
-    goto regular
-) else (
+if %ayc.arg2% == "reg" goto regular
+if %ayc.arg2% == "uni" (
     set uni_url=%url%
     goto uni
 )
@@ -80,13 +79,17 @@ if "%url%" equ "s" goto quickKeyRedirector
 if "%url%" equ "S" goto quickKeyRedirector
 
 call linkValidator "%url%"
-if %link_validator% == 1 (
-    set show_quickkey=0
-    set url_invalid=0
-    start AYClient.bat "%url%"
-) else (
+
+if %link_validator% == 0 (
     set show_quickkey=1
     set url_invalid=1
+    goto start
+)
+
+if %youtube_link% == 1 (
+    start AYClient.bat "%url%" "reg"
+) else (
+    start AYClient.bat "%url%" "uni"
 )
 goto start
 
