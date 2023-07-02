@@ -12,24 +12,7 @@
 
 AYC is the simply the fastest video downloader ever. There I said it, I've tried it all. I tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found **too complicated**, **too bloated**, **too slow**, **too many clicks**, **can't use muscle memory** the list goes on. They were not for me.
 
-I just want to download a video, and I need to know when it's finished and show me a big green screen. So I made one, it took 7 years and a lot of going back and forth. 
-
-</div>
-
-## Was it worth it? 
-
-<div align="left">
-
-- From a sanity perspective, absolutely not. No. Windows Batch is not a programming language, it can sometimes fail the whole script if one command fails. So it was challenging to keep it from being *"too hacky it's unreadable"* but also have ways to *"not crash at the first error"*. Input validation is still 25% impossible.
-- For what came out of it? A solid yes. Once you set this up, it will be the fastest no nonsense video downloading experience you'll ever have.
-
-</div>
-
-## Why didn't you use Python or Go?
-
-<div align="left">
-
-I started this when I was 16 years old as a batch script so it grew from there. I was only slightly aware of a thing called Python and didn't knew Google made programming languages. Besides this is easier and it works. In the end that's all that matters.
+I just want to download a video, and I need to know when it's finished and show me a big green screen. So I made a tui script for yt-dlp, it took 7 years and it's still going. I keep finding little improvments here and there. Make sure to follow this repo to keep track of them.
 
 </div>
 
@@ -57,12 +40,13 @@ I started this when I was 16 years old as a batch script so it grew from there. 
 - Automatically saves Video Chapters, Thumbnails, Subtitles for Youtube videos. Enable some of them in settings.
 - Supports downloading playlists, channels, keyword topics on multiple websites.
 - Multithreaded downloads to fully utilize your Internet speeds.
-- Batch Downloads! You can create jobs, save urls to them and download, resume, edit, delete anytime you want.
+- Very carefully designed batch mode for you mass downloaders! You can create jobs, save urls to them and download, resume, edit, delete anytime you want.
 - Extremely light and instantly responding Text Based UI.
 - You can easily edit the scripts to make it do what you want, probably.
 - Compatible with Windows 7/8/8.1/10/11 (32/64-bit) only. I've seen the horrors of Windows Batch, don't wan't to do bash.
 - Downloads only. We don't transcode.
 - Except for audio. Along with untouched M4A and OPUS audio straight from youtube, there is also a 128k CBR MP3 option.
+- Everything designed to help you create muscle memory.
 
 ## Installation 
 
@@ -109,9 +93,14 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 
 ### [1. Why?](#why)
 
-### [2. Was it worth it?](#was-it-worth-it)
+### 2. Was it worth it?
 
-### [3. Why didn't you use Python or Go?](#why-didnt-you-use-python-or-go)
+- From a sanity perspective? Questionable. Windows Batch is not a programming language. It can sometimes fail the whole script if one command fails. So it was challenging to keep it from being *"too hacky it's unreadable"* but also have ways to *"not crash at the first error"*.
+- For what came out of it? Yes. A solid yes. Once you set this up, it will be the fastest no nonsense video downloading experience you'll ever have. I know because I use it almost everyday.
+
+### 3. Why didn't you use Python or Go?
+
+Although not being a programming language, batch has some excellent inbuilt tools to handle a front end like this. Compared to how slow languages with a vm can be and how hard it is for them to interact with the rest of Windows, batch is the best choice for AYC and it shows.
 
 ### 4. Where are the old releases?
 
@@ -135,7 +124,13 @@ Recently Microsoft's been trying to push the newer **Windows Terminal** to it's 
 
 So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
 
-So AYC now makes all first time users go through this once before continuing.  
+So AYC now makes all first time users go through this once before continuing.
+
+### 7. Where are the instructions?
+
+AYC was designed to be self explanatory and to give the user "a sense of pride and accomplishment" when they discover it's features. 
+
+No seriously, there is a lack of a good tutorial. I rewrote the script multiple times to be as straightforward as it possibly can be. Writing a tutorial for this is time consuming. And I've already spent more time on this than I should. It's a free project.
 
 ## Links
 
