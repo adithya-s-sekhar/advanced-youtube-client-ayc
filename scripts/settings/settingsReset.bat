@@ -31,7 +31,6 @@ del /q "%aycdata%\thumbs_status.txt"
 del /q "%aycdata%\subs_status.txt"
 del /q "%aycdata%\external_version.txt"
 del /q "%aycdata%\youtube_dl_version.txt"
-rd /s /q "%aycdata%"
 title Reset Succesfully
 color 02
 cls
