@@ -37,25 +37,12 @@ set url=%url:"=%
 
 call linkValidator "%url%"
 if %link_validator% == 0 goto start
-
-echo %url%| findstr /i /r /c:"^https://www.youtube.com"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^https://m.youtube.com"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^https://youtube.com"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^https://youtu.be"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^http://www.youtube.com"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^http://m.youtube.com"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^http://youtube.com"
-if %errorlevel% == 0 goto regular
-echo %url%| findstr /i /r /c:"^http://youtu.be"
-if %errorlevel% == 0 goto regular
-set uni_url=%url%
-goto uni
+if %youtube_link% == 1 (
+    goto regular
+) else (
+    set uni_url=%url%
+    goto uni
+)
 
 
 :start
