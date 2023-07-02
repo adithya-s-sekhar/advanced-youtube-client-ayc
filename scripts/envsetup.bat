@@ -9,7 +9,6 @@ set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
 set url_invalid=0
 set job_name_invalid=0
-set youtube_dl_version=unknown
 set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
 set show_quickkey=0
 
@@ -63,6 +62,7 @@ if not exist "%aycdata%\subs_status.txt" echo "0">"%aycdata%\subs_status.txt"
 set /p subs_status=<"%aycdata%\subs_status.txt"
 set subs_status=%subs_status:"=%
 
+if not exist "%aycdata%\youtube_dl_version.txt" echo "unknown">"%aycdata%\youtube_dl_version.txt"
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
 
