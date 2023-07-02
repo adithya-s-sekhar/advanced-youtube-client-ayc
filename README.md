@@ -55,14 +55,14 @@ I started this when I was 16 years old as a batch script so it grew from there. 
 
 - Supports Youtube, Reddit, Twitter, Facebook, Instagram, Twitch, Dailymotion, Vimeo and [100s of other websites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) that yt-dlp supports.
 - Automatically saves Video Chapters, Thumbnails, Subtitles for Youtube videos. Enable some of them in settings.
-- Supports downloading playlists, channels, keyword topics on multiple websites. Praise yt-dlp.
-- Multithreaded downloads to fully utilize your ADSL/Coax/Fiber/Quantum Internet speeds.
+- Supports downloading playlists, channels, keyword topics on multiple websites.
+- Multithreaded downloads to fully utilize your Internet speeds.
 - Batch Downloads! You can create jobs, save urls to them and download, resume, edit, delete anytime you want.
 - Extremely light and instantly responding Text Based UI.
 - You can easily edit the scripts to make it do what you want, probably.
 - Compatible with Windows 7/8/8.1/10/11 (32/64-bit) only. I've seen the horrors of Windows Batch, don't wan't to do bash.
-- Downloads only. We don't transcode since we can't agree on what CRF or how many reference frames to use or what's the max bitrate or anything should we all use as a species.
-- Except for audio. Along with untouched M4A and OPUS audio straight from youtube, there is also a 128k CBR MP3 option. Because that was agreed upon a long time ago.
+- Downloads only. We don't transcode.
+- Except for audio. Along with untouched M4A and OPUS audio straight from youtube, there is also a 128k CBR MP3 option.
 
 ## Installation 
 
