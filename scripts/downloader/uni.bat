@@ -6,7 +6,7 @@ title Link Recieved
 cls
 call tui bannerSmall
 echo.
-echo  URL: %uni_url%
+echo  URL: %url%
 echo.
 echo  Non-YouTube link detected.
 echo.
@@ -36,9 +36,9 @@ title Select Quality
 cls
 call tui bannerLarge
 echo.
-echo  URL: %uni_url%
+echo  URL: %url%
 echo.
-%youtube_dl% -F "%uni_url%" && goto uniQualitySelectorContinue
+%youtube_dl% -F "%url%" && goto uniQualitySelectorContinue
 set error_mode=uni
 goto :eof
 :uniQualitySelectorContinue
@@ -71,9 +71,9 @@ echo.
 echo  Starting Download
 echo -------------------
 echo.
-echo  URL: %uni_url%
+echo  URL: %url%
 echo.
-%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%uni_url%" && set uni_download_status=1 && goto :EOF
+%youtube_dl% %default_config% -f %uni_qual% --external-downloader aria2c -P temp:"%tmp_loc%" -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set uni_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %defined_try% goto :EOF
 goto uniDownloadTried

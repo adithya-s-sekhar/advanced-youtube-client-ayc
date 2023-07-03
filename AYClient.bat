@@ -31,10 +31,7 @@ if %ayc.arg1% equ "B" goto batch
 set url=%ayc.arg1%
 set url=%url:"=%
 if %ayc.arg2% == "reg" goto regular
-if %ayc.arg2% == "uni" (
-    set uni_url=%url%
-    goto uni
-)
+if %ayc.arg2% == "uni" goto uni
 
 
 :start
