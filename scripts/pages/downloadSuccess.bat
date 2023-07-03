@@ -6,6 +6,7 @@ cls
 call tui bannerSmall
 echo.
 echo  Download Finished.
+echo.
 if %error_mode% == batch (
     echo  Job: %job_name%%
 ) else (
