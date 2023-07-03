@@ -30,6 +30,7 @@ set loc=%loc:"=%
 if not exist "%loc%\" md "%loc%"
 if not exist "%loc%\" (
     set loc_invalid=1
+    call settingsChangeDir
 ) else (
     set loc_invalid=0
 )
@@ -48,6 +49,7 @@ set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
 if not %errorlevel% == 0 (
     set try_invalid=1
+    call settingsChangeDefinedTry
 ) else (
     set try_invalid=0
 )

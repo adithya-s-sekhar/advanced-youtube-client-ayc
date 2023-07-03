@@ -23,9 +23,6 @@ mode %window_medium%
 color 07
 cls
 
-if %loc_invalid% == 1 call settingsChangeDir
-if %try_invalid% == 1 call settingsChangeDefinedTry
-
 
 :checkParameter
 if %ayc.arg1%p equ p goto start
