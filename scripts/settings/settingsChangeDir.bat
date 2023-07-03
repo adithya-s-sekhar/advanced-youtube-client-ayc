@@ -12,18 +12,19 @@ echo  %loc%
 echo.
 echo ----------------------------------------------
 echo.
-echo  Drag and Drop the folder you want AYC to save
-echo  it's downloads into the below area.
+echo  * Drag and Drop the folder you want AYC to save
+echo    it's downloads into the below area. Or type/paste the 
+echo    location manually.
 echo.
-echo  Then Press Enter to save.
+echo    Then Press Enter to save.
 echo.
-echo  Leave blank and Enter to Go Back.
+echo  * Leave blank and Enter to Go Back.
 echo.
-echo  Or Enter R to reset to default location.
+echo  * Enter R to reset to default location.
 echo.
 echo ----------------------------------------------
 echo.
-set /p settings_dir=Drag and Drop here: 
+set /p settings_dir=Drag and Drop/Paste here: 
 if %loc_invalid% == 0 if not defined settings_dir goto :EOF
 if %loc_invalid% == 1 if not defined settings_dir goto settingsChangeDir
 set settings_dir=%settings_dir:"=%
