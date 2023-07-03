@@ -22,7 +22,7 @@ call envsetup
 mode %window_medium%
 color 07
 cls
-if not exist "%aycdata%\first_run.txt" call firstRun
+
 if %loc_invalid% == 1 call settingsChangeDir
 if %try_invalid% == 1 call settingsChangeDefinedTry
 

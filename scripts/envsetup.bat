@@ -19,6 +19,8 @@ set aycdata=%cd%\data
 set youtube_dl=yt-dlp.exe
 set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters
 
+if not exist "%aycdata%\first_run.txt" call firstRun
+
 if not exist "%aycdata%\dir.txt" (
     md "%cd%\Output"
     echo "%cd%\Output">"%aycdata%\dir.txt"
