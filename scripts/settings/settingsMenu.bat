@@ -7,10 +7,10 @@ call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Change Download Folder
+echo  (1) - Change download folder
 echo        Currently: %loc%
 echo.
-echo  (2) - Number of Rechecks
+echo  (2) - Change retry attempts
 echo        Currently: %defined_try%
 echo.
 echo  (3) - Update yt-dlp (fixes most issues)
@@ -20,11 +20,11 @@ echo  (4) - Force aria2 on all downloads
 if %aria2_status% == 0 echo        [Disabled]
 if %aria2_status% == 1 echo        [Enabled]
 echo.
-echo  (5) - Embed Thumbnails
+echo  (5) - Embed thumbnails
 if %thumbs_status% == 0 echo        [Disabled]
 if %thumbs_status% == 1 echo        [Enabled]
 echo.
-echo  (6) - Embed Subtitles
+echo  (6) - Embed subtitles
 if %subs_status% == 0 echo        [Disabled]
 if %subs_status% == 1 echo        [Enabled]
 echo.
