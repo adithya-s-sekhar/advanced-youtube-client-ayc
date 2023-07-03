@@ -67,6 +67,8 @@ if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 if not exist "%aycdata%\subs_status.txt" echo "0">"%aycdata%\subs_status.txt"
 set /p subs_status=<"%aycdata%\subs_status.txt"
 set subs_status=%subs_status:"=%
+if %subs_status% == 0 set "subs="
+if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 
 if not exist "%aycdata%\youtube_dl_version.txt" echo "unknown">"%aycdata%\youtube_dl_version.txt"
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"

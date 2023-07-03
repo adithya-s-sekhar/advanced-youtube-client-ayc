@@ -427,9 +427,6 @@ if %aria2_status% == 1 set aria2=--external-downloader aria2c
 if %youtube% == 0 set aria2=--external-downloader aria2c
 if %youtube% == 1 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 
-if %subs_status% == 0 set "subs="
-if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
-
 :batchDownloadTried
 set error_mode=batch
 mode %window_small%

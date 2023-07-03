@@ -127,9 +127,6 @@ set try=%try_count%
 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
-if %subs_status% == 0 set "subs="
-if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
-
 :downloadTried
 mode %window_small%
 color 0B
