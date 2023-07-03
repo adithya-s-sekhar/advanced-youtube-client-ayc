@@ -1,7 +1,23 @@
-Advanced Youtube Client - AYC v4.3 - 01/Jul/2023
+Advanced Youtube Client - AYC v4.4 - 03/Jul/2023
 Open AYClient.bat :)
 
 What's new?
+
+[4.4]
+- Added: Support for updating to nightly and stable builds of yt-dlp.
+- Added: Link counter for tracking how many links were added to the batch job that session.
+- Fixed: youtube_dl_version missing was shown as a quick error on first run.
+- Fixed: Default output folder was being created even if downloads are to a user defined folder.
+- Fixed: Batch jobs allowed non-youtube links in youtube jobs.
+- Fixed: Reset didn't delete youtube_dl_version.
+- Improved: Validate links in a way such that it's only needed once.
+- Improved: Reset will not delete data folder now.
+- Improved: Going back to menu from batch's 'Add Links' is easier now.
+- Improved: Download success pages now shows current URL or Job.
+- Improved: Rechecker is now retry. AYC no longer tries to redownload any thing if yt-dlp returns success.
+- Improved: Aria2 can now be enabled for "All downloads" or "Only non-youtube downloads" or can be "Disabled".
+- UI updates and fixes.
+- Code cleanup and refactors.
 
 [4.3]
 - Fixed: VP9 downloads failed due to a youtube change.
