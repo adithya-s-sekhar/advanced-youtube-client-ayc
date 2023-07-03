@@ -17,7 +17,7 @@ if not exist "%cd%\data" md "%cd%\data"
 
 set aycdata=%cd%\data
 set youtube_dl=yt-dlp.exe
-set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters
+set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
 
 if not exist "%aycdata%\first_run.txt" call firstRun
 
