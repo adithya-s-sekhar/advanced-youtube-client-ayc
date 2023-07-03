@@ -6,7 +6,11 @@ cls
 call tui bannerSmall
 echo.
 echo  Download Finished.
-echo  URL: %url%
+if %error_mode% == batch (
+    echo  Job: %job_name%%
+) else (
+    echo  URL: %url%
+)
 echo.
 echo  The files are saved in:
 echo  %loc%
