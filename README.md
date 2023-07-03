@@ -40,7 +40,7 @@ I just wanted to download a video, and I need to know when it's finished and sho
 - Automatically saves Video Chapters, Thumbnails, Subtitles for Youtube videos. Enable some of them in settings.
 - Supports downloading playlists, channels, keyword topics on multiple websites.
 - Multithreaded downloads to fully utilize your Internet speeds.
-- Very carefully designed batch mode for you mass downloaders! You can create jobs, save urls to them and download, resume, edit, delete anytime you want.
+- Batch mode! You can create jobs, save urls to them and download, resume, edit, delete anytime you want.
 - Extremely light and instantly responding Text Based UI.
 - You can easily edit the scripts to make it do what you want, probably.
 - Compatible with Windows 7/8/8.1/10/11 (32/64-bit) only. I've seen the horrors of Windows Batch, don't wan't to do bash.
