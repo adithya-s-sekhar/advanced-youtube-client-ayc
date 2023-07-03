@@ -54,11 +54,11 @@ if not %errorlevel% == 0 (
     set try_invalid=0
 )
 
-if not exist "%aycdata%\aria2_status.txt" echo "0">"%aycdata%\aria2_status.txt"
+if not exist "%aycdata%\aria2_status.txt" echo "1">"%aycdata%\aria2_status.txt"
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
 set aria2_status=%aria2_status:"=%
 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
-if %aria2_status% == 1 set aria2=--external-downloader aria2c
+if %aria2_status% == 2 set aria2=--external-downloader aria2c
 
 if not exist "%aycdata%\thumbs_status.txt" echo "1">"%aycdata%\thumbs_status.txt"
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"

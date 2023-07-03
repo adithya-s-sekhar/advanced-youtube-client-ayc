@@ -11,6 +11,11 @@ if %aria2_status% == 0 (
     goto :EOF
 )
 if %aria2_status% == 1 (
+    set aria2_status=2
+    echo "2">"%aycdata%\aria2_status.txt"
+    goto :EOF
+)
+if %aria2_status% == 2 (
     set aria2_status=0
     echo "0">"%aycdata%\aria2_status.txt"
     goto :EOF
