@@ -58,6 +58,7 @@ if %uni_qual% == 0 goto uniHome
 set "try="
 set try=%try_count%
 
+if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 :uniDownloadTried
 mode %window_small%
