@@ -25,7 +25,7 @@ if "%magic_phrase_input%" equ "" goto firstRun2
 if "%magic_phrase_input%" equ " =" goto firstRun2
 if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" (
     echo.
-    echo  Invalid magic phrase. Please Try again.
+    echo  ERROR: Invalid magic phrase. Please Try again.
     echo.
     echo  Press Enter to cotinue.
     pause>NUL
@@ -41,10 +41,8 @@ set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
 echo "0">"%aycdata%\first_run.txt"
 echo.
-echo  Hope you read the instructions.
-echo.
 echo  First run finished.
 echo.
-echo  You can restart AYC now. Press Enter to close.
+echo  You can restart AYC now. Press Enter to close this window.
 pause>NUL
 exit
