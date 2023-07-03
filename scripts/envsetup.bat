@@ -38,7 +38,7 @@ if not exist "%loc%\" (
 set tmp_loc=%cd%\tmp
 if not exist "%tmp_loc%\" md "%tmp_loc%"
 if not exist "%tmp_loc%\" (
-    echo "Unable to create tmp folder"
+    echo ERROR: Unable to create tmp folder
     pause>nul
     exit
 )
