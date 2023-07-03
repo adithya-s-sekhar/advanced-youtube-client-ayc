@@ -61,6 +61,8 @@ set aria2_status=%aria2_status:"=%
 if not exist "%aycdata%\thumbs_status.txt" echo "1">"%aycdata%\thumbs_status.txt"
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
 set thumbs_status=%thumbs_status:"=%
+if %thumbs_status% == 0 set "thumbs="
+if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 
 if not exist "%aycdata%\subs_status.txt" echo "0">"%aycdata%\subs_status.txt"
 set /p subs_status=<"%aycdata%\subs_status.txt"

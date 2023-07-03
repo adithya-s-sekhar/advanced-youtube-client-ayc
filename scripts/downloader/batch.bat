@@ -427,9 +427,6 @@ if %aria2_status% == 1 set aria2=--external-downloader aria2c
 if %youtube% == 0 set aria2=--external-downloader aria2c
 if %youtube% == 1 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 
-if %thumbs_status% == 0 set "thumbs="
-if %thumbs_status% == 1 set thumbs=--embed-thumbnail
-
 if %subs_status% == 0 set "subs="
 if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 
