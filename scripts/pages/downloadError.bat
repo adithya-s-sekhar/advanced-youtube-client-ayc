@@ -7,8 +7,11 @@ call tui bannerSmall
 echo.
 echo  Download Failed!!!! :-(
 echo.
-if %error_mode% == batch echo  Job: %job_name%
-if %error_mode% == regular echo  URL: %url%
+if %error_mode% == batch (
+    echo  Job: %job_name%
+) else (
+    echo  URL: %url%
+)
 echo.
 echo  Possible problems and solutions:
 echo.
@@ -20,10 +23,9 @@ echo  - If you have an unreliable network, enable rechecks
 echo   in Settings.
 if %error_mode% == batch (
     echo  - You may have entered an invalid job name.
-    echo - One of your links might be failing, rest might have
+    echo  - One of your links might be failing, rest might have
     echo  downloaded successfully.
-)
-if %error_mode% == regular (
+) else (
     echo  - You may have entered an invalid/private link. These
     echo   aren't supported yet.
 )

@@ -39,8 +39,7 @@ echo.
 echo  URL: %url%
 echo.
 %youtube_dl% -F "%url%" && goto uniQualitySelectorContinue
-set error_mode=uni
-goto :eof
+goto :EOF
 :uniQualitySelectorContinue
 echo -------------------------------------------------
 echo.
@@ -61,7 +60,6 @@ set try=%try_count%
 
 
 :uniDownloadTried
-set error_mode=uni
 mode %window_small%
 color 0B
 title Finger's Crossed! How's the weather?

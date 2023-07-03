@@ -134,7 +134,6 @@ if %subs_status% == 0 set "subs="
 if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 
 :downloadTried
-set error_mode=regular
 mode %window_small%
 color 0B
 title Downloading
