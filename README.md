@@ -12,7 +12,7 @@
 
 AYC is the simply the fastest video downloader ever. There I said it, I've tried it all. I tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found **too complicated**, **too bloated**, **too slow**, **too many clicks**, **can't use muscle memory** the list goes on. They were not for me.
 
-I just want to download a video, and I need to know when it's finished and show me a big green screen. So I made a tui script for yt-dlp, it took 7 years and it's still going. I keep finding little improvments here and there. Make sure to follow this repo to keep track of them.
+I just wanted to download a video, and I need to know when it's finished and show me a big green screen. So I made a tui script for yt-dlp, it took 7 years and it's still going. To this day, I keep finding little improvments here and there. Make sure to follow this repo to keep track of them.
 
 </div>
 
@@ -95,8 +95,8 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 
 ### 2. Was it worth it?
 
-- From a sanity perspective? Questionable. Windows Batch is not a programming language. It can sometimes fail the whole script if one command fails. So it was challenging to keep it from being *"too hacky it's unreadable"* but also have ways to *"not crash at the first error"*.
-- For what came out of it? Yes. A solid yes. Once you set this up, it will be the fastest no nonsense video downloading experience you'll ever have. I know because I use it almost everyday.
+- From a sanity perspective? Questionable. Windows Batch is not a programming language. It can sometimes fail the whole script if one command fails. So it was challenging to keep it from being *"too hacky it's unreadable"* but also have ways to *"not crash at the first error"*. It has a lot of quirks that'll only show up when you use it for a long time. That's why this project took so long.
+- For what came out of it? **Yes. A solid yes.** Once you set this up, it will be the fastest no nonsense video downloading experience you'll ever have. I know because I use it almost everyday.
 
 ### 3. Why didn't you use Python or Go?
 
@@ -125,12 +125,6 @@ Recently Microsoft's been trying to push the newer **Windows Terminal** to it's 
 So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
 
 So AYC now makes all first time users go through this once before continuing.
-
-### 7. Where are the instructions?
-
-AYC was designed to be self explanatory and to give the user "a sense of pride and accomplishment" when they discover it's features. 
-
-No seriously, there is a lack of a good tutorial. I rewrote the script multiple times to be as straightforward as it possibly can be. Writing a tutorial for this is time consuming. And I've already spent more time on this than I should. It's a free project.
 
 ## Links
 
