@@ -343,7 +343,7 @@ call tui bannerMedium
 echo.
 echo  Working on: %job_name%
 echo.
-echo  Enter 0 to Go Back.
+echo  Leave blank and press Enter to Go back.
 echo.
 echo  Paste a sample URL from your batch job to retrieve all available qualities.
 echo.
@@ -355,9 +355,8 @@ if %url_invalid% == 1 (
 )
 set /p batch_custom_format_url=Sample URL: 
 set batch_custom_format_url=%batch_custom_format_url: =%
-if "%batch_custom_format_url%" equ "" set url_invalid=1 && goto batchCustomFormat
-if "%batch_custom_format_url%" equ " =" set url_invalid=1 && goto batchCustomFormat
-if "%batch_custom_format_url%" equ "0" set url_invalid=0 && goto batchQuickQualitySelector
+if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
+if "%batch_custom_format_url%" equ " =" goto batchQuickQualitySelector
 
 call linkValidator "%batch_custom_format_url%"
 if %link_validator% == 1 (
@@ -385,15 +384,14 @@ set error_mode=batch
 goto error
 :batchCustomFormatSelectorContinue
 echo.
-echo  Enter 0 to Go Back.
+echo  Leave blank and press Enter to Go back.
 echo -------------------------------------------------
 echo.
 echo You can also type "best" and "worst".
 set /p batch_custom_qual=Choose ID (green color in the list above): 
 set batch_custom_qual=%batch_custom_qual: =%
-if "%batch_custom_qual%" equ "" goto batchCustomFormatSelector
-if "%batch_custom_qual%" equ " =" goto batchCustomFormatSelector
-if "%batch_custom_qual%" equ "0" goto batchCustomFormat
+if "%batch_custom_qual%" equ "" goto batchCustomFormat
+if "%batch_custom_qual%" equ " =" goto batchCustomFormat
 set conf=-f %batch_custom_qual%
 set batch_name_end=%batch_custom_qual%
 set format_chosen=batch
