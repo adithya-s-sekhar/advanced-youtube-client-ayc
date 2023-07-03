@@ -424,7 +424,6 @@ set "try="
 set try=%try_count%
 
 if %youtube% == 0 set aria2=--external-downloader aria2c
-if %youtube% == 1 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 
 :batchDownloadTried
 set error_mode=batch
