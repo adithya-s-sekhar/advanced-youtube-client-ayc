@@ -131,7 +131,7 @@ if %youtube% == 1 if %youtube_link% == 0 (
     echo.
     goto batchAddLinksLoop
 )
-echo "%batch_link_tmp%">>"%loc%\%job_name%\%job_name%.txt"
+echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 set /a batch_link_counter=%batch_link_counter%+1
 echo Link Saved.
 echo.
