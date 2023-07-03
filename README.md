@@ -10,7 +10,7 @@
 
 <div align="left">
 
-AYC is the simply the fastest video downloader ever. There I said it, I've tried it all. I tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found **too complicated**, **too bloated**, **too slow**, **too many clicks**, **can't use muscle memory** the list goes on. They were not for me.
+AYC is the simply the fastest no nonsense video downloader ever. There I said it, I've tried it all. I tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found **too complicated**, **too bloated**, **too slow**, **too many clicks**, **can't use muscle memory** the list goes on. They were not for me.
 
 I just wanted to download a video, and I need to know when it's finished and show me a big green screen. So I made a tui script for yt-dlp, it took 7 years and it's still going. To this day, I keep finding little improvments here and there. Make sure to follow this repo to keep track of them.
 
