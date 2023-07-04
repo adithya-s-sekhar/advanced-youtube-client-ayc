@@ -26,42 +26,7 @@ goto :EOF
 
 
 :isYtLinkChecker
-echo %linkValidator.arg1% | findstr /i /r /c:"^https://www.youtube.com" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^https://m.youtube.com" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^https://youtube.com" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^https://youtu.be" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^http://www.youtube.com" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^http://m.youtube.com" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^http://youtube.com" > nul
-if %errorlevel% == 0 (
-    set youtube_link=1
-    goto :EOF
-)
-echo %linkValidator.arg1% | findstr /i /r /c:"^http://youtu.be" > nul
+echo %linkValidator.arg1% | findstr /i /r /c:"^https://www.youtube.com" /c:"^https://m.youtube.com" /c:"^https://youtube.com" /c:"^https://youtu.be" /c:"^http://www.youtube.com" /c:"^http://m.youtube.com" /c:"^http://youtube.com" /c:"^http://youtu.be" > nul
 if %errorlevel% == 0 (
     set youtube_link=1
     goto :EOF
