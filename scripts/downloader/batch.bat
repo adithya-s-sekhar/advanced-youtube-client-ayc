@@ -13,7 +13,7 @@ if %batch_deleted_job% == 1 (
     echo.
     set batch_deleted_job=0
 )
-echo  Batch Mode allows you to create jobs, add videos to that  job and download it.
+echo  Batch Mode allows you to create jobs, add videos to that job and download it.
 echo.
 echo  Job URLs are saved and can be resumed by re-entering the same job.
 echo.
@@ -35,13 +35,16 @@ echo.>"%loc%\%job_name%\%job_name%.txt"
 echo.
 echo Available download modes:
 echo.
+echo  (0) - Go back
+echo.
 echo  (1) - Regular (Supports all links)
 echo.
 echo  (2) - Youtube only (Enables youtube quality selector, supports youtube only)
 echo.
-choice /c 12 /n /m "Select download mode (1-2): "
-if %errorlevel% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
-if %errorlevel% == 2 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
+choice /c 012 /n /m "Select download mode (0-2): "
+if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" && goto batchHome
+if %errorlevel% == 2 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
+if %errorlevel% == 3 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
 
 :batchIsYoutubeCheck
 if not exist "%loc%\%job_name%\is_youtube.txt" goto batchIsYoutubeConfirm
