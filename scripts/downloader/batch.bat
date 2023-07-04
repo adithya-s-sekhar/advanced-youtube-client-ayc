@@ -53,8 +53,8 @@ echo.
 if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
 if %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
-if %youtube% == 1 echo  Youtube Job: Yes
-if %youtube% == 0 echo  Youtube Job: No
+if %youtube% == 1 echo  Job type: Youtube only
+if %youtube% == 0 echo  Job type: Regular
 echo.
 call tui borderSmall
 echo.
@@ -71,8 +71,9 @@ echo.
 echo  (2) - Open Job File (Delete, View, Add Links through 
 echo        Notepad)
 echo.
-if %youtube% == 1 echo  (3) - Change job to Non-Youtube mode
-if %youtube% == 0 echo  (3) - Change job to Youtube mode
+echo  (3) - Change job type
+if %youtube% == 1 echo        Currently: Youtube only
+if %youtube% == 0 echo        Currently: Regular
 echo.
 if %batch_exists_true% == 1 echo  (4) - Resume Job
 if %batch_exists_true% == 0 echo  (4) - Start Job
@@ -128,7 +129,7 @@ if %link_validator% == 1 (
 if %youtube% == 1 if %youtube_link% == 0 (
     echo ERROR: Invalid link. This is a Youtube only Job.
     echo.
-    echo Change job to non-youtube mode to add non-youtube links.
+    echo Change job type to Regular to add non-youtube links.
     echo.
     goto batchAddLinksLoop
 )
