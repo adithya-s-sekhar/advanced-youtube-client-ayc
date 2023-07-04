@@ -453,6 +453,8 @@ echo  Starting Download: Attempt %try% out of %max_try% (%defined_try% retries)
 echo.
 call tui borderSmallHalf
 echo.
+echo  Job: %job_name%
+echo.
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
