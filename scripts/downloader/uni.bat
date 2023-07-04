@@ -41,6 +41,7 @@ echo.
 %youtube_dl% -F "%url%" && goto uniQualitySelectorContinue
 goto :EOF
 :uniQualitySelectorContinue
+echo.
 call tui borderLargeHalf
 echo.
 echo Leave blank and press Enter to Go back.
