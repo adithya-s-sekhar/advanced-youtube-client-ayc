@@ -13,7 +13,7 @@ echo  Choose format
 call tui borderSmall
 echo  Video + Audio
 echo.
-echo   (1) - MP4 Video/AAC Audio (Upto 1080p)
+echo   (1) - MP4 Video/AAC Audio (Upto 1080p) (Recommended)
 echo.
 echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
 echo.
