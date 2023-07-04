@@ -73,6 +73,8 @@ I just wanted to download a video, and I need to know when it's finished and sho
 
 When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Please don't skip this.**([Why?](#6-why-do-i-have-to-do-magic-phrases-and-others))
 
+### Warning: Windows 11 can now undo these changes randomly without even asking you. If AYC ever appears broken, please redo the instructions from the guide.
+
 ### Windows 10/11 users
 
 1. Change where batch scripts open by default.
@@ -118,9 +120,11 @@ MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](http
 
 ### 6. Why do I have to do magic phrases and others?
 
+Update: Windows 11 can now change default console host to Windows Terminal without even updating Windows, without even asking the user. Please redo the guide if Microsoft overwrites your settings.
+
 AYC uses a command `mode` to dynamically resize window size to fit and disaply all it's content. This works on **Windows Console Host**, the application which ran .bat batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
 
-Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the feature it's missing is `mode`. 
+Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the feature it's missing is `mode`.
 
 So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
 
