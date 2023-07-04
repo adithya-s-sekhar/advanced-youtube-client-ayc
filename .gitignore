@@ -1,0 +1,8 @@
+bin/*.exe
+bin/*.dll
+data/
+licenses/
+Output/
+tmp/
+Readme.txt
+AYClient.bat - Shortcut.lnk
