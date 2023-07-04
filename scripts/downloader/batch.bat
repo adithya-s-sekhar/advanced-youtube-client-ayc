@@ -401,10 +401,14 @@ set error_mode=batch
 goto error
 :batchCustomFormatSelectorContinue
 echo.
-echo  Leave blank and press Enter to Go back.
 call tui borderLargeHalf
 echo.
-echo You can also type "best" and "worst".
+echo Leave blank and press Enter to Go back.
+echo.
+echo Merge two formats using + symbol.
+echo.
+echo You can also type 'best', 'b', 'worst', 'w'.
+echo.
 set /p batch_custom_qual=Choose ID (green color in the list above): 
 set batch_custom_qual=%batch_custom_qual: =%
 if "%batch_custom_qual%" equ "" goto batchCustomFormat
