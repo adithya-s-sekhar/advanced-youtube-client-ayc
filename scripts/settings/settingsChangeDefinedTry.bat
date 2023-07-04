@@ -12,7 +12,7 @@ echo.
 call tui borderSmall
 echo.
 echo  * The number you set here is the number of times AYC
-echo    will retry the download if a network error occurs.
+echo    will retry the download if an error occurs.
 echo.
 if %try_invalid% == 0 (
     echo  * Leave blank and Enter to Go back.
