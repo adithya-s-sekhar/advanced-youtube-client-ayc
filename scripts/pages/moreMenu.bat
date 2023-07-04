@@ -17,7 +17,7 @@ echo  (4) - Visit on GitHub
 echo.
 echo  (5) - Visit on Sourceforge
 echo.
-echo -------------------
+call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Enter Choice (0-5): "
 if %errorlevel% == 1 goto :EOF

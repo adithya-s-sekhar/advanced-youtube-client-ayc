@@ -17,6 +17,8 @@ echo   Made with (love) in Kerala.
 echo.
 echo   Released under the MIT License.
 echo.
+call tui borderSmallHalf
+echo.
 echo   Press Enter to go back.
 pause>NUL
 goto :EOF

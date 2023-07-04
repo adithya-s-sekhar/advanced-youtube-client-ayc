@@ -33,6 +33,8 @@ echo.
 echo   If all else fails, report the failing URLs on the 
 echo   Sourceforge or GitHub page. 
 echo.
+call tui borderSmallHalf
+echo.
 echo  Press enter to close this window.
 pause>NUL
 goto :EOF

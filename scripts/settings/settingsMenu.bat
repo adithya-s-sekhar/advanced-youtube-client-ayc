@@ -31,7 +31,7 @@ if %subs_status% == 1 echo        [Enabled]
 echo.
 echo  (7) - Reset AYC
 echo.
-echo -----------------------------------
+call tui borderSmallHalf
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF

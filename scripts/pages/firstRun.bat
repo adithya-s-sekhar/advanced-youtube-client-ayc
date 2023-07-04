@@ -17,8 +17,10 @@ echo  After setting up, paste the magic phrase below.
 echo.
 echo  This is to ensure you read the instructions and followed it through.
 echo.
+call tui borderSmallHalf
 :firstRun2
 set "magic_phrase_input="
+echo.
 set /p magic_phrase_input=Paste magic phrase: 
 set magic_phrase_input=%magic_phrase_input: =%
 if "%magic_phrase_input%" equ "" goto firstRun2

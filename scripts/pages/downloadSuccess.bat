@@ -16,6 +16,8 @@ echo.
 echo  The files are saved in:
 echo  %loc%
 echo.
+call tui borderSmallHalf
+echo.
 echo  Press enter to close this window.
 pause>NUL
 goto :EOF

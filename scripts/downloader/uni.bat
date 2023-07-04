@@ -20,7 +20,7 @@ echo   (2) - Lowest Quality
 echo.
 echo   (3) - Show all available formats
 echo.
-call tui borderSmall
+call tui borderSmallHalf
 echo.
 choice /c 123 /n /m "Enter Choice (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
@@ -41,7 +41,7 @@ echo.
 %youtube_dl% -F "%url%" && goto uniQualitySelectorContinue
 goto :EOF
 :uniQualitySelectorContinue
-echo -------------------------------------------------
+call tui borderLargeHalf
 echo.
 echo Leave blank and press Enter to Go back.
 echo.
@@ -67,7 +67,7 @@ cls
 call tui bannerSmall
 echo.
 echo  Starting Download
-echo -------------------
+call tui borderSmallHalf
 echo.
 echo  URL: %url%
 echo.

@@ -17,7 +17,7 @@ echo  Batch Mode allows you to create jobs, add videos to that  job and download
 echo.
 echo  Job URLs are saved and can be resumed by re-entering the same job.
 echo.
-echo ------------------------------------------
+call tui borderMediumHalf
 echo.
 if %job_name_invalid% == 1 (
     echo Invalid job name.
@@ -55,7 +55,8 @@ if %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
 if %youtube% == 1 echo  Youtube Job: Yes
 if %youtube% == 0 echo  Youtube Job: No
-echo --------------------------
+echo.
+call tui borderSmall
 echo.
 echo  (0) - Back
 echo.
@@ -78,7 +79,7 @@ if %batch_exists_true% == 0 echo  (4) - Start Job
 echo.
 echo  (5) - Delete Job
 echo.
-echo --------------------------
+call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Enter Choice (0-5): "
 if %errorlevel% == 1 goto batchHome
@@ -102,7 +103,7 @@ echo  your list.
 echo.
 echo  Leave blank and Enter to go back.
 echo.
-echo --------------------------------------------
+call tui borderSmallHalf
 echo.
 
 :batchAddLinksLoop
@@ -150,7 +151,7 @@ if %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
 if %youtube% == 1 echo  Youtube Job: Yes
 if %youtube% == 0 echo  Youtube Job: No
-echo --------------------------
+call tui borderSmallHalf
 echo.
 echo  Job File is opened in Notepad. Follow instructions.
 echo.
@@ -188,7 +189,8 @@ call tui bannerSmall
 if %youtube% == 1 goto batchFormatSelector
 if %youtube% == 0 echo.
 echo  Select Quality
-echo -------------------------
+echo.
+call tui borderSmallHalf
 echo.
 echo  (0) - Back
 echo.
@@ -198,7 +200,8 @@ echo  (2) - Lowest Quality
 echo.
 echo  (3) - Pick a custom format code
 echo.
-echo -------------------------
+call tui borderSmallHalf
+echo.
 choice /c 0123 /n /m "Choose Quality (0-3): "
 if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
@@ -240,7 +243,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
-call tui borderSmall
+call tui borderSmallHalf
 echo.
 choice /c 0123456 /n /m "Enter Choice (0-6): "
 if %errorlevel% == 1 goto batchManage
@@ -288,7 +291,7 @@ if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
 if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if not %format_chosen% == h264 echo.
-call tui borderSmall
+call tui borderSmallHalf
 if %format_chosen% == vp9  goto batchChoiceVp9
 if %format_chosen% == av1  goto batchChoiceAv1
 echo.
@@ -347,7 +350,7 @@ echo  Leave blank and press Enter to Go back.
 echo.
 echo  Paste a sample URL from your batch job to retrieve all available qualities.
 echo.
-echo -----------
+call tui borderSmallHalf
 echo.
 if %url_invalid% == 1 (
     echo %url_validation_msg%
@@ -385,7 +388,7 @@ goto error
 :batchCustomFormatSelectorContinue
 echo.
 echo  Leave blank and press Enter to Go back.
-echo -------------------------------------------------
+call tui borderLargeHalf
 echo.
 echo You can also type "best" and "worst".
 set /p batch_custom_qual=Choose ID (green color in the list above): 
@@ -433,7 +436,7 @@ cls
 call tui bannerSmall
 echo.
 echo  Starting Download
-echo -------------------
+call tui borderSmallHalf
 echo.
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF

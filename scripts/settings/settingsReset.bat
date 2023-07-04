@@ -9,13 +9,13 @@ echo  You are about to reset AYC to it's default settings.
 echo.
 echo  This should fix any issues caused by incorrect or corrupted settings.
 echo.
-echo ------------------------
+call tui borderSmall
 echo.
 echo  (0) - Back
 echo.
 echo  (1) - Reset and Exit AYC
 echo.
-echo ------------------------
+call tui borderSmallHalf
 echo.
 choice /C 01 /n /m "Choose option (0-1): "
 if %errorlevel% == 1 goto :EOF

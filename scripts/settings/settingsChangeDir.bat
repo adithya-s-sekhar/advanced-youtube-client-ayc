@@ -10,7 +10,7 @@ if %loc_invalid% == 0 echo  Current download folder is:
 if %loc_invalid% == 1 echo  Invalid download folder:
 echo  %loc%
 echo.
-echo ----------------------------------------------
+call tui borderSmall
 echo.
 echo  * Drag and Drop the folder you want AYC to save
 echo    it's downloads into the below area. Or type/paste the 
@@ -22,7 +22,7 @@ echo  * Leave blank and Enter to Go Back.
 echo.
 echo  * Enter R to reset to default location.
 echo.
-echo ----------------------------------------------
+call tui borderSmallHalf
 echo.
 set /p settings_dir=Drag and Drop/Paste here: 
 if %loc_invalid% == 0 if not defined settings_dir goto :EOF

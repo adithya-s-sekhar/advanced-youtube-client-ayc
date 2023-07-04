@@ -14,7 +14,7 @@ if %yt_updated% == 0 (
     echo  Current version: %youtube_dl_version%
 )
 echo.
-echo -------------------
+call tui borderSmall
 echo.
 echo  (0) - Go back
 echo.
@@ -22,7 +22,7 @@ echo  (1) - Update to latest Stable
 echo.
 echo  (2) - Update to latest Nightly (pre-release, untested)
 echo.
-echo -------------------
+call tui borderSmallHalf
 echo.
 choice /c 012 /n /m "Select Option (0-2): "
 if %errorlevel% == 1 goto :EOF

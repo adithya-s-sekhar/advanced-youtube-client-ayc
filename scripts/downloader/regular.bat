@@ -28,7 +28,7 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
-call tui borderSmall
+call tui borderSmallHalf
 echo.
 choice /c 123456 /n /m "Enter Choice (1-6): "
 if %errorlevel% == 1 set format_chosen=h264
@@ -75,7 +75,7 @@ if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to
 if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
 if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
 if not %format_chosen% == h264 echo.
-call tui borderSmall
+call tui borderSmallHalf
 if %format_chosen% == vp9  goto choiceVp9
 if %format_chosen% == av1  goto choiceAv1
 echo.
@@ -134,7 +134,7 @@ cls
 call tui bannerSmall
 echo.
 echo  Starting Download
-echo -------------------
+call tui borderSmallHalf
 echo.
 echo  URL: %url%
 echo.

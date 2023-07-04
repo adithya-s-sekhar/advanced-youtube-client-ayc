@@ -9,7 +9,7 @@ echo.
 if %try_invalid% == 0 echo  Current retry attempts: %defined_try%
 if %try_invalid% == 1 echo  Invalid value: %defined_try%
 echo.
-echo ----------------------------------------------
+call tui borderSmall
 echo.
 echo  * The number you set here is the number of times AYC
 echo    will retry the download if a network error occurs.
@@ -24,7 +24,7 @@ if %try_invalid% == 1 (
 )
 echo  * Enter R to reset to default value.
 echo.
-echo ----------------------------------------------
+call tui borderSmallHalf
 echo.
 set /p settings_try=No. of retry attempts: 
 if %try_invalid% == 0 if not defined settings_try goto :EOF
