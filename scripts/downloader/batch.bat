@@ -436,7 +436,7 @@ goto batchHome
 
 :batchDownload
 set "try="
-set try=%try_count%
+set try=1
 
 if %aria2_status% == 1 if %youtube% == 0 set aria2=--external-downloader aria2c
 if %aria2_status% == 1 if %youtube% == 1 set aria2=--concurrent-fragments 8
@@ -445,11 +445,11 @@ if %aria2_status% == 1 if %youtube% == 1 set aria2=--concurrent-fragments 8
 set error_mode=batch
 mode %window_small%
 color 0B
-title Downloading (Try %try%/%defined_try%)
+title Downloading (Attempt: %try% out of %max_try%)
 cls
 call tui bannerSmall
 echo.
-echo  Starting Download
+echo  Starting Download (Attempt: %try% out of %max_try%)
 call tui borderSmallHalf
 echo.
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
@@ -458,5 +458,5 @@ if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %t
 if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%\%job_name%" -o "%%(title)s-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%\%job_name%" -o "%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 set /a try=%try%+1
-if %try% GTR %defined_try% set batch_download_status=0 && goto :EOF
+if %try% GTR %max_try% set batch_download_status=0 && goto :EOF
 goto batchDownloadTried

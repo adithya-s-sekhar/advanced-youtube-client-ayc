@@ -122,18 +122,18 @@ goto download
 
 :download
 set "try="
-set try=%try_count%
+set try=1
 
 if %aria2_status% == 1 set aria2=--concurrent-fragments 8
 
 :downloadTried
 mode %window_small%
 color 0B
-title Downloading (Try %try%/%defined_try%)
+title Downloading (Attempt: %try% out of %max_try%)
 cls
 call tui bannerSmall
 echo.
-echo  Starting Download
+echo  Starting Download (Attempt: %try% out of %max_try%)
 call tui borderSmallHalf
 echo.
 echo  URL: %url%
@@ -143,5 +143,5 @@ if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-o
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
 if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%" -o "%%(title)s-%%(id)s.%%(ext)s" "%url%" && set regular_download_status=1 && goto :EOF
 set /a try=%try%+1
-if %try% GTR %defined_try% set regular_download_status=0 && goto :EOF
+if %try% GTR %max_try% set regular_download_status=0 && goto :EOF
 goto downloadTried

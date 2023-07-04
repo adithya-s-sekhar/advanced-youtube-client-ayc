@@ -53,6 +53,7 @@ if not %errorlevel% == 0 (
 ) else (
     set try_invalid=0
 )
+set /a max_try=%defined_try%+1
 
 if not exist "%aycdata%\aria2_status.txt" echo "1">"%aycdata%\aria2_status.txt"
 set /p aria2_status=<"%aycdata%\aria2_status.txt"

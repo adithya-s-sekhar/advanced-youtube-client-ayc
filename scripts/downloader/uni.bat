@@ -55,23 +55,23 @@ if "%uni_qual%" equ " =" goto uniHome
 
 :uniDownload
 set "try="
-set try=%try_count%
+set try=1
 
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 :uniDownloadTried
 mode %window_small%
 color 0B
-title Downloading (Try %try%/%defined_try%)
+title Downloading (Attempt: %try% out of %max_try%)
 cls
 call tui bannerSmall
 echo.
-echo  Starting Download
+echo  Starting Download (Attempt: %try% out of %max_try%)
 call tui borderSmallHalf
 echo.
 echo  URL: %url%
 echo.
 %youtube_dl% %default_config% -f %uni_qual% %aria2% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set uni_download_status=1 && goto :EOF
 set /a try=%try%+1
-if %try% GTR %defined_try% goto :EOF
+if %try% GTR %max_try% goto :EOF
 goto uniDownloadTried
