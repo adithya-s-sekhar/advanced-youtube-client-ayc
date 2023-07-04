@@ -25,7 +25,7 @@ if %job_name_invalid% == 1 (
     echo Invalid job name.
     echo.
 )
-set /p job_name=Enter Job Name (eg: Songs): 
+set /p job_name=Enter a job name: 
 if "%job_name%" equ "" set job_name_invalid=1 && goto batchHome
 set job_name=%job_name:"=%
 if not exist "%loc%\%job_name%\" md "%loc%\%job_name%">NUL
@@ -78,20 +78,20 @@ if %batch_link_counter% GTR 1 (
 ) else (
     set batch_link_counter_text=link
 )
-if %batch_link_counter% GTR 0 echo  (1) - Add Video Links (%batch_link_counter% %batch_link_counter_text% added now)
-if %batch_link_counter% == 0 echo  (1) - Add Video Links
+if %batch_link_counter% GTR 0 echo  (1) - Add video links (%batch_link_counter% %batch_link_counter_text% added now)
+if %batch_link_counter% == 0 echo  (1) - Add video links
 echo.
-echo  (2) - Open Job File (Delete, View, Add Links through 
+echo  (2) - Open job file (Delete, View, Add links through 
 echo        Notepad)
 echo.
 echo  (3) - Change job type
 if %youtube% == 1 echo        Currently: Youtube only
 if %youtube% == 0 echo        Currently: Regular
 echo.
-if %batch_exists_true% == 1 echo  (4) - Resume Job
-if %batch_exists_true% == 0 echo  (4) - Start Job
+if %batch_exists_true% == 1 echo  (4) - Resume job
+if %batch_exists_true% == 0 echo  (4) - Start job
 echo.
-echo  (5) - Delete Job
+echo  (5) - Delete job
 echo.
 call tui borderSmallHalf
 echo.
@@ -417,13 +417,13 @@ goto batchDownload
 
 :batchDeleteConfirm
 echo.
-choice /c yn /n /m "Delete job \"%job_name%\" ? (Y/N)"
+choice /c yn /n /m "Delete job %job_name%? (y/n)"
 if %errorlevel% == 1 goto batchDeleteConfirmAgain
 if %errorlevel% == 2 goto batchManage
 
 :batchDeleteConfirmAgain
 echo.
-choice /c yn /n /m "Are you sure? (Y/N)"
+choice /c yn /n /m "Are you sure? (y/n)"
 if %errorlevel% == 1 goto batchDoDelete
 if %errorlevel% == 2 goto batchManage
 
