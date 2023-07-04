@@ -22,6 +22,7 @@ if %errorlevel% == 0 (
     set link_validator=1
     goto :EOF
 )
+goto :EOF
 
 
 :isYtLinkChecker
