@@ -26,7 +26,7 @@ if %job_name_invalid% == 1 (
 set /p job_name=Enter Job Name (eg: Songs): 
 if "%job_name%" equ "" set job_name_invalid=1 && goto batchHome
 set job_name=%job_name:"=%
-md "%loc%\%job_name%">NUL
+if not exist "%loc%\%job_name%\" md "%loc%\%job_name%">NUL
 if not exist "%loc%\%job_name%\" set job_name_invalid=1 && goto batchHome
 if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batchIsYoutubeCheck
 echo.>"%loc%\%job_name%\%job_name%.txt"
