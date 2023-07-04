@@ -11,13 +11,7 @@ goto :EOF
 
 
 :linkChecker
-echo %linkValidator.arg1% | findstr /I /R "^http://" > nul
-if %errorlevel% == 0 (
-    set link_validator=1
-    goto :EOF
-)
-
-echo %linkValidator.arg1% | findstr /I /R "^https://" > nul
+echo %linkValidator.arg1% | findstr /i /r /c:"^http://" /c:"^https://" > nul
 if %errorlevel% == 0 (
     set link_validator=1
     goto :EOF
