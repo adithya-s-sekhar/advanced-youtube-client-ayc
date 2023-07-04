@@ -62,7 +62,7 @@ if %aria2_status% == 1 set aria2=--external-downloader aria2c
 :uniDownloadTried
 mode %window_small%
 color 0B
-title Finger's Crossed! How's the weather?
+title Downloading (Try %try%/%defined_try%)
 cls
 call tui bannerSmall
 echo.

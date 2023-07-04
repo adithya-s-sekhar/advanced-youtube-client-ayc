@@ -445,7 +445,7 @@ if %aria2_status% == 1 if %youtube% == 1 set aria2=--concurrent-fragments 8
 set error_mode=batch
 mode %window_small%
 color 0B
-title Downloading
+title Downloading (Try %try%/%defined_try%)
 cls
 call tui bannerSmall
 echo.
