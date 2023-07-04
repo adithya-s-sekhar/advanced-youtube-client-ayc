@@ -33,9 +33,15 @@ echo.>"%loc%\%job_name%\%job_name%.txt"
 
 :batchIsYoutubeConfirm
 echo.
-choice /c yn /n /m "Is this a YouTube Download Job? (Yes/No) "
-if %errorlevel% == 1 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
-if %errorlevel% == 2 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
+echo Available download modes:
+echo.
+echo  (1) - Regular (Supports all links)
+echo.
+echo  (2) - Youtube only (Enables youtube quality selector, supports youtube only)
+echo.
+choice /c 12 /n /m "Select download mode (1-2): "
+if %errorlevel% == 1 set youtube=0 && echo "0">"%loc%\%job_name%\is_youtube.txt"
+if %errorlevel% == 2 set youtube=1 && echo "1">"%loc%\%job_name%\is_youtube.txt"
 
 :batchIsYoutubeCheck
 if not exist "%loc%\%job_name%\is_youtube.txt" goto batchIsYoutubeConfirm
