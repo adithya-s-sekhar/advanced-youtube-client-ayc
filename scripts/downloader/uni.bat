@@ -62,11 +62,11 @@ if %aria2_status% == 1 set aria2=--external-downloader aria2c
 :uniDownloadTried
 mode %window_small%
 color 0B
-title Downloading (Attempt: %try% out of %max_try%)
+title Downloading: Attempt: %try% out of %max_try% (%defined_try% retries)
 cls
 call tui bannerSmall
 echo.
-echo  Starting Download (Attempt: %try% out of %max_try%)
+echo  Starting Download: Attempt: %try% out of %max_try% (%defined_try% retries)
 call tui borderSmallHalf
 echo.
 echo  URL: %url%
