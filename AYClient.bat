@@ -81,7 +81,8 @@ if %youtube_link% == 1 (
 ) else (
     start AYClient.bat "%url%" "uni"
 )
-
+set show_quickkey=0
+set url_invalid=0
 goto start
 
 
