@@ -43,7 +43,7 @@ if not exist "%tmp_loc%\" (
     exit
 )
 
-if not exist "%aycdata%\try.txt" echo "3">"%aycdata%\try.txt"
+if not exist "%aycdata%\try.txt" echo "0">"%aycdata%\try.txt"
 set /p defined_try=<"%aycdata%\try.txt"
 set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
