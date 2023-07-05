@@ -18,7 +18,7 @@ This took 7 years and it's still going. To this day, I keep finding little impro
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
 
-*v3.6 01/Sep/2021*
+*From v3.6 - 01/Sep/2021. The current release can be different from this.*
 
 </div>
 
