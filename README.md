@@ -8,9 +8,9 @@
 
 ## Function over form
 
-AYC is a highly responsive, no nonsense, easy to use, fast video downloader for the text based era.
+AYC is a highly responsive, no nonsense, easy to use, fast video downloader from the text based era.
 
-AYC came to be in a moment where I couldn't find what I needed. Tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found to be **too complicated** or **too bloated** or **too minimal** or **too slow** or **too many clicks** or **I can't use muscle memory** the list goes on. They were not for me.
+AYC came to be in a moment where I couldn't find what I needed. Tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found to be either **too complicated** or **too minimal**. Some of them were **too slow**, some of them needed **too many clicks**, some of them has **just one button**. They were not for me.
 
 This took 7 years and it's still going. To this day, I keep finding little improvments here and there. Make sure to follow this repo to keep track of them. 
 
