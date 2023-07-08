@@ -67,7 +67,7 @@ This took 7 years and it's still going. To this day, I keep finding little impro
 
 ## Instructions
 
-When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Please don't skip this.**([Why?](#6-why-do-i-have-to-do-magic-phrases-and-others))
+When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Please don't skip this.**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
 
 **Warning: Windows 11 can now undo these changes randomly without even asking you. If AYC ever appears broken, please redo the instructions from this guide.**
 
@@ -99,7 +99,7 @@ AYC started it's life on Sourceforge in 2016, it's only been on Github since 202
 
 ### 3. Why is the installation so complicated?
 
-AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But one day antiviruses every started flagging this behaviour.
+AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But one day antiviruses everywhere started flagging this behaviour.
 
 So AYC since [v3.6](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/tag/v3.6) is released as straight batch files everyone can open with notepad and read. This requires some additional setup.
 
