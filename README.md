@@ -10,15 +10,11 @@
 
 AYC is a highly responsive, no nonsense, easy to use, fast video downloader from the text based era.
 
-AYC came to be in a moment where I couldn't find what I needed. Tried both open source and closed source applications, paid and free. Some of those were good, has unique features. But most of them I found to be either **too complicated** or **too minimal**. Some of them were **too slow**, some of them needed **too many clicks**, some of them has **just one button**. They were not for me.
-
-This took 7 years and it's still going. To this day, I keep finding little improvments here and there. Make sure to follow this repo to keep track of them. 
-
 ## Screenshots
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
 
-*From v3.6 - 01/Sep/2021. The current release can be different from this.*
+*From v3.6 - 01/Sep/2021. The current release could be different from this.*
 
 </div>
 
@@ -35,16 +31,16 @@ This took 7 years and it's still going. To this day, I keep finding little impro
 ## Features
 
 - Supports Youtube, Reddit, Twitter, Facebook, Instagram, Twitch, Dailymotion, Vimeo and [100s of other websites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) that yt-dlp supports.
-- Automatically saves Video Chapters, Thumbnails, Subtitles for Youtube videos. (User configurable)
+- Automatically saves video chapters, thumbnails, subtitles for Youtube videos (User configurable).
 - Supports downloading playlists, channels, keyword topics on multiple websites.
-- Multithreaded downloads using aria2c to fully utilize your Internet speeds. (User configurable)
-- Batch mode! You can create jobs, save urls to them and download, resume, edit, delete anytime you want.
+- Multithreaded downloads using aria2c to fully utilize the available bandwidth (User configurable).
+- Batch mode can create jobs, save urls to them and download, resume, edit, delete.
 - Extremely light and instantly responding text based ui.
-- You can easily edit the scripts to make it do what you want.
+- Easily editable batch script.
 - Compatible with Windows 7 SP1/8/8.1/10/11 (32/64-bit).
-- Downloads only. We don't convert to other formats. All formats are given by the website.
+- Downloads only. Does not convert to other formats. All formats are given by the website.
 - Except for audio. Along with untouched M4A and OPUS audio straight from youtube, there is also a 128k CBR MP3 option.
-- Everything designed to help you create muscle memory.
+- Everything is designed to help create muscle memory.
 
 ## Installation 
 
@@ -67,9 +63,9 @@ This took 7 years and it's still going. To this day, I keep finding little impro
 
 ## Instructions
 
-When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Please don't skip this.**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
+When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Don't skip this!**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
 
-**Warning: Windows 11 can now undo these changes randomly without even asking you. If AYC ever appears broken, please redo the instructions from this guide.**
+**Warning: Windows 11 may undo these changes randomly without even asking you. If AYC ever appears broken, redo the instructions from this guide.**
 
 ### Windows 10/11 users
 
@@ -79,11 +75,11 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
     - Press `Ctrl + ,` (comma) to open **Settings**.
     - Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
     - You can now close this terminal.
-2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
+2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field and press Enter.
 
 ### Windows 7/8/8.1 users
 
-1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field. This is to ensure that you actually read the instructions.
+1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field and press Enter.
 
 - [How to pin AYC to taskbar for easy access?](#complete-install)
 
@@ -113,11 +109,11 @@ MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](http
 
 AYC uses a command `mode` to dynamically change window size to fit and display all it's content. This works on **Windows Console Host**, the application which ran .bat batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
 
-Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the features it's missing is `mode`. You can see multiple highly active issues on this at Microsoft's repo getting ignored.
+Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the features it's missing is `mode`.
 
 So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
 
-So AYC now makes all first time users go through this once before continuing.
+So AYC now makes all users go through this once when they open it for the first time.
 
 ## Links
 
@@ -125,15 +121,11 @@ So AYC now makes all first time users go through this once before continuing.
 
 [Project on Sourceforge](https://sourceforge.net/projects/advanced-youtube-client-ayc)
 
-### Thanks to these guys
-
 [AYC on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
 
 [AYC on Softpedia](https://www.softpedia.com/get/Internet/Download-Managers/AYC.shtml)
 
 [AYC on Softaro](https://softaro.net/advanced-youtube-client-ayc/)
-
-### This won't be possible without these awesome projects
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
