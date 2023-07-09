@@ -26,7 +26,7 @@ if %job_name_invalid% == 1 (
     echo.
 )
 set /p job_name=Enter a job name: 
-if "%job_name%" equ "" set job_name_invalid=1 && goto batchHome
+if "%job_name%" equ "" goto batchHome
 set job_name=%job_name:"=%
 if not exist "%loc%\%job_name%\" md "%loc%\%job_name%">NUL
 if not exist "%loc%\%job_name%\" set job_name_invalid=1 && goto batchHome
