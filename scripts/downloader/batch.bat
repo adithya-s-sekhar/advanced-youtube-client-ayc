@@ -13,6 +13,10 @@ if %batch_deleted_job% == 1 (
     echo.
     set batch_deleted_job=0
 )
+if %cookie_loaded% == 1 (
+    echo cookies.txt loaded
+    echo.
+)
 echo  Batch Mode allows you to create jobs, add videos to that 
 echo  job and download it.
 echo.
