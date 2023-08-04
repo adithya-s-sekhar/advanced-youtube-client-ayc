@@ -18,36 +18,41 @@ echo   (1) - H264 Video/AAC Audio (Upto 1080p)
 echo.
 echo   (2) - HEVC Video/AAC Audio (Upto 1080p)
 echo.
+echo   (3) - AV1 Video/AAC Audio  (Upto 1080p)
+echo.
 call tui borderSmall
 echo  Audio Only
 echo.
-echo   (3) - M4A - AAC Audio - 3 Qualities
+echo   (4) - M4A - AAC Audio - 3 Qualities
 echo.
 call tui borderSmall
 echo.
-echo   (4) - Pick a Custom Format
+echo   (5) - Pick a Custom Format
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 1234 /n /m "Enter Choice (1-4): "
+choice /c 12345 /n /m "Enter Choice (1-5): "
 if %errorlevel% == 1 set format_chosen=h264
 if %errorlevel% == 2 set format_chosen=hevc
-if %errorlevel% == 3 set format_chosen=aud && goto bilibiliM4a
-if %errorlevel% == 4 set format_chosen=custom && goto bilibiliCustomFormat
+if %errorlevel% == 3 set format_chosen=av1
+if %errorlevel% == 4 set format_chosen=aud && goto bilibiliM4a
+if %errorlevel% == 5 set format_chosen=custom && goto bilibiliCustomFormat
 goto qualitySelector
 
 :qualitySelector
 mode %window_small%
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
-if %format_chosen% == hevc title  Format: .MP4 (HEVC Video/OPUS Audio)
+if %format_chosen% == hevc title  Format: .MP4 (HEVC Video/AAC Audio)
+if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/AAC Audio)
 cls
 call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
-if %format_chosen% == hevc echo  Format: .MP4 (HEVC Video/OPUS Audio)
+if %format_chosen% == hevc echo  Format: .MP4 (HEVC Video/AAC Audio)
+if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
 echo.
 echo   (0) - Back
 echo.
@@ -64,6 +69,7 @@ echo   (4) - 1080p  (If not available, returns to 720p)
 echo.
 call tui borderSmallHalf
 if %format_chosen% == hevc  goto choiceHevc
+if %format_chosen% == av1  goto choiceAv1
 echo.
 choice /c 01234 /n /m "Enter Choice (0-4): "
 if %errorlevel% == 1 goto formatSelector
@@ -81,6 +87,16 @@ if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvid
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]"
 if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]"
 if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]"
+goto download
+
+:choiceAv1
+echo.
+choice /c 01234 /n /m "Enter Choice (0-4): "
+if %errorlevel% == 1 goto formatSelector
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]"
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]"
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
 goto download
 
 
@@ -163,6 +179,7 @@ echo  URL: %url%
 echo.
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-H264-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% "%url%" && set bilibili_download_status=1 && goto :EOF
 if %format_chosen% == hevc %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-HEVC-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% "%url%" && set bilibili_download_status=1 && goto :EOF
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% "%url%" && set bilibili_download_status=1 && goto :EOF
 if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%" -o "%%(title)s-%aud_end%-%%(id)s.%%(ext)s" %custom_config_bilibili% "%url%" && set bilibili_download_status=1 && goto :EOF
 if %format_chosen% == custom %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%" -o "%%(title)s-%bilibili_qual%-%%(id)s.%%(ext)s" %custom_config_bilibili% "%url%" && set bilibili_download_status=1 && goto :EOF
 set /a try=%try%+1
