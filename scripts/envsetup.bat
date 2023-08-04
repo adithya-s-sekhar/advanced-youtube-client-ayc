@@ -18,11 +18,6 @@ if not exist "%cd%\data" md "%cd%\data"
 
 set aycdata=%cd%\data
 set youtube_dl=yt-dlp.exe
-set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
-if exist cookies.txt (
-    set default_config=%default_config% --cookies cookies.txt
-    set cookie_loaded=1
-)
 
 if not exist "%aycdata%\first_run.txt" call firstRun
 
@@ -81,5 +76,11 @@ if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
 if not exist "%aycdata%\youtube_dl_version.txt" echo "unknown">"%aycdata%\youtube_dl_version.txt"
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
+
+set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
+if exist cookies.txt (
+    set default_config=%default_config% --cookies cookies.txt
+    set cookie_loaded=1
+)
 
 goto :EOF
