@@ -81,10 +81,5 @@ set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
 
 set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
-if exist cookies.txt (
-    set cookies=--cookies cookies.txt
-    set default_config=%default_config% %cookies%
-    set cookie_loaded=1
-)
 
 goto :EOF

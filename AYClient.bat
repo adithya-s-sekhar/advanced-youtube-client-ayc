@@ -65,7 +65,11 @@ cls
 call tui bannerMedium
 echo.
 if %cookie_loaded% == 1 (
-    echo INFO: cookies.txt loaded.
+    echo INFO: cookies.txt loaded. Enter ^(c^) to unload cookie.
+    echo.
+)
+if exist cookies.txt if %cookie_loaded% == 0 (
+    echo INFO: cookies.txt detected but not loaded. Enter ^(c^) to load cookie.
     echo.
 )
 echo Enter ^(m^) for more options.
@@ -77,7 +81,7 @@ if %url_invalid% == 1 (
     echo.
 )
 if %show_quickkey% == 1 (
-    echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings
+    echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
     echo.
 )
 set /p url=">> "
@@ -93,6 +97,8 @@ if "%url%" equ "m" goto quickKeyRedirector
 if "%url%" equ "M" goto quickKeyRedirector
 if "%url%" equ "s" goto quickKeyRedirector
 if "%url%" equ "S" goto quickKeyRedirector
+if "%url%" equ "c" goto quickKeyRedirector
+if "%url%" equ "C" goto quickKeyRedirector
 
 call linkValidator "%url%"
 
@@ -119,7 +125,21 @@ if "%url%" equ "m" call moreMenu
 if "%url%" equ "M" call moreMenu
 if "%url%" equ "s" call settingsMenu
 if "%url%" equ "S" call settingsMenu
+if "%url%" equ "c" call :toggleCookie
+if "%url%" equ "C" call :toggleCookie
 goto start
+
+
+:toggleCookie
+if %cookie_loaded% == 0 (
+    if not exist cookies.txt echo. && echo Error: cookies.txt not present. && echo. && echo Press Enter to continue && pause>nul && goto :EOF
+    call cookieLoader load
+    goto :EOF
+)
+if %cookie_loaded% == 1 (
+    call cookieLoader unload
+    goto :EOF
+)
 
 
 :regular
