@@ -103,8 +103,8 @@ goto start
 :quickKeyRedirector
 set show_quickkey=0
 set url_invalid=0
-if "%url%" equ "b" start AYClient.bat "b"
-if "%url%" equ "B" start AYClient.bat "b"
+if "%url%" equ "b" start AYClient.bat "b" dummy "%cookie_loaded%"
+if "%url%" equ "B" start AYClient.bat "b" dummy "%cookie_loaded%"
 if "%url%" equ "m" call moreMenu
 if "%url%" equ "M" call moreMenu
 if "%url%" equ "s" call settingsMenu
