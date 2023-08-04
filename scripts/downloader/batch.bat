@@ -400,7 +400,7 @@ echo  Working on: %job_name%
 echo.
 echo  Sample URL: %batch_custom_format_url%
 echo.
-%youtube_dl% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
+%youtube_dl% %cookies% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
 set error_mode=batch
 goto error
 :batchCustomFormatSelectorContinue

@@ -38,7 +38,7 @@ call tui bannerLarge
 echo.
 echo  URL: %url%
 echo.
-%youtube_dl% -F "%url%" && goto uniQualitySelectorContinue
+%youtube_dl% %cookies% -F "%url%" && goto uniQualitySelectorContinue
 goto :EOF
 :uniQualitySelectorContinue
 echo.
