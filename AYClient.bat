@@ -12,6 +12,9 @@ set custom_config_youtube=
 set custom_config_uni=
 :: This will be used in all non-youtube downloads.
 
+set custom_config_bilibili=
+:: This will be used in all bilibili downloads.
+
 set custom_config_batch_yt=
 :: This will be used in all youtube downloads in batch mode.
 
@@ -50,6 +53,7 @@ set url=%ayc.arg1%
 set url=%url:"=%
 if %ayc.arg2% == "reg" goto regular
 if %ayc.arg2% == "uni" goto uni
+if %ayc.arg2% == "bili" goto bili
 
 
 :start
@@ -98,11 +102,9 @@ if %link_validator% == 0 (
     goto start
 )
 
-if %youtube_link% == 1 (
-    start AYClient.bat "%url%" "reg"
-) else (
-    start AYClient.bat "%url%" "uni"
-)
+if %youtube_link% == 1 start AYClient.bat "%url%" "reg"
+if %bilibili_link% == 1 start AYClient.bat "%url%" "bili"
+if %generic_link% == 1 start AYClient.bat "%url%" "uni"
 set show_quickkey=0
 set url_invalid=0
 goto start
@@ -133,6 +135,16 @@ goto exit
 :uni
 call uni
 if %uni_download_status% == 1 (
+    call downloadSuccess
+) else (
+    call downloadError
+)
+goto exit
+
+
+:bili
+call bilibili
+if %bilibili_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
