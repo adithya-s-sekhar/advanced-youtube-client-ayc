@@ -2,6 +2,7 @@
 
 set ayc.arg1=%1
 set ayc.arg2=%2
+set ayc.arg3=%3
 
 :: /----------------------------------------------------------/
 :: /----------------------------------------------------------/
@@ -26,6 +27,9 @@ cls
 
 
 :checkParameter
+if not defined ayc.arg3 goto checkParameter2
+if %ayc.arg3% equ "1" set cookie_loaded=0 && call :toggleCookie
+:checkParameter2
 if %ayc.arg1%p equ p goto start
 if %ayc.arg1% equ "b" goto batch
 if %ayc.arg1% equ "B" goto batch
@@ -88,9 +92,9 @@ if %link_validator% == 0 (
     goto start
 )
 
-if %youtube_link% == 1 start AYClient.bat "%url%" "reg"
-if %bilibili_link% == 1 start AYClient.bat "%url%" "bili"
-if %generic_link% == 1 start AYClient.bat "%url%" "uni"
+if %youtube_link% == 1 start AYClient.bat "%url%" "reg" "%cookie_loaded%"
+if %bilibili_link% == 1 start AYClient.bat "%url%" "bili" "%cookie_loaded%"
+if %generic_link% == 1 start AYClient.bat "%url%" "uni" "%cookie_loaded%"
 set show_quickkey=0
 set url_invalid=0
 goto start
