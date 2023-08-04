@@ -1,7 +1,14 @@
-Advanced Youtube Client - AYC v4.6 - 09/Jul/2023
+Advanced Youtube Client - AYC v4.7 - 05/Aug/2023
 Open AYClient.bat
 
 What's new?
+
+[4.7]
+- This is a rushed release, if anything doesn't work, do report and downgrade to v4.6 until it's fixed.
+- Added: Support for cookies.txt. Now you can download from sites with accounts. Read FAQ for instructions.
+- Added: Quality selector for bilibili.
+- Added: Custom config support. You can add custom options for yt-dlp per download mode in scripts\custom.bat
+- Fixed: A race condition set tmp_loc before it was even declared.
 
 [4.6]
 - Fixed: 144p,240p videos saving larger size audio than video.
