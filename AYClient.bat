@@ -60,6 +60,10 @@ title Saving to %loc%
 cls
 call tui bannerMedium
 echo.
+if %cookie_loaded% == 1 (
+    echo cookies.txt loaded
+    echo.
+)
 echo Enter ^(m^) for more options.
 echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.

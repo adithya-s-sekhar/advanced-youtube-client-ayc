@@ -12,12 +12,17 @@ set url_invalid=0
 set job_name_invalid=0
 set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
 set show_quickkey=0
+set cookie_loaded=0
 
 if not exist "%cd%\data" md "%cd%\data"
 
 set aycdata=%cd%\data
 set youtube_dl=yt-dlp.exe
 set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
+if exist cookies.txt (
+    set default_config=%default_config% --cookies cookies.txt
+    set cookie_loaded=1
+)
 
 if not exist "%aycdata%\first_run.txt" call firstRun
 
