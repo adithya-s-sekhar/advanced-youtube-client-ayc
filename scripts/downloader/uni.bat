@@ -75,7 +75,7 @@ call tui borderSmallHalf
 echo.
 echo  URL: %url%
 echo.
-%youtube_dl% %default_config% -f %uni_qual% %aria2% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" "%url%" && set uni_download_status=1 && goto :EOF
+%youtube_dl% %default_config% -f %uni_qual% %aria2% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_uni% "%url%" && set uni_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% goto :EOF
 goto uniDownloadTried

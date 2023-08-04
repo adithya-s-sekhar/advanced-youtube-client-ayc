@@ -1,5 +1,23 @@
 @echo off
 
+:: yt-dlp custom options.
+:: You can add additional options for yt-dlp here.
+:: eg: --download-archive FILE --proxy URL
+:: Find more options here https://github.com/yt-dlp/yt-dlp#usage-and-options
+:: Each variable corresponds to each type of download AYC supports.
+
+set custom_config_youtube=
+:: This will be used in all youtube downloads.
+
+set custom_config_uni=
+:: This will be used in all non-youtube downloads.
+
+set custom_config_batch_yt=
+:: This will be used in all youtube downloads in batch mode.
+
+set custom_config_batch_all=
+:: This will be used in all non-youtube downloads in batch mode.
+
 set ayc.arg1=%1
 set ayc.arg2=%2
 
