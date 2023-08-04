@@ -83,6 +83,8 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 
 - [How to pin AYC to taskbar for easy access?](#complete-install)
 
+- [How to load my cookies?](#5-how-to-load-my-cookies)
+
 ## Frequently asked questions (FAQ)
 
 ### 1. Why didn't you use Python or Go?
@@ -114,6 +116,12 @@ Recently Microsoft's been trying to push the newer **Windows Terminal** to it's 
 So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
 
 So AYC now makes all users go through this once when they open it for the first time.
+
+### 5. How to load my cookies?
+
+AYC like yt-dlp supports loading cookies from a cookies.txt file. All you have to do is place the cookies.txt file inside the ayc folder and start AYC. It'll auto detect it and ask you whether you want to load it or not.
+
+Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option in custom.bat in **scripts** folder. Currently AYC only supports setting cookies globally, for youtube and for bilibili only.
 
 ## Links
 
