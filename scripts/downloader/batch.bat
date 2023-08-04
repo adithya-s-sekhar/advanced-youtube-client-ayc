@@ -468,6 +468,7 @@ if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvi
 goto batchDownload
 
 :b_choiceAv1
+set error_format=av1
 echo.
 choice /c 01234 /n /m "Enter Choice (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
