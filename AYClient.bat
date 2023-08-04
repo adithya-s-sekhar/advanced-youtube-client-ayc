@@ -61,7 +61,7 @@ cls
 call tui bannerMedium
 echo.
 if %cookie_loaded% == 1 (
-    echo cookies.txt loaded
+    echo INFO: cookies.txt loaded.
     echo.
 )
 echo Enter ^(m^) for more options.
