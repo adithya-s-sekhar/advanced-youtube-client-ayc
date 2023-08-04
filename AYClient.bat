@@ -2,7 +2,7 @@
 
 :: yt-dlp custom options.
 :: You can add additional options for yt-dlp here.
-:: eg: --download-archive FILE --proxy URL
+:: eg: --download-archive FILE --proxy URL --cookies PATH_TO_cookies.txt
 :: Find more options here https://github.com/yt-dlp/yt-dlp#usage-and-options
 :: Each variable corresponds to each type of download AYC supports.
 
