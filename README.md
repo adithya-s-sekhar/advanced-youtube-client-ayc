@@ -83,7 +83,7 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 
 - [How to pin AYC to taskbar for easy access?](#complete-install)
 
-- [How to load my cookies?](#5-how-to-load-my-cookies)
+- [How to load cookies.txt?](#5-how-to-load-cookiestxt)
 
 ## Frequently asked questions (FAQ)
 
@@ -117,11 +117,11 @@ So on these computers users have to manually change their setttings to allow bat
 
 So AYC now makes all users go through this once when they open it for the first time.
 
-### 5. How to load my cookies?
+### 5. How to load cookies.txt?
 
 AYC like yt-dlp supports loading cookies from a cookies.txt file. All you have to do is place the cookies.txt file inside the ayc folder and start AYC. It'll auto detect it and ask you whether you want to load it or not.
 
-Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option in custom.bat in **scripts** folder. Currently AYC only supports setting cookies globally, for youtube and for bilibili only.
+Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option in custom.bat in **scripts** folder. Currently AYC only supports setting cookies for youtube links, for bilibili and for non-youtube links globally.
 
 ## Links
 
