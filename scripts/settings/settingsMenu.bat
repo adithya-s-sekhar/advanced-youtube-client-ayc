@@ -7,8 +7,8 @@ call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Change download folder
-echo        Currently: %loc%
+echo  (1) - Manage folders
+echo        Change download and temporary folders
 echo.
 echo  (2) - Change retry attempts
 echo        Currently: %defined_try%
@@ -35,7 +35,7 @@ call tui borderSmallHalf
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 call settingsChangeDir
+if %errorlevel% == 2 call settingsChangeDirHome
 if %errorlevel% == 3 call settingsChangeDefinedTry
 if %errorlevel% == 4 call settingsYtUpdate
 if %errorlevel% == 5 call settingsToggles ChangeAria2

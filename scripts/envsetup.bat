@@ -39,12 +39,18 @@ if not exist "%loc%\" (
     set loc_invalid=0
 )
 
-set tmp_loc=%cd%\tmp
+if not exist "%aycdata%\tmp_dir.txt" (
+    md "%cd%\tmp"
+    echo "%cd%\tmp">"%aycdata%\tmp_dir.txt"
+)
+set /p tmp_loc=<"%aycdata%\tmp_dir.txt"
+set tmp_loc=%tmp_loc:"=%
 if not exist "%tmp_loc%\" md "%tmp_loc%"
 if not exist "%tmp_loc%\" (
-    echo ERROR: Unable to create tmp folder
-    pause>nul
-    exit
+    set tmp_loc_invalid=1
+    call settingsChangeTmpDir
+) else (
+    set tmp_loc_invalid=0
 )
 
 if not exist "%aycdata%\try.txt" echo "0">"%aycdata%\try.txt"
