@@ -16,7 +16,7 @@ echo.
 echo  (3) - Update yt-dlp (fixes most issues)
 echo        Currently: %youtube_dl_version%
 echo.
-echo  (4) - Aria2 multi-threaded downloads
+echo  (4) - Multi-threaded downloading
 if %aria2_status% == 0 echo        [Disabled]
 if %aria2_status% == 1 echo        [Enabled for non-youtube downloads]
 if %aria2_status% == 2 echo        [Enabled for all downloads]
