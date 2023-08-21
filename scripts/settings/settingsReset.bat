@@ -25,6 +25,7 @@ goto settingsResetFinish
 mode %window_small%
 del /q "%aycdata%\first_run.txt"
 del /q "%aycdata%\dir.txt"
+del /q "%aycdata%\tmp_dir.txt"
 del /q "%aycdata%\try.txt"
 del /q "%aycdata%\aria2_status.txt"
 del /q "%aycdata%\thumbs_status.txt"
