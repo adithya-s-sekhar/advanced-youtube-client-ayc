@@ -1,12 +1,12 @@
 :settingsChangeTmpDir
 mode %window_small%
 color 07
-title Change Temporary folder location
+title Change temporary folder location
 cls
 set "settings_tmp_dir="
 call tui bannerSmall
 echo.
-if %tmp_loc_invalid% == 0 echo  Current temporary folder is:
+if %tmp_loc_invalid% == 0 echo  Current temporary folder:
 if %tmp_loc_invalid% == 1 echo  Invalid temporary folder:
 echo  %tmp_loc%
 echo.

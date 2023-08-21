@@ -1,23 +1,23 @@
 :settingsChangeDirHome
 mode %window_small%
 color 07
-title Manage Folders
+title Manage folders
 cls
 call tui bannerSmall
 echo.
-echo  Current Download folder: 
+echo  Current download folder: 
 echo  %loc%
 echo.
-echo  Current Temporary folder:
+echo  Current temporary folder:
 echo  %tmp_loc%
 echo.
 call tui borderSmall
 echo.
 echo  (0) - Go Back
 echo.
-echo  (1) - Change Download folder
+echo  (1) - Change download folder
 echo.
-echo  (2) - Change Temporary folder
+echo  (2) - Change temporary folder
 echo.
 call tui borderSmallHalf
 echo.

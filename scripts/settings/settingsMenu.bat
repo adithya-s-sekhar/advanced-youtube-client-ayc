@@ -8,7 +8,7 @@ echo.
 echo  (0) - Back
 echo.
 echo  (1) - Manage folders
-echo        Change download and temporary folders
+echo        Change download and temporary folders.
 echo.
 echo  (2) - Change retry attempts
 echo        Currently: %defined_try%
