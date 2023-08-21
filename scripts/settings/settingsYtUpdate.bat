@@ -35,7 +35,7 @@ goto update
 echo.
 echo Updating to latest stable
 echo.
-%youtube_dl% --update-to stable@2023.06.22 > nul
+%youtube_dl% --update-to stable@2023.07.06 > nul
 %youtube_dl% --update-to stable > nul
 :: you can't downgrade from nightly without a specifig tag
 %youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
