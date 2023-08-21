@@ -14,9 +14,9 @@ AYC is a **strictly personal** project that  **does not** come with any guarante
 
 ## Screenshots
 
-![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens.png)
+![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png)
 
-*From v3.6 - 01/Sep/2021. The current release could be different from this.*
+*From an in development build of v4.7. The current release could be different from this.*
 
 </div>
 
