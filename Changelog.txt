@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.7 - 05/Aug/2023
+Advanced Youtube Client - AYC v4.8 - 22/Aug/2023
 Open AYClient.bat
 
 What's new?
+
+[4.8]
+- Added: Support for embedding thumbnail, subtitles on non youtube links.
+- Added: Ability to change the temporary folder.
+- Fixed: Some windows glitched by changing window size twice when opened.
+- Improved: UI.
 
 [4.7]
 - This is a rushed release, if anything doesn't work, do report and downgrade to v4.6 until it's fixed.
