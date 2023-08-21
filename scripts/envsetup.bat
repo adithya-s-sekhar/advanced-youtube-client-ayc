@@ -16,6 +16,7 @@ set cookie_loaded=0
 set cookies= 
 :: leave a space in cookies for initializing or it'll crash.
 :: need to find a better way.
+set no_cookie_found=0
 
 if not exist "%cd%\data" md "%cd%\data"
 

@@ -68,11 +68,18 @@ if %show_quickkey% == 1 (
     echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
     echo.
 )
+if %no_cookie_found% == 1 (
+    echo Error: cookies.txt not present.
+    echo.
+)
 set /p url=">> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
 set url=%url: =%
+
+set no_cookie_found=0
+
 if "%url%" equ "" set show_quickkey=1 && goto start
 if "%url%" equ " =" set show_quickkey=1 && goto start
 if "%url%" equ "b" goto quickKeyRedirector
@@ -101,7 +108,6 @@ goto start
 
 
 :quickKeyRedirector
-set show_quickkey=0
 set url_invalid=0
 if "%url%" equ "b" start AYClient.bat "b" dummy "%cookie_loaded%"
 if "%url%" equ "B" start AYClient.bat "b" dummy "%cookie_loaded%"
@@ -116,7 +122,7 @@ goto start
 
 :toggleCookie
 if %cookie_loaded% == 0 (
-    if not exist cookies.txt echo. && echo Error: cookies.txt not present. && echo. && echo Press Enter to continue && pause>nul && goto :EOF
+    if not exist cookies.txt set no_cookie_found=1 && goto :EOF
     call cookieLoader load
     goto :EOF
 )
