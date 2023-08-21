@@ -7,17 +7,17 @@ call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Batch Mode         QuickKey: B
+echo  (1) - Batch Mode             QuickKey: b
 echo.
-echo  (2) - Settings           QuickKey: S
+echo  (2) - Settings               QuickKey: s
 echo.
-echo  (3) - About
+echo  (3) - About                  QuickKey: a
 echo.
-echo  (4) - Visit on GitHub
+echo  (4) - Visit on GitHub        QuickKey: g
 echo.
-echo  (5) - Visit on Sourceforge
+echo  (5) - Visit on Sourceforge   QuickKey: sf
 echo.
-echo  (6) - Follow on Telegram
+echo  (6) - Follow on Telegram     QuickKey: t
 echo.
 call tui borderSmallHalf
 echo.
