@@ -118,22 +118,22 @@ goto start
 :quickKeyRedirector
 set show_quickkey=0
 set url_invalid=0
-if "%url%" equ "a" call about
-if "%url%" equ "A" call about
-if "%url%" equ "b" start AYClient.bat "b" dummy "%cookie_loaded%"
-if "%url%" equ "B" start AYClient.bat "b" dummy "%cookie_loaded%"
-if "%url%" equ "c" call :toggleCookie
-if "%url%" equ "C" call :toggleCookie
-if "%url%" equ "g" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if "%url%" equ "G" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if "%url%" equ "m" call moreMenu
-if "%url%" equ "M" call moreMenu
-if "%url%" equ "s" call settingsMenu
-if "%url%" equ "S" call settingsMenu
-if "%url%" equ "sf" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if "%url%" equ "SF" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if "%url%" equ "t" start "" "https://t.me/ayc_news"
-if "%url%" equ "T" start "" "https://t.me/ayc_news"
+if "%url%" equ "a" call about && goto start
+if "%url%" equ "A" call about && goto start
+if "%url%" equ "b" start AYClient.bat "b" dummy "%cookie_loaded%" && goto start
+if "%url%" equ "B" start AYClient.bat "b" dummy "%cookie_loaded%" && goto start
+if "%url%" equ "c" call :toggleCookie && goto start
+if "%url%" equ "C" call :toggleCookie && goto start
+if "%url%" equ "g" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto start
+if "%url%" equ "G" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto start
+if "%url%" equ "m" call moreMenu && goto start
+if "%url%" equ "M" call moreMenu && goto start
+if "%url%" equ "s" call settingsMenu && goto start
+if "%url%" equ "S" call settingsMenu && goto start
+if "%url%" equ "sf" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto start
+if "%url%" equ "SF" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto start
+if "%url%" equ "t" start "" "https://t.me/ayc_news" && goto start
+if "%url%" equ "T" start "" "https://t.me/ayc_news" && goto start
 goto start
 
 
