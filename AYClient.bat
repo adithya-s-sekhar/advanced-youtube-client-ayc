@@ -21,9 +21,6 @@ set path=%path%;%cd%\bin;%cd%\scripts
 :begin
 call envsetup
 call custom
-mode %window_medium%
-color 07
-cls
 
 
 :checkParameter
