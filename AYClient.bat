@@ -66,7 +66,7 @@ if %show_quickkey% == 1 (
     echo.
 )
 if %no_cookie_found% == 1 (
-    echo Error: cookies.txt not present.
+    echo Error: cookies.txt not present in ayc folder.
     echo.
 )
 set /p url=">> "
