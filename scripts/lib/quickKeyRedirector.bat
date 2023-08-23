@@ -13,8 +13,8 @@ if "%quickKey.arg1%" equ "a" call about && goto :EOF
 if "%quickKey.arg1%" equ "A" call about && goto :EOF
 if "%quickKey.arg1%" equ "b" start AYClient.bat "b" dummy "%cookie_loaded%" && goto :EOF
 if "%quickKey.arg1%" equ "B" start AYClient.bat "b" dummy "%cookie_loaded%" && goto :EOF
-if "%quickKey.arg1%" equ "c" call :toggleCookie && goto :EOF
-if "%quickKey.arg1%" equ "C" call :toggleCookie && goto :EOF
+if "%quickKey.arg1%" equ "c" call toggleCookie && goto :EOF
+if "%quickKey.arg1%" equ "C" call toggleCookie && goto :EOF
 if "%quickKey.arg1%" equ "g" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "G" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "m" call moreMenu && goto :EOF

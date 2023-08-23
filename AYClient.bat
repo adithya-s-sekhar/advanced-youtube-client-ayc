@@ -23,7 +23,7 @@ call custom
 
 :checkParameter
 if not defined ayc.arg3 goto checkParameter2
-if %ayc.arg3% equ "1" set cookie_loaded=0 && call :toggleCookie
+if %ayc.arg3% equ "1" set cookie_loaded=0 && call toggleCookie
 :checkParameter2
 if %ayc.arg1%p equ p goto start
 if %ayc.arg1% equ "b" goto batch
@@ -43,6 +43,14 @@ title Saving to %loc%
 cls
 call tui bannerMedium
 echo.
+echo Enter ^(m^) for more options.
+echo.
+echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
+echo.
+if %no_cookie_found% == 1 (
+    echo Error: cookies.txt not present in ayc folder.
+    echo.
+)
 if %cookie_loaded% == 1 (
     echo INFO: cookies.txt loaded. Enter ^(c^) to unload cookie.
     echo.
@@ -51,20 +59,12 @@ if exist cookies.txt if %cookie_loaded% == 0 (
     echo INFO: cookies.txt detected but not loaded. Enter ^(c^) to load cookie.
     echo.
 )
-echo Enter ^(m^) for more options.
-echo.
-echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
-echo.
 if %url_invalid% == 1 (
     echo %url_validation_msg%
     echo.
 )
 if %show_quickkey% == 1 (
     echo Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
-    echo.
-)
-if %no_cookie_found% == 1 (
-    echo Error: cookies.txt not present in ayc folder.
     echo.
 )
 set /p url=">> "
@@ -96,18 +96,6 @@ if %generic_link% == 1 start AYClient.bat "%url%" "uni" "%cookie_loaded%"
 set show_quickkey=0
 set url_invalid=0
 goto start
-
-
-:toggleCookie
-if %cookie_loaded% == 0 (
-    if not exist cookies.txt set no_cookie_found=1 && goto :EOF
-    call cookieLoader load
-    goto :EOF
-)
-if %cookie_loaded% == 1 (
-    call cookieLoader unload
-    goto :EOF
-)
 
 
 :regular
