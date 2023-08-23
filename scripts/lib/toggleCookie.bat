@@ -3,6 +3,7 @@ if %cookie_loaded% == 0 (
     call cookieLoader load
     goto :EOF
 )
+
 if %cookie_loaded% == 1 (
     call cookieLoader unload
     goto :EOF
