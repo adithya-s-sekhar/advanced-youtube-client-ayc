@@ -10,8 +10,6 @@
 
 AYC is a highly responsive, no nonsense, easy to use, fast video downloader from the text based era.
 
-AYC is a **strictly personal** project that  **does not** come with any guarantees. The author is not obliged to provide any support, updates, features or fixes. This repo only has one branch. It may be updated anytime.
-
 ## Screenshots
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png)
