@@ -31,7 +31,7 @@ set settings_dir=%settings_dir:"=%
 if "%settings_dir%" == "r" set settings_dir=%cd%\Output
 if "%settings_dir%" == "R" set settings_dir=%cd%\Output
 echo "%settings_dir%">"%aycdata%\dir.txt"
-set /p loc=<"%aycdata%\dir.txt"
+set loc="%settings_dir%"
 set loc=%loc:"=%
 if not exist "%loc%\" md "%loc%"
 if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir

@@ -31,7 +31,7 @@ set settings_tmp_dir=%settings_tmp_dir:"=%
 if "%settings_tmp_dir%" == "r" set settings_tmp_dir=%cd%\tmp
 if "%settings_tmp_dir%" == "R" set settings_tmp_dir=%cd%\tmp
 echo "%settings_tmp_dir%">"%aycdata%\tmp_dir.txt"
-set /p tmp_loc=<"%aycdata%\tmp_dir.txt"
+set tmp_loc="%settings_tmp_dir%"
 set tmp_loc=%tmp_loc:"=%
 if not exist "%tmp_loc%\" md "%tmp_loc%"
 if not exist "%tmp_loc%\" set tmp_loc_invalid=1 && goto settingsChangeTmpDir

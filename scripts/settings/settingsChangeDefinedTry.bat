@@ -32,7 +32,7 @@ if %try_invalid% == 1 if not defined settings_try goto settingsChangeDefinedTry
 if %settings_try% == r set settings_try=0
 if %settings_try% == R set settings_try=0
 echo "%settings_try%">"%aycdata%\try.txt"
-set /p defined_try=<"%aycdata%\try.txt"
+set defined_try="%settings_try%"
 set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
 if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
