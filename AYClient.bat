@@ -62,7 +62,7 @@ if %url_invalid% == 1 (
     echo.
 )
 if %show_quickkey% == 1 (
-    echo Available QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
+    echo Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
     echo.
 )
 if %no_cookie_found% == 1 (
