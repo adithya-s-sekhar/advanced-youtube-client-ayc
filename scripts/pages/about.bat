@@ -11,7 +11,7 @@ echo   Author           : Adithya S Sekhar
 echo.
 echo   First Release    : v1.0 (13/Aug/2016)
 echo.
-echo   Current Release  : %version%
+echo   Current Release  : %display_version%
 echo.
 echo   Made in Kerala.
 echo.

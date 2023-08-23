@@ -8,7 +8,7 @@ goto :EOF
 call :borderLarge
 echo                                                                              %name% 
 echo.
-echo                                                                                   %version%
+echo                                                                                   %display_version%
 call :borderLarge
 goto :EOF
 
@@ -16,7 +16,7 @@ goto :EOF
 call :borderMedium
 echo                                %name% 
 echo.
-echo                                     %version%
+echo                                     %display_version%
 call :borderMedium
 goto :EOF
 
@@ -24,7 +24,7 @@ goto :EOF
 call :borderSmall
 echo                 %name% 
 echo.
-echo                      %version%
+echo                      %display_version%
 call :borderSmall
 goto :EOF
 
