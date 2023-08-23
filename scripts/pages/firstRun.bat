@@ -38,9 +38,8 @@ echo  Preparing for first run..
 echo.
 echo  Please wait, updating yt-dlp..
 %youtube_dl% -U
-%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
-set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
-set youtube_dl_version=%youtube_dl_version:"=%
+for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
+echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
 echo "0">"%aycdata%\first_run.txt"
 echo.
 echo  First run finished.

@@ -38,9 +38,8 @@ echo.
 %youtube_dl% --update-to stable@2023.07.06 > nul
 %youtube_dl% --update-to stable > nul
 :: you can't downgrade from nightly without a specifig tag
-%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
-set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
-set youtube_dl_version=%youtube_dl_version:"=%
+for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
+echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
 set yt_updated=1
 goto :EOF
 
@@ -49,8 +48,7 @@ echo.
 echo Updating to latest nightly
 echo.
 %youtube_dl% --update-to nightly  > nul
-%youtube_dl% --version>"%aycdata%\youtube_dl_version.txt"
-set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
-set youtube_dl_version=%youtube_dl_version:"=%
+for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
+echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
 set yt_updated=1
 goto :EOF
