@@ -13,7 +13,7 @@ echo.
 echo  (2) - Change retry attempts
 echo        Currently: %defined_try%
 echo.
-echo  (3) - Update yt-dlp (fixes most issues)
+echo  (3) - Update yt-dlp (fixes most issues) - QuickKey: u
 echo        Currently: %youtube_dl_version%
 echo.
 echo  (4) - Multi-threaded downloading

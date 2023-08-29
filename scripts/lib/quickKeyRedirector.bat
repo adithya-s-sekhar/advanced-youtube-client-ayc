@@ -2,7 +2,7 @@ set quickKey.arg1=%~1
 
 set quickkey_validator=0
 
-echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<g\>" /c:"\<m\>" /c:"\<s\>" /c:"\<sf\>" /c:"\<t\>" > nul
+echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<g\>" /c:"\<m\>" /c:"\<s\>" /c:"\<sf\>" /c:"\<t\>" /c:"\<u\>" > nul
 if %errorlevel% == 0 (
     set quickkey_validator=1
 ) else (
@@ -25,5 +25,6 @@ if "%quickKey.arg1%" equ "sf" start "" "https://sourceforge.net/projects/advance
 if "%quickKey.arg1%" equ "SF" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "t" start "" "https://t.me/ayc_news" && goto :EOF
 if "%quickKey.arg1%" equ "T" start "" "https://t.me/ayc_news" && goto :EOF
-
+if "%quickKey.arg1%" equ "u" call settingsYtUpdate && goto :EOF
+if "%quickKey.arg1%" equ "U" call settingsYtUpdate && goto :EOF
 goto :EOF
