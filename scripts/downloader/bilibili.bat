@@ -10,6 +10,8 @@ echo  URL: %url%
 echo.
 echo  Bilibili link detected. [BETA]
 echo.
+echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
+echo.
 echo  Choose format
 call tui borderSmall
 echo  Video + Audio
