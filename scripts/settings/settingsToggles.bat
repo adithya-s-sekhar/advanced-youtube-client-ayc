@@ -44,15 +44,3 @@ if %subs_status% == 1 (
     echo "0">"%aycdata%\subs_status.txt"
     goto :EOF
 )
-
-:settingsChangeCookies
-if %cookie_loaded% == 0 (
-    set cookie_loaded=1
-    echo "1">"%aycdata%\cookie_status.txt"
-    goto :EOF
-)
-if %cookie_loaded% == 1 (
-    set cookie_loaded=0
-    echo "1">"%aycdata%\cookie_status.txt"
-    goto :EOF
-)
