@@ -17,6 +17,7 @@ set batch_deleted_job=0
 set url_invalid=0
 set job_name_invalid=0
 set url_validation_msg=Invalid URL. URL should begin with http:// or https://.
+set show_quickkey=0
 set cookie_loaded=0
 set cookies= 
 :: leave a space in cookies for initializing or it'll crash.
