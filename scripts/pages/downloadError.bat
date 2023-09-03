@@ -13,6 +13,10 @@ if %error_mode% == batch (
     echo  URL: %url%
 )
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo  Possible problems and solutions:
 echo.
 if %error_format% == av1 echo  - If you chose AV1, not all websites support it yet.

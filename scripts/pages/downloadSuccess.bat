@@ -13,6 +13,10 @@ if %error_mode% == batch (
     echo  URL: %url%
 )
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo  The files are saved in:
 echo  %loc%
 echo.
