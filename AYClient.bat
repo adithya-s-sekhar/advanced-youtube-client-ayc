@@ -36,7 +36,7 @@ if %ayc.arg2% == "bili" goto bili
 
 
 :start
-call tui windowSize 92 26
+call tui windowSize %medium_width% 26
 color 07
 set "url="
 title Saving to %loc%

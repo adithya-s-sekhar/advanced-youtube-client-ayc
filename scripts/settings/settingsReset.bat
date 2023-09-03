@@ -1,5 +1,5 @@
 :settingsReset
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 04
 title Reset AYC
 cls
@@ -22,7 +22,7 @@ if %errorlevel% == 1 goto :EOF
 goto settingsResetFinish
 
 :settingsResetFinish
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 del /q "%aycdata%\first_run.txt"
 del /q "%aycdata%\dir.txt"
 del /q "%aycdata%\tmp_dir.txt"

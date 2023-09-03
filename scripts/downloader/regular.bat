@@ -1,5 +1,5 @@
 :formatSelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Link Recieved
 cls
@@ -44,7 +44,7 @@ if %errorlevel% == 6 set format_chosen=aud && set conf=--add-metadata -f bestaud
 goto qualitySelector
 
 :qualitySelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
@@ -135,7 +135,7 @@ set try=1
 if %aria2_status% == 1 set aria2=--concurrent-fragments 8
 
 :downloadTried
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 0B
 title Downloading: Attempt %try% out of %max_try% (%defined_try% retries)
 cls

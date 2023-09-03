@@ -1,5 +1,5 @@
 :batchHome
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 set batch_exists_true=0
 set batch_link_counter=0
 color 07
@@ -65,7 +65,7 @@ set job_type=%job_type:"=%
 
 
 :batchManage
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Now working on %job_name%
 cls
@@ -120,7 +120,7 @@ goto batchManage
 
 
 :batchAddLinks
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Leave blank and Enter to go back.
 cls
@@ -175,7 +175,7 @@ goto batchAddLinksLoop
 
 
 :batchOpenJobFile
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 title Edit Job File
 color 07
 cls
@@ -223,7 +223,7 @@ if %job_type% == 2 (
 :batchQuickQualitySelector
 if %job_type% == 1 goto batchFormatSelector
 if %job_type% == 2 goto batchBFormatSelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Select Quality
 set "batch_link_tmp="
@@ -254,7 +254,7 @@ goto batchDownload
 
 
 :batchFormatSelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Choose format
 cls
@@ -302,7 +302,7 @@ if %errorlevel% == 7 set format_chosen=aud && set conf=--add-metadata -f bestaud
 goto batchQualitySelector
 
 :batchQualitySelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
@@ -387,7 +387,7 @@ goto batchDownload
 
 
 :batchBFormatSelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Choose Format
 cls
@@ -437,7 +437,7 @@ if %errorlevel% == 6 set format_chosen=batch && goto batchCustomFormat
 goto batchBQualitySelector
 
 :batchBqualitySelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 if %format_chosen% == b_h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == b_hevc title  Format: .MP4 (HEVC Video/AAC Audio)
@@ -506,7 +506,7 @@ goto batchDownload
 
 
 :batchBilibiliM4a
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Select Quality
 cls
@@ -539,7 +539,7 @@ goto batchDownload
 
 
 :batchCustomFormat
-call tui windowSize 92 26
+call tui windowSize %medium_width% 26
 set "batch_custom_format_url="
 color 07
 title Pick custom format code
@@ -579,7 +579,7 @@ if %link_validator% == 1 (
 )
 
 :batchCustomFormatSelector
-call tui windowSize 180 500
+call tui windowSize %large_width% 500
 set "batch_custom_qual="
 title Retrieving all available qualities
 color 07
@@ -645,7 +645,7 @@ if %aria2_status% == 1 if %job_type% == 1 set aria2=--concurrent-fragments 8
 
 :batchDownloadTried
 set error_mode=batch
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 0B
 title Downloading: Attempt %try% out of %max_try% (%defined_try% retries)
 cls

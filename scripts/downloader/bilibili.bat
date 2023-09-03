@@ -1,6 +1,6 @@
 :formatSelector
 set bilibili_download_status=0
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Link Recieved
 cls
@@ -47,7 +47,7 @@ if %errorlevel% == 5 set format_chosen=custom && goto bilibiliCustomFormat
 goto qualitySelector
 
 :qualitySelector
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == hevc title  Format: .MP4 (HEVC Video/AAC Audio)
@@ -116,7 +116,7 @@ goto download
 
 
 :bilibiliM4a
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Select Quality
 cls
@@ -149,7 +149,7 @@ goto download
 
 
 :bilibiliCustomFormat
-call tui windowSize 180 500
+call tui windowSize %large_width% 500
 set "bilibili_qual="
 color 07
 title Select Format
@@ -191,7 +191,7 @@ set try=1
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 :downloadTried
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 0B
 title Downloading: Attempt %try% out of %max_try% (%defined_try% retries)
 cls

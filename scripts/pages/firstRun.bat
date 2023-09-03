@@ -1,5 +1,5 @@
 :firstRun
-call tui windowSize 92 26
+call tui windowSize %medium_width% 26
 color 07
 title Welcome to AYC
 cls

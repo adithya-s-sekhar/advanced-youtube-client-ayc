@@ -1,6 +1,6 @@
 :uniHome
 set uni_download_status=0
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Link Recieved
 cls
@@ -33,7 +33,7 @@ if %errorlevel% == 3 goto uniQualitySelector
 
 
 :uniQualitySelector
-call tui windowSize 180 500
+call tui windowSize %large_width% 500
 set "uni_qual="
 color 07
 title Select Quality
@@ -71,7 +71,7 @@ set try=1
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 :uniDownloadTried
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 0B
 title Downloading: Attempt %try% out of %max_try% (%defined_try% retries)
 cls

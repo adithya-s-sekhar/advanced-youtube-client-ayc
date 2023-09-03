@@ -1,5 +1,5 @@
 :settingsMenu
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title AYC Settings
 cls

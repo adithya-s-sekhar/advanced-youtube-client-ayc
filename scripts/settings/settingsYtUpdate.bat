@@ -1,6 +1,6 @@
 set yt_updated=0
 :update
-call tui windowSize 60 36
+call tui windowSize %small_width% 36
 color 07
 title Update yt-dlp
 cls
