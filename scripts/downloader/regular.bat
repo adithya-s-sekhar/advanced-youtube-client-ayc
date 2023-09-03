@@ -9,6 +9,10 @@ echo  URL: %url%
 echo.
 echo  YouTube link detected.
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo  Choose format
 call tui borderSmall
 echo  Video + Audio
@@ -50,6 +54,10 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
@@ -140,7 +148,7 @@ echo.
 echo  URL: %url%
 echo.
 if %cookie_loaded% == 1 (
-    echo  Using cookies.txt
+    echo  Using cookies.txt.
     echo.
 )
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set regular_download_status=1 && goto :EOF
