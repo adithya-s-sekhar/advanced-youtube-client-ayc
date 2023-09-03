@@ -14,7 +14,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 ) else (
-    echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
 echo  Choose format
@@ -61,7 +61,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 ) else (
-    echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
@@ -162,7 +162,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 ) else (
-    echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
 %youtube_dl% %cookies% -F "%url%" && goto bilibiliCustomFormatContinue
@@ -208,7 +208,7 @@ if %cookie_loaded% == 1 (
     echo.
 )
 if %cookie_loaded% == 0 if not %format_chosen% == aud (
-    echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-H264-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
