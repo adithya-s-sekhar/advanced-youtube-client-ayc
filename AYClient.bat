@@ -36,33 +36,33 @@ if %ayc.arg2% == "bili" goto bili
 
 
 :start
-call tui windowSize %medium_width% 26
+call tui windowSize %medium_width% 23
 color 07
 set "url="
 title Saving to %loc%
 cls
 call tui bannerMedium
 echo.
-echo Enter ^(m^) for more options.
+echo  - Enter ^(m^) for more options.
 echo.
-echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
+echo  - Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
-echo Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
+echo  - Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
 echo.
 if %no_cookie_found% == 1 (
-    echo Error: cookies.txt not present in ayc folder.
+    echo  ! Error: cookies.txt not present in ayc folder.
     echo.
 )
 if %cookie_loaded% == 1 (
-    echo INFO: cookies.txt loaded. Enter ^(c^) to unload cookie.
+    echo  ! Info: cookies.txt loaded. Enter ^(c^) to unload cookie.
     echo.
 )
 if exist cookies.txt if %cookie_loaded% == 0 (
-    echo INFO: cookies.txt detected but not loaded. Enter ^(c^) to load cookie.
+    echo  ! Info: cookies.txt detected but not loaded. Enter ^(c^) to load cookie.
     echo.
 )
 if %url_invalid% == 1 (
-    echo %url_validation_msg%
+    echo  ! %url_validation_msg%
     echo.
 )
 set /p url=">> "
