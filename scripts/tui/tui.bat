@@ -7,27 +7,18 @@ call :%tui.arg1%
 goto :EOF
 
 :bannerLarge
-call :borderLarge
-echo                                                                              %name% 
 echo.
-echo                                                                                   %display_version%
-call :borderLarge
+echo ---------------------------------------------------------------- %name% - %display_version% ----------------------------------------------------------------
 goto :EOF
 
 :bannerMedium
-call :borderMedium
-echo                                %name% 
 echo.
-echo                                     %display_version%
-call :borderMedium
+echo -------------------- %name% - %display_version% --------------------
 goto :EOF
 
 :bannerSmall
-call :borderSmall
-echo                 %name% 
 echo.
-echo                      %display_version%
-call :borderSmall
+echo ----------------- %short_name% - %display_version% -----------------
 goto :EOF
 
 :borderLarge
