@@ -14,7 +14,7 @@ if %batch_deleted_job% == 1 (
     set batch_deleted_job=0
 )
 if %cookie_loaded% == 1 (
-    echo cookies.txt loaded
+    echo  Using cookies.txt
     echo.
 )
 echo  Batch Mode allows you to create jobs, add videos to that 
@@ -78,6 +78,10 @@ if %job_type% == 0 echo  Job type: Regular
 if %job_type% == 1 echo  Job type: Youtube only
 if %job_type% == 2 echo  Job type: Bilibili only [BETA]
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 call tui borderSmall
 echo.
 echo  (0) - Back
@@ -260,6 +264,10 @@ echo  Working on: %job_name%
 echo.
 echo  Job Type: Youtube
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo   (0) - Back
 echo.
 echo  Choose format
@@ -304,6 +312,10 @@ call tui bannerSmall
 echo.
 echo  Working on: %job_name%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
@@ -385,6 +397,13 @@ echo  Working on: %job_name%
 echo.
 echo  Job Type: Bilibili only [BETA]
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+) else (
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
+    echo.
+)
 echo   (0) - Back
 echo.
 echo  Choose format
@@ -428,6 +447,13 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+) else (
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
+    echo.
+)
 if %format_chosen% == b_h264 echo  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == b_hevc echo  Format: .MP4 (HEVC Video/AAC Audio)
 if %format_chosen% == b_av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
@@ -488,6 +514,10 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo   (0) - Go Back
 echo.
 call tui borderSmall
@@ -518,6 +548,10 @@ call tui bannerMedium
 echo.
 echo  Working on: %job_name%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo  Leave blank and press Enter to Go back.
 echo.
 echo  Paste a sample URL from your batch job to retrieve all available qualities.
@@ -556,6 +590,10 @@ echo  Working on: %job_name%
 echo.
 echo  Sample URL: %batch_custom_format_url%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 %youtube_dl% %cookies% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
 set error_mode=batch
 goto error
@@ -624,7 +662,11 @@ if %job_type% == 1 echo  Job type: Youtube only
 if %job_type% == 2 echo  Job type: Bilibili only [BETA]
 echo.
 if %cookie_loaded% == 1 (
-    echo  Using cookies.txt
+    echo  Using cookies.txt.
+    echo.
+)
+if %cookie_loaded% == 0 if %job_type% == 2 (
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
