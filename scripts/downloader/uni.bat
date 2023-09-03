@@ -10,6 +10,10 @@ echo  URL: %url%
 echo.
 echo  Non-YouTube link detected.
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 call tui borderSmall
 echo.
 echo  Choose Format
@@ -38,6 +42,10 @@ call tui bannerLarge
 echo.
 echo  URL: %url%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 %youtube_dl% %cookies% -F "%url%" && goto uniQualitySelectorContinue
 goto :EOF
 :uniQualitySelectorContinue
@@ -76,7 +84,7 @@ echo.
 echo  URL: %url%
 echo.
 if %cookie_loaded% == 1 (
-    echo  Using cookies.txt
+    echo  Using cookies.txt.
     echo.
 )
 %youtube_dl% %default_config% -f %uni_qual% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_uni% %cookies% "%url%" && set uni_download_status=1 && goto :EOF
