@@ -47,6 +47,8 @@ echo Enter ^(m^) for more options.
 echo.
 echo Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
+echo Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
+echo.
 if %no_cookie_found% == 1 (
     echo Error: cookies.txt not present in ayc folder.
     echo.
@@ -63,10 +65,6 @@ if %url_invalid% == 1 (
     echo %url_validation_msg%
     echo.
 )
-if %show_quickkey% == 1 (
-    echo Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
-    echo.
-)
 set /p url=">> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
@@ -75,15 +73,14 @@ set url=%url: =%
 
 set no_cookie_found=0
 
-if "%url%" equ "" set show_quickkey=1 && goto start
-if "%url%" equ " =" set show_quickkey=1 && goto start
+if "%url%" equ "" goto start
+if "%url%" equ " =" goto start
 
 call linkValidator "%url%"
 if %link_validator% == 1 goto linkValid
 
 call quickKeyRedirector "%url%"
 if %quickkey_validator% == 0 (
-    set show_quickkey=1
     set url_invalid=1
     goto start
 )
@@ -93,7 +90,6 @@ if %quickkey_validator% == 0 (
 if %youtube_link% == 1 start AYClient.bat "%url%" "reg" "%cookie_loaded%"
 if %bilibili_link% == 1 start AYClient.bat "%url%" "bili" "%cookie_loaded%"
 if %generic_link% == 1 start AYClient.bat "%url%" "uni" "%cookie_loaded%"
-set show_quickkey=0
 set url_invalid=0
 goto start
 
