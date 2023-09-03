@@ -1,5 +1,5 @@
 :settingsChangeDir
-mode %window_small%
+call tui windowSize 60 36
 color 07
 title Change download folder location
 cls

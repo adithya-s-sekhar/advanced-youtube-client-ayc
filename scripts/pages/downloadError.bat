@@ -1,5 +1,5 @@
 :downloadError
-mode %window_small%
+call tui windowSize 60 36
 color 4F
 title Download Failed!
 cls

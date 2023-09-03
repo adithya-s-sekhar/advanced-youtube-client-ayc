@@ -10,9 +10,6 @@ set ver_date=%ver_day%/%ver_month%/%ver_year%
 set display_version=v%major_ver%.%minor_ver% (%ver_date%)
 set error_format=0
 set error_mode=0
-set window_medium=con:cols=92 lines=26
-set window_small=con:cols=60 lines=36
-set window_large=con:cols=180 lines=500
 set batch_deleted_job=0
 set url_invalid=0
 set job_name_invalid=0

@@ -1,5 +1,5 @@
 :downloadSuccess
-mode %window_small%
+call tui windowSize 60 36
 color 2F
 title Download Finished
 cls
