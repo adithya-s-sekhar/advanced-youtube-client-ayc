@@ -10,7 +10,10 @@ echo  URL: %url%
 echo.
 echo  Bilibili link detected. [BETA]
 echo.
-if %cookie_loaded% == 0 (
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+) else (
     echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
     echo.
 )
@@ -54,7 +57,10 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
-if %cookie_loaded% == 0 (
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+) else (
     echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
     echo.
 )
@@ -118,6 +124,10 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
 echo   (0) - Go Back
 echo.
 call tui borderSmall
@@ -147,11 +157,14 @@ cls
 call tui bannerLarge
 echo.
 echo  URL: %url%
-if %cookie_loaded% == 0 (
+echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+) else (
     echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
     echo.
 )
-echo.
 %youtube_dl% %cookies% -F "%url%" && goto bilibiliCustomFormatContinue
 goto :EOF
 :bilibiliCustomFormatContinue
@@ -191,9 +204,10 @@ echo.
 echo  URL: %url%
 echo.
 if %cookie_loaded% == 1 (
-    echo  Using cookies.txt
+    echo  Using cookies.txt.
     echo.
-) else (
+)
+if %cookie_loaded% == 0 if not %format_chosen% == aud (
     echo  Cookies.txt needed for more than 720p. Read FAQ on GitHub.
     echo.
 )
