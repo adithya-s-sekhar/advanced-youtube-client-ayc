@@ -1,4 +1,6 @@
 set tui.arg1=%~1
+set tui.arg2=%~2
+set tui.arg3=%~3
 
 call :%tui.arg1%
 
@@ -50,4 +52,8 @@ goto :EOF
 
 :borderSmallHalf
 echo ------------------------------
+goto :EOF
+
+:windowSize
+mode con:cols=%tui.arg2% lines=%tui.arg3%
 goto :EOF
