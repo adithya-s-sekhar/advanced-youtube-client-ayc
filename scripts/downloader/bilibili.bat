@@ -1,10 +1,6 @@
 :formatSelector
 set bilibili_download_status=0
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 35
-) else (
-    call tui windowSize %small_width% 33
-)
+call tui windowSize %small_width% 35
 color 07
 title Link Recieved
 cls
@@ -51,11 +47,7 @@ if %errorlevel% == 5 set format_chosen=custom && goto bilibiliCustomFormat
 goto qualitySelector
 
 :qualitySelector
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 29
-) else (
-    call tui windowSize %small_width% 27
-)
+call tui windowSize %small_width% 29
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == hevc title  Format: .MP4 (HEVC Video/AAC Audio)
@@ -124,11 +116,7 @@ goto download
 
 
 :bilibiliM4a
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 25
-) else (
-    call tui windowSize %small_width% 23
-)
+call tui windowSize %small_width% 25
 color 07
 title Select Quality
 cls
