@@ -28,7 +28,7 @@ echo  (0) - Go back
 echo.
 echo  (1) - Update to latest Stable
 echo.
-echo  (2) - Update to latest Nightly (pre-release, untested)
+echo  (2) - Update to latest Nightly (Fast fixes for issues)
 echo.
 call tui borderSmallHalf
 echo.
