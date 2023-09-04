@@ -1,9 +1,5 @@
 :downloadError
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 30
-) else (
-    call tui windowSize %small_width% 28
-)
+call tui windowSize %small_width% 34
 color 4F
 title Download Failed!
 cls
@@ -29,6 +25,10 @@ echo  - yt-dlp might be out of date. Update it by going
 echo    into Settings, Update yt-dlp.
 echo  - If you have an unreliable network, increase retry
 echo    attempts in Settings.
+echo  - You could be running into a path length limit.
+echo    Always keep AYC near your root directory like C:\ayc.
+echo    Or keep the temporary folder in root like D:\tmp in 
+echo    settings.
 if %error_mode% == batch (
     echo  - You may have entered an invalid job name.
     echo  - One of your links might be failing, rest might have
