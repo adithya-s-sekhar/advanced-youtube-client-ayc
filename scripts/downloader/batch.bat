@@ -117,7 +117,7 @@ echo  (5) - Delete job
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 012345 /n /m "Enter Choice (0-5): "
+choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto batchHome
 if %errorlevel% == 2 goto batchAddLinks
 if %errorlevel% == 3 goto batchOpenJobFile
@@ -252,7 +252,7 @@ echo  (3) - Pick a custom format code
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123 /n /m "Choose Quality (0-3): "
+choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
 if %errorlevel% == 3 set conf=-f "wv*+wa/w" & set batch_name_end=low
@@ -303,7 +303,7 @@ echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123456 /n /m "Enter Choice (0-6): "
+choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set format_chosen=h264
 if %errorlevel% == 3 set format_chosen=vp9
@@ -362,7 +362,7 @@ call tui borderSmallHalf
 if %format_chosen% == vp9  goto batchChoiceVp9
 if %format_chosen% == av1  goto batchChoiceAv1
 echo.
-choice /c 0123456 /n /m "Enter Choice (0-6): "
+choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto batchFormatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]"
@@ -374,7 +374,7 @@ goto batchDownload
 
 :batchChoiceVp9
 echo.
-choice /c 012345678 /n /m "Enter Choice (0-8): "
+choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto batchFormatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]"
@@ -389,7 +389,7 @@ goto batchDownload
 :batchChoiceAv1
 set error_format=av1
 echo.
-choice /c 0123456789 /n /m "Enter Choice (0-9): "
+choice /c 0123456789 /n /m "Select Option (0-9): "
 if %errorlevel% == 1 goto batchFormatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]"
@@ -444,7 +444,7 @@ echo   (5) - Pick a Custom Format
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 012345 /n /m "Enter Choice (1-5): "
+choice /c 012345 /n /m "Select Option (1-5): "
 if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set format_chosen=b_h264
 if %errorlevel% == 3 set format_chosen=b_hevc
@@ -492,7 +492,7 @@ call tui borderSmallHalf
 if %format_chosen% == b_hevc  goto b_choiceHevc
 if %format_chosen% == b_av1  goto b_choiceAv1
 echo.
-choice /c 01234 /n /m "Enter Choice (0-4): "
+choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]"
@@ -502,7 +502,7 @@ goto batchDownload
 
 :b_choiceHevc
 echo.
-choice /c 01234 /n /m "Enter Choice (0-4): "
+choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]"
@@ -513,7 +513,7 @@ goto batchDownload
 :b_choiceAv1
 set error_format=av1
 echo.
-choice /c 01234 /n /m "Enter Choice (0-4): "
+choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]"
@@ -551,7 +551,7 @@ echo   (3) - M4A - AAC - Highest Quality
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123 /n /m "Enter Choice (0-3): "
+choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto batchBFormatSelector
 if %errorlevel% == 2 set aud_end=lq && set conf=--add-metadata --embed-thumbnail -f worstaudio[ext=m4a]
 if %errorlevel% == 3 set aud_end=mq && set conf=--add-metadata --embed-thumbnail -f 1/bestaudio[ext=m4a]

@@ -17,7 +17,7 @@ echo  (1) - Reset and Exit AYC
 echo.
 call tui borderSmallHalf
 echo.
-choice /C 01 /n /m "Choose option (0-1): "
+choice /C 01 /n /m "Select Option (0-1): "
 if %errorlevel% == 1 goto :EOF
 goto settingsResetFinish
 

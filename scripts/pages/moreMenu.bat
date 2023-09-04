@@ -21,7 +21,7 @@ echo  (6) - Follow on Telegram     - QuickKey: t
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123456 /n /m "Enter Choice (0-6): "
+choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 start AYClient.bat "b"
 if %errorlevel% == 3 call settingsMenu

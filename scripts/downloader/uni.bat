@@ -30,7 +30,7 @@ echo   (3) - Show all available formats
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 123 /n /m "Enter Choice (1-3): "
+choice /c 123 /n /m "Select Option (1-3): "
 if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
 if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
 if %errorlevel% == 3 goto uniQualitySelector

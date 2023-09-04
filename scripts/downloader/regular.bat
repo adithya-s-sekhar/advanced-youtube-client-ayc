@@ -38,7 +38,7 @@ echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 123456 /n /m "Enter Choice (1-6): "
+choice /c 123456 /n /m "Select Option (1-6): "
 if %errorlevel% == 1 set format_chosen=h264
 if %errorlevel% == 2 set format_chosen=vp9
 if %errorlevel% == 3 set format_chosen=av1
@@ -96,7 +96,7 @@ call tui borderSmallHalf
 if %format_chosen% == vp9  goto choiceVp9
 if %format_chosen% == av1  goto choiceAv1
 echo.
-choice /c 0123456 /n /m "Enter Choice (0-6): "
+choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto formatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]"
@@ -108,7 +108,7 @@ goto download
 
 :choiceVp9
 echo.
-choice /c 012345678 /n /m "Enter Choice (0-8): "
+choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto formatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]"
@@ -123,7 +123,7 @@ goto download
 :choiceAv1
 set error_format=av1
 echo.
-choice /c 0123456789 /n /m "Enter Choice (0-9): "
+choice /c 0123456789 /n /m "Select Option (0-9): "
 if %errorlevel% == 1 goto formatSelector
 if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]"
 if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]"
