@@ -29,7 +29,7 @@ echo  (6) - Embed subtitles
 if %subs_status% == 0 echo        [Disabled]
 if %subs_status% == 1 echo        [Enabled]
 echo.
-echo  (7) - Change theme
+echo  (7) - Change theme - QuickKey: t
 if %theme_status% == 0 echo        [Dark]
 if %theme_status% == 1 echo        [Light]
 echo.

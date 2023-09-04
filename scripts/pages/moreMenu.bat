@@ -17,7 +17,7 @@ echo  (4) - Visit on GitHub        - QuickKey: g
 echo.
 echo  (5) - Visit on Sourceforge   - QuickKey: sf
 echo.
-echo  (6) - Follow on Telegram     - QuickKey: t
+echo  (6) - Follow on Telegram
 echo.
 call tui borderSmallHalf
 echo.
