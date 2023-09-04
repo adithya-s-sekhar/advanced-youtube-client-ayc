@@ -11,11 +11,11 @@ cls
 call tui bannerSmall
 echo.
 if %yt_updated% == 0 (
-    echo  Current version: %youtube_dl_version%
+    echo  Current yt-dlp version: %youtube_dl_version%
 ) else (
     echo  Updated successfully.
     echo.
-    echo  Current version: %youtube_dl_version%
+    echo  Current yt-dlp version: %youtube_dl_version%
 )
 echo.
 call tui borderSmall
