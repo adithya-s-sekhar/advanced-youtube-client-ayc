@@ -1,6 +1,6 @@
 :settingsChangeDir
 call tui windowSize %small_width% 30
-color 07
+color 0F
 title Change download folder location
 cls
 set "settings_dir="

@@ -5,7 +5,7 @@ if %yt_updated% == 1 (
 ) else (
     call tui windowSize %small_width% 20
 )
-color 07
+color 0F
 title Update yt-dlp
 cls
 call tui bannerSmall

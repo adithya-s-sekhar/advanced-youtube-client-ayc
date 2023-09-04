@@ -1,6 +1,6 @@
 :settingsChangeDefinedTry
 call tui windowSize %small_width% 20
-color 07
+color 0F
 title Change retry attempts
 cls
 set "settings_try="

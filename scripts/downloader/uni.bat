@@ -5,7 +5,7 @@ if %cookie_loaded% == 1 (
 ) else (
     call tui windowSize %small_width% 24
 )
-color 07
+color 0F
 title Link Recieved
 cls
 call tui bannerSmall
@@ -39,7 +39,7 @@ if %errorlevel% == 3 goto uniQualitySelector
 :uniQualitySelector
 call tui windowSize %large_width% 500
 set "uni_qual="
-color 07
+color 0F
 title Select Quality
 cls
 call tui bannerLarge
