@@ -77,7 +77,7 @@ set aria2_status=%aria2_status:"=%
 if %aria2_status% == 0 set aria2=--concurrent-fragments 8
 if %aria2_status% == 2 set aria2=--external-downloader aria2c
 
-if not exist "%aycdata%\thumbs_status.txt" echo "1">"%aycdata%\thumbs_status.txt"
+if not exist "%aycdata%\thumbs_status.txt" echo "0">"%aycdata%\thumbs_status.txt"
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
 set thumbs_status=%thumbs_status:"=%
 if %thumbs_status% == 0 set "thumbs="
