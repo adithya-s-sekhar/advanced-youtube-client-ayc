@@ -53,6 +53,30 @@ if %theme_status% == 0 (
     goto :EOF
 )
 if %theme_status% == 1 (
+    set theme_status=2
+    echo "2">"%aycdata%\theme_status.txt"
+    call themer
+    goto :EOF
+)
+if %theme_status% == 2 (
+    set theme_status=3
+    echo "3">"%aycdata%\theme_status.txt"
+    call themer
+    goto :EOF
+)
+if %theme_status% == 3 (
+    set theme_status=4
+    echo "4">"%aycdata%\theme_status.txt"
+    call themer
+    goto :EOF
+)
+if %theme_status% == 4 (
+    set theme_status=5
+    echo "5">"%aycdata%\theme_status.txt"
+    call themer
+    goto :EOF
+)
+if %theme_status% == 5 (
     set theme_status=0
     echo "0">"%aycdata%\theme_status.txt"
     call themer
