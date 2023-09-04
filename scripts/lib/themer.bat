@@ -1,4 +1,4 @@
-if %theme_status% == 0 set theme_colors=0F
+if %theme_status% == 0 set theme_colors=07
 if %theme_status% == 1 set theme_colors=F0
 if %theme_status% == 2 set theme_colors=9F
 if %theme_status% == 3 set theme_colors=DF
