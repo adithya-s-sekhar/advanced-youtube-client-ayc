@@ -1,6 +1,10 @@
 set yt_updated=0
 :update
-call tui windowSize %small_width% 36
+if %yt_updated% == 1 (
+    call tui windowSize %small_width% 22
+) else (
+    call tui windowSize %small_width% 20
+)
 color 07
 title Update yt-dlp
 cls

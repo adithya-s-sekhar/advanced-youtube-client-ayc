@@ -1,5 +1,5 @@
 :moreMenu
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 23
 color 07
 title More Options
 cls

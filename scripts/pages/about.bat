@@ -1,5 +1,5 @@
 :about
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 21
 color 07
 title You're a curious one..
 cls

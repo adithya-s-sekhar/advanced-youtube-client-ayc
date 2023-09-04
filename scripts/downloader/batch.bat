@@ -1,5 +1,9 @@
 :batchHome
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 31
+) else (
+    call tui windowSize %small_width% 29
+)
 set batch_exists_true=0
 set batch_link_counter=0
 color 07
@@ -65,7 +69,11 @@ set job_type=%job_type:"=%
 
 
 :batchManage
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 34
+) else (
+    call tui windowSize %small_width% 32
+)
 color 07
 title Now working on %job_name%
 cls
@@ -175,7 +183,7 @@ goto batchAddLinksLoop
 
 
 :batchOpenJobFile
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 30
 title Edit Job File
 color 07
 cls
@@ -223,7 +231,7 @@ if %job_type% == 2 (
 :batchQuickQualitySelector
 if %job_type% == 1 goto batchFormatSelector
 if %job_type% == 2 goto batchBFormatSelector
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 22
 color 07
 title Select Quality
 set "batch_link_tmp="
@@ -254,7 +262,11 @@ goto batchDownload
 
 
 :batchFormatSelector
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 36
+) else (
+    call tui windowSize %small_width% 34
+)
 color 07
 title Choose format
 cls
@@ -302,7 +314,12 @@ if %errorlevel% == 7 set format_chosen=aud && set conf=--add-metadata -f bestaud
 goto batchQualitySelector
 
 :batchQualitySelector
-call tui windowSize %small_width% 36
+if %format_chosen% == h264 if %cookie_loaded% == 1 call tui windowSize %small_width% 30
+if %format_chosen% == h264 if %cookie_loaded% == 0 call tui windowSize %small_width% 28
+if %format_chosen% == vp9 if %cookie_loaded% == 1 call tui windowSize %small_width% 35
+if %format_chosen% == vp9 if %cookie_loaded% == 0 call tui windowSize %small_width% 33
+if %format_chosen% == av1 if %cookie_loaded% == 1 call tui windowSize %small_width% 36
+if %format_chosen% == av1 if %cookie_loaded% == 0 call tui windowSize %small_width% 34
 color 07
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
@@ -437,7 +454,7 @@ if %errorlevel% == 6 set format_chosen=batch && goto batchCustomFormat
 goto batchBQualitySelector
 
 :batchBqualitySelector
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 28
 color 07
 if %format_chosen% == b_h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == b_hevc title  Format: .MP4 (HEVC Video/AAC Audio)
@@ -506,7 +523,11 @@ goto batchDownload
 
 
 :batchBilibiliM4a
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 23
+) else (
+    call tui windowSize %small_width% 21
+)
 color 07
 title Select Quality
 cls

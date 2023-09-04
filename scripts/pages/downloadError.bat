@@ -1,5 +1,9 @@
 :downloadError
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 30
+) else (
+    call tui windowSize %small_width% 28
+)
 color 4F
 title Download Failed!
 cls

@@ -1,5 +1,5 @@
 :settingsChangeDirHome
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 23
 color 07
 title Manage folders
 cls

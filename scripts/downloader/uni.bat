@@ -1,6 +1,10 @@
 :uniHome
 set uni_download_status=0
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 26
+) else (
+    call tui windowSize %small_width% 24
+)
 color 07
 title Link Recieved
 cls

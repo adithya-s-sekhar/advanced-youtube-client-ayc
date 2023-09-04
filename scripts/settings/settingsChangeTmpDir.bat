@@ -1,5 +1,5 @@
 :settingsChangeTmpDir
-call tui windowSize %small_width% 36
+call tui windowSize %small_width% 30
 color 07
 title Change temporary folder location
 cls

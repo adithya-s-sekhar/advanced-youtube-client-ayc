@@ -1,5 +1,9 @@
 :downloadSuccess
-call tui windowSize %small_width% 36
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 19
+) else (
+    call tui windowSize %small_width% 17
+)
 color 2F
 title Download Finished
 cls
