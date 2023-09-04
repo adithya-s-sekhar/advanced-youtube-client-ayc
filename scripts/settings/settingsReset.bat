@@ -1,6 +1,6 @@
 :settingsReset
 call tui windowSize %small_width% 20
-color 04
+color 0C
 title Reset AYC
 cls
 call tui bannerSmall
