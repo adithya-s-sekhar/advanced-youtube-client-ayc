@@ -8,17 +8,17 @@ goto :EOF
 
 :bannerLarge
 echo.
-echo --------------------------------------------------------------- %name% - %display_version% ----------------------------------------------------------------
+echo --------------------------------------------------------------------- %name% - %display_version% ----------------------------------------------------------------------
 goto :EOF
 
 :bannerMedium
 echo.
-echo ------------------- %name% - %display_version% --------------------
+echo -------------------------- %name% - %display_version% ---------------------------
 goto :EOF
 
 :bannerSmall
 echo.
-echo ---------------- %short_name% - %display_version% -----------------
+echo ----------------------- %short_name% - %display_version% ------------------------
 goto :EOF
 
 :borderLarge
