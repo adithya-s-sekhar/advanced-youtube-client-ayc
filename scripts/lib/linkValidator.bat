@@ -19,4 +19,8 @@ echo %linkValidator.arg1% | findstr /i /r /c:"^https://www.bilibili.com" /c:"^ht
 if %errorlevel% == 0 set bilibili_link=1 && goto :EOF
 
 set generic_link=1
+
+echo %linkValidator.arg1% | findstr /i /r /c:"^https://www.reddit.com" /c:"^https://reddit.com" /c:"^http://www.reddit.com" /c:"^http://reddit.com" /c:"^http://redd.it" /c:"^https://redd.it" /c:"^http://v.redd.it" /c:"^https://v.redd.it" > nul
+if %errorlevel% == 0 call siteFixes reddit && goto :EOF
+
 goto :EOF
