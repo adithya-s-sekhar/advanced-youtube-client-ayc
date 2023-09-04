@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.10 - 04/Sep/2023
+Advanced Youtube Client - AYC v4.11 - 04/Sep/2023
 Open AYClient.bat
 
 What's new?
+
+[4.11]
+- Added: More themes.
+- Removed: Date from version. AYC releases will no longer have date attached to them.
+- Improved: Theme colors applied to more pages. Download windows are still overridden by yt-dlp. Nothing I can do about it.
+- Improved: Dark theme readability.
 
 [4.10]
 - Added: Pop up yt-dlp updater.
