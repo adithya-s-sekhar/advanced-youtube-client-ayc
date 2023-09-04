@@ -1,5 +1,4 @@
 :settingsMenu
-call envsetup
 call tui windowSize %small_width% 34
 color %theme_colors%
 title AYC Settings
