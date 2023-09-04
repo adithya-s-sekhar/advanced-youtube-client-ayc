@@ -1,7 +1,11 @@
-Advanced Youtube Client - AYC v4.8 - 22/Aug/2023
+Advanced Youtube Client - AYC v4.9 - 04/Sep/2023
 Open AYClient.bat
 
 What's new?
+
+[4.9]
+- Improved: UI.
+- Code cleanup and refactors. See full changes on GitHub.
 
 [4.8]
 - Added: Support for embedding thumbnail, subtitles on non youtube links.
