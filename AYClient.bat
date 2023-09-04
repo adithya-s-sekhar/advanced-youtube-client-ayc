@@ -65,7 +65,7 @@ if %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
-set /p url=">> "
+set /p url="ayc:/> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
