@@ -27,6 +27,6 @@ if "%quickKey.arg1%" equ "sf" start "" "https://sourceforge.net/projects/advance
 if "%quickKey.arg1%" equ "SF" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "t" call settingsToggles changeTheme && goto :EOF
 if "%quickKey.arg1%" equ "T" call settingsToggles changeTheme && goto :EOF
-if "%quickKey.arg1%" equ "u" call settingsYtUpdate && goto :EOF
-if "%quickKey.arg1%" equ "U" call settingsYtUpdate && goto :EOF
+if "%quickKey.arg1%" equ "u" call ytUpdate && goto :EOF
+if "%quickKey.arg1%" equ "U" call ytUpdate && goto :EOF
 goto :EOF
