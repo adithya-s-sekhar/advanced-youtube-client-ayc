@@ -60,8 +60,33 @@ goto themeSelector
 cls
 call tui bannerMedium
 echo.
+echo  AYC uses yt-dlp to download videos from websites. Websites change all the time and yt-dlp 
+echo  needs to be updated accordingly to support downloading from them. 
+echo.
+echo  It has two update channels. 
+echo.
+echo  Stable Channel: Slow to get fixes. Widely tested.
+echo.
+echo  Nightly Channel: Fixes are released as soon they are pushed. Not that tested.
+echo.
+call tui borderMedium
+echo  Which channel of yt-dlp updates do you prefer? (Can be changed later)
+echo.
+echo   (0) - Go Back
+echo.
+echo   (1) - Stable channel
+echo.
+echo   (2) - Nightly channel
+echo.
+call tui borderMediumHalf
+echo.
+choice /c 012 /n /m "Select Option (0-2): "
+if %errorlevel% == 1 goto themeSelector
+if %errorlevel% == 2 set firstYtUpdate=stable
+if %errorlevel% == 3 set firstYtUpdate=nightly
+echo.
 echo  Please wait, updating yt-dlp..
-%youtube_dl% -U
+%youtube_dl% --update-to %firstYtUpdate%
 for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
 echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
 echo "0">"%aycdata%\first_run.txt"
@@ -69,6 +94,12 @@ cls
 call tui bannerMedium
 echo.
 echo  First run finished.
+echo.
+echo  There are more settings and features available in AYC settings.
+echo.
+echo  Hint: Use the quickkey (s) to open settings straight from the URL page.
+echo.
+echo  There are more quickkeys spread out through AYC, find them all! :)
 echo.
 echo  You can restart AYC now. Press Enter to close this window.
 pause>NUL
