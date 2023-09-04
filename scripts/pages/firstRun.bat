@@ -95,10 +95,10 @@ call tui bannerMedium
 echo.
 echo  First run finished.
 echo.
-echo  There are more settings and features available in AYC settings.
+echo  yt-dlp is set to check for updates everytime you start AYC. This can be disabled in 
+echo  settings.
 echo.
 echo  Hint: Use the quickkey (s) to open settings straight from the URL page.
-echo.
 echo  There are more quickkeys spread throughout AYC, find them all! :)
 echo.
 echo  You can restart AYC now. Press Enter to close this window.

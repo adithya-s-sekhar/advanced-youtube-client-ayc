@@ -19,7 +19,7 @@ set path=%path%;%cd%\bin;%cd%\scripts
 :begin
 call envsetup
 call custom
-if not defined ayc.arg1 start yt-dlpUpdatePopup
+if not defined ayc.arg1 if %ytupd_onstart% == 1 start yt-dlpUpdatePopup
 
 
 :checkParameter

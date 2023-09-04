@@ -98,6 +98,10 @@ if not exist "%aycdata%\youtube_dl_version.txt" echo "unknown">"%aycdata%\youtub
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
 
+if not exist "%aycdata%\ytupd_onstart.txt" echo "1">"%aycdata%\ytupd_onstart.txt"
+set /p ytupd_onstart=<"%aycdata%\ytupd_onstart.txt"
+set ytupd_onstart=%ytupd_onstart:"=%
+
 set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
 
 goto :EOF

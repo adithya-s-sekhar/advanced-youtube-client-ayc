@@ -58,3 +58,15 @@ if %theme_status% == 1 (
     call themer
     goto :EOF
 )
+
+:settingsYtUpdateOnStart
+if %ytupd_onstart% == 0 (
+    set ytupd_onstart=1
+    echo "1">"%aycdata%\ytupd_onstart.txt"
+    goto :EOF
+)
+if %ytupd_onstart% == 1 (
+    set ytupd_onstart=0
+    echo "0">"%aycdata%\ytupd_onstart.txt"
+    goto :EOF
+)

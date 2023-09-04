@@ -2,9 +2,9 @@ set yt_updated=0
 set yt_no_update=0
 :update
 set tmp_youtube_dl_version=0
-if %yt_updated% == 0 call tui windowSize %small_width% 20
-if %yt_updated% == 0 if %yt_no_update% == 1 call tui windowSize %small_width% 22
-if %yt_updated% == 1 call tui windowSize %small_width% 22
+if %yt_updated% == 0 call tui windowSize %small_width% 23
+if %yt_updated% == 0 if %yt_no_update% == 1 call tui windowSize %small_width% 25
+if %yt_updated% == 1 call tui windowSize %small_width% 25
 color %theme_colors%
 title Update yt-dlp
 cls
@@ -30,12 +30,17 @@ echo  (1) - Update to latest Stable
 echo.
 echo  (2) - Update to latest Nightly (Fast fixes for issues)
 echo.
+echo  (3) - Check yt-dlp updates on start
+if %ytupd_onstart% == 0 echo        [Disabled]
+if %ytupd_onstart% == 1 echo        [Enabled]
+echo.
 call tui borderSmallHalf
 echo.
-choice /c 012 /n /m "Select Option (0-2): "
+choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 call :ytUpdateStable
 if %errorlevel% == 3 call :ytUpdateNightly
+if %errorlevel% == 4 call settingsToggles YtUpdateOnStart
 goto update
 
 
