@@ -1,7 +1,15 @@
-Advanced Youtube Client - AYC v4.9 - 04/Sep/2023
+Advanced Youtube Client - AYC v4.10 - 04/Sep/2023
 Open AYClient.bat
 
 What's new?
+
+[4.10]
+- Added: Pop up yt-dlp updater.
+- Added: Light and Dark themes.
+- Added: More useful quickkeys.
+- Fixed: Reddit providing broken PNGs which broke the downloader.
+- Improved: First run setup.
+- Improved: yt-dlp update checker page.
 
 [4.9]
 - Improved: UI.
