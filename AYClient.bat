@@ -48,7 +48,7 @@ echo  - Enter ^(m^) for more options.
 echo.
 echo  - Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
-echo  - Example QuickKeys: ^(b^) - Batch Mode ^(s^) - Settings ^(c^) - Load/Unload cookies.txt
+echo  - Example QuickKeys: ^(b^) - Batch Mode, ^(u^) - Update yt-dlp, ^(c^) - Load/Unload cookies.txt
 echo.
 if %no_cookie_found% == 1 (
     echo  ! Error: cookies.txt not present in ayc folder.
