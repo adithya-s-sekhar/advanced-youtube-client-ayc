@@ -192,7 +192,7 @@ if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 :downloadTried
 call tui windowSize %small_width% 36
-color 0B
+color %theme_colors%
 title Downloading: Attempt %try% out of %max_try% (%defined_try% retries)
 cls
 call tui bannerSmall
