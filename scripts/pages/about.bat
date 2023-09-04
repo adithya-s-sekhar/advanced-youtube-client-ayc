@@ -1,6 +1,6 @@
 :about
 call tui windowSize %small_width% 21
-color 0F
+color %theme_colors%
 title You're a curious one..
 cls
 call tui bannerSmall

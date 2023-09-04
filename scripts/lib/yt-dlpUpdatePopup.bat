@@ -1,6 +1,6 @@
 @echo off
 call tui windowSize 20 3
-color 0F
+color %theme_colors%
 echo.
 echo  Updating yt-dlp..
 yt-dlp -U>nul

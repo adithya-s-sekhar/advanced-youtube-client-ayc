@@ -1,7 +1,7 @@
 :formatSelector
 set bilibili_download_status=0
 call tui windowSize %small_width% 35
-color 0F
+color %theme_colors%
 title Link Recieved
 cls
 call tui bannerSmall
@@ -48,7 +48,7 @@ goto qualitySelector
 
 :qualitySelector
 call tui windowSize %small_width% 29
-color 0F
+color %theme_colors%
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == hevc title  Format: .MP4 (HEVC Video/AAC Audio)
 if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/AAC Audio)
@@ -117,7 +117,7 @@ goto download
 
 :bilibiliM4a
 call tui windowSize %small_width% 25
-color 0F
+color %theme_colors%
 title Select Quality
 cls
 call tui bannerSmall
@@ -151,7 +151,7 @@ goto download
 :bilibiliCustomFormat
 call tui windowSize %large_width% 500
 set "bilibili_qual="
-color 0F
+color %theme_colors%
 title Select Format
 cls
 call tui bannerLarge

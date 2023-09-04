@@ -93,6 +93,12 @@ if not exist "%aycdata%\youtube_dl_version.txt" echo "unknown">"%aycdata%\youtub
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
 set youtube_dl_version=%youtube_dl_version:"=%
 
+if not exist "%aycdata%\theme_status.txt" echo "0">"%aycdata%\theme_status.txt"
+set /p theme_status=<"%aycdata%\theme_status.txt"
+set theme_status=%theme_status:"=%
+if %theme_status% == 0 set theme_colors=0F
+if %theme_status% == 1 set theme_colors=F0
+
 set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters -P temp:"%tmp_loc%"
 
 goto :EOF

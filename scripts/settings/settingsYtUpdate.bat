@@ -5,7 +5,7 @@ set tmp_youtube_dl_version=0
 if %yt_updated% == 0 call tui windowSize %small_width% 20
 if %yt_updated% == 0 if %yt_no_update% == 1 call tui windowSize %small_width% 22
 if %yt_updated% == 1 call tui windowSize %small_width% 22
-color 0F
+color %theme_colors%
 title Update yt-dlp
 cls
 call tui bannerSmall

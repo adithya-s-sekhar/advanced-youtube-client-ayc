@@ -1,6 +1,6 @@
 :moreMenu
 call tui windowSize %small_width% 23
-color 0F
+color %theme_colors%
 title More Options
 cls
 call tui bannerSmall

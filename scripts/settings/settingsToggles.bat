@@ -44,3 +44,15 @@ if %subs_status% == 1 (
     echo "0">"%aycdata%\subs_status.txt"
     goto :EOF
 )
+
+:settingsChangeTheme
+if %theme_status% == 0 (
+    set theme_status=1
+    echo "1">"%aycdata%\theme_status.txt"
+    goto :EOF
+)
+if %theme_status% == 1 (
+    set theme_status=0
+    echo "0">"%aycdata%\theme_status.txt"
+    goto :EOF
+)

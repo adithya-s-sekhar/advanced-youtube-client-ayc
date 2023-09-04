@@ -1,6 +1,7 @@
 :settingsMenu
-call tui windowSize %small_width% 31
-color 0F
+call envsetup
+call tui windowSize %small_width% 34
+color %theme_colors%
 title AYC Settings
 cls
 call tui bannerSmall
@@ -29,11 +30,15 @@ echo  (6) - Embed subtitles
 if %subs_status% == 0 echo        [Disabled]
 if %subs_status% == 1 echo        [Enabled]
 echo.
-echo  (7) - Reset AYC
+echo  (7) - Change theme
+if %theme_status% == 0 echo        [Dark]
+if %theme_status% == 1 echo        [Light]
+echo.
+echo  (8) - Reset AYC
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 01234567 /n /m "Select Option (0-7): "
+choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 call settingsChangeDirHome
 if %errorlevel% == 3 call settingsChangeDefinedTry
@@ -41,5 +46,6 @@ if %errorlevel% == 4 call settingsYtUpdate
 if %errorlevel% == 5 call settingsToggles ChangeAria2
 if %errorlevel% == 6 call settingsToggles ChangeThumbs
 if %errorlevel% == 7 call settingsToggles ChangeSubs
-if %errorlevel% == 8 call settingsReset
+if %errorlevel% == 8 call settingsToggles ChangeTheme
+if %errorlevel% == 9 call settingsReset
 goto :settingsMenu

@@ -1,6 +1,6 @@
 :firstRun
 call tui windowSize %medium_width% 26
-color 0F
+color %theme_colors%
 title Welcome to AYC
 cls
 call tui bannerMedium

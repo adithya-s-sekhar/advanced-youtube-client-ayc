@@ -6,7 +6,7 @@ if %cookie_loaded% == 1 (
 )
 set batch_exists_true=0
 set batch_link_counter=0
-color 0F
+color %theme_colors%
 title Batch Mode
 set "job_name="
 cls
@@ -74,7 +74,7 @@ if %cookie_loaded% == 1 (
 ) else (
     call tui windowSize %small_width% 32
 )
-color 0F
+color %theme_colors%
 title Now working on %job_name%
 cls
 call tui bannerSmall
@@ -129,7 +129,7 @@ goto batchManage
 
 :batchAddLinks
 call tui windowSize %small_width% 36
-color 0F
+color %theme_colors%
 title Leave blank and Enter to go back.
 cls
 call tui bannerSmall
@@ -185,7 +185,7 @@ goto batchAddLinksLoop
 :batchOpenJobFile
 call tui windowSize %small_width% 30
 title Edit Job File
-color 0F
+color %theme_colors%
 cls
 call tui bannerSmall
 echo.
@@ -232,7 +232,7 @@ if %job_type% == 2 (
 if %job_type% == 1 goto batchFormatSelector
 if %job_type% == 2 goto batchBFormatSelector
 call tui windowSize %small_width% 22
-color 0F
+color %theme_colors%
 title Select Quality
 set "batch_link_tmp="
 cls
@@ -267,7 +267,7 @@ if %cookie_loaded% == 1 (
 ) else (
     call tui windowSize %small_width% 34
 )
-color 0F
+color %theme_colors%
 title Choose format
 cls
 call tui bannerSmall
@@ -320,7 +320,7 @@ if %format_chosen% == vp9 if %cookie_loaded% == 1 call tui windowSize %small_wid
 if %format_chosen% == vp9 if %cookie_loaded% == 0 call tui windowSize %small_width% 33
 if %format_chosen% == av1 if %cookie_loaded% == 1 call tui windowSize %small_width% 36
 if %format_chosen% == av1 if %cookie_loaded% == 0 call tui windowSize %small_width% 34
-color 0F
+color %theme_colors%
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/OPUS Audio)
@@ -405,7 +405,7 @@ goto batchDownload
 
 :batchBFormatSelector
 call tui windowSize %small_width% 36
-color 0F
+color %theme_colors%
 title Choose Format
 cls
 call tui bannerSmall
@@ -455,7 +455,7 @@ goto batchBQualitySelector
 
 :batchBqualitySelector
 call tui windowSize %small_width% 28
-color 0F
+color %theme_colors%
 if %format_chosen% == b_h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == b_hevc title  Format: .MP4 (HEVC Video/AAC Audio)
 if %format_chosen% == b_av1 title  Format: .MP4 (AV1 Video/AAC Audio)
@@ -528,7 +528,7 @@ if %cookie_loaded% == 1 (
 ) else (
     call tui windowSize %small_width% 21
 )
-color 0F
+color %theme_colors%
 title Select Quality
 cls
 call tui bannerSmall
@@ -562,7 +562,7 @@ goto batchDownload
 :batchCustomFormat
 call tui windowSize %medium_width% 26
 set "batch_custom_format_url="
-color 0F
+color %theme_colors%
 title Pick custom format code
 cls
 call tui bannerMedium
@@ -603,7 +603,7 @@ if %link_validator% == 1 (
 call tui windowSize %large_width% 500
 set "batch_custom_qual="
 title Retrieving all available qualities
-color 0F
+color %theme_colors%
 cls
 call tui bannerLarge
 echo.

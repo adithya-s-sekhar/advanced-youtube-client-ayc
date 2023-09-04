@@ -1,6 +1,6 @@
 :settingsChangeTmpDir
 call tui windowSize %small_width% 30
-color 0F
+color %theme_colors%
 title Change temporary folder location
 cls
 set "settings_tmp_dir="

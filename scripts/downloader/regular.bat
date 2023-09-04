@@ -4,7 +4,7 @@ if %cookie_loaded% == 1 (
 ) else (
     call tui windowSize %small_width% 33
 )
-color 0F
+color %theme_colors%
 title Link Recieved
 cls
 call tui bannerSmall
@@ -54,7 +54,7 @@ if %format_chosen% == vp9 if %cookie_loaded% == 1 call tui windowSize %small_wid
 if %format_chosen% == vp9 if %cookie_loaded% == 0 call tui windowSize %small_width% 34
 if %format_chosen% == av1 if %cookie_loaded% == 1 call tui windowSize %small_width% 37
 if %format_chosen% == av1 if %cookie_loaded% == 0 call tui windowSize %small_width% 35
-color 0F
+color %theme_colors%
 if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
 if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
 if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/OPUS Audio)

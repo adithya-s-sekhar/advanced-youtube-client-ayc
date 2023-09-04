@@ -1,6 +1,6 @@
 :settingsChangeDirHome
 call tui windowSize %small_width% 23
-color 0F
+color %theme_colors%
 title Manage folders
 cls
 call tui bannerSmall
