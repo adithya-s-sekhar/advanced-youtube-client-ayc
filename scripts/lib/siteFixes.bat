@@ -6,5 +6,4 @@ goto :EOF
 
 :reddit
 set "thumbs="
-
 goto :EOF
