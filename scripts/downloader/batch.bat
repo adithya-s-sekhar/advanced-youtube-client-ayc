@@ -1,9 +1,8 @@
 :batchHome
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 31
-) else (
-    call tui windowSize %small_width% 29
-)
+if %batch_deleted_job% == 1 if %cookie_loaded% == 1 call tui windowSize %small_width% 35
+if %batch_deleted_job% == 1 if %cookie_loaded% == 0 call tui windowSize %small_width% 33
+if %batch_deleted_job% == 0 if %cookie_loaded% == 1 call tui windowSize %small_width% 33
+if %batch_deleted_job% == 0 if %cookie_loaded% == 0 call tui windowSize %small_width% 31
 set batch_exists_true=0
 set batch_link_counter=0
 color %theme_colors%
