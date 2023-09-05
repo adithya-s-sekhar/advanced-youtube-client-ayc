@@ -1,6 +1,7 @@
 set yt_updated=0
 set yt_no_update=0
 call tui windowSize %small_width% 23
+title Update yt-dlp
 color %theme_colors%
 cls
 call tui bannerSmall
@@ -17,7 +18,6 @@ if %yt_updated% == 0 call tui windowSize %small_width% 23
 if %yt_updated% == 0 if %yt_no_update% == 1 call tui windowSize %small_width% 25
 if %yt_updated% == 1 call tui windowSize %small_width% 25
 color %theme_colors%
-title Update yt-dlp
 cls
 call tui bannerSmall
 echo.
