@@ -53,13 +53,16 @@ echo  (2) - Youtube only (Enables youtube quality selector)
 echo.
 echo  (3) - Bilibili only (Enables bilibili quality selector)
 echo.
+echo  (4) - Twitch only (Enabled Twitch quality selector)
+echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123 /n /m "Select download mode (0-3): "
+choice /c 01234 /n /m "Select download mode (0-4): "
 if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" && goto batchHome
-if %errorlevel% == 2 set job_type=0 && echo "0">"%loc%\%job_name%\job_type.txt" && goto batchManage
-if %errorlevel% == 3 set job_type=1 && echo "1">"%loc%\%job_name%\job_type.txt" && goto batchManage
-if %errorlevel% == 4 set job_type=2 && echo "2">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 2 set job_type=0 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 3 set job_type=1 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 4 set job_type=2 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 5 set job_type=3 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
 
 :batchJobTypeCheck
 if not exist "%loc%\%job_name%\job_type.txt" goto batchJobTypeConfirm
@@ -84,6 +87,7 @@ echo.
 if %job_type% == 0 echo  Job type: Regular
 if %job_type% == 1 echo  Job type: Youtube only
 if %job_type% == 2 echo  Job type: Bilibili only [BETA]
+if %job_type% == 3 echo  Job type: Twitch only [BETA]
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
@@ -108,6 +112,7 @@ echo  (3) - Change job type
 if %job_type% == 0 echo        Currently: Regular
 if %job_type% == 1 echo        Currently: Youtube only
 if %job_type% == 2 echo        Currently: Bilibili only [BETA]
+if %job_type% == 3 echo        Currently: Twitch only [BETA]
 echo.
 if %batch_exists_true% == 1 echo  (4) - Resume job
 if %batch_exists_true% == 0 echo  (4) - Start job
@@ -174,6 +179,13 @@ if %job_type% == 2 if not %bilibili_link% == 1 (
     echo.
     goto batchAddLinksLoop
 )
+if %job_type% == 3 if not %twitch_link% == 1 (
+    echo ERROR: Invalid link. This is a Twitch only Job.
+    echo.
+    echo Change job type to Regular to add non-twitch links.
+    echo.
+    goto batchAddLinksLoop
+)
 call siteFixes "%batch_link_tmp%"
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 set /a batch_link_counter=%batch_link_counter%+1
@@ -195,6 +207,7 @@ echo.
 if %job_type% == 0 echo  Job type: Regular
 if %job_type% == 1 echo  Job type: Youtube only
 if %job_type% == 2 echo  Job type: Bilibili only [BETA]
+if %job_type% == 3 echo  Job type: Twitch only [BETA]
 call tui borderSmallHalf
 echo.
 echo  Job File is opened in Notepad. Follow instructions.
@@ -213,17 +226,22 @@ goto batchManage
 :batchChangeType
 if %job_type% == 0 (
     set job_type=1
-    echo "1">"%loc%\%job_name%\job_type.txt"
+    echo "%job_type%">"%loc%\%job_name%\job_type.txt"
     goto batchManage
 )
 if %job_type% == 1 (
     set job_type=2
-    echo "2">"%loc%\%job_name%\job_type.txt"
+    echo "%job_type%">"%loc%\%job_name%\job_type.txt"
     goto batchManage
 )
 if %job_type% == 2 (
+    set job_type=3
+    echo "%job_type%">"%loc%\%job_name%\job_type.txt"
+    goto batchManage
+)
+if %job_type% == 3 (
     set job_type=0
-    echo "0">"%loc%\%job_name%\job_type.txt"
+    echo "%job_type%">"%loc%\%job_name%\job_type.txt"
     goto batchManage
 )
 
@@ -231,6 +249,7 @@ if %job_type% == 2 (
 :batchQuickQualitySelector
 if %job_type% == 1 goto batchFormatSelector
 if %job_type% == 2 goto batchBFormatSelector
+if %job_type% == 3 goto batchTwitchQualitySelector
 call tui windowSize %small_width% 22
 color %theme_colors%
 title Select Quality
@@ -548,6 +567,56 @@ if %errorlevel% == 3 set aud_end=mq && set conf="-f 1/bestaudio[ext=m4a]" && got
 if %errorlevel% == 4 set aud_end=hq && set conf="-f bestaudio[ext=m4a]" && goto batchDownload
 
 
+:batchTwitchQualitySelector
+title Choose Quality
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 34
+) else (
+    call tui windowSize %small_width% 32
+)
+color %theme_colors%
+cls
+call tui bannerSmall
+echo.
+echo  Working on: %job_name%
+echo.
+echo  Job Type: Twitch only [BETA]
+echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
+echo  Format: .MP4 (H264 Video/AAC Audio)
+echo.
+echo  (0) - Go Back
+echo.
+call tui borderSmall
+echo  Choose Maximum Quality
+echo.
+echo   (1) - 360p 
+echo   (2) - 480p   (If not available, returns to 360p) 
+echo.
+call tui borderSmall
+echo.
+echo   (3) - 720p   (If not available, returns to 480p) 
+echo   (4) - 1080p  (If not available, returns to 720p) 
+echo.
+call tui borderSmall
+echo.
+echo   (5) - Show all available formats
+echo         Use this if the above doesn't work.
+echo.
+call tui borderSmallHalf
+echo.
+choice /c 012345 /n /m "Select Option (1-5): "
+if %errorlevel% == 1 goto batchManage
+if %errorlevel% == 2 set format_chosen=batch && set conf="-f 360" && goto batchDownload
+if %errorlevel% == 3 set format_chosen=batch && set conf="-f 480" && goto batchDownload
+if %errorlevel% == 4 set format_chosen=batch && set conf="-f 720" && goto batchDownload
+if %errorlevel% == 5 set format_chosen=batch && set conf="-f 1080" && goto batchDownload
+if %errorlevel% == 6 goto batchCustomFormat
+
+
 :batchCustomFormat
 call tui windowSize %medium_width% 26
 set "batch_custom_format_url="
@@ -673,6 +742,7 @@ echo.
 if %job_type% == 0 echo  Job type: Regular
 if %job_type% == 1 echo  Job type: Youtube only
 if %job_type% == 2 echo  Job type: Bilibili only [BETA]
+if %job_type% == 3 echo  Job type: Twitch only [BETA]
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
