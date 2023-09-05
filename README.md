@@ -83,17 +83,22 @@ When you open AYC for the first time, it'll ask you to do these in order for it 
 
 - [How to pin AYC to taskbar for easy access?](#complete-install)
 
-- [How to load cookies.txt?](#5-how-to-load-cookiestxt)
+- [How to resume a download that got cancelled?](#1-how-to-resume-a-download-that-got-cancelled)
+
+- [How to load cookies.txt?](#2-how-to-load-cookiestxt)
 
 ## Frequently asked questions (FAQ)
 
-### 1. Why didn't you use Python or Go?
+### 1. How to resume a download that got cancelled?
 
-Although not being a programming language, batch has some excellent inbuilt tools to handle a front end like this. Compared to how slow languages with a vm can be and how hard it is for them to interact with the rest of Windows, batch is the best and fastest choice for AYC.
+Simply paste the url again and pick the same quality again. 
+AYC is not a download manager, it does not track your downloads. But it keeps all partial downloads in it's temporary folder and you can resume them anytime you want.
 
-### 2. Where are the old releases?
+### 2. How to load cookies.txt?
 
-AYC started it's life on Sourceforge in 2016, it's only been on Github since 2021. Part of the old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/files/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ) and always updated each release. The archive is still missing some early files from v2 era. I couldn't recover them.
+AYC like yt-dlp supports loading cookies from a cookies.txt file. All you have to do is place the cookies.txt file inside the ayc folder and start AYC. It'll auto detect it and ask you whether you want to load it or not.
+
+Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option in custom.bat in **scripts** folder. Currently custom.bat supports setting cookies for youtube links, for bilibili links and every other links.
 
 ### 3. Why is the installation so complicated?
 
@@ -117,11 +122,9 @@ So on these computers users have to manually change their setttings to allow bat
 
 So AYC now makes all users go through this once when they open it for the first time.
 
-### 5. How to load cookies.txt?
+### 5. Where are the old releases?
 
-AYC like yt-dlp supports loading cookies from a cookies.txt file. All you have to do is place the cookies.txt file inside the ayc folder and start AYC. It'll auto detect it and ask you whether you want to load it or not.
-
-Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option in custom.bat in **scripts** folder. Currently AYC only supports setting cookies for youtube links, for bilibili and for non-youtube links globally.
+AYC started out on Sourceforge in 2016, it's only been on Github since 2021. Part of the old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/files/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ) and always updated each release. The archive is still missing some early files from v2 era. I couldn't recover them.
 
 ## Links
 
