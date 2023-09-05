@@ -1,7 +1,21 @@
-Advanced Youtube Client - AYC v4.11 - 04/Sep/2023
+Advanced Youtube Client - AYC v4.12 - 05/Sep/2023
 Open AYClient.bat
 
 What's new?
+
+[4.12]
+- Added: Twitch quality selectors.
+- Fixed: yt-dlp version wasn't refreshed if updated by auto updater.
+- Fixed: Site fixes did not apply everytime.
+- Fixed: Bilibili, Youtube did not follow global thumbnail settings.
+- Fixed: Bilibili custom formats didn't work.
+- Fixed: Youtube download status wasn't set on start.
+- Improved: Some UI elements.
+- Improved: Input sanitization on all custom format fields.
+- Improved: Generic downloads will save custom format id in filename if it's used.
+- Improved: Rename legacy scripts to make sense for new users who want to tweak.
+- Refactored batch mode, settingsToggles. 
+- Organized and cleaned up some code.
 
 [4.11]
 - Added: More themes.
