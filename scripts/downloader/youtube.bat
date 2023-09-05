@@ -158,10 +158,10 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set regular_download_status=1 && goto :EOF
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set regular_download_status=1 && goto :EOF
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set regular_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title)s-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set regular_download_status=1 && goto :EOF
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title)s-%%(id)s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 set /a try=%try%+1
-if %try% GTR %max_try% set regular_download_status=0 && goto :EOF
+if %try% GTR %max_try% set youtube_download_status=0 && goto :EOF
 goto downloadTried
