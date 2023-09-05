@@ -96,7 +96,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_all% %cookies% "%url%" && set generic_download_status=1 && goto :EOF
+%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%generic_qual%-%%(id)s.%%(ext)s" %custom_config_all% %cookies% "%url%" && set generic_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% goto :EOF
 goto genericDownloadTried
