@@ -1,5 +1,16 @@
 set yt_updated=0
 set yt_no_update=0
+call tui windowSize %small_width% 23
+color %theme_colors%
+cls
+call tui bannerSmall
+echo.
+echo  Current yt-dlp version: Please wait.
+echo.
+call tui borderSmall
+echo.
+for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
+echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
 :update
 set tmp_youtube_dl_version=0
 if %yt_updated% == 0 call tui windowSize %small_width% 23
