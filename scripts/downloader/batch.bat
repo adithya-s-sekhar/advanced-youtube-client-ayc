@@ -52,7 +52,7 @@ echo  (2) - Youtube only (Enables youtube quality selector)
 echo.
 echo  (3) - Bilibili only (Enables bilibili quality selector)
 echo.
-echo  (4) - Twitch only (Enabled Twitch quality selector)
+echo  (4) - Twitch only (Enables Twitch quality selector)
 echo.
 call tui borderSmallHalf
 echo.
