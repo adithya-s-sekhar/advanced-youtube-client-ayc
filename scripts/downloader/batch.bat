@@ -648,6 +648,8 @@ if "%batch_custom_format_url%" equ "" if %job_type% == 0 goto batchQuickQualityS
 if "%batch_custom_format_url%" equ " =" if %job_type% == 0 goto batchQuickQualitySelector
 if "%batch_custom_format_url%" equ "" if %job_type% == 2 goto batchBFormatSelector
 if "%batch_custom_format_url%" equ " =" if %job_type% == 2 goto batchBFormatSelector
+if "%batch_custom_format_url%" equ "" if %job_type% == 3 goto batchTwitchQualitySelector
+if "%batch_custom_format_url%" equ " =" if %job_type% == 3 goto batchTwitchQualitySelector
 
 call linkValidator "%batch_custom_format_url%"
 if %link_validator% == 1 (
