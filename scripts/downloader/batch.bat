@@ -57,10 +57,9 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select download mode (0-3): "
 if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" && goto batchHome
-if %errorlevel% == 2 set job_type=0 && echo "0">"%loc%\%job_name%\job_type.txt"
-if %errorlevel% == 3 set job_type=1 && echo "1">"%loc%\%job_name%\job_type.txt"
-if %errorlevel% == 4 set job_type=2 && echo "2">"%loc%\%job_name%\job_type.txt"
-goto batchManage
+if %errorlevel% == 2 set job_type=0 && echo "0">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 3 set job_type=1 && echo "1">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 4 set job_type=2 && echo "2">"%loc%\%job_name%\job_type.txt" && goto batchManage
 
 :batchJobTypeCheck
 if not exist "%loc%\%job_name%\job_type.txt" goto batchJobTypeConfirm
@@ -175,6 +174,7 @@ if %job_type% == 2 if not %bilibili_link% == 1 (
     echo.
     goto batchAddLinksLoop
 )
+call siteFixes "%batch_link_tmp%"
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 set /a batch_link_counter=%batch_link_counter%+1
 echo Link Saved.
@@ -254,11 +254,9 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set conf=-f "bv*+ba/b" & set batch_name_end=high
-if %errorlevel% == 3 set conf=-f "wv*+wa/w" & set batch_name_end=low
+if %errorlevel% == 2 set conf=-"f bv*+ba/b" && set batch_name_end=high && set format_chosen=batch && goto batchDownload
+if %errorlevel% == 3 set conf="-f wv*+wa/w" && set batch_name_end=low && set format_chosen=batch && goto batchDownload
 if %errorlevel% == 4 goto batchCustomFormat
-set format_chosen=batch
-goto batchDownload
 
 
 :batchFormatSelector
@@ -305,13 +303,12 @@ call tui borderSmallHalf
 echo.
 choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set format_chosen=h264
-if %errorlevel% == 3 set format_chosen=vp9
-if %errorlevel% == 4 set format_chosen=av1
-if %errorlevel% == 5 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a] && goto batchDownload
-if %errorlevel% == 6 set format_chosen=aud && set conf=--add-metadata --embed-thumbnail --extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k && goto batchDownload
-if %errorlevel% == 7 set format_chosen=aud && set conf=--add-metadata -f bestaudio[ext=webm] && goto batchDownload
-goto batchQualitySelector
+if %errorlevel% == 2 set format_chosen=h264 && goto batchQualitySelector
+if %errorlevel% == 3 set format_chosen=vp9 && goto batchQualitySelector
+if %errorlevel% == 4 set format_chosen=av1 && goto batchQualitySelector
+if %errorlevel% == 5 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 6 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto batchDownload
+if %errorlevel% == 7 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && goto batchDownload
 
 :batchQualitySelector
 if %format_chosen% == h264 if %cookie_loaded% == 1 call tui windowSize %small_width% 30
@@ -364,43 +361,40 @@ if %format_chosen% == av1  goto batchChoiceAv1
 echo.
 choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto batchFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]"
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
-goto batchDownload
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
 
 :batchChoiceVp9
 echo.
 choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto batchFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]"
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]"
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]"
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]"
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]"
-goto batchDownload
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" && goto batchDownload
 
 :batchChoiceAv1
 set error_format=av1
 echo.
 choice /c 0123456789 /n /m "Select Option (0-9): "
 if %errorlevel% == 1 goto batchFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]"
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]"
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]"
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]"
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]"
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]"
-goto batchDownload
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]" && goto batchDownload
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" && goto batchDownload
 
 
 :batchBFormatSelector
@@ -446,12 +440,11 @@ call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (1-5): "
 if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set format_chosen=b_h264
-if %errorlevel% == 3 set format_chosen=b_hevc
-if %errorlevel% == 4 set format_chosen=b_av1
+if %errorlevel% == 2 set format_chosen=b_h264 && goto batchBQualitySelector
+if %errorlevel% == 3 set format_chosen=b_hevc && goto batchBQualitySelector
+if %errorlevel% == 4 set format_chosen=b_av1 && goto batchBQualitySelector
 if %errorlevel% == 5 set format_chosen=b_aud && goto batchBilibiliM4a
 if %errorlevel% == 6 set format_chosen=batch && goto batchCustomFormat
-goto batchBQualitySelector
 
 :batchBqualitySelector
 call tui windowSize %small_width% 28
@@ -494,32 +487,29 @@ if %format_chosen% == b_av1  goto b_choiceAv1
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
-goto batchDownload
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
 
 :b_choiceHevc
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]"
-goto batchDownload
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
 
 :b_choiceAv1
 set error_format=av1
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
-goto batchDownload
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
 
 
 :batchBilibiliM4a
@@ -553,10 +543,9 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set aud_end=lq && set conf=--add-metadata --embed-thumbnail -f worstaudio[ext=m4a]
-if %errorlevel% == 3 set aud_end=mq && set conf=--add-metadata --embed-thumbnail -f 1/bestaudio[ext=m4a]
-if %errorlevel% == 4 set aud_end=hq && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
-goto batchDownload
+if %errorlevel% == 2 set aud_end=lq && set conf="-f worstaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 3 set aud_end=mq && set conf="-f 1/bestaudio[ext=m4a]" && goto batchDownload
+if %errorlevel% == 4 set aud_end=hq && set conf="-f bestaudio[ext=m4a]" && goto batchDownload
 
 
 :batchCustomFormat
@@ -632,7 +621,9 @@ set /p batch_custom_qual=Choose ID (green color in the list above):
 set batch_custom_qual=%batch_custom_qual: =%
 if "%batch_custom_qual%" equ "" goto batchCustomFormat
 if "%batch_custom_qual%" equ " =" goto batchCustomFormat
-set conf=-f %batch_custom_qual%
+set batch_custom_qual=%batch_custom_qual:'=%
+set batch_custom_qual=%batch_custom_qual:"=%
+set conf="-f %batch_custom_qual%"
 set batch_name_end=%batch_custom_qual%
 set format_chosen=batch
 goto batchDownload
@@ -660,6 +651,7 @@ goto batchHome
 :batchDownload
 set "try="
 set try=1
+set conf=%conf:"=%
 
 if %aria2_status% == 1 if not %job_type% == 1 set aria2=--external-downloader aria2c
 if %aria2_status% == 1 if %job_type% == 1 set aria2=--concurrent-fragments 8
@@ -693,12 +685,12 @@ if %cookie_loaded% == 0 if %job_type% == 2 (
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-VP9-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%\%job_name%" -o "%%(title)s-%%(id)s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%\%job_name%" -o "%%(title)s-%%(id)s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 
 if %format_chosen% == b_h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-MP4-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == b_hevc %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-HEVC-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == b_av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == b_aud %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%\%job_name%" -o "%%(title)s-%aud_end%-%%(id)s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == b_aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%\%job_name%" -o "%%(title)s-%aud_end%-%%(id)s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 
 if %format_chosen% == batch %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title)s-%batch_name_end%-%%(id)s.%%(ext)s" %custom_config_batch_all% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 set /a try=%try%+1
