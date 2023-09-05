@@ -34,6 +34,7 @@ set url=%url:"=%
 if %ayc.arg2% == "reg" goto regular
 if %ayc.arg2% == "uni" goto uni
 if %ayc.arg2% == "bili" goto bili
+if %ayc.arg2% == "twitch" goto twitch
 
 
 :start
@@ -90,6 +91,7 @@ if %quickkey_validator% == 0 (
 :linkValid
 if %youtube_link% == 1 start AYClient.bat "%url%" "reg" "%cookie_loaded%"
 if %bilibili_link% == 1 start AYClient.bat "%url%" "bili" "%cookie_loaded%"
+if %twitch_link% == 1 start AYClient.bat "%url%" "twitch" "%cookie_loaded%"
 if %generic_link% == 1 start AYClient.bat "%url%" "uni" "%cookie_loaded%"
 set url_invalid=0
 goto start
@@ -118,6 +120,15 @@ goto exit
 :bili
 call bilibili
 if %bilibili_download_status% == 1 (
+    call downloadSuccess
+) else (
+    call downloadError
+)
+goto exit
+
+:twitch
+call twitch
+if %twitch_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
