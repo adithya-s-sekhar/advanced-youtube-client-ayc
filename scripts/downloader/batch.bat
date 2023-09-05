@@ -609,7 +609,7 @@ echo         Use this if the above doesn't work.
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 012345 /n /m "Select Option (1-5): "
+choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto batchManage
 if %errorlevel% == 2 set format_chosen=batch && set conf="-f 360" && goto batchDownload
 if %errorlevel% == 3 set format_chosen=batch && set conf="-f 480" && goto batchDownload
