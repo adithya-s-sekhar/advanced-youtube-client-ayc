@@ -1,5 +1,6 @@
 set scripts_path=%cd%\scripts
 set path=%path%;%scripts_path%\downloader;
+set path=%path%;%scripts_path%\downloader\batch;
 set path=%path%;%scripts_path%\lib;
 set path=%path%;%scripts_path%\pages;
 set path=%path%;%scripts_path%\settings;
