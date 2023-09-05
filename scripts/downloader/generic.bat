@@ -1,5 +1,5 @@
-:uniHome
-set uni_download_status=0
+:qualitySelector
+set generic_download_status=0
 if %cookie_loaded% == 1 (
     call tui windowSize %small_width% 26
 ) else (
@@ -31,14 +31,14 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 123 /n /m "Select Option (1-3): "
-if %errorlevel% == 1 set conf="-f bv*+ba/b" && goto uniDownload
-if %errorlevel% == 2 set conf="-f wv*+wa/w" && goto uniDownload
-if %errorlevel% == 3 goto uniQualitySelector
+if %errorlevel% == 1 set conf="-f bv*+ba/b" && goto genericDownload
+if %errorlevel% == 2 set conf="-f wv*+wa/w" && goto genericDownload
+if %errorlevel% == 3 goto customFormatSelector
 
 
-:uniQualitySelector
+:customFormatSelector
 call tui windowSize %large_width% 500
-set "uni_qual="
+set "generic_qual="
 color %theme_colors%
 title Select Quality
 cls
@@ -50,9 +50,9 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %cookies% -F "%url%" && goto uniQualitySelectorContinue
+%youtube_dl% %cookies% -F "%url%" && goto customFormatSelectorContinue
 goto :EOF
-:uniQualitySelectorContinue
+:customFormatSelectorContinue
 echo.
 call tui borderLargeHalf
 echo.
@@ -62,16 +62,16 @@ echo Merge two formats using + symbol.
 echo.
 echo You can also type 'best', 'b', 'worst', 'w'.
 echo.
-set /p uni_qual=Choose ID (green color in the list above): 
-set uni_qual=%uni_qual: =%
-if "%uni_qual%" equ "" goto uniHome
-if "%uni_qual%" equ " =" goto uniHome
-set uni_qual=%uni_qual:'=%
-set uni_qual=%uni_qual:"=%
-set conf="-f %uni_qual%"
+set /p generic_qual=Choose ID (green color in the list above): 
+set generic_qual=%generic_qual: =%
+if "%generic_qual%" equ "" goto qualitySelector
+if "%generic_qual%" equ " =" goto qualitySelector
+set generic_qual=%generic_qual:'=%
+set generic_qual=%generic_qual:"=%
+set conf="-f %generic_qual%"
 
 
-:uniDownload
+:genericDownload
 set "try="
 set try=1
 set conf=%conf:"=%
@@ -79,7 +79,7 @@ call siteFixes "%url%"
 
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
-:uniDownloadTried
+:genericDownloadTried
 call tui windowSize %small_width% 36
 color %theme_colors%
 title Downloading: Attempt %try% out of %max_try% (%defined_try% retries)
@@ -96,7 +96,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_uni% %cookies% "%url%" && set uni_download_status=1 && goto :EOF
+%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_all% %cookies% "%url%" && set generic_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% goto :EOF
-goto uniDownloadTried
+goto genericDownloadTried

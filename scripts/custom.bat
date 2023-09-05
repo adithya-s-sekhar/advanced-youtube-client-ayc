@@ -13,9 +13,6 @@
 set custom_config_youtube= 
 :: This will be used in all youtube downloads.
 
-set custom_config_uni= 
-:: This will be used in all non-youtube downloads.
-
 set custom_config_bilibili= 
 :: This will be used in all bilibili downloads.
 
@@ -25,5 +22,8 @@ set custom_config_twitch=
 set custom_config_batch_yt= 
 :: This will be used in all youtube downloads in batch mode.
 
+set custom_config_all= 
+:: This will be used in all other downloads.
+
 set custom_config_batch_all= 
-:: This will be used in all non-youtube downloads in batch mode.
+:: This will be used in all other downloads in batch mode.
