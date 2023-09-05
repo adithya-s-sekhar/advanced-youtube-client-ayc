@@ -8,7 +8,7 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
-echo  Bilibili link detected. [BETA]
+echo  Bilibili link detected.
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.

@@ -22,8 +22,8 @@ echo  Job: %job_name%
 echo.
 if %job_type% == 0 echo  Job type: Regular
 if %job_type% == 1 echo  Job type: Youtube only
-if %job_type% == 2 echo  Job type: Bilibili only [BETA]
-if %job_type% == 3 echo  Job type: Twitch only [BETA]
+if %job_type% == 2 echo  Job type: Bilibili only
+if %job_type% == 3 echo  Job type: Twitch only
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.

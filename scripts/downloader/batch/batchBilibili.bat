@@ -7,7 +7,7 @@ call tui bannerSmall
 echo.
 echo  Working on: %job_name%
 echo.
-echo  Job Type: Bilibili only [BETA]
+echo  Job Type: Bilibili only
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.

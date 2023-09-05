@@ -10,8 +10,8 @@ if %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
 if %job_type% == 0 echo  Job type: Regular
 if %job_type% == 1 echo  Job type: Youtube only
-if %job_type% == 2 echo  Job type: Bilibili only [BETA]
-if %job_type% == 3 echo  Job type: Twitch only [BETA]
+if %job_type% == 2 echo  Job type: Bilibili only
+if %job_type% == 3 echo  Job type: Twitch only
 call tui borderSmallHalf
 echo.
 echo  Job File is opened in Notepad. Follow instructions.

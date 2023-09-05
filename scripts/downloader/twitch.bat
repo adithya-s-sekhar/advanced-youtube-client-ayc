@@ -12,7 +12,7 @@ call tui bannerSmall
 echo.
 echo  URL: %url%
 echo.
-echo  Twitch link detected. [BETA]
+echo  Twitch link detected.
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
