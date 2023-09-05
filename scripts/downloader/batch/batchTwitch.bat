@@ -41,8 +41,8 @@ call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 set format_chosen=batch && set conf="-f 360" && goto :EOF
-if %errorlevel% == 3 set format_chosen=batch && set conf="-f 480" && goto :EOF
-if %errorlevel% == 4 set format_chosen=batch && set conf="-f 720" && goto :EOF
-if %errorlevel% == 5 set format_chosen=batch && set conf="-f 1080" && goto :EOF
-if %errorlevel% == 6 set format_chosen=batch && set conf="custom" && goto :EOF
+if %errorlevel% == 2 set format_chosen=twitch && set conf="-f 360" && goto :EOF
+if %errorlevel% == 3 set format_chosen=twitch && set conf="-f 480" && goto :EOF
+if %errorlevel% == 4 set format_chosen=twitch && set conf="-f 720" && goto :EOF
+if %errorlevel% == 5 set format_chosen=twitch && set conf="-f 1080" && goto :EOF
+if %errorlevel% == 6 set format_chosen=twitch && set conf="custom" && goto :EOF

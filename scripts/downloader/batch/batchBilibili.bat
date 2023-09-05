@@ -45,7 +45,7 @@ if %errorlevel% == 2 set format_chosen=b_h264 && goto qualitySelector
 if %errorlevel% == 3 set format_chosen=b_hevc && goto qualitySelector
 if %errorlevel% == 4 set format_chosen=b_av1 && goto qualitySelector
 if %errorlevel% == 5 set format_chosen=b_aud && goto bilibiliM4a
-if %errorlevel% == 6 set format_chosen=batch && set conf="custom" && goto :EOF
+if %errorlevel% == 6 set format_chosen=b_custom && set conf="custom" && goto :EOF
 
 :qualitySelector
 call tui windowSize %small_width% 28
