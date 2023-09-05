@@ -58,10 +58,12 @@ call tui borderSmallHalf
 echo.
 choice /c 01234 /n /m "Select download mode (0-4): "
 if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" && goto batchHome
-if %errorlevel% == 2 set job_type=0 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
-if %errorlevel% == 3 set job_type=1 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
-if %errorlevel% == 4 set job_type=2 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
-if %errorlevel% == 5 set job_type=3 && echo "%job_type%">"%loc%\%job_name%\job_type.txt" && goto batchManage
+if %errorlevel% == 2 set job_type=0
+if %errorlevel% == 3 set job_type=1
+if %errorlevel% == 4 set job_type=2
+if %errorlevel% == 5 set job_type=3
+echo "%job_type%">"%loc%\%job_name%\job_type.txt"
+goto batchManage
 
 :batchJobTypeCheck
 if not exist "%loc%\%job_name%\job_type.txt" goto batchJobTypeConfirm
