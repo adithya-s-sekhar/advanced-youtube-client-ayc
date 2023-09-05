@@ -60,8 +60,6 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using + symbol.
 echo.
-echo You can also type 'best', 'b', 'worst', 'w'.
-echo.
 set /p generic_qual=Choose ID (green color in the list above): 
 set generic_qual=%generic_qual: =%
 if "%generic_qual%" equ "" goto qualitySelector

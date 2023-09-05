@@ -171,8 +171,6 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using + symbol.
 echo.
-echo You can also type 'best', 'b', 'worst', 'w'.
-echo.
 set /p bilibili_qual=Choose ID (green color in the list above): 
 set bilibili_qual=%bilibili_qual: =%
 if "%bilibili_qual%" equ "" goto formatSelector

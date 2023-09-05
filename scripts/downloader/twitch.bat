@@ -67,8 +67,6 @@ call tui borderLargeHalf
 echo.
 echo Leave blank and press Enter to Go back.
 echo.
-echo You can also type 'best', 'b', 'worst', 'w'.
-echo.
 set /p twitch_custom_qual=Choose ID (green color in the list above): 
 set twitch_custom_qual=%twitch_custom_qual: =%
 if "%twitch_custom_qual%" equ "" goto qualitySelector
