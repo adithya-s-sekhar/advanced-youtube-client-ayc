@@ -127,16 +127,24 @@ if %errorlevel% == 1 goto batchHome
 if %errorlevel% == 2 call batchAddLinks
 if %errorlevel% == 3 call batchOpenJobFile
 if %errorlevel% == 4 call batchChangeType
-if %errorlevel% == 5 goto batchQuickQualitySelector
+if %errorlevel% == 5 goto batchRedirector
 if %errorlevel% == 6 call batchDelete
 if %batch_deleted_job% == 1 goto batchHome
 goto batchManage
 
 
+:batchRedirector
+if %job_type% == 0 goto batchQuickQualitySelector
+set "conf="
+if %job_type% == 1 call batchYoutube
+if %job_type% == 2 call batchBilibili
+if %job_type% == 3 call batchTwitch
+if not defined conf goto batchManage
+if %conf% == "custom" goto batchCustomFormat
+goto batchDownload
+
+
 :batchQuickQualitySelector
-if %job_type% == 1 goto batchFormatSelector
-if %job_type% == 2 goto batchBFormatSelector
-if %job_type% == 3 goto batchTwitchQualitySelector
 call tui windowSize %small_width% 22
 color %theme_colors%
 title Select Quality
@@ -165,345 +173,6 @@ if %errorlevel% == 3 set conf="-f wv*+wa/w" && set batch_name_end=low && set for
 if %errorlevel% == 4 goto batchCustomFormat
 
 
-:batchFormatSelector
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 36
-) else (
-    call tui windowSize %small_width% 34
-)
-color %theme_colors%
-title Choose format
-cls
-call tui bannerSmall
-echo.
-echo  Working on: %job_name%
-echo.
-echo  Job Type: Youtube
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-)
-echo   (0) - Back
-echo.
-echo  Choose format
-call tui borderSmall
-echo  Video + Audio
-echo.
-echo   (1) - MP4 Video/AAC Audio (Upto 1080p) (Recommended)
-echo.
-echo   (2) - VP9 Video/OPUS Audio (Upto 4K)
-echo.
-echo   (3) - AV1 Video/OPUS Audio (Upto 8K)
-echo.
-call tui borderSmall
-echo  Audio Only
-echo.
-echo   (4) - M4A  - AAC Audio  - 128kbps
-echo.
-echo   (5) - MP3  - MP3 Audio  - 128kbps
-echo.
-echo   (6) - WEBM - OPUS Audio - 160kbps
-echo.
-call tui borderSmallHalf
-echo.
-choice /c 0123456 /n /m "Select Option (0-6): "
-if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set format_chosen=h264 && goto batchQualitySelector
-if %errorlevel% == 3 set format_chosen=vp9 && goto batchQualitySelector
-if %errorlevel% == 4 set format_chosen=av1 && goto batchQualitySelector
-if %errorlevel% == 5 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 6 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto batchDownload
-if %errorlevel% == 7 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && goto batchDownload
-
-:batchQualitySelector
-if %format_chosen% == h264 if %cookie_loaded% == 1 call tui windowSize %small_width% 30
-if %format_chosen% == h264 if %cookie_loaded% == 0 call tui windowSize %small_width% 28
-if %format_chosen% == vp9 if %cookie_loaded% == 1 call tui windowSize %small_width% 35
-if %format_chosen% == vp9 if %cookie_loaded% == 0 call tui windowSize %small_width% 33
-if %format_chosen% == av1 if %cookie_loaded% == 1 call tui windowSize %small_width% 36
-if %format_chosen% == av1 if %cookie_loaded% == 0 call tui windowSize %small_width% 34
-color %theme_colors%
-if %format_chosen% == h264 title  Format: .MP4 (H264 Video/AAC Audio)
-if %format_chosen% == vp9 title  Format: .MP4 (VP9 Video/OPUS Audio)
-if %format_chosen% == av1 title  Format: .MP4 (AV1 Video/OPUS Audio)
-cls
-call tui bannerSmall
-echo.
-echo  Working on: %job_name%
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-)
-if %format_chosen% == h264 echo  Format: .MP4 (H264 Video/AAC Audio)
-if %format_chosen% == vp9 echo  Format: .MP4 (VP9 Video/OPUS Audio)
-if %format_chosen% == av1 echo  Format: .MP4 (AV1 Video/OPUS Audio)
-echo.
-echo   (0) - Back
-echo.
-call tui borderSmall
-echo  Choose Maximum Quality
-echo.
-echo   (1) - 144p 
-echo   (2) - 240p   (If not available, returns to 144p) 
-echo   (3) - 360p   (If not available, returns to 240p) 
-echo.
-call tui borderSmall
-echo.
-echo   (4) - 480p   (If not available, returns to 360p) 
-echo   (5) - 720p   (If not available, returns to 480p) 
-echo   (6) - 1080p  (If not available, returns to 720p) 
-echo.
-if NOT %format_chosen% == h264 call tui borderSmall
-if NOT %format_chosen% == h264 echo.
-if NOT %format_chosen% == h264 echo   (7) - 1440p  (If not available, returns to 1080p)
-if NOT %format_chosen% == h264 echo   (8) - 4K     (If not available, returns to 1440p)
-if %format_chosen% == av1 echo   (9) - 8K     (If not available, returns to 4K)
-if not %format_chosen% == h264 echo.
-call tui borderSmallHalf
-if %format_chosen% == vp9  goto batchChoiceVp9
-if %format_chosen% == av1  goto batchChoiceAv1
-echo.
-choice /c 0123456 /n /m "Select Option (0-6): "
-if %errorlevel% == 1 goto batchFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
-
-:batchChoiceVp9
-echo.
-choice /c 012345678 /n /m "Select Option (0-8): "
-if %errorlevel% == 1 goto batchFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" && goto batchDownload
-
-:batchChoiceAv1
-set error_format=av1
-echo.
-choice /c 0123456789 /n /m "Select Option (0-9): "
-if %errorlevel% == 1 goto batchFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]" && goto batchDownload
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" && goto batchDownload
-
-
-:batchBFormatSelector
-call tui windowSize %small_width% 36
-color %theme_colors%
-title Choose Format
-cls
-call tui bannerSmall
-echo.
-echo  Working on: %job_name%
-echo.
-echo  Job Type: Bilibili only [BETA]
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-) else (
-    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
-    echo.
-)
-echo   (0) - Back
-echo.
-echo  Choose format
-call tui borderSmall
-echo  Video + Audio
-echo.
-echo   (1) - H264 Video/AAC Audio (Upto 1080p)
-echo.
-echo   (2) - HEVC Video/AAC Audio (Upto 1080p)
-echo.
-echo   (3) - AV1 Video/AAC Audio  (Upto 1080p)
-echo.
-call tui borderSmall
-echo  Audio Only
-echo.
-echo   (4) - M4A - AAC Audio - 3 Qualities
-echo.
-call tui borderSmall
-echo.
-echo   (5) - Pick a Custom Format
-echo.
-call tui borderSmallHalf
-echo.
-choice /c 012345 /n /m "Select Option (1-5): "
-if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set format_chosen=b_h264 && goto batchBQualitySelector
-if %errorlevel% == 3 set format_chosen=b_hevc && goto batchBQualitySelector
-if %errorlevel% == 4 set format_chosen=b_av1 && goto batchBQualitySelector
-if %errorlevel% == 5 set format_chosen=b_aud && goto batchBilibiliM4a
-if %errorlevel% == 6 set format_chosen=batch && goto batchCustomFormat
-
-:batchBqualitySelector
-call tui windowSize %small_width% 28
-color %theme_colors%
-if %format_chosen% == b_h264 title  Format: .MP4 (H264 Video/AAC Audio)
-if %format_chosen% == b_hevc title  Format: .MP4 (HEVC Video/AAC Audio)
-if %format_chosen% == b_av1 title  Format: .MP4 (AV1 Video/AAC Audio)
-cls
-call tui bannerSmall
-echo.
-echo  URL: %url%
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-) else (
-    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
-    echo.
-)
-if %format_chosen% == b_h264 echo  Format: .MP4 (H264 Video/AAC Audio)
-if %format_chosen% == b_hevc echo  Format: .MP4 (HEVC Video/AAC Audio)
-if %format_chosen% == b_av1 echo  Format: .MP4 (AV1 Video/AAC Audio)
-echo.
-echo   (0) - Back
-echo.
-call tui borderSmall
-echo  Choose Maximum Quality
-echo.
-echo   (1) - 360p 
-echo   (2) - 480p   (If not available, returns to 360p) 
-echo.
-call tui borderSmall
-echo.
-echo   (3) - 720p   (If not available, returns to 480p) 
-echo   (4) - 1080p  (If not available, returns to 720p) 
-echo.
-call tui borderSmallHalf
-if %format_chosen% == b_hevc  goto b_choiceHevc
-if %format_chosen% == b_av1  goto b_choiceAv1
-echo.
-choice /c 01234 /n /m "Select Option (0-4): "
-if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
-
-:b_choiceHevc
-echo.
-choice /c 01234 /n /m "Select Option (0-4): "
-if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
-
-:b_choiceAv1
-set error_format=av1
-echo.
-choice /c 01234 /n /m "Select Option (0-4): "
-if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]" && goto batchDownload
-
-
-:batchBilibiliM4a
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 23
-) else (
-    call tui windowSize %small_width% 21
-)
-color %theme_colors%
-title Select Quality
-cls
-call tui bannerSmall
-echo.
-echo  URL: %url%
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-)
-echo   (0) - Go Back
-echo.
-call tui borderSmall
-echo.
-echo   (1) - M4A - AAC - Lowest Quality
-echo.
-echo   (2) - M4A - AAC - Medium Quality
-echo.
-echo   (3) - M4A - AAC - Highest Quality
-echo.
-call tui borderSmallHalf
-echo.
-choice /c 0123 /n /m "Select Option (0-3): "
-if %errorlevel% == 1 goto batchBFormatSelector
-if %errorlevel% == 2 set aud_end=lq && set conf="-f worstaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 3 set aud_end=mq && set conf="-f 1/bestaudio[ext=m4a]" && goto batchDownload
-if %errorlevel% == 4 set aud_end=hq && set conf="-f bestaudio[ext=m4a]" && goto batchDownload
-
-
-:batchTwitchQualitySelector
-title Choose Quality
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 34
-) else (
-    call tui windowSize %small_width% 32
-)
-color %theme_colors%
-cls
-call tui bannerSmall
-echo.
-echo  Working on: %job_name%
-echo.
-echo  Job Type: Twitch only [BETA]
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-)
-echo  Format: .MP4 (H264 Video/AAC Audio)
-echo.
-echo  (0) - Go Back
-echo.
-call tui borderSmall
-echo  Choose Maximum Quality
-echo.
-echo   (1) - 360p 
-echo   (2) - 480p   (If not available, returns to 360p) 
-echo.
-call tui borderSmall
-echo.
-echo   (3) - 720p   (If not available, returns to 480p) 
-echo   (4) - 1080p  (If not available, returns to 720p) 
-echo.
-call tui borderSmall
-echo.
-echo   (5) - Show all available formats
-echo         Use this if the above doesn't work.
-echo.
-call tui borderSmallHalf
-echo.
-choice /c 012345 /n /m "Select Option (0-5): "
-if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set format_chosen=batch && set conf="-f 360" && goto batchDownload
-if %errorlevel% == 3 set format_chosen=batch && set conf="-f 480" && goto batchDownload
-if %errorlevel% == 4 set format_chosen=batch && set conf="-f 720" && goto batchDownload
-if %errorlevel% == 5 set format_chosen=batch && set conf="-f 1080" && goto batchDownload
-if %errorlevel% == 6 goto batchCustomFormat
-
-
 :batchCustomFormat
 call tui windowSize %medium_width% 26
 set "batch_custom_format_url="
@@ -530,12 +199,8 @@ if %url_invalid% == 1 (
 )
 set /p batch_custom_format_url=Sample URL: 
 set batch_custom_format_url=%batch_custom_format_url: =%
-if "%batch_custom_format_url%" equ "" if %job_type% == 0 goto batchQuickQualitySelector
-if "%batch_custom_format_url%" equ " =" if %job_type% == 0 goto batchQuickQualitySelector
-if "%batch_custom_format_url%" equ "" if %job_type% == 2 goto batchBFormatSelector
-if "%batch_custom_format_url%" equ " =" if %job_type% == 2 goto batchBFormatSelector
-if "%batch_custom_format_url%" equ "" if %job_type% == 3 goto batchTwitchQualitySelector
-if "%batch_custom_format_url%" equ " =" if %job_type% == 3 goto batchTwitchQualitySelector
+if "%batch_custom_format_url%" equ "" goto batchRedirector
+if "%batch_custom_format_url%" equ " =" goto batchRedirector
 
 call linkValidator "%batch_custom_format_url%"
 if %link_validator% == 1 (
