@@ -1,5 +1,9 @@
 set scripts_path=%cd%\scripts
-set path=%path%;%scripts_path%\downloader;%scripts_path%\lib;%scripts_path%\pages;%scripts_path%\settings;%scripts_path%\tui;
+set path=%path%;%scripts_path%\downloader;
+set path=%path%;%scripts_path%\lib;
+set path=%path%;%scripts_path%\pages;
+set path=%path%;%scripts_path%\settings;
+set path=%path%;%scripts_path%\tui;
 set name=Advanced Youtube Client - AYC
 set short_name=AYC
 set major_ver=4
