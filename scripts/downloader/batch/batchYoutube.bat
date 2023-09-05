@@ -11,7 +11,7 @@ call tui bannerSmall
 echo.
 echo  Working on: %job_name%
 echo.
-echo  Job Type: Youtube
+echo  Job Type: Youtube only
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
