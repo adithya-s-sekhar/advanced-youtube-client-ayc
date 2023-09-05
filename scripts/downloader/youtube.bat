@@ -1,4 +1,5 @@
 :formatSelector
+set youtube_download_status=0
 if %cookie_loaded% == 1 (
     call tui windowSize %small_width% 35
 ) else (
