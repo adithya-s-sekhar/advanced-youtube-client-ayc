@@ -75,6 +75,7 @@ set conf="-f %uni_qual%"
 set "try="
 set try=1
 set conf=%conf:"=%
+call siteFixes "%url%"
 
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
