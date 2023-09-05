@@ -31,8 +31,8 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 123 /n /m "Select Option (1-3): "
-if %errorlevel% == 1 set uni_qual="bv*+ba/b" && goto uniDownload
-if %errorlevel% == 2 set uni_qual="wv*+wa/w" && goto uniDownload
+if %errorlevel% == 1 set conf="-f bv*+ba/b" && goto uniDownload
+if %errorlevel% == 2 set conf="-f wv*+wa/w" && goto uniDownload
 if %errorlevel% == 3 goto uniQualitySelector
 
 
@@ -66,11 +66,15 @@ set /p uni_qual=Choose ID (green color in the list above):
 set uni_qual=%uni_qual: =%
 if "%uni_qual%" equ "" goto uniHome
 if "%uni_qual%" equ " =" goto uniHome
+set uni_qual=%uni_qual:'=%
+set uni_qual=%uni_qual:"=%
+set conf="-f %uni_qual%"
 
 
 :uniDownload
 set "try="
 set try=1
+set conf=%conf:"=%
 
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
 
@@ -91,7 +95,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %default_config% -f %uni_qual% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_uni% %cookies% "%url%" && set uni_download_status=1 && goto :EOF
+%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_uni% %cookies% "%url%" && set uni_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% goto :EOF
 goto uniDownloadTried
