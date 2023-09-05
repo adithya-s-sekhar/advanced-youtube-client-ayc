@@ -39,12 +39,12 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 12345 /n /m "Select Option (1-5): "
-if %errorlevel% == 1 set format_chosen=h264
-if %errorlevel% == 2 set format_chosen=hevc
-if %errorlevel% == 3 set format_chosen=av1
+if %errorlevel% == 1 set format_chosen=h264 && goto qualitySelector
+if %errorlevel% == 2 set format_chosen=hevc && goto qualitySelector
+if %errorlevel% == 3 set format_chosen=av1 && goto qualitySelector
 if %errorlevel% == 4 set format_chosen=aud && goto bilibiliM4a
 if %errorlevel% == 5 set format_chosen=custom && goto bilibiliCustomFormat
-goto qualitySelector
+
 
 :qualitySelector
 call tui windowSize %small_width% 29
@@ -87,32 +87,29 @@ if %format_chosen% == av1  goto choiceAv1
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]"
-goto download
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto download
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto download
 
 :choiceHevc
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]"
-goto download
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]" && goto download
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]" && goto download
 
 :choiceAv1
 set error_format=av1
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]"
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]"
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]"
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]"
-goto download
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]" && goto download
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]" && goto download
 
 
 :bilibiliM4a
@@ -142,10 +139,9 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set aud_end=lq && set conf=--add-metadata --embed-thumbnail -f worstaudio[ext=m4a]
-if %errorlevel% == 3 set aud_end=mq && set conf=--add-metadata --embed-thumbnail -f 1/bestaudio[ext=m4a]
-if %errorlevel% == 4 set aud_end=hq && set conf=--add-metadata --embed-thumbnail -f bestaudio[ext=m4a]
-goto download
+if %errorlevel% == 2 set aud_end=lq && set conf="-f worstaudio[ext=m4a]" && goto download
+if %errorlevel% == 3 set aud_end=mq && set conf="-f 1/bestaudio[ext=m4a]" && goto download
+if %errorlevel% == 4 set aud_end=hq && set conf="-f bestaudio[ext=m4a]" && goto download
 
 
 :bilibiliCustomFormat
@@ -181,6 +177,9 @@ set /p bilibili_qual=Choose ID (green color in the list above):
 set bilibili_qual=%bilibili_qual: =%
 if "%bilibili_qual%" equ "" goto formatSelector
 if "%bilibili_qual%" equ " =" goto formatSelector
+set bilibili_qual=%bilibili_qual:'=%
+set bilibili_qual=%bilibili_qual:"=%
+set conf="-f %bilibili_qual%"
 goto download
 
 
@@ -214,8 +213,8 @@ if %cookie_loaded% == 0 if not %format_chosen% == aud (
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-H264-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
 if %format_chosen% == hevc %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-HEVC-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-AV1-%%(height)sp-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%" -o "%%(title)s-%aud_end%-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
-if %format_chosen% == custom %youtube_dl% %default_config% %conf% %aria2% -P home:"%loc%" -o "%%(title)s-%bilibili_qual%-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
+if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title)s-%aud_end%-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
+if %format_chosen% == custom %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title)s-%bilibili_qual%-%%(id)s.%%(ext)s" %custom_config_bilibili% %cookies% "%url%" && set bilibili_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% set bilibili_download_status=0 && goto :EOF
 goto downloadTried
