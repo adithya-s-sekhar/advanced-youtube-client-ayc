@@ -76,18 +76,15 @@ echo.
 call tui borderMedium
 echo  Which channel of yt-dlp updates do you prefer? (Can be changed later)
 echo.
-echo   (0) - Go Back
-echo.
 echo   (1) - Stable channel
 echo.
 echo   (2) - Nightly channel
 echo.
 call tui borderMediumHalf
 echo.
-choice /c 012 /n /m "Select Option (0-2): "
-if %errorlevel% == 1 goto themeSelector
-if %errorlevel% == 2 set firstYtUpdate=stable
-if %errorlevel% == 3 set firstYtUpdate=nightly
+choice /c 12 /n /m "Select Option (1-2): "
+if %errorlevel% == 1 set firstYtUpdate=stable
+if %errorlevel% == 2 set firstYtUpdate=nightly
 echo.
 echo  Please wait, updating yt-dlp..
 %youtube_dl% --update-to %firstYtUpdate%
