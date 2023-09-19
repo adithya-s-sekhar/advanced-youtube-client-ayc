@@ -16,7 +16,7 @@ echo.
 echo  (3) - Update yt-dlp (fixes most issues) - QuickKey: u
 echo        Currently: %youtube_dl_version%
 echo.
-echo  (4) - Multi-threaded downloading
+echo  (4) - Multi-threaded downloading - QuickKey: a
 if %aria2_status% == 0 echo        [Disabled]
 if %aria2_status% == 1 echo        [Enabled for non-youtube downloads]
 if %aria2_status% == 2 echo        [Enabled for all downloads]

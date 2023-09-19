@@ -11,7 +11,7 @@ echo  (1) - Batch Mode             - QuickKey: b
 echo.
 echo  (2) - Settings               - QuickKey: s
 echo.
-echo  (3) - About                  - QuickKey: a
+echo  (3) - About
 echo.
 echo  (4) - Visit on GitHub        - QuickKey: g
 echo.
