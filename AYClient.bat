@@ -49,6 +49,10 @@ echo  - Enter ^(m^) for more options.
 echo.
 echo  - Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
 echo.
+if %aria2_status% == 0 echo  - Multithreaded downloads ^(a^): Disabled
+if %aria2_status% == 1 echo  - Multithreaded downloads ^(a^): Enabled for non-youtube downloads
+if %aria2_status% == 2 echo  - Multithreaded downloads ^(a^): Enabled for all downloads
+echo.
 echo  - Example QuickKeys: ^(b^) - Batch Mode, ^(u^) - Update yt-dlp, ^(c^) - Load/Unload cookies.txt
 echo.
 if %no_cookie_found% == 1 (
