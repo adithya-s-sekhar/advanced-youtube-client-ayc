@@ -7,7 +7,11 @@ call tui bannerMedium
 echo.
 echo  Before you start we need to take care of a few things. 
 echo.
-echo  Please follow the instructions on GitHub first on how to properly install AYC. 
+echo  This window might look weird and broken right now, don't worry.
+echo.
+echo  It'll be fixed by the time we are done.
+echo.
+echo  Please follow the instructions on GitHub first on how to properly setup AYC. 
 echo.
 echo  Press Enter to open instructions.
 pause>NUL
