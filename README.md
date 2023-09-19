@@ -14,8 +14,6 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 
 ![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png)
 
-*From an in-development build of v4.10. The current release could be different from this. Multiple themes shown are only available from v4.11.*
-
 </div>
 
 ## Table of Contents
