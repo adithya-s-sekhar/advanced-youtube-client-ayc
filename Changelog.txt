@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.12 - 05/Sep/2023
+Advanced Youtube Client - AYC v4.13 - 24/Sep/2023
 Open AYClient.bat
 
 What's new?
+
+[4.13]
+- Fixed: Broken first run text for first time Windows Terminal users.
+- Added: aria2 switch on start page.
+- Added: Reddit thumbnail support. (Fixed by yt-dlp v2023.09.24)
+- Minor fixes and updates.
 
 [4.12]
 - Added: Twitch quality selectors.
