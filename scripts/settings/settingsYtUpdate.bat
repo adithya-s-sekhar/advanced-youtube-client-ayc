@@ -61,8 +61,9 @@ echo.
 echo Updating to latest stable
 echo.
 %youtube_dl% --update-to stable@2023.09.24 > nul
+:: you can't downgrade from nightly without targetting a specifig tag
 %youtube_dl% --update-to stable > nul
-:: you can't downgrade from nightly without a specifig tag
+:: now update to latest stable
 set tmp_youtube_dl_version=%youtube_dl_version%
 for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
 echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
