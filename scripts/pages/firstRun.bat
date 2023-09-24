@@ -1,14 +1,11 @@
 :firstRun
-call tui windowSize %medium_width% 26
 color %theme_colors%
 title Welcome to AYC
 cls
-call tui bannerMedium
 echo.
 echo  Before you start we need to take care of a few things. 
 echo.
 echo  This window might look weird and broken right now, don't worry.
-echo.
 echo  It'll be fixed by the time we are done.
 echo.
 echo  Please follow the instructions on GitHub first on how to properly setup AYC. 
@@ -19,9 +16,9 @@ start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc#instru
 echo.
 echo  After setting up, paste the magic phrase below.
 echo.
-echo  This is to ensure you read the instructions and followed it through.
+echo  This is to ensure you have read the instructions and followed it through.
 echo.
-call tui borderSmallHalf
+call tui borderMediumHalf
 :firstRun2
 set "magic_phrase_input="
 echo.
@@ -41,7 +38,6 @@ if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" (
 call themer
 color %theme_colors%
 cls
-call tui bannerMedium
 echo.
 echo  Preparing for first run..
 echo.
@@ -66,29 +62,25 @@ if %errorlevel% == 2 goto themeSelectorFinish
 goto themeSelector
 :themeSelectorFinish
 cls
-call tui bannerMedium
 echo.
-echo  AYC uses yt-dlp to download videos from websites. Websites change all the time and yt-dlp 
-echo  needs to be updated accordingly to support downloading from them. 
+echo  AYC uses yt-dlp to download videos from websites. Websites change all the time and yt-dlp needs to be updated accordingly to support downloading from them. 
 echo.
 echo  It has two update channels. 
 echo.
+echo  Nightly Channel: Fixes are released as soon they are done. Not that tested.
 echo  Stable Channel: Slow to get fixes. Widely tested.
 echo.
-echo  Nightly Channel: Fixes are released as soon they are pushed. Not that tested.
-echo.
-call tui borderMedium
+call tui borderMediumHalf
 echo  Which channel of yt-dlp updates do you prefer? (Can be changed later)
 echo.
-echo   (1) - Stable channel
-echo.
-echo   (2) - Nightly channel
+echo   (1) - Nightly channel (Recommended)
+echo   (2) - Stable channel
 echo.
 call tui borderMediumHalf
 echo.
 choice /c 12 /n /m "Select Option (1-2): "
-if %errorlevel% == 1 set firstYtUpdate=stable
-if %errorlevel% == 2 set firstYtUpdate=nightly
+if %errorlevel% == 1 set firstYtUpdate=nightly
+if %errorlevel% == 2 set firstYtUpdate=stable
 echo.
 echo  Please wait, updating yt-dlp..
 %youtube_dl% --update-to %firstYtUpdate%
@@ -96,7 +88,6 @@ for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
 echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
 echo "0">"%aycdata%\first_run.txt"
 cls
-call tui bannerMedium
 echo.
 echo  First run finished.
 echo.
