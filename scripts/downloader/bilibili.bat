@@ -161,7 +161,7 @@ if %cookie_loaded% == 1 (
     echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
-%youtube_dl% %cookies% -F "%url%" && goto bilibiliCustomFormatContinue
+%youtube_dl% %default_config% %cookies% -F "%url%" && goto bilibiliCustomFormatContinue
 goto :EOF
 :bilibiliCustomFormatContinue
 echo.

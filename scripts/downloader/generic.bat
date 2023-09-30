@@ -50,7 +50,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %cookies% -F "%url%" && goto customFormatSelectorContinue
+%youtube_dl% %default_config% %cookies% -F "%url%" && goto customFormatSelectorContinue
 goto :EOF
 :customFormatSelectorContinue
 echo.

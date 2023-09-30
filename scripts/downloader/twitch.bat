@@ -59,7 +59,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %cookies% -F "%url%" && goto twitchCustomFormatContinue
+%youtube_dl% %default_config% %cookies% -F "%url%" && goto twitchCustomFormatContinue
 goto :EOF
 :twitchCustomFormatContinue
 echo.

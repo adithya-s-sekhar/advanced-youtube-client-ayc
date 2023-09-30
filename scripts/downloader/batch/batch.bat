@@ -227,7 +227,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %cookies% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
+%youtube_dl% %default_config% %cookies% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
 set error_mode=batch
 goto error
 :batchCustomFormatSelectorContinue
