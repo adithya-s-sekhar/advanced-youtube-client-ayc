@@ -107,6 +107,6 @@ if not exist "%aycdata%\ytupd_onstart.txt" echo "1">"%aycdata%\ytupd_onstart.txt
 set /p ytupd_onstart=<"%aycdata%\ytupd_onstart.txt"
 set ytupd_onstart=%ytupd_onstart:"=%
 
-set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters --no-mtime --color no_color -P temp:"%tmp_loc%"
+set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters --no-mtime --color %yt-dlp_color% -P temp:"%tmp_loc%"
 
 goto :EOF
