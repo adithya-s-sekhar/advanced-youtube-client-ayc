@@ -6,7 +6,7 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/adithya-s-sekhar/advanced-youtube-client-ayc?style=flat) ![SourceForge Downloads](https://img.shields.io/sourceforge/dt/advanced-youtube-client-ayc?label=Downloads%20%28Sourceforge%29) ![GitHub all releases](https://img.shields.io/github/downloads/adithya-s-sekhar/advanced-youtube-client-ayc/total?label=Downloads%20%28GitHub%29)
 
-**!** Test builds now available on [Telegram](https://t.me/s/ayc_news). Try latest features and fixes before everyone else.
+**!** Test builds are now available on [Telegram](https://t.me/s/ayc_news). Try latest features and fixes before everyone else.
 
 ## Function over form
 
