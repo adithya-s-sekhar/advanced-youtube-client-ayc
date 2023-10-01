@@ -31,8 +31,8 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 123 /n /m "Select Option (1-3): "
-if %errorlevel% == 1 set conf="-f bv*+ba/b" && goto genericDownload
-if %errorlevel% == 2 set conf="-f wv*+wa/w" && goto genericDownload
+if %errorlevel% == 1 set conf="-f bv*+ba/b" && set generic_qual=high && goto genericDownload
+if %errorlevel% == 2 set conf="-f wv*+wa/w" && set generic_qual=low && goto genericDownload
 if %errorlevel% == 3 goto customFormatSelector
 
 
