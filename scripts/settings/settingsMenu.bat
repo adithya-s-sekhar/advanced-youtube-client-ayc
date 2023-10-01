@@ -7,7 +7,7 @@ call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Manage folders
+echo  (1) - Manage folders - QuickKey: f
 echo        Change download and temporary folders.
 echo.
 echo  (2) - Change retry attempts

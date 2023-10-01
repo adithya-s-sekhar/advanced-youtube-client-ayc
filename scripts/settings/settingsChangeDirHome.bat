@@ -15,7 +15,7 @@ call tui borderSmall
 echo.
 echo  (0) - Go Back
 echo.
-echo  (1) - Change download folder - QuickKey: d
+echo  (1) - Change download folder
 echo.
 echo  (2) - Change temporary folder
 echo.
