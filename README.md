@@ -49,7 +49,8 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 ### Basic Install
 1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/latest) or [here](https://sourceforge.net/projects/advanced-youtube-client-ayc/).
 2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
-3. Open **AYClient.bat** and follow the on screen [instructions](#instructions). 
+3. Open **EnableLongPaths.reg** and click Yes to add suuport for long file names.
+4. Open **AYClient.bat** and follow the on screen [instructions](#instructions). 
 
 **That's all you need to start using AYC. If you want to Pin AYC to taskbar or have an icon, which is highly recommended, follow Complete install below**
 
