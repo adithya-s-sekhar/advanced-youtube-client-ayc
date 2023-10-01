@@ -16,7 +16,6 @@ echo  Making sure .bat files open in cmd instead of Terminal..
 :autoreg1
 echo.
 echo  Setting HKCU\Console\%%%%Startup\DelegationTerminal..
-echo.
 REG.exe ADD HKCU\Console\%%%%Startup /v DelegationTerminal /t REG_SZ /f /d {B23D10C0-E52E-411E-9D5B-C09FDF709C7D}>nul
 if not %errorlevel% == 0 goto manualreg
 :autoreg2
