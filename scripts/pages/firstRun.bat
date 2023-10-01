@@ -3,10 +3,34 @@ color %theme_colors%
 title Welcome to AYC
 cls
 echo.
-echo  Before you start we need to take care of a few things. 
+echo  Before you start we need to take care of a few things.
 echo.
 echo  This window might look weird and broken right now, don't worry.
 echo  It'll be fixed by the time we are done.
+echo.
+echo  Press Enter to begin.
+pause>NUL
+cls
+echo.
+echo  Making sure .bat files open in cmd instead of Terminal..
+:autoreg1
+echo.
+echo  Setting HKCU\Console\%%%%Startup\DelegationTerminal..
+echo.
+REG.exe ADD HKCU\Console\%%%%Startup /v DelegationTerminal /t REG_SZ /f /d {B23D10C0-E52E-411E-9D5B-C09FDF709C7D}>nul
+if not %errorlevel% == 0 goto manualreg
+:autoreg2
+echo.
+echo  Setting HKCU\Console\%%%%Startup\DelegationConsole..
+REG.exe ADD HKCU\Console\%%%%Startup /v DelegationConsole /t REG_SZ /f /d {B23D10C0-E52E-411E-9D5B-C09FDF709C7D}>nul
+if not %errorlevel% == 0 goto manualreg
+echo.
+echo  Auto setup succeeded. Press Enter to continue.
+pause>NUL
+goto themeSelector
+:manualreg
+echo.
+echo  Auto setup failed!
 echo.
 echo  Please follow the instructions on GitHub first on how to properly setup AYC. 
 echo.
@@ -38,8 +62,6 @@ if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" (
 call themer
 color %theme_colors%
 cls
-echo.
-echo  Preparing for first run..
 echo.
 echo  What theme do you prefer? (Can be changed later)
 echo.

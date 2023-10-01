@@ -63,7 +63,9 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 
 ## Instructions
 
-When you open AYC for the first time, it'll ask you to do these in order for it to work properly. **Don't skip this!**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
+### The below only applies for v4.13 and earlier releases. Since v4.14 it's handled automatically.
+
+When you open AYC (<v4.13) for the first time, it'll ask you to do these in order for it to work properly. **Don't skip this!**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
 
 **Warning: Windows 11 may undo these changes randomly without even asking you. If AYC ever appears broken, redo the instructions from this guide.**
 
