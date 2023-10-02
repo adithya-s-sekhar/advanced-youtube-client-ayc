@@ -104,7 +104,7 @@ echo  - Windows has a file name + path limit of 260 characters.
 echo.
 echo  - We can increase the limit to 32,767 characters to support videos with large file names.
 echo.
-echo  - If you skip this, videos with a file name with path longer than 260 characters will 
+echo  - If you skip this, videos with a file name and path longer than 260 characters will 
 echo    fail to download.
 echo.
 call tui borderMediumHalf
