@@ -15,9 +15,10 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 @echo off
-call tui windowSize 20 3
+call tui windowSize 23 4
 color %theme_colors%
 echo.
 echo  Updating yt-dlp..
+echo  Disable in Settings.
 yt-dlp -U>nul
 exit
