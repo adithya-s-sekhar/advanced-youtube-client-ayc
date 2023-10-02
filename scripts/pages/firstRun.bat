@@ -5,28 +5,34 @@ cls
 echo.
 echo  Before you start we need to take care of a few things.
 echo.
-echo  This window might look weird and broken right now, don't worry.
+echo  This window may look weird and broken right now, don't worry.
 echo  It'll be fixed by the time we are done.
+echo.
+call tui borderMediumHalf
 echo.
 echo  Press Enter to begin.
 pause>NUL
 cls
 echo.
-echo  Making sure .bat files open in cmd instead of Terminal..
+echo  (1/4) Setting up terminal
 :autoreg1
 echo.
-echo  Setting HKCU\Console\%%%%Startup\DelegationTerminal..
+echo  - Setting DelegationTerminal..
+timeout /t 1 /NOBREAK>nul
 REG.exe ADD HKCU\Console\%%%%Startup /v DelegationTerminal /t REG_SZ /f /d {B23D10C0-E52E-411E-9D5B-C09FDF709C7D}>nul
 if not %errorlevel% == 0 goto manualreg
 :autoreg2
 echo.
-echo  Setting HKCU\Console\%%%%Startup\DelegationConsole..
+echo  - Setting DelegationConsole..
+timeout /t 1 /NOBREAK>nul
 REG.exe ADD HKCU\Console\%%%%Startup /v DelegationConsole /t REG_SZ /f /d {B23D10C0-E52E-411E-9D5B-C09FDF709C7D}>nul
 if not %errorlevel% == 0 goto manualreg
 echo.
+call tui borderMediumHalf
+echo.
 echo  Auto setup succeeded. Press Enter to continue.
 pause>NUL
-goto themeSelector
+goto longPaths
 :manualreg
 echo.
 echo  Auto setup failed!
@@ -57,12 +63,32 @@ if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" (
     pause>NUL
     goto firstRun
 )
+:longPaths
+cls
+echo.
+echo  (2/4) Enable support for long path names
+echo.
+echo  - Windows has a file name or path limit of 260 characters. 
+echo.
+echo  - We can increase the limit to 32,767 characters to support videos with large file names.
+echo.
+echo  - If you skip this, videos with a file name longer than 260 characters will fail to 
+echo    download.
+echo.
+call tui borderMediumHalf
+echo.
+echo  Click Yes twice after pressing Enter.
+pause>nul
+extras\EnableLongPaths.reg
+echo.
+echo  Press Enter to continue.
+pause>nul
 :themeSelector
 call themer
 color %theme_colors%
 cls
 echo.
-echo  What theme do you prefer? (Can be changed later)
+echo  (3/4) Select theme (Can be changed later)
 echo.
 if %theme_status% == 0 echo  Currently: Dark
 if %theme_status% == 1 echo  Currently: Light
@@ -84,15 +110,16 @@ goto themeSelector
 :themeSelectorFinish
 cls
 echo.
-echo  AYC uses yt-dlp to download videos from websites. Websites change all the time and yt-dlp needs to be updated accordingly to support downloading from them. 
+echo  (4/4) Choose yt-dlp update channel (Can be changed later)
 echo.
-echo  It has two update channels. 
+echo  - AYC uses yt-dlp to download videos from websites. 
+echo  - Websites change all the time and yt-dlp needs to be updated accordingly to support 
+echo    downloading from them.
 echo.
-echo  Nightly Channel: Fixes are released as soon they are done. Not that tested.
-echo  Stable Channel: Slow to get fixes. Widely tested.
+echo  - Nightly Channel: Fixes are released as soon they are done. Not that tested.
+echo  - Stable Channel: Slow to get fixes. Widely tested.
 echo.
-call tui borderMediumHalf
-echo  Which channel of yt-dlp updates do you prefer? (Can be changed later)
+echo  Which channel of yt-dlp updates do you prefer?
 echo.
 echo   (1) - Nightly channel (Recommended)
 echo   (2) - Stable channel
@@ -112,11 +139,13 @@ cls
 echo.
 echo  First run finished.
 echo.
-echo  yt-dlp is set to check for updates everytime you start AYC. This can be disabled in 
-echo  settings.
+echo  - yt-dlp is set to check for updates everytime you start AYC. This can be disabled in 
+echo    settings.
 echo.
-echo  Hint: Use the quickkey (s) to open settings straight from the URL page.
-echo  There are more quickkeys spread throughout AYC, find them all! :)
+echo  - Hint: Use the quickkey (s) to open settings straight from the URL page.
+echo    There are more quickkeys spread throughout AYC, find them all! :)
+echo.
+call tui borderMediumHalf
 echo.
 echo  You can restart AYC now. Press Enter to close this window.
 pause>NUL

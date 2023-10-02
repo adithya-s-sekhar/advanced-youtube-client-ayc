@@ -64,7 +64,8 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 
 ## Instructions
 
-### The below only applies for v4.13 and earlier releases. Since v4.14 it's handled automatically.
+**The below only applies for v4.13 and earlier releases. Since v4.14 it's handled automatically.**
+If AYC redirected you here, that means it failed to do it automatically. Follow the instructions to setup manually.
 
 When you open AYC (<v4.13) for the first time, it'll ask you to do these in order for it to work properly. **Don't skip this!**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
 
