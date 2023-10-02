@@ -113,7 +113,7 @@ echo  Click Yes twice after pressing Enter.
 pause>nul
 extras\EnableLongPaths.reg
 echo.
-echo  You may need to restart for changes to take effect. Press Enter to continue.
+echo  You may need to restart your PC for changes to take effect. Press Enter to continue.
 pause>nul
 :themeSelector
 call themer
