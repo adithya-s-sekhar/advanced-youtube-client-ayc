@@ -1,7 +1,23 @@
-Advanced Youtube Client - AYC v4.13 - 24/Sep/2023
+Advanced Youtube Client - AYC v4.14 - 02/Oct/2023
 Open AYClient.bat
 
 What's new?
+
+[4.14]
+- Added: Automatic setup on first run. No longer need to copy paste things from github or magic phrases.
+- Added: Long path names setup to first run.
+- Added: Quickkey to change folders.
+- Added: Support for bilibili mobile website.
+- Fixed: Downloads failing on long file names.
+- Fixed: Downloads failing on long path names.
+- Fixed: File naming on some downloaders.
+- Fixed: Some batch modes were missing custom configs.
+- Fixed: Theme colors breaking on non-dark themes.
+- Improved: First run setup.
+- Improved: AYC will now save files with the time they are downloaded, not uploaded.
+- Improved: Format selectors will now use default config as well.
+- Improved: UI.
+- Relicensed to GPLv3.
 
 [4.13]
 - Fixed: Broken first run text for first time Windows Terminal users.
