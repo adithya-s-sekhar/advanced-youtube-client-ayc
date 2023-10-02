@@ -18,7 +18,7 @@ set quickKey.arg1=%~1
 
 set quickkey_validator=0
 
-echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<g\>" /c:"\<m\>" /c:"\<s\>" /c:"\<sf\>" /c:"\<t\>" /c:"\<u\>" > nul
+echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<g\>" /c:"\<m\>" /c:"\<o\>" /c:"\<s\>" /c:"\<sf\>" /c:"\<t\>" /c:"\<u\>" > nul
 if %errorlevel% == 0 (
     set quickkey_validator=1
 ) else (
@@ -37,6 +37,8 @@ if "%quickKey.arg1%" equ "g" start "" "https://github.com/adithya-s-sekhar/advan
 if "%quickKey.arg1%" equ "G" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "m" call moreMenu && goto :EOF
 if "%quickKey.arg1%" equ "M" call moreMenu && goto :EOF
+if "%quickKey.arg1%" equ "o" start explorer.exe "%loc%" && goto :EOF
+if "%quickKey.arg1%" equ "O" start explorer.exe "%loc%" && goto :EOF
 if "%quickKey.arg1%" equ "s" call settingsMenu && goto :EOF
 if "%quickKey.arg1%" equ "S" call settingsMenu && goto :EOF
 if "%quickKey.arg1%" equ "sf" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto :EOF
