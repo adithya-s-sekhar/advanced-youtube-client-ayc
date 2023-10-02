@@ -31,7 +31,7 @@ echo   Current Release  : v%major_ver%.%minor_ver% (%ver_date%)
 echo.
 echo   Made in Kerala.
 echo.
-echo   Released under GPLv3 or newer License.
+echo   Released under the GPLv3 or newer License.
 echo.
 call tui borderSmallHalf
 echo.
