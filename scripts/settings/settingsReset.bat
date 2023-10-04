@@ -49,6 +49,7 @@ del /q "%aycdata%\subs_status.txt"
 del /q "%aycdata%\external_version.txt"
 del /q "%aycdata%\youtube_dl_version.txt"
 del /q "%aycdata%\ytupd_onstart.txt"
+del /q "%aycdata%\theme_status.txt"
 title Reset Succesfully
 color 02
 cls
