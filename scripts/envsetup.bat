@@ -46,6 +46,7 @@ set cookies=
 set no_cookie_found=0
 
 if not exist "%aychome%\data" md "%aychome%\data"
+if not exist "%aychome%\history" md "%aychome%\history"
 
 set aycdata=%aychome%\data
 set youtube_dl=yt-dlp.exe

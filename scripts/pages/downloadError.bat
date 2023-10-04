@@ -15,6 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :downloadError
+if defined url echo "%url%">>"%aychome%\history\failed.txt"
 call tui windowSize %small_width% 34
 color 4F
 title Download Failed!
