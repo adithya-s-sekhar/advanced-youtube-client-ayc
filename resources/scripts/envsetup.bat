@@ -60,8 +60,8 @@ call themer
 if not exist "%aycdata%\first_run.txt" call firstRun
 
 if not exist "%aycdata%\dir.txt" (
-    md "%aychome%\Output"
-    echo "%aychome%\Output">"%aycdata%\dir.txt"
+    md "%aycroot%\Downloads"
+    echo "%aycroot%\Downloads">"%aycdata%\dir.txt"
 )
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%

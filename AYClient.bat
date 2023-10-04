@@ -20,7 +20,8 @@ set ayc.arg1=%1
 set ayc.arg2=%2
 set ayc.arg3=%3
 
-set aychome=%cd%
+set aycroot=%cd%
+set aychome=%aycroot%\resources
 set path=%path%;%aychome%\bin;%aychome%\scripts
 
 :begin
