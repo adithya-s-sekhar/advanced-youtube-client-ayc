@@ -111,7 +111,7 @@ call tui borderMediumHalf
 echo.
 echo  Click Yes twice after pressing Enter.
 pause>nul
-extras\EnableLongPaths.reg
+%aychome%\extras\EnableLongPaths.reg
 echo.
 echo  You may need to restart your PC for changes to take effect. Press Enter to continue.
 pause>nul
