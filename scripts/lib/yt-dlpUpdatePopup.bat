@@ -15,6 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 @echo off
+title 
 call tui windowSize 23 4
 color %theme_colors%
 echo.
