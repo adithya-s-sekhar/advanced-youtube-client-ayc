@@ -44,8 +44,8 @@ set /p settings_dir=Drag and Drop/Paste here:
 if %loc_invalid% == 0 if not defined settings_dir goto :EOF
 if %loc_invalid% == 1 if not defined settings_dir goto settingsChangeDir
 set settings_dir=%settings_dir:"=%
-if "%settings_dir%" == "r" set settings_dir=%cd%\Output
-if "%settings_dir%" == "R" set settings_dir=%cd%\Output
+if "%settings_dir%" == "r" set settings_dir=%aychome%\Output
+if "%settings_dir%" == "R" set settings_dir=%aychome%\Output
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set loc="%settings_dir%"
 set loc=%loc:"=%

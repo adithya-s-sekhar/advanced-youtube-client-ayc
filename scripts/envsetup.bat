@@ -14,7 +14,7 @@
 :: You should have received a copy of the GNU General Public License
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set scripts_path=%cd%\scripts
+set scripts_path=%aychome%\scripts
 set path=%path%;%scripts_path%\downloader;
 set path=%path%;%scripts_path%\downloader\batch;
 set path=%path%;%scripts_path%\lib;
@@ -45,9 +45,9 @@ set cookies=
 :: need to find a better way.
 set no_cookie_found=0
 
-if not exist "%cd%\data" md "%cd%\data"
+if not exist "%aychome%\data" md "%aychome%\data"
 
-set aycdata=%cd%\data
+set aycdata=%aychome%\data
 set youtube_dl=yt-dlp.exe
 
 if not exist "%aycdata%\theme_status.txt" echo "0">"%aycdata%\theme_status.txt"
@@ -58,8 +58,8 @@ call themer
 if not exist "%aycdata%\first_run.txt" call firstRun
 
 if not exist "%aycdata%\dir.txt" (
-    md "%cd%\Output"
-    echo "%cd%\Output">"%aycdata%\dir.txt"
+    md "%aychome%\Output"
+    echo "%aychome%\Output">"%aycdata%\dir.txt"
 )
 set /p loc=<"%aycdata%\dir.txt"
 set loc=%loc:"=%
@@ -72,8 +72,8 @@ if not exist "%loc%\" (
 )
 
 if not exist "%aycdata%\tmp_dir.txt" (
-    md "%cd%\tmp"
-    echo "%cd%\tmp">"%aycdata%\tmp_dir.txt"
+    md "%aychome%\tmp"
+    echo "%aychome%\tmp">"%aycdata%\tmp_dir.txt"
 )
 set /p tmp_loc=<"%aycdata%\tmp_dir.txt"
 set tmp_loc=%tmp_loc:"=%

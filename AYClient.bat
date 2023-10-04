@@ -20,7 +20,8 @@ set ayc.arg1=%1
 set ayc.arg2=%2
 set ayc.arg3=%3
 
-set path=%path%;%cd%\bin;%cd%\scripts
+set aychome=%cd%
+set path=%path%;%aychome%\bin;%aychome%\scripts
 
 :begin
 call envsetup

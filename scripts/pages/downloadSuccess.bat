@@ -15,6 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :downloadSuccess
+@REM if defined %url% echo "%url%">>"%aychome%\history\downloaded.txt"
 if %cookie_loaded% == 1 (
     call tui windowSize %small_width% 19
 ) else (
