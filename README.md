@@ -66,8 +66,6 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 **The below only applies for v4.13 and earlier releases. Since v4.14 it's handled automatically.**
 If AYC redirected you here, that means it failed to do it automatically. Follow the instructions to setup manually.
 
-When you open AYC (<v4.13) for the first time, it'll ask you to do these in order for it to work properly. **Don't skip this!**([Why?](#4-why-do-i-have-to-do-magic-phrases-and-others))
-
 **Warning: Windows 11 may undo these changes randomly without even asking you. If AYC ever appears broken, redo the instructions from this guide.**
 
 ### Windows 10/11 users
@@ -115,7 +113,7 @@ Be advised since then antivirus softwares have improved to detect that these are
 
 MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
 
-### 4. Why do I have to do magic phrases and others?
+### 4. Why do I have to do magic phrases and others? (Only applies to AYC <v4.13)
 
 AYC uses a command `mode` to dynamically change window size to fit and display all it's content. This works on **Windows Console Host**, the application which ran .bat batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
 
