@@ -14,38 +14,36 @@
 :: You should have received a copy of the GNU General Public License
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-:moreMenu
-call tui windowSize %small_width% 25
+:urlHistory
+call tui windowSize %small_width% 27
 color %theme_colors%
-title More Options
+title URL History
 cls
 call tui bannerSmall
 echo.
+echo  URL History
+echo.
+echo  AYC keeps a simple history of all urls it attempted to
+echo  download in to two text files.
+echo.
+echo  Batch job urls are not saved here. They are saved in 
+echo  their own respective job folder.
+echo.
+call tui borderSmall
+echo.
 echo  (0) - Back
 echo.
-echo  (1) - Batch Mode             - QuickKey: b
+echo  (1) - Open downloaded URLs list
 echo.
-echo  (2) - URL History            - QuickKey: h
+echo  (2) - Open failed URLs list
 echo.
-echo  (3) - Settings               - QuickKey: s
-echo.
-echo  (4) - About
-echo.
-echo  (5) - Visit on GitHub        - QuickKey: g
-echo.
-echo  (6) - Visit on Sourceforge   - QuickKey: sf
-echo.
-echo  (7) - Follow on Telegram
+echo  (3) - Open History folder
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 01234567 /n /m "Select Option (0-7): "
+choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 start AYClient.bat "b"
-if %errorlevel% == 3 call urlHistory
-if %errorlevel% == 4 call settingsMenu
-if %errorlevel% == 5 call about
-if %errorlevel% == 6 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if %errorlevel% == 7 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if %errorlevel% == 8 start "" "https://t.me/ayc_news"
-goto moreMenu
+if %errorlevel% == 2 start notepad.exe "%aychome%\history\downloaded.txt"
+if %errorlevel% == 3 start notepad.exe "%aychome%\history\failed.txt"
+if %errorlevel% == 4 start explorer.exe "%aychome%\history"
+goto urlHistory
