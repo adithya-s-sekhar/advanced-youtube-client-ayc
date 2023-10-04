@@ -15,7 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :urlHistory
-call tui windowSize %small_width% 27
+call tui windowSize %small_width% 29
 color %theme_colors%
 title URL History
 cls
@@ -23,13 +23,15 @@ call tui bannerSmall
 echo.
 echo  URL History
 echo.
+call tui borderSmall
+echo.
 echo  AYC keeps a simple history of all urls it attempted to
 echo  download in to two text files.
 echo.
 echo  Batch job urls are not saved here. They are saved in 
 echo  their own respective job folder.
 echo.
-call tui borderSmall
+call tui borderSmallHalf
 echo.
 echo  (0) - Back
 echo.
