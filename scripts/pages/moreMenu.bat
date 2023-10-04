@@ -25,7 +25,7 @@ echo  (0) - Back
 echo.
 echo  (1) - Batch Mode             - QuickKey: b
 echo.
-echo  (2) - URL History            - QuickKey: h
+echo  (2) - Download History       - QuickKey: h
 echo.
 echo  (3) - Settings               - QuickKey: s
 echo.
@@ -42,7 +42,7 @@ echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 start AYClient.bat "b"
-if %errorlevel% == 3 call urlHistory
+if %errorlevel% == 3 start notepad.exe "%aychome%\history\download-history.txt"
 if %errorlevel% == 4 call settingsMenu
 if %errorlevel% == 5 call about
 if %errorlevel% == 6 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"

@@ -14,35 +14,17 @@
 :: You should have received a copy of the GNU General Public License
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-:downloadSuccess
-if defined url call saveHistory success
-if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 19
-) else (
-    call tui windowSize %small_width% 17
-)
-color 2F
-title Download Finished
-cls
-call tui bannerSmall
-echo.
-echo  Download Finished.
-echo.
-if %error_mode% == batch (
-    echo  Job: %job_name%%
-) else (
-    echo  URL: %url%
-)
-echo.
-if %cookie_loaded% == 1 (
-    echo  Using cookies.txt.
-    echo.
-)
-echo  The files are saved in:
-echo  %loc%
-echo.
-call tui borderSmallHalf
-echo.
-echo  Press enter to close this window.
-pause>NUL
+set saveHistory.arg1=%~1
+
+set saveHistory.stats=UNKNOWN
+
+if %saveHistory.arg1% == success set saveHistory.stats=SUCCESS
+if %saveHistory.arg1% == fail set saveHistory.stats=FAILED
+
+echo Date: %date%>>%aychome%\history\download-history.txt
+echo Time: %time%>>%aychome%\history\download-history.txt
+echo Status: %saveHistory.stats%>>%aychome%\history\download-history.txt
+echo URL: %url%>>%aychome%\history\download-history.txt
+echo.>>%aychome%\history\download-history.txt
+
 goto :EOF
