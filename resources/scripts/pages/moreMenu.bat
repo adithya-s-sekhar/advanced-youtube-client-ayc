@@ -15,7 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :moreMenu
-call tui windowSize %small_width% 25
+call tui windowSize %small_width% 27
 color %theme_colors%
 title More Options
 cls
@@ -29,23 +29,26 @@ echo  (2) - Download History       - QuickKey: h
 echo.
 echo  (3) - Settings               - QuickKey: s
 echo.
-echo  (4) - About
+echo  (4) - Create a desktop shortcut
 echo.
-echo  (5) - Visit on GitHub        - QuickKey: g
+echo  (5) - About
 echo.
-echo  (6) - Visit on Sourceforge   - QuickKey: sf
+echo  (6) - Visit on GitHub        - QuickKey: g
 echo.
-echo  (7) - Follow on Telegram
+echo  (7) - Visit on Sourceforge   - QuickKey: sf
+echo.
+echo  (8) - Follow on Telegram
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 01234567 /n /m "Select Option (0-7): "
+choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 start AYClient.bat "b"
 if %errorlevel% == 3 start notepad.exe "%aychome%\history\download-history.txt"
 if %errorlevel% == 4 call settingsMenu
-if %errorlevel% == 5 call about
-if %errorlevel% == 6 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if %errorlevel% == 7 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if %errorlevel% == 8 start "" "https://t.me/ayc_news"
+if %errorlevel% == 5 call createShortcut desktop
+if %errorlevel% == 6 call about
+if %errorlevel% == 7 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
+if %errorlevel% == 8 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
+if %errorlevel% == 9 start "" "https://t.me/ayc_news"
 goto moreMenu

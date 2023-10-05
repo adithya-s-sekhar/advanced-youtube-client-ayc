@@ -166,6 +166,10 @@ echo  Please wait, updating yt-dlp..
 %youtube_dl% --update-to %firstYtUpdate%
 for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
 echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
+copy "%aycroot%\AYClient.bat" "%aycroot%\resources\AYClient.bat"
+call createShortcut root
+call createShortcut desktop
+del "%aycroot%\AYClient.bat"
 echo "0">"%aycdata%\first_run.txt"
 cls
 echo.
@@ -179,6 +183,8 @@ echo    There are more quickkeys spread throughout AYC, find them all! :)
 echo.
 call tui borderMediumHalf
 echo.
-echo  You can restart AYC now. Press Enter to close this window.
+echo  You can restart AYC now from the shortcut on your desktop or from the ayc folder.
+echo.
+echo  Press Enter to close this window.
 pause>NUL
 exit
