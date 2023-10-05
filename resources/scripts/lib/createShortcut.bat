@@ -20,6 +20,8 @@ if %createShortcut.arg1% == desktop call :desktop
 
 if %createShortcut.arg1% == root call :root
 
+if %createShortcut.arg1% == start_menu call :startMenu
+
 goto :EOF
 
 :desktop
@@ -27,7 +29,7 @@ echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\ayc.vbs
 echo sLinkFile = "%userprofile%\Desktop\Advanced Youtube Client - AYC.lnk" >> %tmp%\ayc.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\ayc.vbs
 echo oLink.TargetPath = "cmd.exe" >> %tmp%\ayc.vbs
-echo oLink.Arguments = "/c %aycroot%\resources\AYClient.bat" >> %tmp%\ayc.vbs
+echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\ayc.vbs
 echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\ayc.vbs
 echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\ayc.vbs
 echo oLink.Save >> %tmp%\ayc.vbs
@@ -43,7 +45,24 @@ echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\ayc.vbs
 echo sLinkFile = "%aycroot%\AYClient.lnk" >> %tmp%\ayc.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\ayc.vbs
 echo oLink.TargetPath = "cmd.exe" >> %tmp%\ayc.vbs
-echo oLink.Arguments = "/c %aycroot%\resources\AYClient.bat" >> %tmp%\ayc.vbs
+echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\ayc.vbs
+echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\ayc.vbs
+echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\ayc.vbs
+echo oLink.Save >> %tmp%\ayc.vbs
+
+cscript %tmp%\ayc.vbs
+
+del %tmp%\ayc.vbs
+
+goto :EOF
+
+:startMenu
+md "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC"
+echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\ayc.vbs
+echo sLinkFile = "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC\Advanced Youtube Client - AYC.lnk" >> %tmp%\ayc.vbs
+echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\ayc.vbs
+echo oLink.TargetPath = "cmd.exe" >> %tmp%\ayc.vbs
+echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\ayc.vbs
 echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\ayc.vbs
 echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\ayc.vbs
 echo oLink.Save >> %tmp%\ayc.vbs

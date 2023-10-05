@@ -51,8 +51,8 @@ del /q "%aycdata%\youtube_dl_version.txt"
 del /q "%aycdata%\ytupd_onstart.txt"
 del /q "%aycdata%\theme_status.txt"
 del /q "%aychome%\history\download-history.txt"
-copy "%aychome%\AYClient.bat" "%aycroot%\AYClient.bat"
-del /q "%aychome%\AYClient.bat"
+del /q "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC\Advanced Youtube Client - AYC.lnk"
+rd /s /q "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC"
 title Reset Succesfully
 color 02
 cls
