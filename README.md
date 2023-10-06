@@ -113,6 +113,10 @@ So AYC now makes all users go through this once when they open it for the first 
 
 AYC started out on Sourceforge in 2016, it's only been on Github since 2021. Part of the old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/files/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ) and always updated each release. The archive is still missing some early files from v2 era. I couldn't recover them.
 
+### 6. How to remove AYC properly?
+
+AYC can be removed by simply deleting the ayc folder. But do a reset first by going into AYC > Settings > Reset. This is needed to remove desktop, start menu shortcuts.
+
 ## Links
 
 [Website](https://advanced-youtube-client-ayc.sourceforge.io)
