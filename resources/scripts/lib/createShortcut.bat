@@ -61,7 +61,7 @@ del %tmp%\%vbs_name%.vbs
 goto :EOF
 
 :startMenu
-md "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC"
+if not exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC" md "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC"
 echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
 echo sLinkFile = "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC\Advanced Youtube Client - AYC.lnk" >> %tmp%\%vbs_name%.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\%vbs_name%.vbs
