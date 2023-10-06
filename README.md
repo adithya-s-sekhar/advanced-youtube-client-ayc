@@ -22,8 +22,6 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 
 - [Features](#features)
 - [Installation](#installation)
-  - [Basic](#basic)
-  - [Complete](#complete)
 - [Instructions](#instructions)
 - [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 - [Links](#links)
@@ -46,20 +44,10 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 
 *Note: Windows Defender will show a one-time warning before you try to start a batch file downloaded from the internet. You need to click **More info** and click **Run Anyway** for it to go away.*
 
-### Basic Install
 1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/latest) or [here](https://sourceforge.net/projects/advanced-youtube-client-ayc/).
 2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
 3. Open **AYClient.bat** and follow the on screen [instructions](#instructions). 
-
-**That's all you need to start using AYC. If you want to Pin AYC to taskbar or have an icon, which is highly recommended, follow Complete install below**
-
-### Complete Install
-1. Inside the **ayc** folder, right click **AYClient.bat** and select create a shortcut.
-2. Right click the created shortcut, choose **Properties** >**Shortcut** Tab.
-3. The **Target** box will have your path auto filled. Add `cmd.exe /c ` before the start of the path.
-4. Example: If target is `"C:\ayc\AYClient.bat"`, change it to `cmd.exe /c "C:\ayc\AYClient.bat"`.
-5. Click **Change icon** button and select the included **ayc.ico** file and click **Apply**.
-6. Now you can right click the created shortcut and select **Pin to taskbar**.
+4. When you're done there'll be a shortcut created in ayc folder, on the desktop and in start menu.
 
 ## Instructions
 
@@ -81,8 +69,6 @@ If AYC redirected you here, that means it failed to do it automatically. Follow 
 ### Windows 7/8/8.1 users
 
 1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field and press Enter.
-
-- [How to pin AYC to taskbar for easy access?](#complete-install)
 
 - [How to resume a download that got cancelled?](#1-how-to-resume-a-download-that-got-cancelled)
 
