@@ -17,7 +17,7 @@
 set createShortcut.arg1=%~1
 
 :create_vbs_filename
-set vbs_name=%random%
+set vbs_name=ayc_%random%
 if exist %tmp%\%vbs_name%.vbs goto create_vbs_filename
 
 if %createShortcut.arg1% == desktop call :desktop
