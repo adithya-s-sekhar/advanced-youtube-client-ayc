@@ -8,13 +8,7 @@
 
 **!** Test builds are now available on [Telegram](https://t.me/s/ayc_news). Try latest features and fixes before everyone else.
 
-## Function over form
-
-AYC is a highly responsive, no nonsense, easy to use, fast video downloader from the text based era.
-
-## Screenshots
-
-![512](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png)
+![Screenshots](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png)
 
 </div>
 
@@ -46,12 +40,12 @@ AYC is a highly responsive, no nonsense, easy to use, fast video downloader from
 
 1. Download the latest AYC release from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/latest) or [here](https://sourceforge.net/projects/advanced-youtube-client-ayc/).
 2. Extract the **ayc** folder inside to anywhere on your computer (eg: **C:\ayc**). **Do not extract inside Program Files.**
-3. Open **AYClient.bat** and follow the on screen [instructions](#instructions). 
-4. When you're done there'll be a shortcut created in ayc folder, on the desktop and in start menu.
+3. Open **AYClient.bat** and follow the on screen instructions. 
+4. When you're done there'll be a shortcut created in ayc folder, on the desktop and in start menu. Open it to start using AYC.
 
 ## Instructions
 
-**The below only applies for v4.13 and earlier releases. Since v4.14 it's handled automatically.**
+**These instructions only applies for v4.13 and earlier releases. If you're on v4.14 or newer, you don't need to do it.**
 If AYC redirected you here, that means it failed to do it automatically. Follow the instructions to setup manually.
 
 **Warning: Windows 11 may undo these changes randomly without even asking you. If AYC ever appears broken, redo the instructions from this guide.**
@@ -69,10 +63,6 @@ If AYC redirected you here, that means it failed to do it automatically. Follow 
 ### Windows 7/8/8.1 users
 
 1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field and press Enter.
-
-- [How to resume a download that got cancelled?](#1-how-to-resume-a-download-that-got-cancelled)
-
-- [How to load cookies.txt?](#2-how-to-load-cookiestxt)
 
 ## Frequently asked questions (FAQ)
 
