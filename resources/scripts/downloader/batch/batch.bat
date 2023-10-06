@@ -64,9 +64,9 @@ echo  (0) - Go back
 echo.
 echo  (1) - Regular (Supports all links)
 echo.
-echo  (2) - Youtube only (Enables youtube quality selector)
+echo  (2) - Youtube only (Enables Youtube quality selector)
 echo.
-echo  (3) - Bilibili only (Enables bilibili quality selector)
+echo  (3) - Bilibili only (Enables Bilibili quality selector)
 echo.
 echo  (4) - Twitch only (Enables Twitch quality selector)
 echo.
