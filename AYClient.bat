@@ -21,8 +21,7 @@ set ayc.arg2=%2
 set ayc.arg3=%3
 
 set aycroot=%cd%
-set aychome=%aycroot%\resources
-set path=%path%;%aychome%\bin;%aychome%\scripts
+set path=%path%;%aycroot%\resources\bin;%aycroot%\resources\scripts
 
 :begin
 call envsetup

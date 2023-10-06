@@ -21,10 +21,10 @@ set saveHistory.stats=UNKNOWN
 if %saveHistory.arg1% == success set saveHistory.stats=SUCCESS
 if %saveHistory.arg1% == fail set saveHistory.stats=FAILED
 
-echo Date: %date%>>%aychome%\history\download-history.txt
-echo Time: %time%>>%aychome%\history\download-history.txt
-echo Status: %saveHistory.stats%>>%aychome%\history\download-history.txt
-echo URL: %url%>>%aychome%\history\download-history.txt
-echo.>>%aychome%\history\download-history.txt
+echo Date: %date%>>%aycroot%\resources\history\download-history.txt
+echo Time: %time%>>%aycroot%\resources\history\download-history.txt
+echo Status: %saveHistory.stats%>>%aycroot%\resources\history\download-history.txt
+echo URL: %url%>>%aycroot%\resources\history\download-history.txt
+echo.>>%aycroot%\resources\history\download-history.txt
 
 goto :EOF

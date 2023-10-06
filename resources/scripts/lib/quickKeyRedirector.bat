@@ -35,8 +35,8 @@ if "%quickKey.arg1%" equ "f" call settingsChangeDirHome && goto :EOF
 if "%quickKey.arg1%" equ "F" call settingsChangeDirHome && goto :EOF
 if "%quickKey.arg1%" equ "g" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "G" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
-if "%quickKey.arg1%" equ "h" start notepad.exe "%aychome%\history\download-history.txt" && goto :EOF
-if "%quickKey.arg1%" equ "H" start notepad.exe "%aychome%\history\download-history.txt" && goto :EOF
+if "%quickKey.arg1%" equ "h" start notepad.exe "%aycroot%\resources\history\download-history.txt" && goto :EOF
+if "%quickKey.arg1%" equ "H" start notepad.exe "%aycroot%\resources\history\download-history.txt" && goto :EOF
 if "%quickKey.arg1%" equ "m" call moreMenu && goto :EOF
 if "%quickKey.arg1%" equ "M" call moreMenu && goto :EOF
 if "%quickKey.arg1%" equ "o" start explorer.exe "%loc%" && goto :EOF

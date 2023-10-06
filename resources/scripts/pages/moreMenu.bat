@@ -44,7 +44,7 @@ echo.
 choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 start AYClient.bat "b"
-if %errorlevel% == 3 start notepad.exe "%aychome%\history\download-history.txt"
+if %errorlevel% == 3 start notepad.exe "%aycroot%\resources\history\download-history.txt"
 if %errorlevel% == 4 call settingsMenu
 if %errorlevel% == 5 call createShortcut desktop
 if %errorlevel% == 6 call about

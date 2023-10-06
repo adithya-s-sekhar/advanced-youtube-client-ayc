@@ -44,8 +44,8 @@ set /p settings_tmp_dir=Drag and Drop/Paste here:
 if %tmp_loc_invalid% == 0 if not defined settings_tmp_dir goto :EOF
 if %tmp_loc_invalid% == 1 if not defined settings_tmp_dir goto settingsChangeTmpDir
 set settings_tmp_dir=%settings_tmp_dir:"=%
-if "%settings_tmp_dir%" == "r" set settings_tmp_dir=%aychome%\tmp
-if "%settings_tmp_dir%" == "R" set settings_tmp_dir=%aychome%\tmp
+if "%settings_tmp_dir%" == "r" set settings_tmp_dir=%aycroot%\resources\tmp
+if "%settings_tmp_dir%" == "R" set settings_tmp_dir=%aycroot%\resources\tmp
 echo "%settings_tmp_dir%">"%aycdata%\tmp_dir.txt"
 set tmp_loc="%settings_tmp_dir%"
 set tmp_loc=%tmp_loc:"=%

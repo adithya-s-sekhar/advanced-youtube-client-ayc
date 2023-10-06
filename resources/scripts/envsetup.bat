@@ -14,7 +14,7 @@
 :: You should have received a copy of the GNU General Public License
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set scripts_path=%aychome%\scripts
+set scripts_path=%aycroot%\resources\scripts
 set path=%path%;%scripts_path%\downloader;
 set path=%path%;%scripts_path%\downloader\batch;
 set path=%path%;%scripts_path%\lib;
@@ -45,11 +45,11 @@ set cookies=
 :: need to find a better way.
 set no_cookie_found=0
 
-if not exist "%aychome%\data" md "%aychome%\data"
-if not exist "%aychome%\history" md "%aychome%\history"
-if not exist "%aychome%\history\download-history.txt" echo.>>"%aychome%\history\download-history.txt"
+if not exist "%aycroot%\resources\data" md "%aycroot%\resources\data"
+if not exist "%aycroot%\resources\history" md "%aycroot%\resources\history"
+if not exist "%aycroot%\resources\history\download-history.txt" echo.>>"%aycroot%\resources\history\download-history.txt"
 
-set aycdata=%aychome%\data
+set aycdata=%aycroot%\resources\data
 set youtube_dl=yt-dlp.exe
 
 if not exist "%aycdata%\theme_status.txt" echo "0">"%aycdata%\theme_status.txt"
@@ -74,8 +74,8 @@ if not exist "%loc%\" (
 )
 
 if not exist "%aycdata%\tmp_dir.txt" (
-    md "%aychome%\tmp"
-    echo "%aychome%\tmp">"%aycdata%\tmp_dir.txt"
+    md "%aycroot%\resources\tmp"
+    echo "%aycroot%\resources\tmp">"%aycdata%\tmp_dir.txt"
 )
 set /p tmp_loc=<"%aycdata%\tmp_dir.txt"
 set tmp_loc=%tmp_loc:"=%
