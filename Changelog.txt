@@ -1,7 +1,14 @@
-Advanced Youtube Client - AYC v4.14 - 02/Oct/2023
+Advanced Youtube Client - AYC v4.15 - 07/Oct/2023
 Open AYClient.bat
 
 What's new?
+
+[4.15]
+- Added: New quickkeys.
+- Added: Auto shortcuts in AYC folder, Desktop and Start Menu.
+- Added: Simple download history.
+- Fixed: Reset didn't delete all config files.
+- Improved: New folder structure to keep everything clean and less confusing.
 
 [4.14]
 - Added: Automatic setup on first run. No longer need to copy paste things from github or magic phrases.
