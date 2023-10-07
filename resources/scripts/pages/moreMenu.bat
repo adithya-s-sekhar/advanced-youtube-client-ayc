@@ -50,5 +50,5 @@ if %errorlevel% == 5 call createShortcut desktop
 if %errorlevel% == 6 call about
 if %errorlevel% == 7 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
 if %errorlevel% == 8 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if %errorlevel% == 9 start "" "https://t.me/ayc_news"
+if %errorlevel% == 9 start "" "https://t.me/s/ayc_news"
 goto moreMenu
