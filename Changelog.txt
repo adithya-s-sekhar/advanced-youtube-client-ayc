@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.15 - 07/Oct/2023
+Advanced Youtube Client - AYC v4.16 - 22/Oct/2023
 Open AYClient.bat
 
 What's new?
+
+[4.16]
+- New: Search and download from youtube from AYC. Just type whatever it is you're looking for.
+eg: "mkbhd pixel 2 review" to download MKBHD's pixel 2 review video.
+eg: "ryan george fruit names" to download How fruits got their names? video by Ryan George.
+- Improved: Error screen.
 
 [4.15]
 - Added: New quickkeys.
