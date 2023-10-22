@@ -39,6 +39,7 @@ if %ayc.arg1% equ "B" goto batch
 set url=%ayc.arg1%
 set url=%url:"=%
 if %ayc.arg2% == "youtube" goto youtube
+if %ayc.arg2% == "ytsearch" goto ytsearch
 if %ayc.arg2% == "generic" goto generic
 if %ayc.arg2% == "bili" goto bili
 if %ayc.arg2% == "twitch" goto twitch
@@ -82,7 +83,6 @@ set /p url="ayc:/> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
-set url=%url: =%
 
 set no_cookie_found=0
 
@@ -93,10 +93,12 @@ call linkValidator "%url%"
 if %link_validator% == 1 goto linkValid
 
 call quickKeyRedirector "%url%"
+
 if %quickkey_validator% == 0 (
-    set url_invalid=1
-    goto start
+    set youtube_link=1
+    start AYClient.bat "%url%" "ytsearch" "%cookie_loaded%"
 )
+goto start
 
 
 :linkValid
@@ -110,6 +112,16 @@ goto start
 
 :youtube
 call youtube
+if %youtube_download_status% == 1 (
+    call downloadSuccess
+) else (
+    call downloadError
+)
+goto exit
+
+
+:ytsearch
+call ytsearch
 if %youtube_download_status% == 1 (
     call downloadSuccess
 ) else (
