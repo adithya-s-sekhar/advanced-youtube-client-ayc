@@ -49,6 +49,8 @@ echo.
 echo  (1/4) Setting up terminal
 :autoreg1
 echo.
+echo  Making sure AYC safely opens in Windows Console Host
+echo.
 echo  - Setting DelegationTerminal..
 timeout /t 1 /NOBREAK>nul
 REG.exe ADD HKCU\Console\%%%%Startup /v DelegationTerminal /t REG_SZ /f /d {B23D10C0-E52E-411E-9D5B-C09FDF709C7D}>nul
