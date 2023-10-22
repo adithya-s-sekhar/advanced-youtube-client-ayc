@@ -55,7 +55,7 @@ call tui bannerMedium
 echo.
 echo  - Enter ^(m^) for more options.
 echo.
-echo  - Paste any Video/Playlist/Channel URL or QuickKey and press Enter.
+echo  - Paste any URL or search term or QuickKey and press Enter.
 echo.
 if %aria2_status% == 0 echo  - Multithreaded downloads ^(a^): Disabled
 if %aria2_status% == 1 echo  - Multithreaded downloads ^(a^): Enabled for non-youtube downloads
