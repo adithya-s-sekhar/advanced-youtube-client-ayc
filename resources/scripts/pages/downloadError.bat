@@ -16,7 +16,7 @@
 
 :downloadError
 if defined url call saveHistory fail
-call tui windowSize %small_width% 34
+call tui windowSize %small_width% 37
 color 4F
 title Download Failed!
 cls
@@ -40,6 +40,9 @@ if %error_format% == av1 echo  - If you chose AV1, not all websites support it y
 if %cookie_loaded% == 1 echo  - Your cookies may have expired or are invalid.
 echo  - yt-dlp might be out of date. Update it by going 
 echo    into Settings, Update yt-dlp.
+echo  - If it was a playlist, it may had some private or
+echo    deleted videos. Rest might have downloaded
+echo    successfully.
 echo  - If you have an unreliable network, increase retry
 echo    attempts in Settings.
 echo  - You could be running into a path length limit.
