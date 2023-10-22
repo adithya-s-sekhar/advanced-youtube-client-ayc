@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 
 :: Advanced Youtube Client - AYC
 :: Copyright (C) 2023  Adithya S Sekhar
@@ -83,6 +84,16 @@ set /p url="ayc:/> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
+
+set "cleaner_count=0"
+
+:cleaner_loop
+if "!url:~%cleaner_count%,1!"==" " (
+    set /a "cleaner_count+=1"
+    goto :cleaner_loop
+)
+
+set "url=!url:~%cleaner_count%!"
 
 set no_cookie_found=0
 
@@ -170,4 +181,5 @@ goto exit
 
 
 :exit
+endlocal
 exit
