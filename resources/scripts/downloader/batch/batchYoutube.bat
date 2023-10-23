@@ -63,7 +63,7 @@ if %errorlevel% == 3 set format_chosen=vp9 && goto qualitySelector
 if %errorlevel% == 4 set format_chosen=av1 && goto qualitySelector
 if %errorlevel% == 5 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto :EOF
 if %errorlevel% == 6 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto :EOF
-if %errorlevel% == 7 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && goto :EOF
+if %errorlevel% == 7 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && set "thumbs=" && goto :EOF
 
 :qualitySelector
 if %format_chosen% == h264 if %cookie_loaded% == 1 call tui windowSize %small_width% 30
