@@ -55,10 +55,10 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 12345 /n /m "Select Option (1-5): "
-if %errorlevel% == 1 set conf="-f 360" && goto download
-if %errorlevel% == 2 set conf="-f 480" && goto download
-if %errorlevel% == 3 set conf="-f 720" && goto download
-if %errorlevel% == 4 set conf="-f 1080" && goto download
+if %errorlevel% == 1 set conf="-f best[height<=360]" && goto download
+if %errorlevel% == 2 set conf="-f best[height<=480]" && goto download
+if %errorlevel% == 3 set conf="-f best[height<=720]" && goto download
+if %errorlevel% == 4 set conf="-f best[height<=1080]" && goto download
 if %errorlevel% == 5 goto twitchCustomFormat
 
 
