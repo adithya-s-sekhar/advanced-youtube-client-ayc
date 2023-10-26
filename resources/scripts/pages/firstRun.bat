@@ -146,10 +146,12 @@ cls
 echo.
 echo  (4/4) Choose yt-dlp update channel (Can be changed later)
 echo.
-echo  * Nightly Channel: Fixes are released as soon they are done. Not that tested.
+echo  * Nightly Channel: Fixes are released as soon they are done.
+echo.
 echo  * Stable Channel: Slow to get fixes. Widely tested.
 echo.
 echo   (1) - Nightly channel (Recommended)
+echo.
 echo   (2) - Stable channel
 echo.
 call tui borderMediumHalf
@@ -174,7 +176,8 @@ echo  - yt-dlp is set to check for updates everytime you start AYC. This can be 
 echo    settings.
 echo.
 echo  - Hint: Use the quickkey (s) to open settings straight from the URL page.
-echo    There are more quickkeys spread throughout AYC, find them all! :)
+echo.
+echo  - There are more quickkeys spread throughout AYC, find them all! :)
 echo.
 call tui borderMediumHalf
 echo.
