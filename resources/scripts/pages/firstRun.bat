@@ -146,14 +146,8 @@ cls
 echo.
 echo  (4/4) Choose yt-dlp update channel (Can be changed later)
 echo.
-echo  - AYC uses yt-dlp to download videos from websites. 
-echo  - Websites change all the time and yt-dlp needs to be updated accordingly to support 
-echo    downloading from them.
-echo.
 echo  * Nightly Channel: Fixes are released as soon they are done. Not that tested.
 echo  * Stable Channel: Slow to get fixes. Widely tested.
-echo.
-echo  Which channel of yt-dlp updates do you prefer?
 echo.
 echo   (1) - Nightly channel (Recommended)
 echo   (2) - Stable channel
