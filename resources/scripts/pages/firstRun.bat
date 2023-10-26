@@ -64,8 +64,8 @@ if not %errorlevel% == 0 goto manualreg
 echo.
 call tui borderMediumHalf
 echo.
-echo  Auto setup succeeded. Press Enter to continue.
-pause>NUL
+echo  Auto setup succeeded.
+timeout /t 2 /NOBREAK>nul
 goto longPaths
 :manualreg
 echo.
