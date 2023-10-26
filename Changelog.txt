@@ -1,7 +1,12 @@
-Advanced Youtube Client - AYC v4.16 - 22/Oct/2023
+Advanced Youtube Client - AYC v4.17 - 26/Oct/2023
 Open AYClient.bat
 
 What's new?
+
+[4.17]
+- Fixed: Empty inputs triggered youtube search.
+- Fixed: Webm audio downloads failed when embed thumbnails was enabled.
+- Other minor improvements.
 
 [4.16]
 - New: Search and download from youtube from AYC. Just type whatever it is you're looking for.
