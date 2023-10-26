@@ -18,7 +18,7 @@ set quickKey.arg1=%~1
 
 set quickkey_validator=0
 
-echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<g\>" /c:"\<h\>" /c:"\<m\>" /c:"\<o\>" /c:"\<s\>" /c:"\<sf\>" /c:"\<t\>" /c:"\<u\>" > nul
+echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<h\>" /c:"\<m\>" /c:"\<o\>" /c:"\<s\>" /c:"\<t\>" /c:"\<u\>" > nul
 if %errorlevel% == 0 (
     set quickkey_validator=1
 ) else (
@@ -33,8 +33,6 @@ if "%quickKey.arg1%" equ "c" call toggleCookie && goto :EOF
 if "%quickKey.arg1%" equ "C" call toggleCookie && goto :EOF
 if "%quickKey.arg1%" equ "f" call settingsChangeDirHome && goto :EOF
 if "%quickKey.arg1%" equ "F" call settingsChangeDirHome && goto :EOF
-if "%quickKey.arg1%" equ "g" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
-if "%quickKey.arg1%" equ "G" start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "h" start notepad.exe "%aycroot%\resources\history\download-history.txt" && goto :EOF
 if "%quickKey.arg1%" equ "H" start notepad.exe "%aycroot%\resources\history\download-history.txt" && goto :EOF
 if "%quickKey.arg1%" equ "m" call moreMenu && goto :EOF
@@ -43,8 +41,6 @@ if "%quickKey.arg1%" equ "o" start explorer.exe "%loc%" && goto :EOF
 if "%quickKey.arg1%" equ "O" start explorer.exe "%loc%" && goto :EOF
 if "%quickKey.arg1%" equ "s" call settingsMenu && goto :EOF
 if "%quickKey.arg1%" equ "S" call settingsMenu && goto :EOF
-if "%quickKey.arg1%" equ "sf" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto :EOF
-if "%quickKey.arg1%" equ "SF" start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc" && goto :EOF
 if "%quickKey.arg1%" equ "t" call settingsToggles changeTheme && goto :EOF
 if "%quickKey.arg1%" equ "T" call settingsToggles changeTheme && goto :EOF
 if "%quickKey.arg1%" equ "u" call settingsYtUpdate && goto :EOF
