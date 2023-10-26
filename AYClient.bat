@@ -62,7 +62,7 @@ if %aria2_status% == 0 echo  - Multithreaded downloads ^(a^): Disabled
 if %aria2_status% == 1 echo  - Multithreaded downloads ^(a^): Enabled for non-youtube downloads
 if %aria2_status% == 2 echo  - Multithreaded downloads ^(a^): Enabled for all downloads
 echo.
-echo  - Example QuickKeys: ^(o^) - Open downloads, ^(b^) - Batch Mode, ^(c^) - Load/Unload cookies.txt
+echo  - Example QuickKeys: ^(o^) - Open downloads, ^(c^) - Load/Unload cookies.txt
 echo.
 if %no_cookie_found% == 1 (
     echo  ! Error: cookies.txt not present in ayc folder.
