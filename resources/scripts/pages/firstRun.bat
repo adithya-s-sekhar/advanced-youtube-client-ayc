@@ -126,10 +126,10 @@ echo  (3/4) Select theme (Can be changed later)
 echo.
 if %theme_status% == 0 echo  Currently: Dark
 if %theme_status% == 1 echo  Currently: Light
-if %theme_status% == 2 echo  Currently: Blue
-if %theme_status% == 3 echo  Currently: Purple
-if %theme_status% == 4 echo  Currently: Yellow
-if %theme_status% == 5 echo  Currently: Red
+if %theme_status% == 2 echo  Currently: Light Blue
+if %theme_status% == 3 echo  Currently: Light Purple
+if %theme_status% == 4 echo  Currently: Light Yellow
+if %theme_status% == 5 echo  Currently: Light Red
 echo.
 echo   (1) - Switch Theme
 echo.

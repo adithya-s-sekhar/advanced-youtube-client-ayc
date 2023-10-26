@@ -48,10 +48,10 @@ echo.
 echo  (7) - Change theme (t)
 if %theme_status% == 0 echo        [Dark]
 if %theme_status% == 1 echo        [Light]
-if %theme_status% == 2 echo        [Blue]
-if %theme_status% == 3 echo        [Purple]
-if %theme_status% == 4 echo        [Yellow]
-if %theme_status% == 5 echo        [Red]
+if %theme_status% == 2 echo        [Light Blue]
+if %theme_status% == 3 echo        [Light Purple]
+if %theme_status% == 4 echo        [Light Yellow]
+if %theme_status% == 5 echo        [Light Red]
 echo.
 echo  (8) - Reset AYC
 echo.
