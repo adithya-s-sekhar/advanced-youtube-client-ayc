@@ -65,7 +65,7 @@ echo.
 call tui borderMediumHalf
 echo.
 echo  Auto setup succeeded.
-timeout /t 2 /NOBREAK>nul
+timeout /t 1 /NOBREAK>nul
 goto longPaths
 :manualreg
 echo.
