@@ -130,6 +130,7 @@ if %theme_status% == 2 echo  Currently: Light Blue
 if %theme_status% == 3 echo  Currently: Light Purple
 if %theme_status% == 4 echo  Currently: Light Yellow
 if %theme_status% == 5 echo  Currently: Light Red
+if %theme_status% == 6 echo  Currently: Aqua
 echo.
 echo   (1) - Switch Theme
 echo.
