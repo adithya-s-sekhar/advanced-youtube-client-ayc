@@ -79,10 +79,6 @@ if %theme_status% == 4 (
     goto :EOF
 )
 if %theme_status% == 5 (
-    set theme_status=6
-    goto :EOF
-)
-if %theme_status% == 6 (
     set theme_status=0
     goto :EOF
 )

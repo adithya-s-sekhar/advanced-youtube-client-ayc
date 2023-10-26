@@ -21,6 +21,5 @@ if %theme_status% == 2 set theme_colors=9F
 if %theme_status% == 3 set theme_colors=DF
 if %theme_status% == 4 set theme_colors=E0
 if %theme_status% == 5 set theme_colors=CF
-if %theme_status% == 6 set theme_colors=3F
 color %theme_colors%
 goto :EOF

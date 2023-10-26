@@ -52,7 +52,6 @@ if %theme_status% == 2 echo        [Light Blue]
 if %theme_status% == 3 echo        [Light Purple]
 if %theme_status% == 4 echo        [Light Yellow]
 if %theme_status% == 5 echo        [Light Red]
-if %theme_status% == 6 echo        [Aqua]
 echo.
 echo  (8) - Reset AYC
 echo.
