@@ -1,5 +1,4 @@
 @echo off
-setlocal enabledelayedexpansion
 
 :: Advanced Youtube Client - AYC
 :: Copyright (C) 2023  Adithya S Sekhar
@@ -64,7 +63,6 @@ if %aria2_status% == 2 echo  - Multithreaded downloads ^(a^): Enabled for all do
 echo.
 echo  - Example QuickKeys: ^(o^) - Open downloads, ^(c^) - Load/Unload cookies.txt
 echo.
-setlocal disabledelayedexpansion
 if %no_cookie_found% == 1 (
     echo  ! Error: cookies.txt not present in ayc folder.
     echo.
@@ -81,7 +79,6 @@ if %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
-setlocal enabledelayedexpansion
 set /p url="ayc:/> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
@@ -90,13 +87,16 @@ for /f "tokens=1 delims=&" %%a in ("%url%") do (
 if "%url%" equ "" goto start
 if "%url%" equ " =" goto start
 
-set "cleaner_count=0"
-:cleaner_loop
-if "!url:~%cleaner_count%,1!"==" " (
-    set /a "cleaner_count+=1"
-    goto :cleaner_loop
-)
-set "url=!url:~%cleaner_count%!"
+:cleaner_check
+if "%url:~0,1%"==" " goto cleaner_clean
+goto cleaner_exit
+
+:cleaner_clean
+set "url=%url:~1%"
+goto cleaner_check
+
+:cleaner_exit
+if not defined url goto start
 
 set no_cookie_found=0
 
@@ -181,5 +181,4 @@ goto exit
 
 
 :exit
-endlocal
 exit
