@@ -64,6 +64,7 @@ if %aria2_status% == 2 echo  - Multithreaded downloads ^(a^): Enabled for all do
 echo.
 echo  - Example QuickKeys: ^(o^) - Open downloads, ^(c^) - Load/Unload cookies.txt
 echo.
+setlocal disabledelayedexpansion
 if %no_cookie_found% == 1 (
     echo  ! Error: cookies.txt not present in ayc folder.
     echo.
@@ -80,6 +81,7 @@ if %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
+setlocal enabledelayedexpansion
 set /p url="ayc:/> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
@@ -89,13 +91,11 @@ if "%url%" equ "" goto start
 if "%url%" equ " =" goto start
 
 set "cleaner_count=0"
-
 :cleaner_loop
 if "!url:~%cleaner_count%,1!"==" " (
     set /a "cleaner_count+=1"
     goto :cleaner_loop
 )
-
 set "url=!url:~%cleaner_count%!"
 
 set no_cookie_found=0
