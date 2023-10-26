@@ -15,7 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :moreMenu
-call tui windowSize %small_width% 27
+call tui windowSize %small_width% 21
 color %theme_colors%
 title More Options
 cls
@@ -33,22 +33,13 @@ echo  (4) - Create a desktop shortcut
 echo.
 echo  (5) - About
 echo.
-echo  (6) - Visit on GitHub (g)
-echo.
-echo  (7) - Visit on Sourceforge (sf)
-echo.
-echo  (8) - Follow on Telegram
-echo.
 call tui borderSmallHalf
 echo.
-choice /c 012345678 /n /m "Select Option (0-8): "
+choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 start AYClient.bat "b"
 if %errorlevel% == 3 start notepad.exe "%aycroot%\resources\history\download-history.txt"
 if %errorlevel% == 4 call settingsMenu
 if %errorlevel% == 5 call createShortcut desktop
 if %errorlevel% == 6 call about
-if %errorlevel% == 7 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if %errorlevel% == 8 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if %errorlevel% == 9 start "" "https://t.me/s/ayc_news"
 goto moreMenu
