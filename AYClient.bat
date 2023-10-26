@@ -85,6 +85,9 @@ for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
 
+if "%url%" equ "" goto start
+if "%url%" equ " =" goto start
+
 set "cleaner_count=0"
 
 :cleaner_loop
@@ -96,9 +99,6 @@ if "!url:~%cleaner_count%,1!"==" " (
 set "url=!url:~%cleaner_count%!"
 
 set no_cookie_found=0
-
-if "%url%" equ "" goto start
-if "%url%" equ " =" goto start
 
 call linkValidator "%url%"
 if %link_validator% == 1 goto linkValid
