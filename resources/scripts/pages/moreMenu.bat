@@ -23,19 +23,19 @@ call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Batch Mode             - QuickKey: b
+echo  (1) - Batch Mode (b)
 echo.
-echo  (2) - Download History       - QuickKey: h
+echo  (2) - Download History (h)
 echo.
-echo  (3) - Settings               - QuickKey: s
+echo  (3) - Settings (s)
 echo.
 echo  (4) - Create a desktop shortcut
 echo.
 echo  (5) - About
 echo.
-echo  (6) - Visit on GitHub        - QuickKey: g
+echo  (6) - Visit on GitHub (g)
 echo.
-echo  (7) - Visit on Sourceforge   - QuickKey: sf
+echo  (7) - Visit on Sourceforge (sf)
 echo.
 echo  (8) - Follow on Telegram
 echo.

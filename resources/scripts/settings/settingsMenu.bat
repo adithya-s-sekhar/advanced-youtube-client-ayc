@@ -23,16 +23,16 @@ call tui bannerSmall
 echo.
 echo  (0) - Back
 echo.
-echo  (1) - Manage folders - QuickKey: f
+echo  (1) - Manage folders (f)
 echo        Change download and temporary folders.
 echo.
 echo  (2) - Change retry attempts
 echo        Currently: %defined_try%
 echo.
-echo  (3) - Update yt-dlp (fixes most issues) - QuickKey: u
+echo  (3) - Update yt-dlp (fixes most issues) (u)
 echo        Currently: %youtube_dl_version%
 echo.
-echo  (4) - Multi-threaded downloading - QuickKey: a
+echo  (4) - Multi-threaded downloading (a)
 if %aria2_status% == 0 echo        [Disabled]
 if %aria2_status% == 1 echo        [Enabled for non-youtube downloads]
 if %aria2_status% == 2 echo        [Enabled for all downloads]
@@ -45,7 +45,7 @@ echo  (6) - Embed subtitles
 if %subs_status% == 0 echo        [Disabled]
 if %subs_status% == 1 echo        [Enabled]
 echo.
-echo  (7) - Change theme - QuickKey: t
+echo  (7) - Change theme (t)
 if %theme_status% == 0 echo        [Dark]
 if %theme_status% == 1 echo        [Light]
 if %theme_status% == 2 echo        [Blue]

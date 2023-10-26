@@ -177,7 +177,7 @@ echo    settings.
 echo.
 echo  - Hint: Use the quickkey (s) to open settings straight from the URL page.
 echo.
-echo  - There are more quickkeys spread throughout AYC, find them all! :)
+echo  - There are more quickkeys spread throughout AYC, find them all!
 echo.
 call tui borderMediumHalf
 echo.
