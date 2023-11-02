@@ -18,9 +18,9 @@
 set "try="
 set try=1
 set conf=%conf:"=%
-
 if %aria2_status% == 1 if not %job_type% == 1 set aria2=--external-downloader aria2c
 if %aria2_status% == 1 if %job_type% == 1 set aria2=--concurrent-fragments 8
+call siteFixes "%url%"
 
 :batchDownloadTried
 set error_mode=batch
@@ -52,7 +52,9 @@ if %cookie_loaded% == 0 if %job_type% == 2 (
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title).177s-MP4-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title).177s-VP9-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title).177s-AV1-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%\%job_name%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == m4a %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%\%job_name%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == mp3 %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%\%job_name%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
+if %format_chosen% == webm %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%\%job_name%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_batch_yt% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 
 if %format_chosen% == b_h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" -o "%%(title).175s-MP4-%%(height).4sp-%%(id).13s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF
 if %format_chosen% == b_hevc %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%\%job_name%" --merge-output-format mp4 -o "%%(title).175s-HEVC-%%(height).4sp-%%(id).13s.%%(ext)s" %custom_config_batch_bilibili% %cookies% -a "%loc%\%job_name%\%job_name%.txt" && set batch_download_status=1 && goto :EOF

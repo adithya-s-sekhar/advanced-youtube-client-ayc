@@ -65,9 +65,9 @@ if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 set format_chosen=h264 && goto qualitySelector
 if %errorlevel% == 3 set format_chosen=vp9 && goto qualitySelector
 if %errorlevel% == 4 set format_chosen=av1 && goto qualitySelector
-if %errorlevel% == 5 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 6 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto :EOF
-if %errorlevel% == 7 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && set "thumbs=" && goto :EOF
+if %errorlevel% == 5 set format_chosen=m4a && set conf="-f bestaudio[ext=m4a]" && goto :EOF
+if %errorlevel% == 6 set format_chosen=mp3 && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto :EOF
+if %errorlevel% == 7 set format_chosen=webm && set conf="-f bestaudio[ext=webm]" && goto :EOF
 if %errorlevel% == 8 set conf="custom" && goto :EOF
 
 :qualitySelector

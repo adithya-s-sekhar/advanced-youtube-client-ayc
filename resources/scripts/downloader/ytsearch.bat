@@ -61,9 +61,9 @@ choice /c 1234567 /n /m "Select Option (1-7): "
 if %errorlevel% == 1 set format_chosen=h264 && goto qualitySelector
 if %errorlevel% == 2 set format_chosen=vp9 && goto qualitySelector
 if %errorlevel% == 3 set format_chosen=av1 && goto qualitySelector
-if %errorlevel% == 4 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto download
-if %errorlevel% == 5 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto download
-if %errorlevel% == 6 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && set "thumbs=" && goto download
+if %errorlevel% == 4 set format_chosen=m4a && set conf="-f bestaudio[ext=m4a]" && goto download
+if %errorlevel% == 5 set format_chosen=mp3 && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto download
+if %errorlevel% == 6 set format_chosen=webm && set conf="-f bestaudio[ext=webm]" && goto download
 if %errorlevel% == 7 set format_chosen=cust && goto ytCustomFormat
 
 
@@ -191,8 +191,8 @@ goto download
 set "try="
 set try=1
 set conf=%conf:"=%
-
 if %aria2_status% == 1 set aria2=--concurrent-fragments 8
+call siteFixes "%url%"
 
 :downloadTried
 call tui windowSize %small_width% 36
@@ -214,7 +214,9 @@ if %cookie_loaded% == 1 (
 if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-MP4-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
 if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-VP9-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title).177s-AV1-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == m4a %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == mp3 %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == webm %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
 if %format_chosen% == cust %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% set youtube_download_status=0 && goto :EOF
