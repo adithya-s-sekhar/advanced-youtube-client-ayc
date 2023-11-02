@@ -17,9 +17,9 @@
 :formatSelector
 set youtube_download_status=0
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 35
+    call tui windowSize %small_width% 39
 ) else (
-    call tui windowSize %small_width% 33
+    call tui windowSize %small_width% 37
 )
 color %theme_colors%
 title Link Recieved
@@ -53,15 +53,20 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
+call tui borderSmall
+echo.
+echo   (7) - Show all available formats
+echo.
 call tui borderSmallHalf
 echo.
-choice /c 123456 /n /m "Select Option (1-6): "
+choice /c 1234567 /n /m "Select Option (1-7): "
 if %errorlevel% == 1 set format_chosen=h264 && goto qualitySelector
 if %errorlevel% == 2 set format_chosen=vp9 && goto qualitySelector
 if %errorlevel% == 3 set format_chosen=av1 && goto qualitySelector
 if %errorlevel% == 4 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto download
 if %errorlevel% == 5 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto download
 if %errorlevel% == 6 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && set "thumbs=" && goto download
+if %errorlevel% == 7 set format_chosen=cust && goto ytCustomFormat
 
 
 :qualitySelector
@@ -151,6 +156,39 @@ if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudi
 if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" && goto download
 
 
+:ytCustomFormat
+call tui windowSize %large_width% 500
+color %theme_colors%
+title Select Format
+cls
+call tui bannerLarge
+echo.
+echo  URL: %url%
+echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
+%youtube_dl% %default_config% %cookies% -F "%url%" && goto ytCustomFormatContinue
+goto :EOF
+:ytCustomFormatContinue
+echo.
+call tui borderLargeHalf
+echo.
+echo Leave blank and press Enter to Go back.
+echo.
+echo Merge two formats using '+' symbol.
+echo.
+set /p yt_custom_qual=Choose ID (green color in the list above): 
+set yt_custom_qual=%yt_custom_qual: =%
+if "%yt_custom_qual%" equ "" goto formatSelector
+if "%yt_custom_qual%" equ " =" goto formatSelector
+set yt_custom_qual=%yt_custom_qual:'=%
+set yt_custom_qual=%yt_custom_qual:"=%
+set conf="-f %yt_custom_qual%"
+goto download
+
+
 :download
 set "try="
 set try=1
@@ -179,6 +217,7 @@ if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %
 if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-VP9-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title).177s-AV1-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 if %format_chosen% == aud %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == cust %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 set /a try=%try%+1
 if %try% GTR %max_try% set youtube_download_status=0 && goto :EOF
 goto downloadTried

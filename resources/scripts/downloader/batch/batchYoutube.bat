@@ -16,9 +16,9 @@
 
 :formatSelector
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 36
+    call tui windowSize %small_width% 40
 ) else (
-    call tui windowSize %small_width% 34
+    call tui windowSize %small_width% 38
 )
 color %theme_colors%
 title Choose format
@@ -54,9 +54,13 @@ echo   (5) - MP3  - MP3 Audio  - 128kbps
 echo.
 echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
+call tui borderSmall
+echo.
+echo   (7) - Choose a custom format from sample url
+echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123456 /n /m "Select Option (0-6): "
+choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 set format_chosen=h264 && goto qualitySelector
 if %errorlevel% == 3 set format_chosen=vp9 && goto qualitySelector
@@ -64,6 +68,7 @@ if %errorlevel% == 4 set format_chosen=av1 && goto qualitySelector
 if %errorlevel% == 5 set format_chosen=aud && set conf="-f bestaudio[ext=m4a]" && goto :EOF
 if %errorlevel% == 6 set format_chosen=aud && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto :EOF
 if %errorlevel% == 7 set format_chosen=aud && set conf="-f bestaudio[ext=webm]" && set "thumbs=" && goto :EOF
+if %errorlevel% == 8 set conf="custom" && goto :EOF
 
 :qualitySelector
 if %format_chosen% == h264 if %cookie_loaded% == 1 call tui windowSize %small_width% 30
