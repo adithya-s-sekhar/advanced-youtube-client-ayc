@@ -17,9 +17,9 @@
 :formatSelector
 set youtube_download_status=0
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 37
+    call tui windowSize %small_width% 36
 ) else (
-    call tui windowSize %small_width% 35
+    call tui windowSize %small_width% 34
 )
 color %theme_colors%
 title Link Recieved
