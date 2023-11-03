@@ -19,8 +19,6 @@ if %createShortcut.arg1% == all (
     call :desktop
     call :root
     call :startMenu
-    echo Shortcuts: DONE
-    timeout /t 1 /NOBREAK>nul
     goto :EOF
 )
 if %createShortcut.arg1% == desktop goto desktop
