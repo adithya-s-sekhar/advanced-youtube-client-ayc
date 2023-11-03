@@ -41,7 +41,7 @@ echo  (1) - GitHub
 echo.
 echo  (2) - Sourceforge
 echo.
-echo  (3) - Telegram (Test Builds)
+echo  (3) - Telegram (Try latest test builds)
 echo.
 call tui borderSmallHalf
 echo.
