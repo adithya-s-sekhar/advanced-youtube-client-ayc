@@ -20,7 +20,7 @@ set try=1
 set conf=%conf:"=%
 if %aria2_status% == 1 if not %job_type% == 1 set aria2=--external-downloader aria2c
 if %aria2_status% == 1 if %job_type% == 1 set aria2=--concurrent-fragments 8
-call siteFixes "%url%"
+if %job_type% == 1 call siteFixes "youtube"
 
 :batchDownloadTried
 set error_mode=batch
