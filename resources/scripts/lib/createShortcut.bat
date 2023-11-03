@@ -15,6 +15,9 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set createShortcut.arg1=%~1
+
+set createShortcut_temp=%aycroot%\resources\extras
+
 if %createShortcut.arg1% == all (
     call :desktop
     call :root
@@ -28,48 +31,48 @@ goto :EOF
 
 :desktop
 call :create_vbs_filename
-echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
-echo sLinkFile = "%userprofile%\Desktop\Advanced Youtube Client - AYC.lnk" >> %tmp%\%vbs_name%.vbs
-echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\%vbs_name%.vbs
-echo oLink.TargetPath = "cmd.exe" >> %tmp%\%vbs_name%.vbs
-echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\%vbs_name%.vbs
-echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\%vbs_name%.vbs
-echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\%vbs_name%.vbs
-echo oLink.Save >> %tmp%\%vbs_name%.vbs
-cscript %tmp%\%vbs_name%.vbs > nul
-del %tmp%\%vbs_name%.vbs
+echo Set oWS = WScript.CreateObject("WScript.Shell") > "%createShortcut_temp%\%vbs_name%.vbs"
+echo sLinkFile = "%userprofile%\Desktop\Advanced Youtube Client - AYC.lnk" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo Set oLink = oWS.CreateShortcut(sLinkFile) >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.TargetPath = "cmd.exe" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.Arguments = "/c ""%aycroot%\AYClient.bat""" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.WorkingDirectory = "%aycroot%" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.Save >> "%createShortcut_temp%\%vbs_name%.vbs"
+cscript "%createShortcut_temp%\%vbs_name%.vbs" > nul
+del "%createShortcut_temp%\%vbs_name%.vbs"
 goto :EOF
 
 :root
 call :create_vbs_filename
-echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
-echo sLinkFile = "%aycroot%\AYClient.lnk" >> %tmp%\%vbs_name%.vbs
-echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\%vbs_name%.vbs
-echo oLink.TargetPath = "cmd.exe" >> %tmp%\%vbs_name%.vbs
-echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\%vbs_name%.vbs
-echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\%vbs_name%.vbs
-echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\%vbs_name%.vbs
-echo oLink.Save >> %tmp%\%vbs_name%.vbs
-cscript %tmp%\%vbs_name%.vbs > nul
-del %tmp%\%vbs_name%.vbs
+echo Set oWS = WScript.CreateObject("WScript.Shell") > "%createShortcut_temp%\%vbs_name%.vbs"
+echo sLinkFile = "%aycroot%\AYClient.lnk" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo Set oLink = oWS.CreateShortcut(sLinkFile) >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.TargetPath = "cmd.exe" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.Arguments = "/c ""%aycroot%\AYClient.bat""" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.WorkingDirectory = "%aycroot%" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.Save >> "%createShortcut_temp%\%vbs_name%.vbs"
+cscript "%createShortcut_temp%\%vbs_name%.vbs" > nul
+del "%createShortcut_temp%\%vbs_name%.vbs"
 goto :EOF
 
 :startMenu
 call :create_vbs_filename
 if not exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC" md "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC"
-echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
-echo sLinkFile = "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC\Advanced Youtube Client - AYC.lnk" >> %tmp%\%vbs_name%.vbs
-echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\%vbs_name%.vbs
-echo oLink.TargetPath = "cmd.exe" >> %tmp%\%vbs_name%.vbs
-echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\%vbs_name%.vbs
-echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\%vbs_name%.vbs
-echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\%vbs_name%.vbs
-echo oLink.Save >> %tmp%\%vbs_name%.vbs
-cscript %tmp%\%vbs_name%.vbs > nul
-del %tmp%\%vbs_name%.vbs
+echo Set oWS = WScript.CreateObject("WScript.Shell") > "%createShortcut_temp%\%vbs_name%.vbs"
+echo sLinkFile = "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC\Advanced Youtube Client - AYC.lnk" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo Set oLink = oWS.CreateShortcut(sLinkFile) >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.TargetPath = "cmd.exe" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.Arguments = "/c ""%aycroot%\AYClient.bat""" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.WorkingDirectory = "%aycroot%" >> "%createShortcut_temp%\%vbs_name%.vbs"
+echo oLink.Save >> "%createShortcut_temp%\%vbs_name%.vbs"
+cscript "%createShortcut_temp%\%vbs_name%.vbs" > nul
+del "%createShortcut_temp%\%vbs_name%.vbs"
 goto :EOF
 
 :create_vbs_filename
 set vbs_name=ayc_%random%
-if exist %tmp%\%vbs_name%.vbs goto create_vbs_filename
+if exist "%createShortcut_temp%\%vbs_name%.vbs" goto create_vbs_filename
 goto :EOF
