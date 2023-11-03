@@ -32,12 +32,10 @@ echo    will retry the download if an error occurs.
 echo.
 if %try_invalid% == 0 (
     echo  * Leave blank and Enter to Go back.
-    echo.
-)
-if %try_invalid% == 1 (
+) else (
     echo  * Enter a valid number.
-    echo.
 )
+echo.
 echo  * Enter R to reset to default value.
 echo.
 call tui borderSmallHalf
