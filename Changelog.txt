@@ -1,7 +1,14 @@
-Advanced Youtube Client - AYC v4.17 - 26/Oct/2023
+Advanced Youtube Client - AYC v4.18 - 03/Nov/2023
 Open AYClient.bat
 
 What's new?
+
+[4.18]
+- Fixed: Shortcuts weren't being made or broken when AYC is in a path with spaces.
+- Fixed: Reset in folder settings were resetting to an old path.
+- Added: Custom quality selectors for youtube downloads.
+- Code cleanups.
+- UI Fixes.
 
 [4.17]
 - Fixed: Empty inputs triggered youtube search.
