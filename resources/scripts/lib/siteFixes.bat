@@ -16,7 +16,11 @@
 
 set siteFixes.arg1=%~1
 
-if %siteFixes.arg1% == youtube call :siteFixes.youtube
+if %siteFixes.arg1% == all (
+    call :siteFixes.youtube
+    goto :EOF
+)
+if %siteFixes.arg1% == youtube goto siteFixes.youtube
 
 goto :EOF
 
