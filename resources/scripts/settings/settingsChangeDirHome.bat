@@ -29,7 +29,7 @@ echo  %tmp_loc%
 echo.
 call tui borderSmall
 echo.
-echo  (0) - Go Back
+echo  (0) - Back
 echo.
 echo  (1) - Change download folder
 echo.

@@ -51,7 +51,7 @@ if %yt_updated% == 1 (
 echo.
 call tui borderSmall
 echo.
-echo  (0) - Go back
+echo  (0) - Back
 echo.
 echo  (1) - Update to latest Stable
 echo.

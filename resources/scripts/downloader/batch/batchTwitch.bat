@@ -35,7 +35,7 @@ if %cookie_loaded% == 1 (
 )
 echo  Format: .MP4 (H264 Video/AAC Audio)
 echo.
-echo  (0) - Go Back
+echo  (0) - Back
 echo.
 call tui borderSmall
 echo  Choose Maximum Quality

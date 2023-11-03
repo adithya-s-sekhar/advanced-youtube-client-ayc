@@ -60,7 +60,7 @@ echo.>"%loc%\%job_name%\%job_name%.txt"
 echo.
 echo Available download modes:
 echo.
-echo  (0) - Go back
+echo  (0) - Back
 echo.
 echo  (1) - Regular (Supports all links)
 echo.
