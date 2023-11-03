@@ -113,7 +113,7 @@ call tui borderMediumHalf
 echo.
 echo  Click Yes twice after pressing Enter.
 pause>nul
-start "%aycroot%\resources\extras\EnableLongPaths.reg"
+regedit.exe "%aycroot%\resources\extras\EnableLongPaths.reg"
 echo.
 echo  You may need to restart your PC for changes to take effect. Press Enter to continue.
 pause>nul
