@@ -164,9 +164,7 @@ echo  Please wait, updating yt-dlp..
 %youtube_dl% --update-to %firstYtUpdate%
 for /f %%i in ('yt-dlp --version') do set youtube_dl_version=%%i
 echo %youtube_dl_version%>"%aycdata%\youtube_dl_version.txt"
-call createShortcut root
-call createShortcut desktop
-call createShortcut start_menu
+call createShortcut all
 echo "0">"%aycdata%\first_run.txt"
 cls
 echo.

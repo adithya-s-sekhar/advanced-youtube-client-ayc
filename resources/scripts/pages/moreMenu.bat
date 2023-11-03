@@ -29,7 +29,7 @@ echo  (2) - Download History (h)
 echo.
 echo  (3) - Settings (s)
 echo.
-echo  (4) - Create a desktop shortcut
+echo  (4) - Create desktop shortcuts
 echo.
 echo  (5) - About
 echo.
@@ -40,6 +40,6 @@ if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 start AYClient.bat "b"
 if %errorlevel% == 3 start notepad.exe "%aycroot%\resources\history\download-history.txt"
 if %errorlevel% == 4 call settingsMenu
-if %errorlevel% == 5 call createShortcut desktop
+if %errorlevel% == 5 call createShortcut all
 if %errorlevel% == 6 call about
 goto moreMenu

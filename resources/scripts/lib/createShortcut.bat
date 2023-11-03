@@ -15,20 +15,21 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set createShortcut.arg1=%~1
-
-:create_vbs_filename
-set vbs_name=ayc_%random%
-if exist %tmp%\%vbs_name%.vbs goto create_vbs_filename
-
+if %createShortcut.arg1% == all (
+    call :desktop
+    call :root
+    call :startMenu
+    echo Shortcuts: DONE
+    timeout /t 1 /NOBREAK>nul
+    goto :EOF
+)
 if %createShortcut.arg1% == desktop goto desktop
-
 if %createShortcut.arg1% == root goto root
-
 if %createShortcut.arg1% == start_menu goto startMenu
-
 goto :EOF
 
 :desktop
+call :create_vbs_filename
 echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
 echo sLinkFile = "%userprofile%\Desktop\Advanced Youtube Client - AYC.lnk" >> %tmp%\%vbs_name%.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\%vbs_name%.vbs
@@ -37,14 +38,12 @@ echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\%vbs_name%.vbs
 echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\%vbs_name%.vbs
 echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\%vbs_name%.vbs
 echo oLink.Save >> %tmp%\%vbs_name%.vbs
-
-cscript %tmp%\%vbs_name%.vbs
-
+cscript %tmp%\%vbs_name%.vbs > nul
 del %tmp%\%vbs_name%.vbs
-
 goto :EOF
 
 :root
+call :create_vbs_filename
 echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
 echo sLinkFile = "%aycroot%\AYClient.lnk" >> %tmp%\%vbs_name%.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> %tmp%\%vbs_name%.vbs
@@ -53,14 +52,12 @@ echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\%vbs_name%.vbs
 echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\%vbs_name%.vbs
 echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\%vbs_name%.vbs
 echo oLink.Save >> %tmp%\%vbs_name%.vbs
-
-cscript %tmp%\%vbs_name%.vbs
-
+cscript %tmp%\%vbs_name%.vbs > nul
 del %tmp%\%vbs_name%.vbs
-
 goto :EOF
 
 :startMenu
+call :create_vbs_filename
 if not exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC" md "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC"
 echo Set oWS = WScript.CreateObject("WScript.Shell") > %tmp%\%vbs_name%.vbs
 echo sLinkFile = "%appdata%\Microsoft\Windows\Start Menu\Programs\Advanced Youtube Client - AYC\Advanced Youtube Client - AYC.lnk" >> %tmp%\%vbs_name%.vbs
@@ -70,9 +67,11 @@ echo oLink.Arguments = "/c %aycroot%\AYClient.bat" >> %tmp%\%vbs_name%.vbs
 echo oLink.IconLocation = "%aycroot%\resources\extras\ayc.ico" >> %tmp%\%vbs_name%.vbs
 echo oLink.WorkingDirectory = "%aycroot%" >> %tmp%\%vbs_name%.vbs
 echo oLink.Save >> %tmp%\%vbs_name%.vbs
-
-cscript %tmp%\%vbs_name%.vbs
-
+cscript %tmp%\%vbs_name%.vbs > nul
 del %tmp%\%vbs_name%.vbs
+goto :EOF
 
+:create_vbs_filename
+set vbs_name=ayc_%random%
+if exist %tmp%\%vbs_name%.vbs goto create_vbs_filename
 goto :EOF
