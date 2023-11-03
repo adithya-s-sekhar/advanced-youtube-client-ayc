@@ -194,7 +194,7 @@ set "try="
 set try=1
 set conf=%conf:"=%
 if %aria2_status% == 1 set aria2=--concurrent-fragments 8
-call siteFixes "%url%"
+call siteFixes "youtube"
 
 :downloadTried
 call tui windowSize %small_width% 36

@@ -16,8 +16,7 @@
 
 set siteFixes.arg1=%~1
 
-call linkValidator "%siteFixes.arg1%"
-if %youtube_link% == 1 call :siteFixes.youtube
+if %siteFixes.arg1% == youtube call :siteFixes.youtube
 
 goto :EOF
 
