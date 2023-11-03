@@ -36,7 +36,7 @@ if %cookie_loaded% == 1 (
 )
 echo  Possible problems and solutions:
 echo.
-if %error_format% == av1 echo  - If you chose AV1, not all websites support it yet.
+if %error_format% == av1 echo  - If you chose AV1, not all videos support it yet.
 if %cookie_loaded% == 1 echo  - Your cookies may have expired or are invalid.
 echo  - yt-dlp might be out of date. Update it by going 
 echo    into Settings, Update yt-dlp.
