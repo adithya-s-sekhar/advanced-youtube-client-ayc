@@ -20,11 +20,11 @@ set createShortcut.arg1=%~1
 set vbs_name=ayc_%random%
 if exist %tmp%\%vbs_name%.vbs goto create_vbs_filename
 
-if %createShortcut.arg1% == desktop call :desktop
+if %createShortcut.arg1% == desktop goto desktop
 
-if %createShortcut.arg1% == root call :root
+if %createShortcut.arg1% == root goto root
 
-if %createShortcut.arg1% == start_menu call :startMenu
+if %createShortcut.arg1% == start_menu goto startMenu
 
 goto :EOF
 
