@@ -34,7 +34,11 @@ echo    the location manually.
 echo.
 echo    Then Press Enter to save.
 echo.
-echo  * Leave blank and Enter to Go Back.
+if %tmp_loc_invalid% == 0 (
+    echo  * Leave blank and Enter to Go Back.
+) else (
+    echo  * Enter a valid path!
+)
 echo.
 echo  * Enter R to reset to default location.
 echo.
