@@ -65,7 +65,7 @@ if %errorlevel% == 2 set format_chosen=vp9 & goto qualitySelector
 if %errorlevel% == 3 set format_chosen=av1 & goto qualitySelector
 if %errorlevel% == 4 set format_chosen=m4a & set conf="-f bestaudio[ext=m4a]" & goto download
 if %errorlevel% == 5 set format_chosen=mp3 & set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" & goto download
-if %errorlevel% == 6 set format_chosen=webm & set conf="-f bestaudio[ext=webm]" & goto download
+if %errorlevel% == 6 set format_chosen=webm & set conf="-f bestaudio[ext=webm]" & set "thumbs=" & goto download
 if %errorlevel% == 7 set format_chosen=cust & goto ytCustomFormat
 
 
