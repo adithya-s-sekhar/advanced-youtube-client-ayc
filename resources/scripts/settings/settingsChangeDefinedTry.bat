@@ -49,7 +49,7 @@ echo "%settings_try%">"%aycdata%\try.txt"
 set defined_try="%settings_try%"
 set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
-if not %errorlevel% == 0 set try_invalid=1 && goto settingsChangeDefinedTry
+if not %errorlevel% == 0 set try_invalid=1 & goto settingsChangeDefinedTry
 if %try_invalid% == 1 set try_invalid=0
 set /a max_try=%defined_try%+1
 goto :EOF

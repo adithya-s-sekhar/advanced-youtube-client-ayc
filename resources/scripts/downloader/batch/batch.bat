@@ -52,8 +52,8 @@ set /p job_name=Enter a job name:
 if "%job_name%" equ "" goto batchHome
 set job_name=%job_name:"=%
 if not exist "%loc%\%job_name%\" md "%loc%\%job_name%">NUL
-if not exist "%loc%\%job_name%\" set job_name_invalid=1 && goto batchHome
-if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 && goto batchJobTypeCheck
+if not exist "%loc%\%job_name%\" set job_name_invalid=1 & goto batchHome
+if exist "%loc%\%job_name%\%job_name%.txt" set batch_exists_true=1 & goto batchJobTypeCheck
 echo.>"%loc%\%job_name%\%job_name%.txt"
 
 :batchJobTypeConfirm
@@ -73,7 +73,7 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 01234 /n /m "Select download mode (0-4): "
-if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" && goto batchHome
+if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" & goto batchHome
 if %errorlevel% == 2 set job_type=0
 if %errorlevel% == 3 set job_type=1
 if %errorlevel% == 4 set job_type=2
@@ -184,8 +184,8 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set conf=-"f bv*+ba/b" && set batch_name_end=high && set format_chosen=batch && goto batchDownload
-if %errorlevel% == 3 set conf="-f wv*+wa/w" && set batch_name_end=low && set format_chosen=batch && goto batchDownload
+if %errorlevel% == 2 set conf=-"f bv*+ba/b" & set batch_name_end=high & set format_chosen=batch & goto batchDownload
+if %errorlevel% == 3 set conf="-f wv*+wa/w" & set batch_name_end=low & set format_chosen=batch & goto batchDownload
 if %errorlevel% == 4 goto batchCustomFormat
 
 

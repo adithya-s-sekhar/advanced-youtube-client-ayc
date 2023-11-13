@@ -62,13 +62,13 @@ call tui borderSmallHalf
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 set format_chosen=h264 && goto qualitySelector
-if %errorlevel% == 3 set format_chosen=vp9 && goto qualitySelector
-if %errorlevel% == 4 set format_chosen=av1 && goto qualitySelector
-if %errorlevel% == 5 set format_chosen=m4a && set conf="-f bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 6 set format_chosen=mp3 && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto :EOF
-if %errorlevel% == 7 set format_chosen=webm && set conf="-f bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 8 set conf="custom" && goto :EOF
+if %errorlevel% == 2 set format_chosen=h264 & goto qualitySelector
+if %errorlevel% == 3 set format_chosen=vp9 & goto qualitySelector
+if %errorlevel% == 4 set format_chosen=av1 & goto qualitySelector
+if %errorlevel% == 5 set format_chosen=m4a & set conf="-f bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 6 set format_chosen=mp3 & set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" & goto :EOF
+if %errorlevel% == 7 set format_chosen=webm & set conf="-f bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 8 set conf="custom" & goto :EOF
 
 :qualitySelector
 if %format_chosen% == h264 if %cookie_loaded% == 1 call tui windowSize %small_width% 30
@@ -121,37 +121,37 @@ if %format_chosen% == av1  goto choiceAv1
 echo.
 choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto :EOF
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" & goto :EOF
 
 :choiceVp9
 echo.
 choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" && goto :EOF
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" & goto :EOF
 
 :choiceAv1
 set error_format=av1
 echo.
 choice /c 0123456789 /n /m "Select Option (0-9): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]" && goto :EOF
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" && goto :EOF
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]" & goto :EOF
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" & goto :EOF

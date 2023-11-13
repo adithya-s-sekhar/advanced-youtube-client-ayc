@@ -55,10 +55,10 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 12345 /n /m "Select Option (1-5): "
-if %errorlevel% == 1 set conf="-f best[height<=360]" && goto download
-if %errorlevel% == 2 set conf="-f best[height<=480]" && goto download
-if %errorlevel% == 3 set conf="-f best[height<=720]" && goto download
-if %errorlevel% == 4 set conf="-f best[height<=1080]" && goto download
+if %errorlevel% == 1 set conf="-f best[height<=360]" & goto download
+if %errorlevel% == 2 set conf="-f best[height<=480]" & goto download
+if %errorlevel% == 3 set conf="-f best[height<=720]" & goto download
+if %errorlevel% == 4 set conf="-f best[height<=1080]" & goto download
 if %errorlevel% == 5 goto twitchCustomFormat
 
 
@@ -116,7 +116,7 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title).182s-%%(height).4sp-%%(id).11s.%%(ext)s" %custom_config_twitch% %cookies% "%url%" && set twitch_download_status=1 && goto :EOF
+%youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title).182s-%%(height).4sp-%%(id).11s.%%(ext)s" %custom_config_twitch% %cookies% "%url%" && set twitch_download_status=1 & goto :EOF
 set /a try=%try%+1
-if %try% GTR %max_try% set twitch_download_status=0 && goto :EOF
+if %try% GTR %max_try% set twitch_download_status=0 & goto :EOF
 goto downloadTried

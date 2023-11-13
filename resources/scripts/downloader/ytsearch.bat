@@ -58,13 +58,13 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 1234567 /n /m "Select Option (1-7): "
-if %errorlevel% == 1 set format_chosen=h264 && goto qualitySelector
-if %errorlevel% == 2 set format_chosen=vp9 && goto qualitySelector
-if %errorlevel% == 3 set format_chosen=av1 && goto qualitySelector
-if %errorlevel% == 4 set format_chosen=m4a && set conf="-f bestaudio[ext=m4a]" && goto download
-if %errorlevel% == 5 set format_chosen=mp3 && set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" && goto download
-if %errorlevel% == 6 set format_chosen=webm && set conf="-f bestaudio[ext=webm]" && goto download
-if %errorlevel% == 7 set format_chosen=cust && goto ytCustomFormat
+if %errorlevel% == 1 set format_chosen=h264 & goto qualitySelector
+if %errorlevel% == 2 set format_chosen=vp9 & goto qualitySelector
+if %errorlevel% == 3 set format_chosen=av1 & goto qualitySelector
+if %errorlevel% == 4 set format_chosen=m4a & set conf="-f bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 5 set format_chosen=mp3 & set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" & goto download
+if %errorlevel% == 6 set format_chosen=webm & set conf="-f bestaudio[ext=webm]" & goto download
+if %errorlevel% == 7 set format_chosen=cust & goto ytCustomFormat
 
 
 :qualitySelector
@@ -118,40 +118,40 @@ if %format_chosen% == av1  goto choiceAv1
 echo.
 choice /c 0123456 /n /m "Select Option (0-6): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]" && goto download
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]" && goto download
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" && goto download
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" && goto download
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto download
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto download
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=144]+worstaudio[ext=m4a]" & goto download
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=240]+worstaudio[ext=m4a]" & goto download
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" & goto download
 
 :choiceVp9
 echo.
 choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]" && goto download
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]" && goto download
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" && goto download
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=vp09][height<=144]+worstaudio[ext=webm]" & goto download
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=vp09][height<=240]+worstaudio[ext=webm]" & goto download
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=vp09][height<=360]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=vp09][height<=480]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=vp09][height<=720]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=vp09][height<=1080]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=vp09][height<=1440]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" & goto download
 
 :choiceAv1
 set error_format=av1
 echo.
 choice /c 0123456789 /n /m "Select Option (0-9): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]" && goto download
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]" && goto download
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]" && goto download
-if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" && goto download
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=144]+worstaudio[ext=webm]" & goto download
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=240]+worstaudio[ext=webm]" & goto download
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=360]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=480]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 6 set conf="-f bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 7 set conf="-f bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 8 set conf="-f bestvideo[vcodec^=av01][height<=1440]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 9 set conf="-f bestvideo[vcodec^=av01][height<=2160]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 10 set conf="-f bestvideo[vcodec^=av01][height<=4320]+bestaudio[ext=webm]" & goto download
 
 
 :ytCustomFormat
@@ -210,13 +210,13 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-MP4-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-VP9-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title).177s-AV1-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == m4a %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == mp3 %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == webm %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
-if %format_chosen% == cust %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 && goto :EOF
+if %format_chosen% == h264 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-MP4-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
+if %format_chosen% == vp9 %youtube_dl% %default_config% %conf% %aria2% --merge-output-format mp4 %subs% %thumbs% -P home:"%loc%" -o "%%(title).177s-VP9-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
+if %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 -P home:"%loc%" -o "%%(title).177s-AV1-%%(height).4sp-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
+if %format_chosen% == m4a %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
+if %format_chosen% == mp3 %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
+if %format_chosen% == webm %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
+if %format_chosen% == cust %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "ytsearch:%url%" && set youtube_download_status=1 & goto :EOF
 set /a try=%try%+1
-if %try% GTR %max_try% set youtube_download_status=0 && goto :EOF
+if %try% GTR %max_try% set youtube_download_status=0 & goto :EOF
 goto downloadTried

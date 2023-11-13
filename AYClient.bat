@@ -31,7 +31,7 @@ if not defined ayc.arg1 if %ytupd_onstart% == 1 start yt-dlpUpdatePopup
 
 :checkParameter
 if not defined ayc.arg3 goto checkParameter2
-if %ayc.arg3% equ "1" set cookie_loaded=0 && call toggleCookie
+if %ayc.arg3% equ "1" set cookie_loaded=0 & call toggleCookie
 :checkParameter2
 if %ayc.arg1%p equ p goto start
 if %ayc.arg1% equ "b" goto batch

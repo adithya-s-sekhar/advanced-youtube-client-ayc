@@ -57,8 +57,8 @@ call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 set format_chosen=twitch && set conf="-f best[height<=360]" && set batch_name_end=360p && goto :EOF
-if %errorlevel% == 3 set format_chosen=twitch && set conf="-f best[height<=480]" && set batch_name_end=480p && goto :EOF
-if %errorlevel% == 4 set format_chosen=twitch && set conf="-f best[height<=720]" && set batch_name_end=720p && goto :EOF
-if %errorlevel% == 5 set format_chosen=twitch && set conf="-f best[height<=1080]" && set batch_name_end=1080p && goto :EOF
-if %errorlevel% == 6 set format_chosen=twitch && set conf="custom" && goto :EOF
+if %errorlevel% == 2 set format_chosen=twitch & set conf="-f best[height<=360]" & set batch_name_end=360p & goto :EOF
+if %errorlevel% == 3 set format_chosen=twitch & set conf="-f best[height<=480]" & set batch_name_end=480p & goto :EOF
+if %errorlevel% == 4 set format_chosen=twitch & set conf="-f best[height<=720]" & set batch_name_end=720p & goto :EOF
+if %errorlevel% == 5 set format_chosen=twitch & set conf="-f best[height<=1080]" & set batch_name_end=1080p & goto :EOF
+if %errorlevel% == 6 set format_chosen=twitch & set conf="custom" & goto :EOF

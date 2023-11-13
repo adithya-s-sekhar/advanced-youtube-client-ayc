@@ -54,5 +54,5 @@ echo "%settings_dir%">"%aycdata%\dir.txt"
 set loc="%settings_dir%"
 set loc=%loc:"=%
 if not exist "%loc%\" md "%loc%"
-if not exist "%loc%\" set loc_invalid=1 && goto settingsChangeDir
+if not exist "%loc%\" set loc_invalid=1 & goto settingsChangeDir
 goto :EOF

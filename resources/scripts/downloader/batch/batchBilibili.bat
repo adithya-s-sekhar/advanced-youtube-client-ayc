@@ -57,11 +57,11 @@ call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 set format_chosen=b_h264 && goto qualitySelector
-if %errorlevel% == 3 set format_chosen=b_hevc && goto qualitySelector
-if %errorlevel% == 4 set format_chosen=b_av1 && goto qualitySelector
-if %errorlevel% == 5 set format_chosen=b_aud && goto bilibiliM4a
-if %errorlevel% == 6 set format_chosen=b_custom && set conf="custom" && goto :EOF
+if %errorlevel% == 2 set format_chosen=b_h264 & goto qualitySelector
+if %errorlevel% == 3 set format_chosen=b_hevc & goto qualitySelector
+if %errorlevel% == 4 set format_chosen=b_av1 & goto qualitySelector
+if %errorlevel% == 5 set format_chosen=b_aud & goto bilibiliM4a
+if %errorlevel% == 6 set format_chosen=b_custom & set conf="custom" & goto :EOF
 
 :qualitySelector
 call tui windowSize %small_width% 28
@@ -104,29 +104,29 @@ if %format_chosen% == av1  goto choiceAv1
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" && goto :EOF
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" & goto :EOF
 
 :choiceHevc
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]" && goto :EOF
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=hev1][height<=360]+0/bestvideo[vcodec^=hev1][height<=360]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=hev1][height<=480]+1/bestvideo[vcodec^=hev1][height<=480]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=hev1][height<=720]+1/bestvideo[vcodec^=hev1][height<=720]+bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=hev1][height<=1080]+2/bestvideo[vcodec^=hev1][height<=1080]+bestaudio[ext=m4a]" & goto :EOF
 
 :choiceAv1
 set error_format=av1
 echo.
 choice /c 01234 /n /m "Select Option (0-4): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]" && goto :EOF
+if %errorlevel% == 2 set conf="-f bestvideo[vcodec^=av01][height<=360]+0/bestvideo[vcodec^=av01][height<=360]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 3 set conf="-f bestvideo[vcodec^=av01][height<=480]+1/bestvideo[vcodec^=av01][height<=480]+worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 4 set conf="-f bestvideo[vcodec^=av01][height<=720]+1/bestvideo[vcodec^=av01][height<=720]+bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 5 set conf="-f bestvideo[vcodec^=av01][height<=1080]+2/bestvideo[vcodec^=av01][height<=1080]+bestaudio[ext=m4a]" & goto :EOF
 
 
 :batchBilibiliM4a
@@ -160,6 +160,6 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto formatSelector
-if %errorlevel% == 2 set aud_end=lq && set conf="-f worstaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 3 set aud_end=mq && set conf="-f 1/bestaudio[ext=m4a]" && goto :EOF
-if %errorlevel% == 4 set aud_end=hq && set conf="-f bestaudio[ext=m4a]" && goto :EOF
+if %errorlevel% == 2 set aud_end=lq & set conf="-f worstaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 3 set aud_end=mq & set conf="-f 1/bestaudio[ext=m4a]" & goto :EOF
+if %errorlevel% == 4 set aud_end=hq & set conf="-f bestaudio[ext=m4a]" & goto :EOF

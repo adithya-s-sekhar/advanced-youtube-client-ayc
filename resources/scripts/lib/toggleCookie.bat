@@ -15,7 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 if %cookie_loaded% == 0 (
-    if not exist cookies.txt set no_cookie_found=1 && goto :EOF
+    if not exist cookies.txt set no_cookie_found=1 & goto :EOF
     call cookieLoader load
     goto :EOF
 )
