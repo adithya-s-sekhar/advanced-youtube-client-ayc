@@ -98,7 +98,6 @@ set "try="
 set try=1
 set conf=%conf:"=%
 if %aria2_status% == 1 set aria2=--external-downloader aria2c
-call siteFixes "%url%"
 
 :downloadTried
 call tui windowSize %small_width% 36

@@ -69,7 +69,6 @@ if %job_type% == 3 if not %twitch_link% == 1 (
     echo.
     goto batchAddLinksLoop
 )
-call siteFixes "%batch_link_tmp%"
 echo %batch_link_tmp%>>"%loc%\%job_name%\%job_name%.txt"
 set /a batch_link_counter=%batch_link_counter%+1
 echo Link Saved.
