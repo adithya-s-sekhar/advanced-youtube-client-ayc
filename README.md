@@ -65,8 +65,11 @@ Quickkeys to take you to specific sections of AYC. 'u' takes you to yt-dlp updat
 
 ## Instructions
 
-**These instructions only applies for v4.13 and earlier releases. If you're on v4.14 or newer, you don't need to do it.**
-If AYC redirected you here, that means it failed to do it automatically. Follow the instructions to setup manually.
+### These instructions only applies for v4.13 and older releases!
+
+**If you're on v4.14 or newer, you don't need to do it, everything is set up automatically! :)**
+
+**If a newer AYC redirected you here, that means it failed to do the setup automatically. Follow the instructions to setup manually.**
 
 **Warning: Windows 11 may undo these changes randomly without even asking you. If AYC ever appears broken, redo the instructions from this guide.**
 
@@ -78,11 +81,15 @@ If AYC redirected you here, that means it failed to do it automatically. Follow 
     - Press `Ctrl + ,` (comma) to open **Settings**.
     - Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
     - You can now close this terminal.
-2. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field and press Enter.
+2. Copy the below magic phrase and paste into AYC. This is to ensure you actually read these instructions. [Why?](#4-why-do-i-have-to-do-magic-phrases-only-applies-to-ayc-v413)
+
+``Mauris egestas imperdiet sem in imperdiet``
 
 ### Windows 7/8/8.1 users
 
-1. Copy the magic phrase from [here](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/blob/main/magic.txt#L10), go back to AYC, and paste it into the field and press Enter.
+1. Copy the below magic phrase and paste into AYC. This is to ensure you actually read these instructions. [Why?](#4-why-do-i-have-to-do-magic-phrases-only-applies-to-ayc-v413)
+
+``Mauris egestas imperdiet sem in imperdiet``
 
 ## Frequently asked questions (FAQ)
 
@@ -109,7 +116,7 @@ Be advised since then antivirus softwares have improved to detect that these are
 
 MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
 
-### 4. Why do I have to do magic phrases and others? (Only applies to AYC <v4.13)
+### 4. Why do I have to do magic phrases? (Only applies to AYC <v4.13)
 
 AYC uses a command `mode` to dynamically change window size to fit and display all it's content. This works on **Windows Console Host**, the application which ran .bat batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
 
