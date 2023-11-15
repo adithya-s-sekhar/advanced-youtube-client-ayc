@@ -1,6 +1,6 @@
 <div align="center">
 
-![256](https://user-images.githubusercontent.com/60822601/115324256-36724180-a1a7-11eb-929c-c0d1221b7b84.png)
+<img src="https://user-images.githubusercontent.com/60822601/115324256-36724180-a1a7-11eb-929c-c0d1221b7b84.png" width="200">
 
 # Advanced Youtube Client - AYC
 
@@ -8,27 +8,27 @@
 
 **!** Test builds are now available on [Telegram](https://t.me/s/ayc_news). Try latest features and fixes before everyone else.
 
-![Screenshots](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png" width="800">
 
 Now available in various colors!!
 
-![Search](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/ytsearch.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/ytsearch.png" width="800">
 
-![Search](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/ytsearch2.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/ytsearch2.png" width="800">
 
 Download from youtube without visiting the website
 
-![Search](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/youtube.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/youtube.png" width="800">
 
-![Search](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/twitch.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/twitch.png" width="800">
 
-![Search](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/bilibili.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/bilibili.png" width="800">
 
 Or just paste URLs as normal
 
-![Search](https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/u.png)
+<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/u.png" width="800">
 
-Quickkeys to take you to specific sections of AYC. 'u' takes you to yt-dlp update settings. There are more spread throughout AYC. Find them all!
+Quickkeys to take you to specific sections of AYC. '**u**' takes you to yt-dlp update settings. There are more spread throughout AYC. Find them all!
 
 </div>
 
@@ -71,7 +71,7 @@ Quickkeys to take you to specific sections of AYC. 'u' takes you to yt-dlp updat
 
 **If a newer AYC redirected you here, that means it failed to do the setup automatically. Follow the instructions to setup manually.**
 
-**Warning: Windows 11 may undo these changes randomly without even asking you. If AYC ever appears broken, redo the instructions from this guide.**
+**Warning: Windows 11 may undo these changes randomly without ever asking you. If AYC ever appears broken, redo the instructions from this guide.**
 
 ### Windows 10/11 users
 
@@ -81,13 +81,13 @@ Quickkeys to take you to specific sections of AYC. 'u' takes you to yt-dlp updat
     - Press `Ctrl + ,` (comma) to open **Settings**.
     - Change your **Default terminal application** to `Windows Console Host` and click **Save**. 
     - You can now close this terminal.
-2. Copy the below magic phrase and paste into AYC. This is to ensure you actually read these instructions. [Why?](#4-why-do-i-have-to-do-magic-phrases-only-applies-to-ayc-v413)
+2. Copy the below magic phrase and paste into AYC. This is to ensure you actually read these instructions. [Why?](#5-why-do-i-have-to-do-magic-phrases-only-applies-to-ayc-v413)
 
 ``Mauris egestas imperdiet sem in imperdiet``
 
 ### Windows 7/8/8.1 users
 
-1. Copy the below magic phrase and paste into AYC. This is to ensure you actually read these instructions. [Why?](#4-why-do-i-have-to-do-magic-phrases-only-applies-to-ayc-v413)
+1. Copy the below magic phrase and paste into AYC. This is to ensure you actually read these instructions. [Why?](#5-why-do-i-have-to-do-magic-phrases-only-applies-to-ayc-v413)
 
 ``Mauris egestas imperdiet sem in imperdiet``
 
@@ -95,16 +95,27 @@ Quickkeys to take you to specific sections of AYC. 'u' takes you to yt-dlp updat
 
 ### 1. How to resume a download that got cancelled?
 
-Simply paste the url again and pick the same quality again. 
-AYC is not a download manager, it does not track your downloads. But it keeps all partial downloads in it's temporary folder and you can resume them anytime you want.
+Simply paste the url again and pick the same quality again. All partial downloads are kept in a temporary folder which you can resume anytime you want.
 
-### 2. How to load cookies.txt?
+### 2. How to add my own yt-dlp options?
 
-AYC like yt-dlp supports loading cookies from a cookies.txt file. All you have to do is place the cookies.txt file inside the ayc folder and start AYC. It'll auto detect it and ask you whether you want to load it or not.
+You can add these in **'ayc\resources\scripts\custom.bat'** for each type of downloads. Instructions are in the file itself.
 
-Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option in custom.bat in **scripts** folder. Currently custom.bat supports setting cookies for youtube links, for bilibili links and every other links.
+### 3. How to load cookies to download from sites that need an account?
 
-### 3. Why is the installation so complicated?
+AYC like yt-dlp supports loading cookies from a cookies.txt file or your browser. 
+
+For cookies.txt, all you have to do is place the cookies.txt file inside the ayc folder and start AYC. It'll auto detect it and ask you whether you want to load it or not.
+
+For cookies from your browser, you need to add the following to the appropriate variable in **'ayc\resources\scripts\custom.bat'**
+
+``--cookies-from-browser chrome``
+
+Supported browsers: 'brave', 'chrome', 'chromium', 'edge', 'opera', 'vivaldi', 'firefox', 'safari'.
+
+Cookies.txt is loaded globally for all downloads. If you want to set cookies per site, you can add the cookie option per site in **'ayc\resources\scripts\custom.bat'**.
+
+### 4. Why is the installation so complicated?
 
 AYC used to be compiled to exe files. These exe files extracted the batch script and then ran it which was easier for the user. But one day antiviruses everywhere started flagging this behaviour.
 
@@ -116,21 +127,21 @@ Be advised since then antivirus softwares have improved to detect that these are
 
 MEGA Archive Link: [https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ)
 
-### 4. Why do I have to do magic phrases? (Only applies to AYC <v4.13)
+### 5. Why do I have to do magic phrases? (Only applies to AYC <v4.13)
 
-AYC uses a command `mode` to dynamically change window size to fit and display all it's content. This works on **Windows Console Host**, the application which ran .bat batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
+AYC uses a command `mode` to dynamically change window size to fit and display all it's content. This works on **Windows Console Host**, the application which ran batch scripts for 30 years since Windows NT was first released and works on everything upto Windows 11.
 
-Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the features it's missing is `mode`.
+Recently Microsoft's been trying to push the newer **Windows Terminal** to it's users on Windows 10 and 11. But this is not feature complete. One of the features it's missing at the moment is `mode` or any ability for the script to control window and buffer size.
 
 So on these computers users have to manually change their setttings to allow batch scripts to open in Windows Console Host. But people downloading this from other websites and even from here skipped over the instructions to do that and thought the script was broken. 
 
 So AYC now makes all users go through this once when they open it for the first time.
 
-### 5. Where are the old releases?
+### 6. Where are the old releases?
 
-AYC started out on Sourceforge in 2016, it's only been on Github since 2021. Part of the old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/files/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ) and always updated each release. The archive is still missing some early files from v2 era. I couldn't recover them.
+AYC started out on Sourceforge in 2016, it has only been on Github since 2021. Part of the old releases are available on the [Sourceforge page](https://sourceforge.net/projects/advanced-youtube-client-ayc/files/) and the complete archive is on [MEGA](https://mega.nz/folder/HgtFmBxQ#5Qd4j73u_O5CZIomc3S3AQ) and always updated each release. The archive is still missing some early files from v2 era. I couldn't recover them.
 
-### 6. How to remove AYC properly?
+### 7. How to remove AYC properly?
 
 AYC can be removed by simply deleting the ayc folder. But do a reset first by going into AYC > Settings > Reset. This is needed to remove desktop, start menu shortcuts.
 
@@ -142,9 +153,9 @@ AYC can be removed by simply deleting the ayc folder. But do a reset first by go
 
 [AYC on VideoHelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC)
 
-[AYC on Softpedia](https://www.softpedia.com/get/Internet/Download-Managers/AYC.shtml)
-
 [AYC on Softaro](https://softaro.net/advanced-youtube-client-ayc/)
+
+[AYC on Softpedia](https://www.softpedia.com/get/Internet/Download-Managers/AYC.shtml)
 
 [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
