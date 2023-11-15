@@ -18,6 +18,13 @@
 call tui windowSize %small_width% 34
 color %theme_colors%
 title AYC Settings
+set sub_lang=%sub_lang: =%
+set sub_lang_display=%sub_lang%
+if "%sub_lang%" == "en" set sub_lang_display=English
+if "%sub_lang%" == "zh" set sub_lang_display=Chinese
+if "%sub_lang%" == "ru" set sub_lang_display=Russian
+if "%sub_lang%" == "id" set sub_lang_display=Indonesian
+if "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
 echo.
@@ -43,7 +50,7 @@ if %thumbs_status% == 1 echo        [Enabled]
 echo.
 echo  (6) - Subtitles
 if %subs_status% == 0 echo        [Disabled]
-if %subs_status% == 1 echo        [Enabled: %sub_lang%]
+if %subs_status% == 1 echo        [Enabled: %sub_lang_display%]
 echo.
 echo  (7) - Change theme (t)
 if %theme_status% == 0 echo        [Dark]
