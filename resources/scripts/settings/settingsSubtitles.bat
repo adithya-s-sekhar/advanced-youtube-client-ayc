@@ -154,6 +154,8 @@ call tui borderSmallHalf
 echo.
 set /p sub_lang_tmp=Enter language code: 
 if not defined sub_lang_tmp goto :EOF
+set sub_lang_tmp=%sub_lang_tmp: =%
+if not defined sub_lang_tmp goto :EOF
 set sub_lang=%sub_lang_tmp%
 set sub_lang=%sub_lang: =%
 call :saveSubLang
