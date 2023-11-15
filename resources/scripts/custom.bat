@@ -7,7 +7,6 @@
 :: Each variable corresponds to each type of download AYC supports.
 ::
 :: If you're not using it, leave a single space after the equal sign to ensure it doesn't crash.
-::
 
 :: Individual downloaders
 
