@@ -18,7 +18,7 @@ set quickKey.arg1=%~1
 
 set quickkey_validator=0
 
-echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<h\>" /c:"\<m\>" /c:"\<o\>" /c:"\<s\>" /c:"\<t\>" /c:"\<u\>" > nul
+echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<h\>" /c:"\<m\>" /c:"\<o\>" /c:"\<s\>" /c:"\<t\>" /c:"\<u\>" /c:"\<reset\>" > nul
 if %errorlevel% == 0 (
     set quickkey_validator=1
 ) else (
@@ -45,4 +45,6 @@ if "%quickKey.arg1%" equ "t" call settingsToggles changeTheme & goto :EOF
 if "%quickKey.arg1%" equ "T" call settingsToggles changeTheme & goto :EOF
 if "%quickKey.arg1%" equ "u" call settingsYtUpdate & goto :EOF
 if "%quickKey.arg1%" equ "U" call settingsYtUpdate & goto :EOF
+if "%quickKey.arg1%" equ "reset" call settingsReset & goto :EOF
+if "%quickKey.arg1%" equ "reset" call settingsReset & goto :EOF
 goto :EOF

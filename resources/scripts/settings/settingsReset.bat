@@ -15,15 +15,22 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :settingsReset
-call tui windowSize %small_width% 20
-color 0C
+call tui windowSize %small_width% 26
+call themer
 title Reset AYC
 cls
 call tui bannerSmall
 echo.
-echo  You are about to reset AYC to it's default settings.
+echo  - You are about to reset AYC to it's default settings.
 echo.
-echo  This should fix any issues caused by incorrect or corrupted settings.
+echo  - This should fix any issues caused by incorrect or 
+echo    corrupted settings.
+echo.
+echo  - Hint: You can enter 'reset' in url bar to access this 
+echo    menu if settings cannot be opened.
+echo.
+echo  - Hint: If AYC cannot be opened, delete 
+echo    "ayc\resources\data" folder.
 echo.
 call tui borderSmall
 echo.
@@ -63,5 +70,6 @@ call tui bannerSmall
 echo.
 echo  AYC reset succesfully.
 echo.
-timeout /t 5 /nobreak
+echo  Closing in 5 seconds.
+timeout /t 5 /nobreak>nul
 exit
