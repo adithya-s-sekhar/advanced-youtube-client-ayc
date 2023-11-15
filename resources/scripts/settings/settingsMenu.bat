@@ -23,7 +23,6 @@ set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese
 if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "id" set sub_lang_display=Indonesian
 if "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall

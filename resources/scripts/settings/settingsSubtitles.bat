@@ -22,11 +22,11 @@ if "%subs_status%" == "0" (
 )
 color %theme_colors%
 title Subtitle settings
+set sub_lang=%sub_lang: =%
 set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese
 if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "id" set sub_lang_display=Indonesian
 if "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
@@ -82,14 +82,14 @@ if %errorlevel% == 3 call settingsToggles ChangeSubType & goto settingsSubtitles
 if %errorlevel% == 4 call :subsLanguage & goto settingsSubtitles
 
 :subsLanguage
-call tui windowSize %small_width% 31
+call tui windowSize %small_width% 29
 color %theme_colors%
 title Subtitles: Change Lanuage
+set sub_lang=%sub_lang: =%
 set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese
 if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "id" set sub_lang_display=Indonesian
 if "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
@@ -106,28 +106,25 @@ echo  (2) - Chinese (zh)
 echo.
 echo  (3) - Russian (ru)
 echo.
-echo  (4) - Indonesian (id)
+echo  (4) - Czech (cs)
 echo.
-echo  (5) - Czech (cs)
+echo  (5) - Show all language codes (web)
 echo.
-echo  (6) - Show all language codes (web)
+echo  (6) - Select all languages (Not recommended)
 echo.
-echo  (7) - Select all languages (Not recommended)
-echo.
-echo  (8) - Enter language code manually
+echo  (7) - Enter language code manually
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 012345678 /n /m "Select Option (0-8): "
+choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
 if %errorlevel% == 2 set sub_lang=en & call :saveSubLang & goto :EOF
 if %errorlevel% == 3 set sub_lang=zh & call :saveSubLang & goto :EOF
 if %errorlevel% == 4 set sub_lang=ru & call :saveSubLang & goto :EOF
-if %errorlevel% == 5 set sub_lang=id & call :saveSubLang & goto :EOF
-if %errorlevel% == 6 set sub_lang=cs & call :saveSubLang & goto :EOF
-if %errorlevel% == 7 start "" "https://www.andiamo.co.uk/resources/iso-language-codes/" & goto subsLanguage
-if %errorlevel% == 8 set sub_lang=all & call :saveSubLang & goto :EOF
-if %errorlevel% == 9 call :customSubLang & goto subsLanguage
+if %errorlevel% == 5 set sub_lang=cs & call :saveSubLang & goto :EOF
+if %errorlevel% == 6 start "" "https://www.andiamo.co.uk/resources/iso-language-codes/" & goto subsLanguage
+if %errorlevel% == 7 set sub_lang=all & call :saveSubLang & goto :EOF
+if %errorlevel% == 8 call :customSubLang & goto subsLanguage
 goto subsLanguage
 
 :customSubLang
@@ -135,11 +132,11 @@ set "sub_lang_tmp="
 call tui windowSize %small_width% 19
 color %theme_colors%
 title Subtitles: Custom lang code
+set sub_lang=%sub_lang: =%
 set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese
 if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "id" set sub_lang_display=Indonesian
 if "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
