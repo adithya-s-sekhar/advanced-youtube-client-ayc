@@ -17,9 +17,9 @@
 :qualitySelector
 set generic_download_status=0
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 26
-) else (
     call tui windowSize %small_width% 24
+) else (
+    call tui windowSize %small_width% 22
 )
 color %theme_colors%
 title Link Recieved
@@ -27,8 +27,6 @@ cls
 call tui bannerSmall
 echo.
 echo  URL: %url%
-echo.
-echo  Non-YouTube link detected.
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
