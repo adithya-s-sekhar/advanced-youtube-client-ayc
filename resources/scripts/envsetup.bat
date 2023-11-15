@@ -114,8 +114,21 @@ if %thumbs_status% == 1 set thumbs=--embed-thumbnail
 if not exist "%aycdata%\subs_status.txt" echo "0">"%aycdata%\subs_status.txt"
 set /p subs_status=<"%aycdata%\subs_status.txt"
 set subs_status=%subs_status:"=%
-if %subs_status% == 0 set "subs="
-if %subs_status% == 1 set subs=--write-auto-sub --embed-subs
+
+if not exist "%aycdata%\sub_type.txt" echo "1">"%aycdata%\sub_type.txt"
+set /p sub_type=<"%aycdata%\sub_type.txt"
+set sub_type=%sub_type:"=%
+
+if not exist "%aycdata%\sub_lang.txt" echo "en">"%aycdata%\sub_lang.txt"
+set /p sub_lang=<"%aycdata%\sub_lang.txt"
+set sub_lang=%sub_lang:"=%
+set sub_lang=%sub_lang: =%
+
+if %subs_status% == 0 (
+    call :subs_disabled
+) else (
+    call :subs_enabled
+)
 
 if not exist "%aycdata%\youtube_dl_version.txt" echo "unknown">"%aycdata%\youtube_dl_version.txt"
 set /p youtube_dl_version=<"%aycdata%\youtube_dl_version.txt"
@@ -125,6 +138,17 @@ if not exist "%aycdata%\ytupd_onstart.txt" echo "1">"%aycdata%\ytupd_onstart.txt
 set /p ytupd_onstart=<"%aycdata%\ytupd_onstart.txt"
 set ytupd_onstart=%ytupd_onstart:"=%
 
-set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters --no-mtime --color %yt-dlp_color% -P temp:"%tmp_loc%"
+set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters --no-mtime --color %yt-dlp_color% -P temp:"%tmp_loc%" --convert-subs srt
 
+goto :EOF
+
+:subs_disabled
+set "subs="
+goto :EOF
+
+:subs_enabled
+if "%sub_type%" == "1" set subs=--write-auto-sub --write-subs
+if "%sub_type%" == "2" set subs=--write-auto-sub --embed-subs
+
+set subs=%subs% --sub-langs %sub_lang%
 goto :EOF

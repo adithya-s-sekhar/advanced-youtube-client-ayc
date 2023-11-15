@@ -93,6 +93,16 @@ if %ytupd_onstart% == 1 (
     goto :EOF
 )
 
+:toggleChangeSubType
+if %sub_type% == 1 (
+    set sub_type=2
+    goto :EOF
+)
+if %sub_type% == 2 (
+    set sub_type=1
+    goto :EOF
+)
+
 :saveChangeAria2
 echo "%aria2_status%">"%aycdata%\aria2_status.txt"
 goto :EOF
@@ -112,4 +122,8 @@ goto :EOF
 
 :saveYtUpdateOnStart
 echo "%ytupd_onstart%">"%aycdata%\ytupd_onstart.txt"
+goto :EOF
+
+:saveChangeSubType
+echo "%sub_type%">"%aycdata%\sub_type.txt"
 goto :EOF

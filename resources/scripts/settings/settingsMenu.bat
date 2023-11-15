@@ -41,9 +41,9 @@ echo  (5) - Embed thumbnails
 if %thumbs_status% == 0 echo        [Disabled]
 if %thumbs_status% == 1 echo        [Enabled]
 echo.
-echo  (6) - Embed subtitles
+echo  (6) - Subtitles
 if %subs_status% == 0 echo        [Disabled]
-if %subs_status% == 1 echo        [Enabled]
+if %subs_status% == 1 echo        [Enabled: %sub_lang%]
 echo.
 echo  (7) - Change theme (t)
 if %theme_status% == 0 echo        [Dark]
@@ -64,7 +64,7 @@ if %errorlevel% == 3 call settingsChangeDefinedTry
 if %errorlevel% == 4 call settingsYtUpdate
 if %errorlevel% == 5 call settingsToggles ChangeAria2
 if %errorlevel% == 6 call settingsToggles ChangeThumbs
-if %errorlevel% == 7 call settingsToggles ChangeSubs
+if %errorlevel% == 7 call settingsSubtitles
 if %errorlevel% == 8 call settingsToggles ChangeTheme
 if %errorlevel% == 9 call settingsReset
 goto :settingsMenu
