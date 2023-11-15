@@ -147,8 +147,10 @@ set "subs="
 goto :EOF
 
 :subs_enabled
-if "%sub_type%" == "1" set subs=--write-auto-sub --write-subs
-if "%sub_type%" == "2" set subs=--write-auto-sub --embed-subs
-
+set "subs="
+set subs=--write-auto-sub
+:: comment the above line to disable auto generated subtitles
+if "%sub_type%" == "1" set subs=%subs% --write-subs
+if "%sub_type%" == "2" set subs=%subs% --embed-subs
 set subs=%subs% --sub-langs %sub_lang%
 goto :EOF
