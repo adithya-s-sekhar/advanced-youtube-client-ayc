@@ -24,25 +24,25 @@ if "%cleaner.arg1%" == "tws" call :cleanTrailingWhitespace & goto :EOF
 goto :EOF
 
 :cleanDoubleQuote
-set input=%input:"=%
+set cleaner_input=%cleaner_input:"=%
 goto :EOF
 
 :cleanWhitespace
-set input=%input: =%
+set cleaner_input=%cleaner_input: =%
 goto :EOF
 
 :cleanLeadingWhitespace
 :cleanLeadingWhitespaceCheck
-if "%input:~0,1%"==" " goto cleanLeadingWhitespaceClean
+if "%cleaner_input:~0,1%"==" " goto cleanLeadingWhitespaceClean
 goto :EOF
 :cleanLeadingWhitespaceClean
-set "input=%input:~1%"
+set "cleaner_input=%cleaner_input:~1%"
 goto cleanLeadingWhitespaceCheck
 
 :cleanTrailingWhitespace
 :cleanTrailingWhitespaceCheck
-if "%input:~-1%"==" " goto cleanTrailingWhitespaceClean
+if "%cleaner_input:~-1%"==" " goto cleanTrailingWhitespaceClean
 goto :EOF
 :cleanTrailingWhitespaceClean
-set "input=%input:~0,-1%"
+set "cleaner_input=%cleaner_input:~0,-1%"
 goto cleanTrailingWhitespaceCheck
