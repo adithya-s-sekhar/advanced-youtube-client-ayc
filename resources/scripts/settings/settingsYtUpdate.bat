@@ -65,10 +65,9 @@ call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 call :ytUpdateStable
-if %errorlevel% == 3 call :ytUpdateNightly
-if %errorlevel% == 4 call settingsToggles YtUpdateOnStart
-goto update
+if %errorlevel% == 2 call :ytUpdateStable & goto update
+if %errorlevel% == 3 call :ytUpdateNightly & goto update
+if %errorlevel% == 4 call settingsToggles YtUpdateOnStart & goto update
 
 
 :ytUpdateStable
