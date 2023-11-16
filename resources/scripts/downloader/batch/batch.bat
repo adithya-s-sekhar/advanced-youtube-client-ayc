@@ -216,7 +216,7 @@ if %url_invalid% == 1 (
     echo %url_validation_msg%
     echo.
 )
-set cleaner_input=null
+call cleaner "input"
 set /p cleaner_input=Sample URL: 
 
 call cleaner "dq"
@@ -262,7 +262,7 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using + symbol.
 echo.
-set cleaner_input=null
+call cleaner "input"
 set /p cleaner_input=Choose ID (green color in the list above): 
 
 call cleaner "dw"

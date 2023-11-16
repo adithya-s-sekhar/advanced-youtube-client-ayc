@@ -80,6 +80,8 @@ if %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
+
+call cleaner "input"
 set /p cleaner_input="ayc:/> "
 
 call cleaner "dq"
@@ -90,7 +92,6 @@ call cleaner "lws"
 if not defined cleaner_input goto start
 call cleaner "tws"
 if not defined cleaner_input goto start
-
 set url=%cleaner_input%
 
 set no_cookie_found=0

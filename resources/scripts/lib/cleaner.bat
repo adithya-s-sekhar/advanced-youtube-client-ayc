@@ -16,11 +16,17 @@
 
 set cleaner.arg1=%~1
 
+if "%cleaner.arg1%" == "input" call :cleanerInput & goto :EOF
+
 if "%cleaner.arg1%" == "dq" call :cleanDoubleQuote & goto :EOF
 if "%cleaner.arg1%" == "ws" call :cleanWhitespace & goto :EOF
 if "%cleaner.arg1%" == "lws" call :cleanLeadingWhitespace & goto :EOF
 if "%cleaner.arg1%" == "tws" call :cleanTrailingWhitespace & goto :EOF
 
+goto :EOF
+
+:cleanerInput
+set cleaner_input=null
 goto :EOF
 
 :cleanDoubleQuote

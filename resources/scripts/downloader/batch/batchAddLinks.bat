@@ -30,7 +30,7 @@ call tui borderSmallHalf
 echo.
 
 :batchAddLinksLoop
-set cleaner_input=null
+call cleaner "input"
 set /p cleaner_input=Paste Link: 
 
 call cleaner "dq"
