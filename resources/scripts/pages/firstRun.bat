@@ -85,10 +85,14 @@ call tui borderMediumHalf
 :firstRun2
 set "magic_phrase_input="
 echo.
-set /p magic_phrase_input=Paste magic phrase: 
-set magic_phrase_input=%magic_phrase_input: =%
-if "%magic_phrase_input%" equ "" goto firstRun2
-if "%magic_phrase_input%" equ " =" goto firstRun2
+call cleaner "input"
+set /p cleaner_input=Paste magic phrase: 
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto firstRun2
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto firstRun2
+if "%cleaner_input%" equ " =" goto firstRun2
+set magic_phrase_input=%cleaner_input%
 if not "%magic_phrase_input%" == "Maurisegestasimperdietseminimperdiet" (
     echo.
     echo  ERROR: Invalid magic phrase. Please Try again.
