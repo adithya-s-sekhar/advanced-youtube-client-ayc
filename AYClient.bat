@@ -48,6 +48,7 @@ if %ayc.arg2% == "twitch" goto twitch
 :start
 call tui windowSize %medium_width% 23
 color %theme_colors%
+set input=null
 set url=null
 title Saving to %loc%
 cls
@@ -79,35 +80,18 @@ if %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
-set /p url="ayc:/> "
+set /p input="ayc:/> "
 
-set url=%url:"=%
-if "%url%" equ "null" goto start
-if "%url%" equ "" goto start
-for /f "tokens=1 delims=&" %%a in ("%url%") do (
-  set url=%%a
-)
-set url=%url:"=%
-if "%url%" equ "" goto start
-if "%url%" equ " =" goto start
+call cleaner "dq"
+if "%input%" equ "null" goto start
+if "%input%" equ "" goto start
+if "%input%" equ " =" goto start
+call cleaner "lws"
+if not defined input goto start
+call cleaner "tws"
+if not defined input goto start
 
-:cleaner_check
-if "%url:~0,1%"==" " goto cleaner_clean
-goto cleaner_exit
-:cleaner_clean
-set "url=%url:~1%"
-goto cleaner_check
-:cleaner_exit
-if not defined url goto start
-
-:cleaner2_check
-if "%url:~-1%"==" " goto cleaner2_clean
-goto cleaner2_exit
-:cleaner2_clean
-set "url=%url:~0,-1%"
-goto cleaner2_check
-:cleaner2_exit
-if not defined url goto start
+set url=%input%
 
 set no_cookie_found=0
 
