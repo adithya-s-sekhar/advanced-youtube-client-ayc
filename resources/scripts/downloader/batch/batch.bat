@@ -216,35 +216,15 @@ if %url_invalid% == 1 (
     echo %url_validation_msg%
     echo.
 )
-set /p batch_custom_format_url=Sample URL: 
+set cleaner_input=null
+set /p cleaner_input=Sample URL: 
 
-set batch_custom_format_url=%batch_custom_format_url:"=%
-if "%batch_custom_format_url%" equ "null" goto batchQuickQualitySelector
-if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
-for /f "tokens=1 delims=&" %%a in ("%batch_custom_format_url%") do (
-  set batch_custom_format_url=%%a
-)
-set batch_custom_format_url=%batch_custom_format_url:"=%
-if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
-if "%batch_custom_format_url%" equ " =" goto batchQuickQualitySelector
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto batchQuickQualitySelector
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto batchQuickQualitySelector
 
-:cleaner_check
-if "%batch_custom_format_url:~0,1%"==" " goto cleaner_clean
-goto cleaner_exit
-:cleaner_clean
-set "batch_custom_format_url=%batch_custom_format_url:~1%"
-goto cleaner_check
-:cleaner_exit
-if not defined batch_custom_format_url goto batchQuickQualitySelector
-
-:cleaner2_check
-if "%batch_custom_format_url:~-1%"==" " goto cleaner2_clean
-goto cleaner2_exit
-:cleaner2_clean
-set "batch_custom_format_url=%batch_custom_format_url:~0,-1%"
-goto cleaner2_check
-:cleaner2_exit
-if not defined batch_custom_format_url goto batchQuickQualitySelector
+set batch_custom_format_url=%cleaner_input%
 
 call linkValidator "%batch_custom_format_url%"
 if %link_validator% == 1 (
@@ -282,12 +262,16 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using + symbol.
 echo.
-set /p batch_custom_qual=Choose ID (green color in the list above): 
-set batch_custom_qual=%batch_custom_qual: =%
-if "%batch_custom_qual%" equ "" goto batchCustomFormat
-if "%batch_custom_qual%" equ " =" goto batchCustomFormat
-set batch_custom_qual=%batch_custom_qual:'=%
-set batch_custom_qual=%batch_custom_qual:"=%
+set cleaner_input=null
+set /p cleaner_input=Choose ID (green color in the list above): 
+
+call cleaner "dw"
+if "%cleaner_input%" equ "null" goto batchCustomFormat
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto batchCustomFormat
+
+set batch_custom_qual=%cleaner_input%
+
 set conf="-f %batch_custom_qual%"
 set batch_name_end=%batch_custom_qual%
 set format_chosen=batch
