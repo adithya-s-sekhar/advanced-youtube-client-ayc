@@ -193,7 +193,7 @@ if %errorlevel% == 4 goto batchCustomFormat
 
 :batchCustomFormat
 call tui windowSize %medium_width% 26
-set "batch_custom_format_url="
+set batch_custom_format_url=null
 color %theme_colors%
 title Pick custom format code
 cls
@@ -216,9 +216,27 @@ if %url_invalid% == 1 (
     echo.
 )
 set /p batch_custom_format_url=Sample URL: 
-set batch_custom_format_url=%batch_custom_format_url: =%
-if "%batch_custom_format_url%" equ "" goto batchRedirector
-if "%batch_custom_format_url%" equ " =" goto batchRedirector
+
+set batch_custom_format_url=%batch_custom_format_url:"=%
+if "%batch_custom_format_url%" equ "null" goto batchQuickQualitySelector
+if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
+for /f "tokens=1 delims=&" %%a in ("%batch_custom_format_url%") do (
+  set batch_custom_format_url=%%a
+)
+set batch_custom_format_url=%url:"=%
+if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
+if "%batch_custom_format_url%" equ " =" goto batchQuickQualitySelector
+
+:cleaner_check
+if "%batch_custom_format_url:~0,1%"==" " goto cleaner_clean
+goto cleaner_exit
+
+:cleaner_clean
+set "batch_custom_format_url=%batch_custom_format_url:~1%"
+goto cleaner_check
+
+:cleaner_exit
+if not defined batch_custom_format_url goto batchQuickQualitySelector
 
 call linkValidator "%batch_custom_format_url%"
 if %link_validator% == 1 (

@@ -48,7 +48,7 @@ if %ayc.arg2% == "twitch" goto twitch
 :start
 call tui windowSize %medium_width% 23
 color %theme_colors%
-set "url="
+set url=null
 title Saving to %loc%
 cls
 call tui bannerMedium
@@ -80,11 +80,14 @@ if %url_invalid% == 1 (
     echo.
 )
 set /p url="ayc:/> "
+
+set url=%url:"=%
+if "%url%" equ "null" goto start
+if "%url%" equ "" goto start
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
 set url=%url:"=%
-
 if "%url%" equ "" goto start
 if "%url%" equ " =" goto start
 
