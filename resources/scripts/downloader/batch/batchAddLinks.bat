@@ -30,36 +30,15 @@ call tui borderSmallHalf
 echo.
 
 :batchAddLinksLoop
-set batch_link_tmp=null
-set /p batch_link_tmp=Paste Link: 
+set cleaner_input=null
+set /p cleaner_input=Paste Link: 
 
-set batch_link_tmp=%batch_link_tmp:"=%
-if "%batch_link_tmp%" equ "null" goto :EOF
-if "%batch_link_tmp%" equ "" goto :EOF
-for /f "tokens=1 delims=&" %%a in ("%batch_link_tmp%") do (
-  set batch_link_tmp=%%a
-)
-set batch_link_tmp=%batch_link_tmp:"=%
-if "%batch_link_tmp%" equ "" goto :EOF
-if "%batch_link_tmp%" equ " =" goto :EOF
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto :EOF
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto :EOF
 
-:cleaner_check
-if "%batch_link_tmp:~0,1%"==" " goto cleaner_clean
-goto cleaner_exit
-:cleaner_clean
-set "batch_link_tmp=%batch_link_tmp:~1%"
-goto cleaner_check
-:cleaner_exit
-if not defined batch_link_tmp goto :EOF
-
-:cleaner2_check
-if "%batch_link_tmp:~-1%"==" " goto cleaner2_clean
-goto cleaner2_exit
-:cleaner2_clean
-set "batch_link_tmp=%batch_link_tmp:~0,-1%"
-goto cleaner2_check
-:cleaner2_exit
-if not defined batch_link_tmp goto :EOF
+set batch_link_tmp=%cleaner_input%
 
 call linkValidator "%batch_link_tmp%"
 if %link_validator% == 1 (
