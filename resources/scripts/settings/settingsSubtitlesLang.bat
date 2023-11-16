@@ -18,7 +18,6 @@
 call tui windowSize %small_width% 29
 color %theme_colors%
 title Subtitles: Change Lanuage
-set sub_lang=%sub_lang: =%
 set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese
@@ -51,12 +50,12 @@ call tui borderSmallHalf
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 set sub_lang=en & call :saveSubLang & goto :EOF
-if %errorlevel% == 3 set sub_lang=zh & call :saveSubLang & goto :EOF
-if %errorlevel% == 4 set sub_lang=ru & call :saveSubLang & goto :EOF
-if %errorlevel% == 5 set sub_lang=cs & call :saveSubLang & goto :EOF
+if %errorlevel% == 2 set "sub_lang=en" & call :saveSubLang & goto :EOF
+if %errorlevel% == 3 set "sub_lang=zh" & call :saveSubLang & goto :EOF
+if %errorlevel% == 4 set "sub_lang=ru" & call :saveSubLang & goto :EOF
+if %errorlevel% == 5 set "sub_lang=cs" & call :saveSubLang & goto :EOF
 if %errorlevel% == 6 start "" "https://www.andiamo.co.uk/resources/iso-language-codes/" & goto settingsSubtitlesLang
-if %errorlevel% == 7 set sub_lang=all & call :saveSubLang & goto :EOF
+if %errorlevel% == 7 set "sub_lang=all" & call :saveSubLang & goto :EOF
 if %errorlevel% == 8 call :customSubLang & goto settingsSubtitlesLang
 goto settingsSubtitlesLang
 
@@ -65,7 +64,6 @@ set sub_lang_tmp=null
 call tui windowSize %small_width% 19
 color %theme_colors%
 title Subtitles: Custom lang code
-set sub_lang=%sub_lang: =%
 set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese
@@ -85,16 +83,17 @@ echo    eg: en,ru
 echo.
 call tui borderSmallHalf
 echo.
-set /p sub_lang_tmp=Enter language code: 
+call cleaner "input"
+set /p cleaner_input=Enter language code: 
 
-set sub_lang_tmp=%sub_lang_tmp:"=%
-set sub_lang_tmp=%sub_lang_tmp: =%
-if "%sub_lang_tmp%" equ "null" goto :EOF
-if "%sub_lang_tmp%" equ "" goto :customSubLang
-if "%sub_lang_tmp%" equ " =" goto :customSubLang
+call cleaner "dq"
+call cleaner "ws"
+if "%cleaner_input%" equ "null" goto :EOF
+if "%cleaner_input%" equ "" goto :customSubLang
+
+set sub_lang_tmp=%cleaner_input%
 
 set sub_lang=%sub_lang_tmp%
-set sub_lang=%sub_lang: =%
 call :saveSubLang
 goto :EOF
 

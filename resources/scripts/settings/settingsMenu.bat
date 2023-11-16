@@ -18,7 +18,6 @@
 call tui windowSize %small_width% 34
 color %theme_colors%
 title AYC Settings
-set sub_lang=%sub_lang: =%
 set sub_lang_display=%sub_lang%
 if "%sub_lang%" == "en" set sub_lang_display=English
 if "%sub_lang%" == "zh" set sub_lang_display=Chinese

@@ -40,16 +40,16 @@ echo  * Enter R to reset to default value.
 echo.
 call tui borderSmallHalf
 echo.
-set /p settings_try=No. of retry attempts: 
+call cleaner "input"
+set /p cleaner_input=No. of retry attempts: 
 
-set settings_try=%settings_try:"=%
-set settings_try=%settings_try: =%
-if %try_invalid% == 0 if "%settings_try%" equ "null" goto :EOF
-if %try_invalid% == 0 if "%settings_try%" equ "" goto settingsChangeDefinedTry
-if %try_invalid% == 0 if "%settings_try%" equ " =" goto settingsChangeDefinedTry
-if %try_invalid% == 1 if "%settings_try%" equ "null" goto settingsChangeDefinedTry
-if %try_invalid% == 1 if "%settings_try%" equ "" goto settingsChangeDefinedTry
-if %try_invalid% == 1 if "%settings_try%" equ " =" goto settingsChangeDefinedTry
+call cleaner "dq"
+call cleaner "ws"
+if %try_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
+if %try_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDefinedTry
+if "%cleaner_input%" equ "" goto settingsChangeDefinedTry
+
+set settings_try=%cleaner_input%
 
 if %settings_try% == r set settings_try=0
 if %settings_try% == R set settings_try=0

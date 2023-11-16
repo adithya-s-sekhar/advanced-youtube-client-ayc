@@ -44,31 +44,17 @@ echo  * Enter R to reset to default location.
 echo.
 call tui borderSmallHalf
 echo.
-set /p settings_tmp_dir=Drag and Drop/Paste here: 
+call cleaner "input"
+set /p cleaner_input=Drag and Drop/Paste here: 
 
-set settings_tmp_dir=%settings_tmp_dir:"=%
-if %tmp_loc_invalid% == 0 if "%settings_tmp_dir%" equ "null" goto :EOF
-if %tmp_loc_invalid% == 0 if "%settings_tmp_dir%" equ "" goto settingsChangeTmpDir
-if %tmp_loc_invalid% == 1 if "%settings_tmp_dir%" equ "null" goto settingsChangeTmpDir
-if %tmp_loc_invalid% == 1 if "%settings_tmp_dir%" equ "" goto settingsChangeTmpDir
+call cleaner "dq"
+if %tmp_loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
+if %tmp_loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeTmpDir
+call cleaner "lws"
+call cleaner "tws"
+if "%cleaner_input%" equ "" goto settingsChangeTmpDir
 
-:cleaner_check
-if "%settings_tmp_dir:~0,1%"==" " goto cleaner_clean
-goto cleaner_exit
-:cleaner_clean
-set "settings_tmp_dir=%settings_tmp_dir:~1%"
-goto cleaner_check
-:cleaner_exit
-if not defined settings_tmp_dir goto settingsChangeTmpDir
-
-:cleaner2_check
-if "%settings_tmp_dir:~-1%"==" " goto cleaner2_clean
-goto cleaner2_exit
-:cleaner2_clean
-set "settings_tmp_dir=%settings_tmp_dir:~0,-1%"
-goto cleaner2_check
-:cleaner2_exit
-if not defined settings_tmp_dir goto settingsChangeTmpDir
+set settings_tmp_dir=%cleaner_input%
 
 if "%settings_tmp_dir%" == "r" set settings_tmp_dir=%aycroot%\resources\tmp
 if "%settings_tmp_dir%" == "R" set settings_tmp_dir=%aycroot%\resources\tmp

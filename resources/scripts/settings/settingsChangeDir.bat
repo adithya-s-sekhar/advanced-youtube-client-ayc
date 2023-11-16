@@ -44,31 +44,17 @@ echo  * Enter R to reset to default location.
 echo.
 call tui borderSmallHalf
 echo.
-set /p settings_dir=Drag and Drop/Paste here: 
+call cleaner "input"
+set /p cleaner_input=Drag and Drop/Paste here: 
 
-set settings_dir=%settings_dir:"=%
-if %loc_invalid% == 0 if "%settings_dir%" equ "null" goto :EOF
-if %loc_invalid% == 0 if "%settings_dir%" equ "" goto settingsChangeDir
-if %loc_invalid% == 1 if "%settings_dir%" equ "null" goto settingsChangeDir
-if %loc_invalid% == 1 if "%settings_dir%" equ "" goto settingsChangeDir
+call cleaner "dq"
+if %loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
+if %loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDir
+call cleaner "lws"
+call cleaner "tws"
+if "%cleaner_input%" equ "" goto settingsChangeDir
 
-:cleaner_check
-if "%settings_dir:~0,1%"==" " goto cleaner_clean
-goto cleaner_exit
-:cleaner_clean
-set "settings_dir=%settings_dir:~1%"
-goto cleaner_check
-:cleaner_exit
-if not defined settings_dir goto settingsChangeDir
-
-:cleaner2_check
-if "%settings_dir:~-1%"==" " goto cleaner2_clean
-goto cleaner2_exit
-:cleaner2_clean
-set "settings_dir=%settings_dir:~0,-1%"
-goto cleaner2_check
-:cleaner2_exit
-if not defined settings_dir goto settingsChangeDir
+set settings_dir=%cleaner_input%
 
 if "%settings_dir%" == "r" set settings_dir=%aycroot%\Downloads
 if "%settings_dir%" == "R" set settings_dir=%aycroot%\Downloads
