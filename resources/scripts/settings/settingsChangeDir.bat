@@ -19,7 +19,7 @@ call tui windowSize %small_width% 30
 color %theme_colors%
 title Change download folder location
 cls
-set "settings_dir="
+set settings_dir=null
 call tui bannerSmall
 echo.
 if %loc_invalid% == 0 echo  Current download folder:
@@ -45,14 +45,38 @@ echo.
 call tui borderSmallHalf
 echo.
 set /p settings_dir=Drag and Drop/Paste here: 
-if %loc_invalid% == 0 if not defined settings_dir goto :EOF
-if %loc_invalid% == 1 if not defined settings_dir goto settingsChangeDir
+
 set settings_dir=%settings_dir:"=%
+if %loc_invalid% == 0 if "%settings_dir%" equ "null" goto :EOF
+if %loc_invalid% == 0 if "%settings_dir%" equ "" goto settingsChangeDir
+if %loc_invalid% == 1 if "%settings_dir%" equ "null" goto settingsChangeDir
+if %loc_invalid% == 1 if "%settings_dir%" equ "" goto settingsChangeDir
+
+:cleaner_check
+if "%settings_dir:~0,1%"==" " goto cleaner_clean
+goto cleaner_exit
+:cleaner_clean
+set "settings_dir=%settings_dir:~1%"
+goto cleaner_check
+:cleaner_exit
+if not defined settings_dir goto settingsChangeDir
+
+:cleaner2_check
+if "%settings_dir:~-1%"==" " goto cleaner2_clean
+goto cleaner2_exit
+:cleaner2_clean
+set "settings_dir=%settings_dir:~0,-1%"
+goto cleaner2_check
+:cleaner2_exit
+if not defined settings_dir goto settingsChangeDir
+
 if "%settings_dir%" == "r" set settings_dir=%aycroot%\Downloads
 if "%settings_dir%" == "R" set settings_dir=%aycroot%\Downloads
+
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set loc="%settings_dir%"
 set loc=%loc:"=%
 if not exist "%loc%\" md "%loc%"
 if not exist "%loc%\" set loc_invalid=1 & goto settingsChangeDir
+if exist "%loc%\" set loc_invalid=0
 goto :EOF
