@@ -21,6 +21,7 @@ if %batch_deleted_job% == 0 if %cookie_loaded% == 1 call tui windowSize %small_w
 if %batch_deleted_job% == 0 if %cookie_loaded% == 0 call tui windowSize %small_width% 31
 set batch_exists_true=0
 set batch_link_counter=0
+set batch_download_status=0
 color %theme_colors%
 title Batch Mode
 set "job_name="
@@ -272,7 +273,7 @@ if %cookie_loaded% == 1 (
 )
 %youtube_dl% %default_config% %cookies% -F "%batch_custom_format_url%" && goto batchCustomFormatSelectorContinue
 set error_mode=batch
-goto error
+goto :EOF
 :batchCustomFormatSelectorContinue
 echo.
 call tui borderLargeHalf
