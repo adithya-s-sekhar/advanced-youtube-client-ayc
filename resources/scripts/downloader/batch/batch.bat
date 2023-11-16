@@ -142,13 +142,13 @@ call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto batchHome
-if %errorlevel% == 2 call batchAddLinks
-if %errorlevel% == 3 call batchOpenJobFile
-if %errorlevel% == 4 call batchChangeType
+if %errorlevel% == 2 call batchAddLinks & goto batchManage
+if %errorlevel% == 3 call batchOpenJobFile & goto batchManage
+if %errorlevel% == 4 call batchChangeType & goto batchManage
 if %errorlevel% == 5 goto batchRedirector
 if %errorlevel% == 6 call batchDelete
 if %batch_deleted_job% == 1 goto batchHome
-goto batchManage
+if %batch_deleted_job% == 0 goto batchManage
 
 
 :batchRedirector
