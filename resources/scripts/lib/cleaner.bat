@@ -16,16 +16,11 @@
 
 set cleaner.arg1=%~1
 
-if "%cleaner.arg1%" == "sq" call :cleanSingleQuote & goto :EOF
 if "%cleaner.arg1%" == "dq" call :cleanDoubleQuote & goto :EOF
-if "%cleaner.arg1%" == "w" call :cleanWhitespace & goto :EOF
-if "%cleaner.arg1%" == "lw" call :cleanLeadingWhitespace & goto :EOF
-if "%cleaner.arg1%" == "tw" call :cleanTrailingWhitespace & goto :EOF
+if "%cleaner.arg1%" == "ws" call :cleanWhitespace & goto :EOF
+if "%cleaner.arg1%" == "lws" call :cleanLeadingWhitespace & goto :EOF
+if "%cleaner.arg1%" == "tws" call :cleanTrailingWhitespace & goto :EOF
 
-goto :EOF
-
-:cleanSingleQuote
-set input=%input:'=%
 goto :EOF
 
 :cleanDoubleQuote
