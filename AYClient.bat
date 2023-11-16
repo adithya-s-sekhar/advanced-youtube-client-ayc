@@ -48,7 +48,7 @@ if %ayc.arg2% == "twitch" goto twitch
 :start
 call tui windowSize %medium_width% 23
 color %theme_colors%
-set input=null
+set cleaner_input=null
 set url=null
 title Saving to %loc%
 cls
@@ -80,18 +80,18 @@ if %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
-set /p input="ayc:/> "
+set /p cleaner_input="ayc:/> "
 
 call cleaner "dq"
-if "%input%" equ "null" goto start
-if "%input%" equ "" goto start
-if "%input%" equ " =" goto start
+if "%cleaner_input%" equ "null" goto start
+if "%cleaner_input%" equ "" goto start
+if "%cleaner_input%" equ " =" goto start
 call cleaner "lws"
-if not defined input goto start
+if not defined cleaner_input goto start
 call cleaner "tws"
-if not defined input goto start
+if not defined cleaner_input goto start
 
-set url=%input%
+set url=%cleaner_input%
 
 set no_cookie_found=0
 
