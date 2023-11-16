@@ -83,12 +83,17 @@ call tui borderLargeHalf
 echo.
 echo Leave blank and press Enter to Go back.
 echo.
-set /p twitch_custom_qual=Choose ID (green color in the list above): 
-set twitch_custom_qual=%twitch_custom_qual: =%
-if "%twitch_custom_qual%" equ "" goto qualitySelector
-if "%twitch_custom_qual%" equ " =" goto qualitySelector
-set twitch_custom_qual=%twitch_custom_qual:'=%
-set twitch_custom_qual=%twitch_custom_qual:"=%
+call cleaner "input"
+set /p cleaner_input=Choose ID (green color in the list above): 
+
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto qualitySelector
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto qualitySelector
+if "%cleaner_input%" equ " =" goto qualitySelector
+
+set twitch_custom_qual=%cleaner_input%
+
 set conf="-f %twitch_custom_qual%"
 goto download
 

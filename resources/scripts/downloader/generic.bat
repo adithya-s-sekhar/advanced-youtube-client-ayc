@@ -74,12 +74,17 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using + symbol.
 echo.
-set /p generic_qual=Choose ID (green color in the list above): 
-set generic_qual=%generic_qual: =%
-if "%generic_qual%" equ "" goto qualitySelector
-if "%generic_qual%" equ " =" goto qualitySelector
-set generic_qual=%generic_qual:'=%
-set generic_qual=%generic_qual:"=%
+call cleaner "input"
+set /p cleaner_input=Choose ID (green color in the list above): 
+
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto qualitySelector
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto qualitySelector
+if "%cleaner_input%" equ " =" goto qualitySelector
+
+set generic_qual=%cleaner_input%
+
 set conf="-f %generic_qual%"
 set generic_qual=%generic_qual%-
 

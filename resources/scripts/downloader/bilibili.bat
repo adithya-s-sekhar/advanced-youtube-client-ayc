@@ -187,12 +187,17 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using + symbol.
 echo.
-set /p bilibili_qual=Choose ID (green color in the list above): 
-set bilibili_qual=%bilibili_qual: =%
-if "%bilibili_qual%" equ "" goto formatSelector
-if "%bilibili_qual%" equ " =" goto formatSelector
-set bilibili_qual=%bilibili_qual:'=%
-set bilibili_qual=%bilibili_qual:"=%
+call cleaner "input"
+set /p cleaner_input=Choose ID (green color in the list above): 
+
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto formatSelector
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto formatSelector
+if "%cleaner_input%" equ " =" goto formatSelector
+
+set bilibili_qual=%cleaner_input%
+
 set conf="-f %bilibili_qual%"
 goto download
 

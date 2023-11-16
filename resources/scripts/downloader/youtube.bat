@@ -179,12 +179,17 @@ echo Leave blank and press Enter to Go back.
 echo.
 echo Merge two formats using '+' symbol.
 echo.
-set /p yt_custom_qual=Choose ID (green color in the list above): 
-set yt_custom_qual=%yt_custom_qual: =%
-if "%yt_custom_qual%" equ "" goto formatSelector
-if "%yt_custom_qual%" equ " =" goto formatSelector
-set yt_custom_qual=%yt_custom_qual:'=%
-set yt_custom_qual=%yt_custom_qual:"=%
+call cleaner "input"
+set /p cleaner_input=Choose ID (green color in the list above): 
+
+call cleaner "dq"
+if "%cleaner_input%" equ "null" goto formatSelector
+call cleaner "ws"
+if "%cleaner_input%" equ "" goto formatSelector
+if "%cleaner_input%" equ " =" goto formatSelector
+
+set yt_custom_qual=%cleaner_input%
+
 set conf="-f %yt_custom_qual%"
 goto download
 
