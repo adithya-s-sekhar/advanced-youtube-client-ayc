@@ -223,19 +223,26 @@ if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
 for /f "tokens=1 delims=&" %%a in ("%batch_custom_format_url%") do (
   set batch_custom_format_url=%%a
 )
-set batch_custom_format_url=%url:"=%
+set batch_custom_format_url=%batch_custom_format_url:"=%
 if "%batch_custom_format_url%" equ "" goto batchQuickQualitySelector
 if "%batch_custom_format_url%" equ " =" goto batchQuickQualitySelector
 
 :cleaner_check
 if "%batch_custom_format_url:~0,1%"==" " goto cleaner_clean
 goto cleaner_exit
-
 :cleaner_clean
 set "batch_custom_format_url=%batch_custom_format_url:~1%"
 goto cleaner_check
-
 :cleaner_exit
+if not defined batch_custom_format_url goto batchQuickQualitySelector
+
+:cleaner2_check
+if "%batch_custom_format_url:~-1%"==" " goto cleaner2_clean
+goto cleaner2_exit
+:cleaner2_clean
+set "batch_custom_format_url=%batch_custom_format_url:~0,-1%"
+goto cleaner2_check
+:cleaner2_exit
 if not defined batch_custom_format_url goto batchQuickQualitySelector
 
 call linkValidator "%batch_custom_format_url%"

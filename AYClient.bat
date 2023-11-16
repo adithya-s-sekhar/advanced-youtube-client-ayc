@@ -94,12 +94,19 @@ if "%url%" equ " =" goto start
 :cleaner_check
 if "%url:~0,1%"==" " goto cleaner_clean
 goto cleaner_exit
-
 :cleaner_clean
 set "url=%url:~1%"
 goto cleaner_check
-
 :cleaner_exit
+if not defined url goto start
+
+:cleaner2_check
+if "%url:~-1%"==" " goto cleaner2_clean
+goto cleaner2_exit
+:cleaner2_clean
+set "url=%url:~0,-1%"
+goto cleaner2_check
+:cleaner2_exit
 if not defined url goto start
 
 set no_cookie_found=0

@@ -46,12 +46,19 @@ if "%batch_link_tmp%" equ " =" goto :EOF
 :cleaner_check
 if "%batch_link_tmp:~0,1%"==" " goto cleaner_clean
 goto cleaner_exit
-
 :cleaner_clean
 set "batch_link_tmp=%batch_link_tmp:~1%"
 goto cleaner_check
-
 :cleaner_exit
+if not defined batch_link_tmp goto :EOF
+
+:cleaner2_check
+if "%batch_link_tmp:~-1%"==" " goto cleaner2_clean
+goto cleaner2_exit
+:cleaner2_clean
+set "batch_link_tmp=%batch_link_tmp:~0,-1%"
+goto cleaner2_check
+:cleaner2_exit
 if not defined batch_link_tmp goto :EOF
 
 call linkValidator "%batch_link_tmp%"
