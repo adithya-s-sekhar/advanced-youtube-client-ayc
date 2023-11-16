@@ -65,12 +65,11 @@ call tui borderSmallHalf
 echo.
 choice /c 012345678 /n /m "Select Option (0-8): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 call settingsChangeDirHome
-if %errorlevel% == 3 call settingsChangeDefinedTry
-if %errorlevel% == 4 call settingsYtUpdate
-if %errorlevel% == 5 call settingsToggles ChangeAria2
-if %errorlevel% == 6 call settingsToggles ChangeThumbs
-if %errorlevel% == 7 call settingsSubtitles
-if %errorlevel% == 8 call settingsToggles ChangeTheme
-if %errorlevel% == 9 call settingsReset
-goto :settingsMenu
+if %errorlevel% == 2 call settingsChangeDirHome & goto settingsMenu
+if %errorlevel% == 3 call settingsChangeDefinedTry & goto settingsMenu
+if %errorlevel% == 4 call settingsYtUpdate & goto settingsMenu
+if %errorlevel% == 5 call settingsToggles ChangeAria2 & goto settingsMenu
+if %errorlevel% == 6 call settingsToggles ChangeThumbs & goto settingsMenu
+if %errorlevel% == 7 call settingsSubtitles & goto settingsMenu
+if %errorlevel% == 8 call settingsToggles ChangeTheme & goto settingsMenu
+if %errorlevel% == 9 call settingsReset & goto settingsMenu
