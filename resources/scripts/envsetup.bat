@@ -138,7 +138,7 @@ if not exist "%aycdata%\ytupd_onstart.txt" echo "1">"%aycdata%\ytupd_onstart.txt
 set /p ytupd_onstart=<"%aycdata%\ytupd_onstart.txt"
 set ytupd_onstart=%ytupd_onstart:"=%
 
-set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters --no-mtime --color %yt-dlp_color% -P temp:"%tmp_loc%" --convert-subs srt
+set default_config=--ignore-errors --no-warnings --windows-filenames --embed-chapters --no-mtime --color %yt-dlp_color% -P temp:"%tmp_loc%"
 
 goto :EOF
 
@@ -150,6 +150,8 @@ goto :EOF
 set "subs="
 set subs=--write-auto-sub
 :: comment the above line to disable auto generated subtitles
+set subs=%subs% --convert-subs srt
+:: comment the above line to disable srt conversion
 if "%sub_type%" == "1" set subs=%subs% --write-subs
 if "%sub_type%" == "2" set subs=%subs% --embed-subs
 set subs=%subs% --sub-langs %sub_lang%
