@@ -51,24 +51,6 @@ if %try_invalid% == 1 if "%settings_try%" equ "null" goto settingsChangeDefinedT
 if %try_invalid% == 1 if "%settings_try%" equ "" goto settingsChangeDefinedTry
 if %try_invalid% == 1 if "%settings_try%" equ " =" goto settingsChangeDefinedTry
 
-:cleaner_check
-if "%settings_try:~0,1%"==" " goto cleaner_clean
-goto cleaner_exit
-:cleaner_clean
-set "settings_try=%settings_try:~1%"
-goto cleaner_check
-:cleaner_exit
-if not defined settings_try goto settingsChangeDefinedTry
-
-:cleaner2_check
-if "%settings_try:~-1%"==" " goto cleaner2_clean
-goto cleaner2_exit
-:cleaner2_clean
-set "settings_try=%settings_try:~0,-1%"
-goto cleaner2_check
-:cleaner2_exit
-if not defined settings_try goto settingsChangeDefinedTry
-
 if %settings_try% == r set settings_try=0
 if %settings_try% == R set settings_try=0
 
