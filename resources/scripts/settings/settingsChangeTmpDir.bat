@@ -19,7 +19,7 @@ call tui windowSize %small_width% 30
 color %theme_colors%
 title Change temporary folder location
 cls
-set "settings_tmp_dir="
+set settings_tmp_dir=null
 call tui bannerSmall
 echo.
 if %tmp_loc_invalid% == 0 echo  Current temporary folder:
@@ -45,11 +45,34 @@ echo.
 call tui borderSmallHalf
 echo.
 set /p settings_tmp_dir=Drag and Drop/Paste here: 
-if %tmp_loc_invalid% == 0 if not defined settings_tmp_dir goto :EOF
-if %tmp_loc_invalid% == 1 if not defined settings_tmp_dir goto settingsChangeTmpDir
+
 set settings_tmp_dir=%settings_tmp_dir:"=%
+if %tmp_loc_invalid% == 0 if "%settings_tmp_dir%" equ "null" goto :EOF
+if %tmp_loc_invalid% == 0 if "%settings_tmp_dir%" equ "" goto settingsChangeTmpDir
+if %tmp_loc_invalid% == 1 if "%settings_tmp_dir%" equ "null" goto settingsChangeTmpDir
+if %tmp_loc_invalid% == 1 if "%settings_tmp_dir%" equ "" goto settingsChangeTmpDir
+
+:cleaner_check
+if "%settings_tmp_dir:~0,1%"==" " goto cleaner_clean
+goto cleaner_exit
+:cleaner_clean
+set "settings_tmp_dir=%settings_tmp_dir:~1%"
+goto cleaner_check
+:cleaner_exit
+if not defined settings_tmp_dir goto settingsChangeTmpDir
+
+:cleaner2_check
+if "%settings_tmp_dir:~-1%"==" " goto cleaner2_clean
+goto cleaner2_exit
+:cleaner2_clean
+set "settings_tmp_dir=%settings_tmp_dir:~0,-1%"
+goto cleaner2_check
+:cleaner2_exit
+if not defined settings_tmp_dir goto settingsChangeTmpDir
+
 if "%settings_tmp_dir%" == "r" set settings_tmp_dir=%aycroot%\resources\tmp
 if "%settings_tmp_dir%" == "R" set settings_tmp_dir=%aycroot%\resources\tmp
+
 echo "%settings_tmp_dir%">"%aycdata%\tmp_dir.txt"
 set tmp_loc="%settings_tmp_dir%"
 set tmp_loc=%tmp_loc:"=%
