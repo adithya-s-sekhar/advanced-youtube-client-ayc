@@ -18,6 +18,7 @@ set cleaner.arg1=%~1
 
 if "%cleaner.arg1%" == "input" call :cleanerInput & goto :EOF
 
+if "%cleaner.arg1%" == "sq" call :cleanSingleQuote & goto :EOF
 if "%cleaner.arg1%" == "dq" call :cleanDoubleQuote & goto :EOF
 if "%cleaner.arg1%" == "ws" call :cleanWhitespace & goto :EOF
 if "%cleaner.arg1%" == "lws" call :cleanLeadingWhitespace & goto :EOF
@@ -27,6 +28,10 @@ goto :EOF
 
 :cleanerInput
 set cleaner_input=null
+goto :EOF
+
+:cleanSingleQuote
+set cleaner_input=%cleaner_input:'=%
 goto :EOF
 
 :cleanDoubleQuote
