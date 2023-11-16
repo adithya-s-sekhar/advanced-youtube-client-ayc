@@ -61,7 +61,7 @@ if %errorlevel% == 8 call :customSubLang & goto settingsSubtitlesLang
 goto settingsSubtitlesLang
 
 :customSubLang
-set "sub_lang_tmp="
+set sub_lang_tmp=null
 call tui windowSize %small_width% 19
 color %theme_colors%
 title Subtitles: Custom lang code
@@ -86,10 +86,11 @@ echo.
 call tui borderSmallHalf
 echo.
 set /p sub_lang_tmp=Enter language code: 
-if not defined sub_lang_tmp goto :EOF
+
 set sub_lang_tmp=%sub_lang_tmp:"=%
-set sub_lang_tmp=%sub_lang_tmp: =%
-if not defined sub_lang_tmp goto :EOF
+if "%sub_lang_tmp%" equ "null" goto :EOF
+if "%sub_lang_tmp%" equ "" goto :EOF
+
 set sub_lang=%sub_lang_tmp%
 set sub_lang=%sub_lang: =%
 call :saveSubLang
