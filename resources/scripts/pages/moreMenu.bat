@@ -37,9 +37,8 @@ call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (0-5): "
 if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 start AYClient.bat "b"
-if %errorlevel% == 3 start notepad.exe "%aycroot%\resources\history\download-history.txt"
-if %errorlevel% == 4 call settingsMenu
-if %errorlevel% == 5 call createShortcut all
-if %errorlevel% == 6 call about
-goto moreMenu
+if %errorlevel% == 2 start AYClient.bat "b" & goto moreMenu
+if %errorlevel% == 3 start notepad.exe "%aycroot%\resources\history\download-history.txt" & goto moreMenu
+if %errorlevel% == 4 call settingsMenu & goto moreMenu
+if %errorlevel% == 5 call createShortcut all & goto moreMenu
+if %errorlevel% == 6 call about & goto moreMenu
