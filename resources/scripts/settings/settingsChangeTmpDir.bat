@@ -78,4 +78,5 @@ set tmp_loc="%settings_tmp_dir%"
 set tmp_loc=%tmp_loc:"=%
 if not exist "%tmp_loc%\" md "%tmp_loc%"
 if not exist "%tmp_loc%\" set tmp_loc_invalid=1 & goto settingsChangeTmpDir
+if exist "%tmp_loc%\" set tmp_loc_invalid=0
 goto :EOF
