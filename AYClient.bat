@@ -83,6 +83,7 @@ set /p url="ayc:/> "
 for /f "tokens=1 delims=&" %%a in ("%url%") do (
   set url=%%a
 )
+set url=%url:"=%
 
 if "%url%" equ "" goto start
 if "%url%" equ " =" goto start
