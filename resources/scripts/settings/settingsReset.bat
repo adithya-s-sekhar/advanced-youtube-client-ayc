@@ -42,7 +42,7 @@ call tui borderSmallHalf
 echo.
 choice /C 01 /n /m "Select Option (0-1): "
 if %errorlevel% == 1 goto :EOF
-goto settingsResetFinish
+if %errorlevel% == 2 goto settingsResetFinish
 
 :settingsResetFinish
 call tui windowSize %small_width% 20
