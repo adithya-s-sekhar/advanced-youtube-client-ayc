@@ -53,6 +53,7 @@ if %tmp_loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeTmp
 call cleaner "lws"
 call cleaner "tws"
 if "%cleaner_input%" equ "" goto settingsChangeTmpDir
+if "%cleaner_input%" equ " =" goto settingsChangeTmpDir
 
 set settings_tmp_dir=%cleaner_input%
 

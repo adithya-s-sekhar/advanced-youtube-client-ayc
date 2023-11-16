@@ -37,6 +37,7 @@ call cleaner "dq"
 if "%cleaner_input%" equ "null" goto :EOF
 call cleaner "ws"
 if "%cleaner_input%" equ "" goto :EOF
+if "%cleaner_input%" equ " =" goto :EOF
 
 set batch_link_tmp=%cleaner_input%
 

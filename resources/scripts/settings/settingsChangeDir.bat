@@ -53,6 +53,7 @@ if %loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDir
 call cleaner "lws"
 call cleaner "tws"
 if "%cleaner_input%" equ "" goto settingsChangeDir
+if "%cleaner_input%" equ " =" goto settingsChangeDir
 
 set settings_dir=%cleaner_input%
 

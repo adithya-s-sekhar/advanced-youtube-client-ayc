@@ -44,10 +44,11 @@ call cleaner "input"
 set /p cleaner_input=No. of retry attempts: 
 
 call cleaner "dq"
-call cleaner "ws"
 if %try_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
 if %try_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDefinedTry
+call cleaner "ws"
 if "%cleaner_input%" equ "" goto settingsChangeDefinedTry
+if "%cleaner_input%" equ " =" goto settingsChangeDefinedTry
 
 set settings_try=%cleaner_input%
 

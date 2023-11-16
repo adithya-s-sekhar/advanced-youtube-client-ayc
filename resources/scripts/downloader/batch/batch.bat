@@ -223,6 +223,7 @@ call cleaner "dq"
 if "%cleaner_input%" equ "null" goto batchQuickQualitySelector
 call cleaner "ws"
 if "%cleaner_input%" equ "" goto batchQuickQualitySelector
+if "%cleaner_input%" equ " =" goto batchQuickQualitySelector
 
 set batch_custom_format_url=%cleaner_input%
 
@@ -269,6 +270,7 @@ call cleaner "dw"
 if "%cleaner_input%" equ "null" goto batchCustomFormat
 call cleaner "ws"
 if "%cleaner_input%" equ "" goto batchCustomFormat
+if "%cleaner_input%" equ " =" goto batchCustomFormat
 
 set batch_custom_qual=%cleaner_input%
 

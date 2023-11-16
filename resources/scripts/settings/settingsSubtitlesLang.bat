@@ -90,6 +90,7 @@ call cleaner "dq"
 call cleaner "ws"
 if "%cleaner_input%" equ "null" goto :EOF
 if "%cleaner_input%" equ "" goto :customSubLang
+if "%cleaner_input%" equ " =" goto settingsChangeDefinedTry
 
 set sub_lang_tmp=%cleaner_input%
 
