@@ -10,25 +10,7 @@
 
 <img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png" width="800">
 
-Now available in various colors!!
-
-<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/ytsearch.png" width="800">
-
-<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/ytsearch2.png" width="800">
-
-Download from youtube without visiting the website
-
-<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/youtube.png" width="800">
-
-<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/twitch.png" width="800">
-
-<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/bilibili.png" width="800">
-
-Or just paste URLs as normal
-
-<img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/u.png" width="800">
-
-Quickkeys to take you to specific sections of AYC. '**u**' takes you to yt-dlp update settings. There are more spread throughout AYC. Find them all!
+## [Screenshots](screenshots.md)
 
 </div>
 
