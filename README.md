@@ -10,7 +10,7 @@
 
 <img src="https://raw.githubusercontent.com/adithya-s-sekhar/advanced-youtube-client-ayc/main/Screenshots/screens2.png" width="800">
 
-## [Screenshots](screenshots.md)
+## [Click here to view all screenshots](screenshots.md)
 
 </div>
 
