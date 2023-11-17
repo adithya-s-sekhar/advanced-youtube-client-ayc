@@ -18,7 +18,7 @@ What's new?
 - Improved: Generic downloads UI.
 - Improved: Input sanitization for all inputs.
 - Updated: aria2c to v1.37.0
-- Code cleanup anf improvements.
+- Code cleanup and improvements.
 
 [4.18]
 - Fixed: Shortcuts weren't being made or broken when AYC is in a path with spaces.
