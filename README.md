@@ -26,7 +26,8 @@
 
 - Supports Youtube, Reddit, Twitter, Facebook, Instagram, Twitch, Dailymotion, Vimeo and [100s of other websites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) that yt-dlp supports.
 - Automatically saves video chapters, thumbnails, subtitles (User configurable).
-- Supports downloading playlists, channels, keyword topics on multiple websites.
+- Supports downloading playlists, channels, keyword topic urls on multiple websites.
+- Supports directly searching and downloading from youtube.
 - Multithreaded downloads using aria2c to fully utilize the available bandwidth (User configurable).
 - Batch mode can create jobs, save urls to them and download, resume, edit, delete.
 - Extremely light and instantly responding text based ui.
