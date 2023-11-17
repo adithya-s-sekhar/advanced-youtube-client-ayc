@@ -1,7 +1,6 @@
 # Advanced Youtube Client - AYC Screenshots
 
 <img src="Screenshots\screenshots.md\1.png">
-<img src="Screenshots\screenshots.md\1.png">
 <img src="Screenshots\screenshots.md\2.png">
 <img src="Screenshots\screenshots.md\3.png">
 <img src="Screenshots\screenshots.md\4.png">
