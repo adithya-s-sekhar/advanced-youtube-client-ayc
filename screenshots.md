@@ -1,30 +1,30 @@
 # Advanced Youtube Client - AYC Screenshots
 
-<img src="Screenshots\screenshots.md\1.png">
-<img src="Screenshots\screenshots.md\2.png">
-<img src="Screenshots\screenshots.md\3.png">
-<img src="Screenshots\screenshots.md\4.png">
-<img src="Screenshots\screenshots.md\5.png">
-<img src="Screenshots\screenshots.md\6.png">
-<img src="Screenshots\screenshots.md\7.png">
-<img src="Screenshots\screenshots.md\8.png">
-<img src="Screenshots\screenshots.md\9.png">
-<img src="Screenshots\screenshots.md\10.png">
-<img src="Screenshots\screenshots.md\11.png">
-<img src="Screenshots\screenshots.md\12.png">
-<img src="Screenshots\screenshots.md\13.png">
-<img src="Screenshots\screenshots.md\14.png">
-<img src="Screenshots\screenshots.md\15.png">
-<img src="Screenshots\screenshots.md\16.png">
-<img src="Screenshots\screenshots.md\17.png">
-<img src="Screenshots\screenshots.md\18.png">
-<img src="Screenshots\screenshots.md\19.png">
-<img src="Screenshots\screenshots.md\20.png">
-<img src="Screenshots\screenshots.md\21.png">
-<img src="Screenshots\screenshots.md\22.png">
-<img src="Screenshots\screenshots.md\23.png">
-<img src="Screenshots\screenshots.md\24.png">
-<img src="Screenshots\screenshots.md\25.png">
-<img src="Screenshots\screenshots.md\26.png">
-<img src="Screenshots\screenshots.md\27.png">
-<img src="Screenshots\screenshots.md\28.png">
+<img src="Screenshots\screenshots.md\1.png" width="400px">
+<img src="Screenshots\screenshots.md\2.png" width="400px">
+<img src="Screenshots\screenshots.md\3.png" width="400px">
+<img src="Screenshots\screenshots.md\4.png" width="400px">
+<img src="Screenshots\screenshots.md\5.png" width="400px">
+<img src="Screenshots\screenshots.md\6.png" width="400px">
+<img src="Screenshots\screenshots.md\7.png" width="400px">
+<img src="Screenshots\screenshots.md\8.png" width="400px">
+<img src="Screenshots\screenshots.md\9.png" width="400px">
+<img src="Screenshots\screenshots.md\10.png" width="400px">
+<img src="Screenshots\screenshots.md\11.png" width="400px">
+<img src="Screenshots\screenshots.md\12.png" width="400px">
+<img src="Screenshots\screenshots.md\13.png" width="400px">
+<img src="Screenshots\screenshots.md\14.png" width="400px">
+<img src="Screenshots\screenshots.md\15.png" width="400px">
+<img src="Screenshots\screenshots.md\16.png" width="400px">
+<img src="Screenshots\screenshots.md\17.png" width="400px">
+<img src="Screenshots\screenshots.md\18.png" width="400px">
+<img src="Screenshots\screenshots.md\19.png" width="400px">
+<img src="Screenshots\screenshots.md\20.png" width="400px">
+<img src="Screenshots\screenshots.md\21.png" width="400px">
+<img src="Screenshots\screenshots.md\22.png" width="400px">
+<img src="Screenshots\screenshots.md\23.png" width="400px">
+<img src="Screenshots\screenshots.md\24.png" width="400px">
+<img src="Screenshots\screenshots.md\25.png" width="400px">
+<img src="Screenshots\screenshots.md\26.png" width="400px">
+<img src="Screenshots\screenshots.md\27.png" width="400px">
+<img src="Screenshots\screenshots.md\28.png" width="400px">
