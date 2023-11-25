@@ -14,15 +14,15 @@
 :: You should have received a copy of the GNU General Public License
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-:formatSelector
+:quickDownload
 set youtube_download_status=0
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 36
+    call tui windowSize %small_width% 39
 ) else (
-    call tui windowSize %small_width% 34
+    call tui windowSize %small_width% 36
 )
 color %theme_colors%
-title Link Recieved
+title Simple Mode - Link Recieved
 cls
 call tui bannerSmall
 echo.
@@ -32,7 +32,62 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-echo  Choose format
+echo  Most Used Formats
+call tui borderSmall
+echo  Video + Audio
+echo.
+echo   (1) - 360p  - (H264 Video/AAC Audio)
+echo.
+echo   (2) - 480p  - (H264 Video/AAC Audio)
+echo.
+echo   (3) - 720p  - (H264 Video/AAC Audio)
+echo.
+echo   (4) - 1080p - (H264 Video/AAC Audio)
+echo.
+echo   (5) - 4K    - (VP9 Video/OPUS Audio)
+echo.
+call tui borderSmall
+echo  Audio Only
+echo.
+echo   (6) - M4A - AAC Audio - 128kbps
+echo.
+echo   (7) - MP3 - MP3 Audio - 128kbps
+echo.
+call tui borderSmall
+echo.
+echo   (8) - Show all formats
+echo.
+call tui borderSmallHalf
+echo.
+choice /c 12345678 /n /m "Select Option (1-8): "
+if %errorlevel% == 1 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=360]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 2 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=480]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 3 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 4 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 5 set format_chosen=vp9 & set conf="-f bestvideo[vcodec^=vp09][height<=2160]+bestaudio[ext=webm]" & goto download
+if %errorlevel% == 6 set format_chosen=m4a & set conf="-f bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 7 set format_chosen=mp3 & set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" & goto download
+if %errorlevel% == 8 goto formatSelector
+
+
+:formatSelector
+if %cookie_loaded% == 1 (
+    call tui windowSize %small_width% 38
+) else (
+    call tui windowSize %small_width% 36
+)
+color %theme_colors%
+title Advanced Mode - Link Recieved
+cls
+call tui bannerSmall
+echo.
+echo  Youtube search Term: %url%
+echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+)
+echo  All Formats
 call tui borderSmall
 echo  Video + Audio
 echo.
@@ -53,11 +108,13 @@ echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
 call tui borderSmall
 echo.
-echo   (7) - Show all available formats
+echo   (7) - Enter format code manually
+echo.
+echo   (8) - Show the most used formats
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 1234567 /n /m "Select Option (1-7): "
+choice /c 12345678 /n /m "Select Option (1-8): "
 if %errorlevel% == 1 set format_chosen=h264 & goto qualitySelector
 if %errorlevel% == 2 set format_chosen=vp9 & goto qualitySelector
 if %errorlevel% == 3 set format_chosen=av1 & goto qualitySelector
@@ -65,6 +122,7 @@ if %errorlevel% == 4 set format_chosen=m4a & set conf="-f bestaudio[ext=m4a]" & 
 if %errorlevel% == 5 set format_chosen=mp3 & set conf="--extract-audio --audio-format mp3 --no-post-overwrites --audio-quality 128k" & goto download
 if %errorlevel% == 6 set format_chosen=webm & set conf="-f bestaudio[ext=webm]" & set "thumbs=" & goto download
 if %errorlevel% == 7 set format_chosen=cust & goto ytCustomFormat
+if %errorlevel% == 8 goto quickDownload
 
 
 :qualitySelector
