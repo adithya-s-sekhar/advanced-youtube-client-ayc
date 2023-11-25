@@ -31,7 +31,7 @@ if %errorlevel% == 0 set bilibili_link=1 & goto :EOF
 echo %linkValidator.arg1% | findstr /i /r /c:"^https://www.twitch.tv" /c:"^https://twitch.tv" /c:"^http://www.twitch.tv" /c:"^http://twitch.tv" /c:"^www.twitch.tv" /c:"^twitch.tv" > nul
 if %errorlevel% == 0 set twitch_link=1 & goto :EOF
 
-echo %linkValidator.arg1% | findstr /i /r /c:"^http://" /c:"^https://" > nul
+echo %linkValidator.arg1% | findstr /i /r /c:"^http://" /c:"^https://" /c:"^www." > nul
 if %errorlevel% == 0 (
     set generic_link=1
     goto :EOF
