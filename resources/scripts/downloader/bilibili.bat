@@ -14,17 +14,15 @@
 :: You should have received a copy of the GNU General Public License
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-:formatSelector
+:quickDownload
 set bilibili_download_status=0
-call tui windowSize %small_width% 35
+call tui windowSize %small_width% 34
 color %theme_colors%
-title Link Recieved
+title Simple Mode - Link Recieved
 cls
 call tui bannerSmall
 echo.
 echo  URL: %url%
-echo.
-echo  Bilibili link detected.
 echo.
 if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
@@ -33,7 +31,55 @@ if %cookie_loaded% == 1 (
     echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
     echo.
 )
-echo  Choose format
+echo  Most Used Formats
+call tui borderSmall
+echo  Video + Audio
+echo.
+echo   (1) - 360p  - (H264 Video/AAC Audio)
+echo.
+echo   (2) - 480p  - (H264 Video/AAC Audio)
+echo.
+echo   (3) - 720p  - (H264 Video/AAC Audio)
+echo.
+echo   (4) - 1080p - (H264 Video/AAC Audio)
+echo.
+call tui borderSmall
+echo  Audio Only
+echo.
+echo   (5) - M4A - AAC Audio - Highest Quality
+echo.
+call tui borderSmall
+echo.
+echo   (6) - Show all formats
+echo.
+call tui borderSmallHalf
+echo.
+choice /c 123456 /n /m "Select Option (1-6): "
+if %errorlevel% == 1 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=360]+0/bestvideo[vcodec^=avc1][height<=360]+worstaudio[ext=m4a]" & goto download
+if %errorlevel% == 2 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=480]+1/bestvideo[vcodec^=avc1][height<=480]+worstaudio[ext=m4a]" & goto download
+if %errorlevel% == 3 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=720]+1/bestvideo[vcodec^=avc1][height<=720]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 4 set format_chosen=h264 & set conf="-f bestvideo[vcodec^=avc1][height<=1080]+2/bestvideo[vcodec^=avc1][height<=1080]+bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 5 set format_chosen=aud & set aud_end=hq & set conf="-f bestaudio[ext=m4a]" & goto download
+if %errorlevel% == 6 goto formatSelector
+
+
+:formatSelector
+call tui windowSize %small_width% 34
+color %theme_colors%
+title Advanced Mode - Link Recieved
+cls
+call tui bannerSmall
+echo.
+echo  URL: %url%
+echo.
+if %cookie_loaded% == 1 (
+    echo  Using cookies.txt.
+    echo.
+) else (
+    echo  cookies.txt needed for 720p and above. Read FAQ on GitHub.
+    echo.
+)
+echo  All Formats
 call tui borderSmall
 echo  Video + Audio
 echo.
@@ -46,20 +92,23 @@ echo.
 call tui borderSmall
 echo  Audio Only
 echo.
-echo   (4) - M4A - AAC Audio - 3 Qualities
+echo   (4) - M4A - AAC Audio - Highest Quality
 echo.
 call tui borderSmall
 echo.
-echo   (5) - Pick a Custom Format
+echo   (5) - Enter format code manually
+echo.
+echo   (6) - Show the most used formats
 echo.
 call tui borderSmallHalf
 echo.
-choice /c 12345 /n /m "Select Option (1-5): "
+choice /c 123456 /n /m "Select Option (1-6): "
 if %errorlevel% == 1 set format_chosen=h264 & goto qualitySelector
 if %errorlevel% == 2 set format_chosen=hevc & goto qualitySelector
 if %errorlevel% == 3 set format_chosen=av1 & goto qualitySelector
 if %errorlevel% == 4 set format_chosen=aud & goto bilibiliM4a
 if %errorlevel% == 5 set format_chosen=custom & goto bilibiliCustomFormat
+if %errorlevel% == 6 goto quickDownload
 
 
 :qualitySelector
