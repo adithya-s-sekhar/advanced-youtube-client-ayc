@@ -7,6 +7,7 @@ What's new?
 - New: Simplified quality selector for youtube and bilibili.
 - Improved: Link validator.
 - Improved: UI on some quality selectors.
+- Improved: History.
 
 [4.19]
 - New: Subtitle languages can be selected.
