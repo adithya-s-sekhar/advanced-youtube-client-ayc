@@ -18,9 +18,9 @@ set twitch_download_status=0
 :qualitySelector
 title Link Recieved
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 34
-) else (
     call tui windowSize %small_width% 32
+) else (
+    call tui windowSize %small_width% 30
 )
 color %theme_colors%
 cls
@@ -40,17 +40,16 @@ call tui borderSmall
 echo  Choose Maximum Quality
 echo.
 echo   (1) - 360p 
+echo.
 echo   (2) - 480p   (If not available, returns to 360p) 
 echo.
-call tui borderSmall
-echo.
 echo   (3) - 720p   (If not available, returns to 480p) 
+echo.
 echo   (4) - 1080p  (If not available, returns to 720p) 
 echo.
 call tui borderSmall
 echo.
 echo   (5) - Show all available formats
-echo         Use this if the above doesn't work.
 echo.
 call tui borderSmallHalf
 echo.
