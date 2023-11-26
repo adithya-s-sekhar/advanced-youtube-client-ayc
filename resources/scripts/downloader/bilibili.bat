@@ -16,7 +16,7 @@
 
 :quickDownload
 set bilibili_download_status=0
-call tui windowSize %small_width% 34
+call tui windowSize %small_width% 30
 color %theme_colors%
 title Simple Mode - Link Recieved
 cls
@@ -33,7 +33,6 @@ if %cookie_loaded% == 1 (
 )
 echo  Most Used Formats
 call tui borderSmall
-echo  Video + Audio
 echo.
 echo   (1) - 360p  - (H264 Video/AAC Audio)
 echo.
@@ -43,10 +42,7 @@ echo   (3) - 720p  - (H264 Video/AAC Audio)
 echo.
 echo   (4) - 1080p - (H264 Video/AAC Audio)
 echo.
-call tui borderSmall
-echo  Audio Only
-echo.
-echo   (5) - M4A - AAC Audio - Highest Quality
+echo   (5) - M4A - AAC Audio - Highest Quality (Audio Only)
 echo.
 call tui borderSmall
 echo.
