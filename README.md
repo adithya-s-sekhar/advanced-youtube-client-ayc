@@ -24,9 +24,9 @@
 
 ## Features
 
-- Supports Youtube, Reddit, Twitter, Facebook, Instagram, Twitch, Dailymotion, Vimeo and [100s of other websites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) that yt-dlp supports.
-- Automatically saves video chapters, thumbnails, subtitles (User configurable).
-- Supports downloading playlists, channels, keyword topic urls on multiple websites.
+- Download from Youtube, Reddit, Twitter, Facebook, Instagram, Twitch, Dailymotion, Vimeo and [100s of other websites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) that yt-dlp supports.
+- Automatically saves video chapters, thumbnails and subtitles (User configurable).
+- Downloads playlists, channels, keyword topic urls on multiple websites.
 - Supports directly searching and downloading from youtube.
 - Multithreaded downloads using aria2c to fully utilize the available bandwidth (User configurable).
 - Batch mode can create jobs, save urls to them and download, resume, edit, delete.
@@ -104,7 +104,7 @@ AYC used to be compiled to exe files. These exe files extracted the batch script
 
 So AYC since [v3.6](https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc/releases/tag/v3.6) is released as straight batch files everyone can open with notepad and read. This requires some additional setup.
 
-Some old v2 releases were lost due to this issue from Sourceforge before I could archive them for future reference. Their source codes were fine. The remaining recovered releases (thanks to [videohelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC/old-versions)) along with their source codes along with all the new releases are kept in an updated folder on MEGA. If you want you can download them below. 
+Some old v2 releases were lost due to this issue from Sourceforge before I could archive them for future reference. Their source codes were fine. The remaining recovered releases (thanks to [videohelp](https://www.videohelp.com/software/Advanced-Youtube-Client-AYC/old-versions)) along with all source files and all the new releases are kept in an updated folder on MEGA. If you want you can download them below. 
 
 Be advised since then antivirus softwares have improved to detect that these are indeed harmless but some still falsely flag them. Windows defender sometimes does. It's not consistent. 
 
