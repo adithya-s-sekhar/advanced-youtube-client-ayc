@@ -43,7 +43,7 @@ echo   (3) - 720p  - (H264 Video/AAC Audio)
 echo.
 echo   (4) - 1080p - (H264 Video/AAC Audio)
 echo.
-echo   (5) - 4K    - (VP9 Video/OPUS Audio)
+echo   (5) -  4K   - (VP9 Video/OPUS Audio)
 echo.
 echo   (6) - M4A - AAC Audio - 128kbps (Audio Only)
 echo.
