@@ -32,8 +32,8 @@ if %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
-echo  Most Used Formats
 call tui borderSmall
+echo  Most Used Formats
 echo.
 echo   (1) - 360p  - (H264 Video/AAC Audio)
 echo.
@@ -45,9 +45,9 @@ echo   (4) - 1080p - (H264 Video/AAC Audio)
 echo.
 echo   (5) - 4K    - (VP9 Video/OPUS Audio)
 echo.
-echo   (6) - M4A - AAC Audio - 128kbps
+echo   (6) - M4A - AAC Audio - 128kbps (Audio Only)
 echo.
-echo   (7) - MP3 - MP3 Audio - 128kbps
+echo   (7) - MP3 - MP3 Audio - 128kbps (Audio Only)
 echo.
 call tui borderSmall
 echo.
