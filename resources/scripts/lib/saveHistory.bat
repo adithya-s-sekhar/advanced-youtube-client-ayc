@@ -25,6 +25,7 @@ echo Date: %date%>>%aycroot%\resources\history\download-history.txt
 echo Time: %time%>>%aycroot%\resources\history\download-history.txt
 echo Status: %saveHistory.stats%>>%aycroot%\resources\history\download-history.txt
 echo URL: %url%>>%aycroot%\resources\history\download-history.txt
+echo Download option: %conf%>>%aycroot%\resources\history\download-history.txt
 echo.>>%aycroot%\resources\history\download-history.txt
 
 goto :EOF
