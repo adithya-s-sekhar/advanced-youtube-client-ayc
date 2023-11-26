@@ -17,9 +17,9 @@
 :quickDownload
 set youtube_download_status=0
 if %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 39
+    call tui windowSize %small_width% 35
 ) else (
-    call tui windowSize %small_width% 36
+    call tui windowSize %small_width% 32
 )
 color %theme_colors%
 title Simple Mode - Link Recieved
@@ -34,7 +34,6 @@ if %cookie_loaded% == 1 (
 )
 echo  Most Used Formats
 call tui borderSmall
-echo  Video + Audio
 echo.
 echo   (1) - 360p  - (H264 Video/AAC Audio)
 echo.
@@ -45,9 +44,6 @@ echo.
 echo   (4) - 1080p - (H264 Video/AAC Audio)
 echo.
 echo   (5) - 4K    - (VP9 Video/OPUS Audio)
-echo.
-call tui borderSmall
-echo  Audio Only
 echo.
 echo   (6) - M4A - AAC Audio - 128kbps
 echo.
