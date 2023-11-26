@@ -1,7 +1,12 @@
-Advanced Youtube Client - AYC v4.19 - 17/Nov/2023
+Advanced Youtube Client - AYC v4.20 - 26/Nov/2023
 Open AYClient.bat
 
 What's new?
+
+[4.20]
+- New: Simplified quality selector for youtube and bilibili.
+- Improved: Link validator.
+- Improved: UI on some quality selectors.
 
 [4.19]
 - New: Subtitle languages can be selected.
