@@ -15,19 +15,19 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :batchChangeType
-if %job_type% == 0 (
+if /i %job_type% == 0 (
     set job_type=1
     goto batchChangeTypeSave
 )
-if %job_type% == 1 (
+if /i %job_type% == 1 (
     set job_type=2
     goto batchChangeTypeSave
 )
-if %job_type% == 2 (
+if /i %job_type% == 2 (
     set job_type=3
     goto batchChangeTypeSave
 )
-if %job_type% == 3 (
+if /i %job_type% == 3 (
     set job_type=0
     goto batchChangeTypeSave
 )

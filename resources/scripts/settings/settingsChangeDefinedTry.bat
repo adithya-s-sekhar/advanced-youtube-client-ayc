@@ -22,15 +22,15 @@ cls
 set settings_try=null
 call tui bannerSmall
 echo.
-if %try_invalid% == 0 echo  Current retry attempts: %defined_try%
-if %try_invalid% == 1 echo  Invalid value: %defined_try%
+if /i %try_invalid% == 0 echo  Current retry attempts: %defined_try%
+if /i %try_invalid% == 1 echo  Invalid value: %defined_try%
 echo.
 call tui borderSmall
 echo.
 echo  * The number you set here is the number of times AYC
 echo    will retry the download if an error occurs.
 echo.
-if %try_invalid% == 0 (
+if /i %try_invalid% == 0 (
     echo  * Leave blank and Enter to Go back.
 ) else (
     echo  * Enter a valid number.
@@ -44,22 +44,22 @@ call cleaner "input"
 set /p cleaner_input=No. of retry attempts: 
 
 call cleaner "dq"
-if %try_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
-if %try_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDefinedTry
+if /i %try_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
+if /i %try_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDefinedTry
 call cleaner "ws"
 if "%cleaner_input%" equ "" goto settingsChangeDefinedTry
 if "%cleaner_input%" equ " =" goto settingsChangeDefinedTry
 
 set settings_try=%cleaner_input%
 
-if %settings_try% == r set settings_try=0
-if %settings_try% == R set settings_try=0
+if /i %settings_try% == r set settings_try=0
+if /i %settings_try% == R set settings_try=0
 
 echo "%settings_try%">"%aycdata%\try.txt"
 set defined_try="%settings_try%"
 set defined_try=%defined_try:"=%
 echo %defined_try%| findstr /r "^[0-9][0-9]*$">nul
 if not %errorlevel% == 0 set try_invalid=1 & goto settingsChangeDefinedTry
-if %try_invalid% == 1 set try_invalid=0
+if /i %try_invalid% == 1 set try_invalid=0
 set /a max_try=%defined_try%+1
 goto :EOF

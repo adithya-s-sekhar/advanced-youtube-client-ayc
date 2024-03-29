@@ -21,13 +21,13 @@ color %theme_colors%
 cls
 call tui bannerSmall
 echo.
-if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
-if %batch_exists_true% == 0 echo  New Job: %job_name%
+if /i %batch_exists_true% == 1 echo  Resuming Job: %job_name%
+if /i %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
-if %job_type% == 0 echo  Job type: Regular
-if %job_type% == 1 echo  Job type: Youtube only
-if %job_type% == 2 echo  Job type: Bilibili only
-if %job_type% == 3 echo  Job type: Twitch only
+if /i %job_type% == 0 echo  Job type: Regular
+if /i %job_type% == 1 echo  Job type: Youtube only
+if /i %job_type% == 2 echo  Job type: Bilibili only
+if /i %job_type% == 3 echo  Job type: Twitch only
 call tui borderSmallHalf
 echo.
 echo  Job File is opened in Notepad. Follow instructions.

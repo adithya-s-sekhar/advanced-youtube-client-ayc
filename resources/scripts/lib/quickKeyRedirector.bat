@@ -19,7 +19,7 @@ set quickKey.arg1=%~1
 set quickkey_validator=0
 
 echo %quickKey.arg1% | findstr /i /r /c:"\<a\>" /c:"\<b\>" /c:"\<c\>" /c:"\<f\>" /c:"\<h\>" /c:"\<m\>" /c:"\<o\>" /c:"\<s\>" /c:"\<t\>" /c:"\<u\>" /c:"\<reset\>" > nul
-if %errorlevel% == 0 (
+if /i %errorlevel% == 0 (
     set quickkey_validator=1
 ) else (
     goto :EOF

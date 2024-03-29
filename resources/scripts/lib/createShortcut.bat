@@ -18,15 +18,15 @@ set createShortcut.arg1=%~1
 
 set createShortcut_temp=%aycroot%\resources\extras
 
-if %createShortcut.arg1% == all (
+if /i %createShortcut.arg1% == all (
     call :desktop
     call :root
     call :startMenu
     goto :EOF
 )
-if %createShortcut.arg1% == desktop goto desktop
-if %createShortcut.arg1% == root goto root
-if %createShortcut.arg1% == start_menu goto startMenu
+if /i %createShortcut.arg1% == desktop goto desktop
+if /i %createShortcut.arg1% == root goto root
+if /i %createShortcut.arg1% == start_menu goto startMenu
 goto :EOF
 
 :desktop

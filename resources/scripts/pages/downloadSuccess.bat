@@ -16,7 +16,7 @@
 
 :downloadSuccess
 if defined url call saveHistory success
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     call tui windowSize %small_width% 19
 ) else (
     call tui windowSize %small_width% 17
@@ -28,13 +28,13 @@ call tui bannerSmall
 echo.
 echo  Download Finished.
 echo.
-if %error_mode% == batch (
+if /i %error_mode% == batch (
     echo  Job: %job_name%%
 ) else (
     echo  URL: %url%
 )
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )

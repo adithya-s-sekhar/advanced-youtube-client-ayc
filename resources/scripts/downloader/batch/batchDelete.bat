@@ -17,14 +17,14 @@
 :batchDelete
 echo.
 choice /c yn /n /m "Delete job %job_name%? (y/n)"
-if %errorlevel% == 1 goto batchDeleteConfirm
-if %errorlevel% == 2 goto :EOF
+if /i %errorlevel% == 1 goto batchDeleteConfirm
+if /i %errorlevel% == 2 goto :EOF
 
 :batchDeleteConfirm
 echo.
 choice /c yn /n /m "Are you sure? (y/n)"
-if %errorlevel% == 1 goto batchDoDelete
-if %errorlevel% == 2 goto :EOF
+if /i %errorlevel% == 1 goto batchDoDelete
+if /i %errorlevel% == 2 goto :EOF
 
 :batchDoDelete
 rd /s /q "%loc%\%job_name%"

@@ -18,8 +18,8 @@ set saveHistory.arg1=%~1
 
 set saveHistory.stats=UNKNOWN
 
-if %saveHistory.arg1% == success set saveHistory.stats=SUCCESS
-if %saveHistory.arg1% == fail set saveHistory.stats=FAILED
+if /i %saveHistory.arg1% == success set saveHistory.stats=SUCCESS
+if /i %saveHistory.arg1% == fail set saveHistory.stats=FAILED
 
 echo Date: %date%>>%aycroot%\resources\history\download-history.txt
 echo Time: %time%>>%aycroot%\resources\history\download-history.txt

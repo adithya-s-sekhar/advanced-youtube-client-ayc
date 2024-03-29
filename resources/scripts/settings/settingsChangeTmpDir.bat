@@ -22,8 +22,8 @@ cls
 set settings_tmp_dir=null
 call tui bannerSmall
 echo.
-if %tmp_loc_invalid% == 0 echo  Current temporary folder:
-if %tmp_loc_invalid% == 1 echo  Invalid temporary folder:
+if /i %tmp_loc_invalid% == 0 echo  Current temporary folder:
+if /i %tmp_loc_invalid% == 1 echo  Invalid temporary folder:
 echo  %tmp_loc%
 echo.
 call tui borderSmall
@@ -34,7 +34,7 @@ echo    the location manually.
 echo.
 echo    Then Press Enter to save.
 echo.
-if %tmp_loc_invalid% == 0 (
+if /i %tmp_loc_invalid% == 0 (
     echo  * Leave blank and Enter to Go Back.
 ) else (
     echo  * Enter a valid path!
@@ -48,8 +48,8 @@ call cleaner "input"
 set /p cleaner_input=Drag and Drop/Paste here: 
 
 call cleaner "dq"
-if %tmp_loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
-if %tmp_loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeTmpDir
+if /i %tmp_loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
+if /i %tmp_loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeTmpDir
 call cleaner "lws"
 call cleaner "tws"
 if "%cleaner_input%" equ "" goto settingsChangeTmpDir

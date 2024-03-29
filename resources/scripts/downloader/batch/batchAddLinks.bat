@@ -42,7 +42,7 @@ if "%cleaner_input%" equ " =" goto :EOF
 set batch_link_tmp=%cleaner_input%
 
 call linkValidator "%batch_link_tmp%"
-if %link_validator% == 1 (
+if /i %link_validator% == 1 (
     goto batchAddLinksLoop2
 ) else (
     echo %url_validation_msg%
@@ -51,21 +51,21 @@ if %link_validator% == 1 (
 )
 
 :batchAddLinksLoop2
-if %job_type% == 1 if not %youtube_link% == 1 (
+if /i %job_type% == 1 if not %youtube_link% == 1 (
     echo ERROR: Invalid link. This is a Youtube only Job.
     echo.
     echo Change job type to Regular to add non-youtube links.
     echo.
     goto batchAddLinksLoop
 )
-if %job_type% == 2 if not %bilibili_link% == 1 (
+if /i %job_type% == 2 if not %bilibili_link% == 1 (
     echo ERROR: Invalid link. This is a Bilibili only Job.
     echo.
     echo Change job type to Regular to add non-bilibili links.
     echo.
     goto batchAddLinksLoop
 )
-if %job_type% == 3 if not %twitch_link% == 1 (
+if /i %job_type% == 3 if not %twitch_link% == 1 (
     echo ERROR: Invalid link. This is a Twitch only Job.
     echo.
     echo Change job type to Regular to add non-twitch links.

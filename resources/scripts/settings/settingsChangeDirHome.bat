@@ -38,6 +38,6 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 012 /n /m "Select Option (0-2): "
-if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 call settingsChangeDir & goto settingsChangeDirHome
-if %errorlevel% == 3 call settingsChangeTmpDir & goto settingsChangeDirHome
+if /i %errorlevel% == 1 goto :EOF
+if /i %errorlevel% == 2 call settingsChangeDir & goto settingsChangeDirHome
+if /i %errorlevel% == 3 call settingsChangeTmpDir & goto settingsChangeDirHome

@@ -15,10 +15,10 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :batchHome
-if %batch_deleted_job% == 1 if %cookie_loaded% == 1 call tui windowSize %small_width% 35
-if %batch_deleted_job% == 1 if %cookie_loaded% == 0 call tui windowSize %small_width% 33
-if %batch_deleted_job% == 0 if %cookie_loaded% == 1 call tui windowSize %small_width% 33
-if %batch_deleted_job% == 0 if %cookie_loaded% == 0 call tui windowSize %small_width% 31
+if /i %batch_deleted_job% == 1 if /i %cookie_loaded% == 1 call tui windowSize %small_width% 35
+if /i %batch_deleted_job% == 1 if /i %cookie_loaded% == 0 call tui windowSize %small_width% 33
+if /i %batch_deleted_job% == 0 if /i %cookie_loaded% == 1 call tui windowSize %small_width% 33
+if /i %batch_deleted_job% == 0 if /i %cookie_loaded% == 0 call tui windowSize %small_width% 31
 set batch_exists_true=0
 set batch_link_counter=0
 set batch_download_status=0
@@ -28,12 +28,12 @@ set "job_name="
 cls
 call tui bannerSmall
 echo.
-if %batch_deleted_job% == 1 (
+if /i %batch_deleted_job% == 1 (
     echo  Deleted job: %batch_deleted_job_name%
     echo.
     set batch_deleted_job=0
 )
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt
     echo.
 )
@@ -45,7 +45,7 @@ echo  same job.
 echo.
 call tui borderSmallHalf
 echo.
-if %job_name_invalid% == 1 (
+if /i %job_name_invalid% == 1 (
     echo Invalid job name.
     echo.
 )
@@ -74,11 +74,11 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 01234 /n /m "Select download mode (0-4): "
-if %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" & goto batchHome
-if %errorlevel% == 2 set job_type=0 & goto batchJobTypeSave
-if %errorlevel% == 3 set job_type=1 & goto batchJobTypeSave
-if %errorlevel% == 4 set job_type=2 & goto batchJobTypeSave
-if %errorlevel% == 5 set job_type=3 & goto batchJobTypeSave
+if /i %errorlevel% == 1 rd /s /q "%loc%\%job_name%\" & goto batchHome
+if /i %errorlevel% == 2 set job_type=0 & goto batchJobTypeSave
+if /i %errorlevel% == 3 set job_type=1 & goto batchJobTypeSave
+if /i %errorlevel% == 4 set job_type=2 & goto batchJobTypeSave
+if /i %errorlevel% == 5 set job_type=3 & goto batchJobTypeSave
 
 :batchJobTypeSave
 echo "%job_type%">"%loc%\%job_name%\job_type.txt"
@@ -91,7 +91,7 @@ set job_type=%job_type:"=%
 
 
 :batchManage
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     call tui windowSize %small_width% 34
 ) else (
     call tui windowSize %small_width% 32
@@ -101,15 +101,15 @@ title Now working on %job_name%
 cls
 call tui bannerSmall
 echo.
-if %batch_exists_true% == 1 echo  Resuming Job: %job_name%
-if %batch_exists_true% == 0 echo  New Job: %job_name%
+if /i %batch_exists_true% == 1 echo  Resuming Job: %job_name%
+if /i %batch_exists_true% == 0 echo  New Job: %job_name%
 echo.
-if %job_type% == 0 echo  Job type: Regular
-if %job_type% == 1 echo  Job type: Youtube only
-if %job_type% == 2 echo  Job type: Bilibili only
-if %job_type% == 3 echo  Job type: Twitch only
+if /i %job_type% == 0 echo  Job type: Regular
+if /i %job_type% == 1 echo  Job type: Youtube only
+if /i %job_type% == 2 echo  Job type: Bilibili only
+if /i %job_type% == 3 echo  Job type: Twitch only
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
@@ -117,49 +117,49 @@ call tui borderSmall
 echo.
 echo  (0) - Back
 echo.
-if %batch_link_counter% GTR 1 (
+if /i %batch_link_counter% GTR 1 (
     set batch_link_counter_text=links
 ) else (
     set batch_link_counter_text=link
 )
-if %batch_link_counter% GTR 0 echo  (1) - Add video links (%batch_link_counter% %batch_link_counter_text% added now)
-if %batch_link_counter% == 0 echo  (1) - Add video links
+if /i %batch_link_counter% GTR 0 echo  (1) - Add video links (%batch_link_counter% %batch_link_counter_text% added now)
+if /i %batch_link_counter% == 0 echo  (1) - Add video links
 echo.
 echo  (2) - Open job file (Delete, View, Add links through 
 echo        Notepad)
 echo.
 echo  (3) - Change job type
-if %job_type% == 0 echo        Currently: Regular
-if %job_type% == 1 echo        Currently: Youtube only
-if %job_type% == 2 echo        Currently: Bilibili only
-if %job_type% == 3 echo        Currently: Twitch only
+if /i %job_type% == 0 echo        Currently: Regular
+if /i %job_type% == 1 echo        Currently: Youtube only
+if /i %job_type% == 2 echo        Currently: Bilibili only
+if /i %job_type% == 3 echo        Currently: Twitch only
 echo.
-if %batch_exists_true% == 1 echo  (4) - Resume job
-if %batch_exists_true% == 0 echo  (4) - Start job
+if /i %batch_exists_true% == 1 echo  (4) - Resume job
+if /i %batch_exists_true% == 0 echo  (4) - Start job
 echo.
 echo  (5) - Delete job
 echo.
 call tui borderSmallHalf
 echo.
 choice /c 012345 /n /m "Select Option (0-5): "
-if %errorlevel% == 1 goto batchHome
-if %errorlevel% == 2 call batchAddLinks & goto batchManage
-if %errorlevel% == 3 call batchOpenJobFile & goto batchManage
-if %errorlevel% == 4 call batchChangeType & goto batchManage
-if %errorlevel% == 5 goto batchRedirector
-if %errorlevel% == 6 call batchDelete
-if %batch_deleted_job% == 1 goto batchHome
-if %batch_deleted_job% == 0 goto batchManage
+if /i %errorlevel% == 1 goto batchHome
+if /i %errorlevel% == 2 call batchAddLinks & goto batchManage
+if /i %errorlevel% == 3 call batchOpenJobFile & goto batchManage
+if /i %errorlevel% == 4 call batchChangeType & goto batchManage
+if /i %errorlevel% == 5 goto batchRedirector
+if /i %errorlevel% == 6 call batchDelete
+if /i %batch_deleted_job% == 1 goto batchHome
+if /i %batch_deleted_job% == 0 goto batchManage
 
 
 :batchRedirector
-if %job_type% == 0 goto batchQuickQualitySelector
+if /i %job_type% == 0 goto batchQuickQualitySelector
 set "conf="
-if %job_type% == 1 call batchYoutube
-if %job_type% == 2 call batchBilibili
-if %job_type% == 3 call batchTwitch
+if /i %job_type% == 1 call batchYoutube
+if /i %job_type% == 2 call batchBilibili
+if /i %job_type% == 3 call batchTwitch
 if not defined conf goto batchManage
-if %conf% == "custom" goto batchCustomFormat
+if /i %conf% == "custom" goto batchCustomFormat
 goto batchDownload
 
 
@@ -186,10 +186,10 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
-if %errorlevel% == 1 goto batchManage
-if %errorlevel% == 2 set conf=-"f bv*+ba/b" & set batch_name_end=high & set format_chosen=batch & goto batchDownload
-if %errorlevel% == 3 set conf="-f wv*+wa/w" & set batch_name_end=low & set format_chosen=batch & goto batchDownload
-if %errorlevel% == 4 goto batchCustomFormat
+if /i %errorlevel% == 1 goto batchManage
+if /i %errorlevel% == 2 set conf=-"f bv*+ba/b" & set batch_name_end=high & set format_chosen=batch & goto batchDownload
+if /i %errorlevel% == 3 set conf="-f wv*+wa/w" & set batch_name_end=low & set format_chosen=batch & goto batchDownload
+if /i %errorlevel% == 4 goto batchCustomFormat
 
 
 :batchCustomFormat
@@ -202,7 +202,7 @@ call tui bannerMedium
 echo.
 echo  Working on: %job_name%
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
@@ -212,7 +212,7 @@ echo  Paste a sample URL from your batch job to retrieve all available qualities
 echo.
 call tui borderSmallHalf
 echo.
-if %url_invalid% == 1 (
+if /i %url_invalid% == 1 (
     echo %url_validation_msg%
     echo.
 )
@@ -228,7 +228,7 @@ if "%cleaner_input%" equ " =" goto batchQuickQualitySelector
 set batch_custom_format_url=%cleaner_input%
 
 call linkValidator "%batch_custom_format_url%"
-if %link_validator% == 1 (
+if /i %link_validator% == 1 (
     set url_invalid=0
     goto batchCustomFormatSelector
 ) else (
@@ -248,7 +248,7 @@ echo  Working on: %job_name%
 echo.
 echo  Sample URL: %batch_custom_format_url%
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )

@@ -48,13 +48,13 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 01 /n /m "Select Option (0-1): "
-if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 call settingsToggles ChangeSubs & goto settingsSubtitles
+if /i %errorlevel% == 1 goto :EOF
+if /i %errorlevel% == 2 call settingsToggles ChangeSubs & goto settingsSubtitles
 
 :subsEnabled
 set sub_type_msg=UNKNOWN
-if %sub_type% == 1 set sub_type_msg=As .srt file.
-if %sub_type% == 2 set sub_type_msg=Embedded into the video file.
+if /i %sub_type% == 1 set sub_type_msg=As .srt file.
+if /i %sub_type% == 2 set sub_type_msg=Embedded into the video file.
 echo.
 echo  Subtitles: Enabled
 echo.
@@ -75,7 +75,7 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
-if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 call settingsToggles ChangeSubs & goto settingsSubtitles
-if %errorlevel% == 3 call settingsToggles ChangeSubType & goto settingsSubtitles
-if %errorlevel% == 4 call settingsSubtitlesLang & goto settingsSubtitles
+if /i %errorlevel% == 1 goto :EOF
+if /i %errorlevel% == 2 call settingsToggles ChangeSubs & goto settingsSubtitles
+if /i %errorlevel% == 3 call settingsToggles ChangeSubType & goto settingsSubtitles
+if /i %errorlevel% == 4 call settingsSubtitlesLang & goto settingsSubtitles

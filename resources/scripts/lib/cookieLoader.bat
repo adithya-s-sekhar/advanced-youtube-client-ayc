@@ -16,8 +16,8 @@
 
 set cookieLoader.arg1=%~1
 
-if %cookieLoader.arg1% == load goto loadCookie
-if %cookieLoader.arg1% == unload goto unloadCookie
+if /i %cookieLoader.arg1% == load goto loadCookie
+if /i %cookieLoader.arg1% == unload goto unloadCookie
 
 goto :EOF
 

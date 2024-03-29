@@ -17,7 +17,7 @@
 set twitch_download_status=0
 :qualitySelector
 title Link Recieved
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     call tui windowSize %small_width% 32
 ) else (
     call tui windowSize %small_width% 30
@@ -30,7 +30,7 @@ echo  URL: %url%
 echo.
 echo  Twitch link detected.
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
@@ -54,11 +54,11 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 12345 /n /m "Select Option (1-5): "
-if %errorlevel% == 1 set conf="-f best[height<=360]" & goto download
-if %errorlevel% == 2 set conf="-f best[height<=480]" & goto download
-if %errorlevel% == 3 set conf="-f best[height<=720]" & goto download
-if %errorlevel% == 4 set conf="-f best[height<=1080]" & goto download
-if %errorlevel% == 5 goto twitchCustomFormat
+if /i %errorlevel% == 1 set conf="-f best[height<=360]" & goto download
+if /i %errorlevel% == 2 set conf="-f best[height<=480]" & goto download
+if /i %errorlevel% == 3 set conf="-f best[height<=720]" & goto download
+if /i %errorlevel% == 4 set conf="-f best[height<=1080]" & goto download
+if /i %errorlevel% == 5 goto twitchCustomFormat
 
 
 :twitchCustomFormat
@@ -70,7 +70,7 @@ call tui bannerLarge
 echo.
 echo  URL: %url%
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
@@ -86,7 +86,7 @@ call cleaner "input"
 set /p cleaner_input=Choose ID (green color in the list above): 
 
 call cleaner "dq"
-if "%cleaner_input%" equ "null" goto qualitySelector
+if /i "%cleaner_input%" equ "null" goto qualitySelector
 call cleaner "ws"
 if "%cleaner_input%" equ "" goto qualitySelector
 if "%cleaner_input%" equ " =" goto qualitySelector
@@ -101,7 +101,7 @@ goto download
 set "try="
 set try=1
 set conf=%conf:"=%
-if %aria2_status% == 1 set aria2=--external-downloader aria2c
+if /i %aria2_status% == 1 set aria2=--external-downloader aria2c
 
 :downloadTried
 call tui windowSize %small_width% 36
@@ -116,11 +116,11 @@ call tui borderSmallHalf
 echo.
 echo  URL: %url%
 echo.
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  Using cookies.txt.
     echo.
 )
 %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% -P home:"%loc%" -o "%%(title).182s-%%(height).4sp-%%(id).11s.%%(ext)s" %custom_config_twitch% %cookies% "%url%" && set twitch_download_status=1 & goto :EOF
 set /a try=%try%+1
-if %try% GTR %max_try% set twitch_download_status=0 & goto :EOF
+if /i %try% GTR %max_try% set twitch_download_status=0 & goto :EOF
 goto downloadTried

@@ -24,81 +24,81 @@ call :save%settingsToggles.arg1%
 goto :EOF
 
 :toggleChangeAria2
-if %aria2_status% == 0 (
+if /i %aria2_status% == 0 (
     set aria2_status=1
     goto :EOF
 )
-if %aria2_status% == 1 (
+if /i %aria2_status% == 1 (
     set aria2_status=2
     goto :EOF
 )
-if %aria2_status% == 2 (
+if /i %aria2_status% == 2 (
     set aria2_status=0
     goto :EOF
 )
 
 :toggleChangeThumbs
-if %thumbs_status% == 0 (
+if /i %thumbs_status% == 0 (
     set thumbs_status=1
     goto :EOF
 )
-if %thumbs_status% == 1 (
+if /i %thumbs_status% == 1 (
     set thumbs_status=0
     goto :EOF
 )
 
 :toggleChangeSubs
-if %subs_status% == 0 (
+if /i %subs_status% == 0 (
     set subs_status=1
     goto :EOF
 )
-if %subs_status% == 1 (
+if /i %subs_status% == 1 (
     set subs_status=0
     goto :EOF
 )
 
 :toggleChangeTheme
-if %theme_status% == 0 (
+if /i %theme_status% == 0 (
     set theme_status=1
     goto :EOF
 )
-if %theme_status% == 1 (
+if /i %theme_status% == 1 (
     set theme_status=2
     goto :EOF
 )
-if %theme_status% == 2 (
+if /i %theme_status% == 2 (
     set theme_status=3
     goto :EOF
 )
-if %theme_status% == 3 (
+if /i %theme_status% == 3 (
     set theme_status=4
     goto :EOF
 )
-if %theme_status% == 4 (
+if /i %theme_status% == 4 (
     set theme_status=5
     goto :EOF
 )
-if %theme_status% == 5 (
+if /i %theme_status% == 5 (
     set theme_status=0
     goto :EOF
 )
 
 :toggleYtUpdateOnStart
-if %ytupd_onstart% == 0 (
+if /i %ytupd_onstart% == 0 (
     set ytupd_onstart=1
     goto :EOF
 )
-if %ytupd_onstart% == 1 (
+if /i %ytupd_onstart% == 1 (
     set ytupd_onstart=0
     goto :EOF
 )
 
 :toggleChangeSubType
-if %sub_type% == 1 (
+if /i %sub_type% == 1 (
     set sub_type=2
     goto :EOF
 )
-if %sub_type% == 2 (
+if /i %sub_type% == 2 (
     set sub_type=1
     goto :EOF
 )

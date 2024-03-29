@@ -128,12 +128,12 @@ cls
 echo.
 echo  (3/4) Select theme (Can be changed later)
 echo.
-if %theme_status% == 0 echo  Currently: Dark
-if %theme_status% == 1 echo  Currently: Light
-if %theme_status% == 2 echo  Currently: Light Blue
-if %theme_status% == 3 echo  Currently: Light Purple
-if %theme_status% == 4 echo  Currently: Light Yellow
-if %theme_status% == 5 echo  Currently: Light Red
+if /i %theme_status% == 0 echo  Currently: Dark
+if /i %theme_status% == 1 echo  Currently: Light
+if /i %theme_status% == 2 echo  Currently: Light Blue
+if /i %theme_status% == 3 echo  Currently: Light Purple
+if /i %theme_status% == 4 echo  Currently: Light Yellow
+if /i %theme_status% == 5 echo  Currently: Light Red
 echo.
 echo   (1) - Switch Theme
 echo.
@@ -142,8 +142,8 @@ echo.
 call tui borderMediumHalf
 echo.
 choice /c 12 /n /m "Select Option (1-2): "
-if %errorlevel% == 1 call settingsToggles ChangeTheme
-if %errorlevel% == 2 goto themeSelectorFinish
+if /i %errorlevel% == 1 call settingsToggles ChangeTheme
+if /i %errorlevel% == 2 goto themeSelectorFinish
 goto themeSelector
 :themeSelectorFinish
 cls
@@ -161,8 +161,8 @@ echo.
 call tui borderMediumHalf
 echo.
 choice /c 12 /n /m "Select Option (1-2): "
-if %errorlevel% == 1 set firstYtUpdate=nightly
-if %errorlevel% == 2 set firstYtUpdate=stable
+if /i %errorlevel% == 1 set firstYtUpdate=nightly
+if /i %errorlevel% == 2 set firstYtUpdate=stable
 echo.
 echo  Please wait, updating yt-dlp..
 %youtube_dl% --update-to %firstYtUpdate%

@@ -46,8 +46,8 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 0123 /n /m "Select Option (0-3): "
-if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
-if %errorlevel% == 3 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
-if %errorlevel% == 4 start "" "https://t.me/s/ayc_news"
+if /i %errorlevel% == 1 goto :EOF
+if /i %errorlevel% == 2 start "" "https://github.com/adithya-s-sekhar/advanced-youtube-client-ayc"
+if /i %errorlevel% == 3 start "" "https://sourceforge.net/projects/advanced-youtube-client-ayc"
+if /i %errorlevel% == 4 start "" "https://t.me/s/ayc_news"
 goto :about

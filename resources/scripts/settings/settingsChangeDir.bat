@@ -22,8 +22,8 @@ cls
 set settings_dir=null
 call tui bannerSmall
 echo.
-if %loc_invalid% == 0 echo  Current download folder:
-if %loc_invalid% == 1 echo  Invalid download folder:
+if /i %loc_invalid% == 0 echo  Current download folder:
+if /i %loc_invalid% == 1 echo  Invalid download folder:
 echo  %loc%
 echo.
 call tui borderSmall
@@ -34,7 +34,7 @@ echo    location manually.
 echo.
 echo    Then Press Enter to save.
 echo.
-if %loc_invalid% == 0 (
+if /i %loc_invalid% == 0 (
     echo  * Leave blank and Enter to Go Back.
 ) else (
     echo  * Enter a valid path!
@@ -48,8 +48,8 @@ call cleaner "input"
 set /p cleaner_input=Drag and Drop/Paste here: 
 
 call cleaner "dq"
-if %loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
-if %loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDir
+if /i %loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
+if /i %loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDir
 call cleaner "lws"
 call cleaner "tws"
 if "%cleaner_input%" equ "" goto settingsChangeDir

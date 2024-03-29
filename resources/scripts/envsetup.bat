@@ -102,14 +102,14 @@ set /a max_try=%defined_try%+1
 if not exist "%aycdata%\aria2_status.txt" echo "1">"%aycdata%\aria2_status.txt"
 set /p aria2_status=<"%aycdata%\aria2_status.txt"
 set aria2_status=%aria2_status:"=%
-if %aria2_status% == 0 set aria2=--concurrent-fragments 8
-if %aria2_status% == 2 set aria2=--external-downloader aria2c
+if /i %aria2_status% == 0 set aria2=--concurrent-fragments 8
+if /i %aria2_status% == 2 set aria2=--external-downloader aria2c
 
 if not exist "%aycdata%\thumbs_status.txt" echo "0">"%aycdata%\thumbs_status.txt"
 set /p thumbs_status=<"%aycdata%\thumbs_status.txt"
 set thumbs_status=%thumbs_status:"=%
-if %thumbs_status% == 0 set "thumbs="
-if %thumbs_status% == 1 set thumbs=--embed-thumbnail
+if /i %thumbs_status% == 0 set "thumbs="
+if /i %thumbs_status% == 1 set thumbs=--embed-thumbnail
 
 if not exist "%aycdata%\subs_status.txt" echo "0">"%aycdata%\subs_status.txt"
 set /p subs_status=<"%aycdata%\subs_status.txt"
@@ -124,7 +124,7 @@ set /p sub_lang=<"%aycdata%\sub_lang.txt"
 set sub_lang=%sub_lang:"=%
 set sub_lang=%sub_lang: =%
 
-if %subs_status% == 0 (
+if /i %subs_status% == 0 (
     call :subs_disabled
 ) else (
     call :subs_enabled

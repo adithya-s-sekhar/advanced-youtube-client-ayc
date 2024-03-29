@@ -49,14 +49,14 @@ echo.
 call tui borderSmallHalf
 echo.
 choice /c 01234567 /n /m "Select Option (0-7): "
-if %errorlevel% == 1 goto :EOF
-if %errorlevel% == 2 set "sub_lang=en" & call :saveSubLang & goto :EOF
-if %errorlevel% == 3 set "sub_lang=zh" & call :saveSubLang & goto :EOF
-if %errorlevel% == 4 set "sub_lang=ru" & call :saveSubLang & goto :EOF
-if %errorlevel% == 5 set "sub_lang=cs" & call :saveSubLang & goto :EOF
-if %errorlevel% == 6 start "" "https://www.andiamo.co.uk/resources/iso-language-codes/" & goto settingsSubtitlesLang
-if %errorlevel% == 7 set "sub_lang=all" & call :saveSubLang & goto :EOF
-if %errorlevel% == 8 call :customSubLang & goto settingsSubtitlesLang
+if /i %errorlevel% == 1 goto :EOF
+if /i %errorlevel% == 2 set "sub_lang=en" & call :saveSubLang & goto :EOF
+if /i %errorlevel% == 3 set "sub_lang=zh" & call :saveSubLang & goto :EOF
+if /i %errorlevel% == 4 set "sub_lang=ru" & call :saveSubLang & goto :EOF
+if /i %errorlevel% == 5 set "sub_lang=cs" & call :saveSubLang & goto :EOF
+if /i %errorlevel% == 6 start "" "https://www.andiamo.co.uk/resources/iso-language-codes/" & goto settingsSubtitlesLang
+if /i %errorlevel% == 7 set "sub_lang=all" & call :saveSubLang & goto :EOF
+if /i %errorlevel% == 8 call :customSubLang & goto settingsSubtitlesLang
 goto settingsSubtitlesLang
 
 :customSubLang

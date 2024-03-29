@@ -26,23 +26,22 @@ set path=%path%;%aycroot%\resources\bin;%aycroot%\resources\scripts
 :begin
 call envsetup
 call custom
-if not defined ayc.arg1 if %ytupd_onstart% == 1 start yt-dlpUpdatePopup
+if not defined ayc.arg1 if /i %ytupd_onstart% == 1 start yt-dlpUpdatePopup
 
 
 :checkParameter
 if not defined ayc.arg3 goto checkParameter2
-if %ayc.arg3% equ "1" set cookie_loaded=0 & call toggleCookie
+if /i %ayc.arg3% equ "1" set cookie_loaded=0 & call toggleCookie
 :checkParameter2
-if %ayc.arg1%p equ p goto start
-if %ayc.arg1% equ "b" goto batch
-if %ayc.arg1% equ "B" goto batch
+if /i %ayc.arg1%p equ p goto start
+if /i %ayc.arg1% equ "b" goto batch
 set url=%ayc.arg1%
 set url=%url:"=%
-if %ayc.arg2% == "youtube" goto youtube
-if %ayc.arg2% == "ytsearch" goto ytsearch
-if %ayc.arg2% == "generic" goto generic
-if %ayc.arg2% == "bili" goto bili
-if %ayc.arg2% == "twitch" goto twitch
+if /i %ayc.arg2% == "youtube" goto youtube
+if /i %ayc.arg2% == "ytsearch" goto ytsearch
+if /i %ayc.arg2% == "generic" goto generic
+if /i %ayc.arg2% == "bili" goto bili
+if /i %ayc.arg2% == "twitch" goto twitch
 
 
 :start
@@ -58,25 +57,25 @@ echo  - Enter ^(m^) for more options.
 echo.
 echo  - Paste any URL or search term or QuickKey and press Enter.
 echo.
-if %aria2_status% == 0 echo  - Multithreaded downloads ^(a^): Disabled
-if %aria2_status% == 1 echo  - Multithreaded downloads ^(a^): Enabled for non-youtube downloads
-if %aria2_status% == 2 echo  - Multithreaded downloads ^(a^): Enabled for all downloads
+if /i %aria2_status% == 0 echo  - Multithreaded downloads ^(a^): Disabled
+if /i %aria2_status% == 1 echo  - Multithreaded downloads ^(a^): Enabled for non-youtube downloads
+if /i %aria2_status% == 2 echo  - Multithreaded downloads ^(a^): Enabled for all downloads
 echo.
 echo  - Example QuickKeys: ^(o^) - Open downloads, ^(c^) - Load/Unload cookies.txt
 echo.
-if %no_cookie_found% == 1 (
+if /i %no_cookie_found% == 1 (
     echo  ! Error: cookies.txt not present in ayc folder.
     echo.
 )
-if %cookie_loaded% == 1 (
+if /i %cookie_loaded% == 1 (
     echo  ! Info: cookies.txt loaded. Enter ^(c^) to unload cookie.
     echo.
 )
-if exist cookies.txt if %cookie_loaded% == 0 (
+if exist cookies.txt if /i %cookie_loaded% == 0 (
     echo  ! Info: cookies.txt detected but not loaded. Enter ^(c^) to load cookie.
     echo.
 )
-if %url_invalid% == 1 (
+if /i %url_invalid% == 1 (
     echo  ! %url_validation_msg%
     echo.
 )
@@ -97,11 +96,11 @@ set url=%cleaner_input%
 set no_cookie_found=0
 
 call linkValidator "%url%"
-if %link_validator% == 1 goto linkValid
+if /i %link_validator% == 1 goto linkValid
 
 call quickKeyRedirector "%url%"
 
-if %quickkey_validator% == 0 (
+if /i %quickkey_validator% == 0 (
     set youtube_link=1
     start AYClient.bat "%url%" "ytsearch" "%cookie_loaded%"
 )
@@ -109,17 +108,17 @@ goto start
 
 
 :linkValid
-if %youtube_link% == 1 start AYClient.bat "%url%" "youtube" "%cookie_loaded%"
-if %bilibili_link% == 1 start AYClient.bat "%url%" "bili" "%cookie_loaded%"
-if %twitch_link% == 1 start AYClient.bat "%url%" "twitch" "%cookie_loaded%"
-if %generic_link% == 1 start AYClient.bat "%url%" "generic" "%cookie_loaded%"
+if /i %youtube_link% == 1 start AYClient.bat "%url%" "youtube" "%cookie_loaded%"
+if /i %bilibili_link% == 1 start AYClient.bat "%url%" "bili" "%cookie_loaded%"
+if /i %twitch_link% == 1 start AYClient.bat "%url%" "twitch" "%cookie_loaded%"
+if /i %generic_link% == 1 start AYClient.bat "%url%" "generic" "%cookie_loaded%"
 set url_invalid=0
 goto start
 
 
 :youtube
 call youtube
-if %youtube_download_status% == 1 (
+if /i %youtube_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
@@ -129,7 +128,7 @@ goto exit
 
 :ytsearch
 call ytsearch
-if %youtube_download_status% == 1 (
+if /i %youtube_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
@@ -139,7 +138,7 @@ goto exit
 
 :generic
 call generic
-if %generic_download_status% == 1 (
+if /i %generic_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
@@ -149,7 +148,7 @@ goto exit
 
 :bili
 call bilibili
-if %bilibili_download_status% == 1 (
+if /i %bilibili_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
@@ -158,7 +157,7 @@ goto exit
 
 :twitch
 call twitch
-if %twitch_download_status% == 1 (
+if /i %twitch_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
@@ -168,7 +167,7 @@ goto exit
 
 :batch
 call batch
-if %batch_download_status% == 1 (
+if /i %batch_download_status% == 1 (
     call downloadSuccess
 ) else (
     call downloadError
