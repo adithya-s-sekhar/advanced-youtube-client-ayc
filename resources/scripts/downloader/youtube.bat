@@ -105,7 +105,7 @@ echo   (6) - WEBM - OPUS Audio - 160kbps
 echo.
 call tui borderSmall
 echo.
-echo   (7) - Enter format code manually
+echo   (7) - Show even more formats (Enter format code manually)
 echo.
 echo   (8) - Show the most used formats
 echo.
