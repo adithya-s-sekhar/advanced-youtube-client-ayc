@@ -17,9 +17,9 @@
 :downloadSuccess
 if defined url call saveHistory success
 if /i %cookie_loaded% == 1 (
-    call tui windowSize %small_width% 19
+    call tui windowSize %small_width% 24
 ) else (
-    call tui windowSize %small_width% 17
+    call tui windowSize %small_width% 22
 )
 color 2F
 title Download Finished
@@ -41,8 +41,15 @@ if /i %cookie_loaded% == 1 (
 echo  The files are saved in:
 echo  %loc%
 echo.
+call tui borderSmall
+echo.
+echo  (0) - Close
+echo.
+echo  (1) - Open downloads folder
+echo.
 call tui borderSmallHalf
 echo.
-echo  Press enter to close this window.
-pause>NUL
-goto :EOF
+echo Select Option (0-1): 
+choice /c 01 /n
+if /i %errorlevel% == 1 goto :EOF
+if /i %errorlevel% == 2 start %loc%
