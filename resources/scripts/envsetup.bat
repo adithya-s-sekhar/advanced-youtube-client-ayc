@@ -152,7 +152,7 @@ set subs=--write-auto-sub
 :: comment the above line to disable auto generated subtitles
 set subs=%subs% --convert-subs srt
 :: comment the above line to disable srt conversion
-if "%sub_type%" == "1" set subs=%subs% --write-subs
-if "%sub_type%" == "2" set subs=%subs% --embed-subs
+if /i "%sub_type%" == "1" set subs=%subs% --write-subs
+if /i "%sub_type%" == "2" set subs=%subs% --embed-subs
 set subs=%subs% --sub-langs %sub_lang%
 goto :EOF

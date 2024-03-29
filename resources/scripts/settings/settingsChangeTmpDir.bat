@@ -48,17 +48,17 @@ call cleaner "input"
 set /p cleaner_input=Drag and Drop/Paste here: 
 
 call cleaner "dq"
-if /i %tmp_loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
-if /i %tmp_loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeTmpDir
+if /i %tmp_loc_invalid% == 0 if /i "%cleaner_input%" equ "null" goto :EOF
+if /i %tmp_loc_invalid% == 1 if /i "%cleaner_input%" equ "null" goto settingsChangeTmpDir
 call cleaner "lws"
 call cleaner "tws"
-if "%cleaner_input%" equ "" goto settingsChangeTmpDir
-if "%cleaner_input%" equ " =" goto settingsChangeTmpDir
+if /i "%cleaner_input%" equ "" goto settingsChangeTmpDir
+if /i "%cleaner_input%" equ " =" goto settingsChangeTmpDir
 
 set settings_tmp_dir=%cleaner_input%
 
-if "%settings_tmp_dir%" == "r" set settings_tmp_dir=%aycroot%\resources\tmp
-if "%settings_tmp_dir%" == "R" set settings_tmp_dir=%aycroot%\resources\tmp
+if /i "%settings_tmp_dir%" == "r" set settings_tmp_dir=%aycroot%\resources\tmp
+if /i "%settings_tmp_dir%" == "R" set settings_tmp_dir=%aycroot%\resources\tmp
 
 echo "%settings_tmp_dir%">"%aycdata%\tmp_dir.txt"
 set tmp_loc="%settings_tmp_dir%"

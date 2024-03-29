@@ -15,7 +15,7 @@
 :: along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 :settingsSubtitles
-if "%subs_status%" == "0" (
+if /i "%subs_status%" == "0" (
     call tui windowSize %small_width% 17
 ) else (
     call tui windowSize %small_width% 25
@@ -23,13 +23,13 @@ if "%subs_status%" == "0" (
 color %theme_colors%
 title Subtitle settings
 set sub_lang_display=%sub_lang%
-if "%sub_lang%" == "en" set sub_lang_display=English
-if "%sub_lang%" == "zh" set sub_lang_display=Chinese
-if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "cs" set sub_lang_display=Czech
+if /i "%sub_lang%" == "en" set sub_lang_display=English
+if /i "%sub_lang%" == "zh" set sub_lang_display=Chinese
+if /i "%sub_lang%" == "ru" set sub_lang_display=Russian
+if /i "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
-if "%subs_status%" == "0" (
+if /i "%subs_status%" == "0" (
     goto subsDisabled
 ) else (
     goto subsEnabled

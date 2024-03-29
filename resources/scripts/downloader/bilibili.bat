@@ -238,8 +238,8 @@ set /p cleaner_input=Choose ID (green color in the list above):
 call cleaner "dq"
 if /i "%cleaner_input%" equ "null" goto formatSelector
 call cleaner "ws"
-if "%cleaner_input%" equ "" goto formatSelector
-if "%cleaner_input%" equ " =" goto formatSelector
+if /i "%cleaner_input%" equ "" goto formatSelector
+if /i "%cleaner_input%" equ " =" goto formatSelector
 
 set bilibili_qual=%cleaner_input%
 

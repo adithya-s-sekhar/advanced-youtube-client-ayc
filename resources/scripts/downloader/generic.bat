@@ -80,8 +80,8 @@ set /p cleaner_input=Choose ID (green color in the list above):
 call cleaner "dq"
 if /i "%cleaner_input%" equ "null" goto qualitySelector
 call cleaner "ws"
-if "%cleaner_input%" equ "" goto qualitySelector
-if "%cleaner_input%" equ " =" goto qualitySelector
+if /i "%cleaner_input%" equ "" goto qualitySelector
+if /i "%cleaner_input%" equ " =" goto qualitySelector
 
 set generic_qual=%cleaner_input%
 

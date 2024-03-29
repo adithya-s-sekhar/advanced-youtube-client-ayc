@@ -84,9 +84,9 @@ call cleaner "input"
 set /p cleaner_input="ayc:/> "
 
 call cleaner "dq"
-if "%cleaner_input%" equ "null" goto start
-if "%cleaner_input%" equ "" goto start
-if "%cleaner_input%" equ " =" goto start
+if /i "%cleaner_input%" equ "null" goto start
+if /i "%cleaner_input%" equ "" goto start
+if /i "%cleaner_input%" equ " =" goto start
 call cleaner "lws"
 if not defined cleaner_input goto start
 call cleaner "tws"

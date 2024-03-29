@@ -48,17 +48,17 @@ call cleaner "input"
 set /p cleaner_input=Drag and Drop/Paste here: 
 
 call cleaner "dq"
-if /i %loc_invalid% == 0 if "%cleaner_input%" equ "null" goto :EOF
-if /i %loc_invalid% == 1 if "%cleaner_input%" equ "null" goto settingsChangeDir
+if /i %loc_invalid% == 0 if /i "%cleaner_input%" equ "null" goto :EOF
+if /i %loc_invalid% == 1 if /i "%cleaner_input%" equ "null" goto settingsChangeDir
 call cleaner "lws"
 call cleaner "tws"
-if "%cleaner_input%" equ "" goto settingsChangeDir
-if "%cleaner_input%" equ " =" goto settingsChangeDir
+if /i "%cleaner_input%" equ "" goto settingsChangeDir
+if /i "%cleaner_input%" equ " =" goto settingsChangeDir
 
 set settings_dir=%cleaner_input%
 
-if "%settings_dir%" == "r" set settings_dir=%aycroot%\Downloads
-if "%settings_dir%" == "R" set settings_dir=%aycroot%\Downloads
+if /i "%settings_dir%" == "r" set settings_dir=%aycroot%\Downloads
+if /i "%settings_dir%" == "R" set settings_dir=%aycroot%\Downloads
 
 echo "%settings_dir%">"%aycdata%\dir.txt"
 set loc="%settings_dir%"

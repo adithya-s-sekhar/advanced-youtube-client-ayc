@@ -50,7 +50,7 @@ if /i %job_name_invalid% == 1 (
     echo.
 )
 set /p job_name=Enter a job name: 
-if "%job_name%" equ "" goto batchHome
+if /i "%job_name%" equ "" goto batchHome
 set job_name=%job_name:"=%
 if not exist "%loc%\%job_name%\" md "%loc%\%job_name%">NUL
 if not exist "%loc%\%job_name%\" set job_name_invalid=1 & goto batchHome
@@ -220,10 +220,10 @@ call cleaner "input"
 set /p cleaner_input=Sample URL: 
 
 call cleaner "dq"
-if "%cleaner_input%" equ "null" goto batchQuickQualitySelector
+if /i "%cleaner_input%" equ "null" goto batchQuickQualitySelector
 call cleaner "ws"
-if "%cleaner_input%" equ "" goto batchQuickQualitySelector
-if "%cleaner_input%" equ " =" goto batchQuickQualitySelector
+if /i "%cleaner_input%" equ "" goto batchQuickQualitySelector
+if /i "%cleaner_input%" equ " =" goto batchQuickQualitySelector
 
 set batch_custom_format_url=%cleaner_input%
 
@@ -267,10 +267,10 @@ call cleaner "input"
 set /p cleaner_input=Choose ID (green color in the list above): 
 
 call cleaner "dw"
-if "%cleaner_input%" equ "null" goto batchCustomFormat
+if /i "%cleaner_input%" equ "null" goto batchCustomFormat
 call cleaner "ws"
-if "%cleaner_input%" equ "" goto batchCustomFormat
-if "%cleaner_input%" equ " =" goto batchCustomFormat
+if /i "%cleaner_input%" equ "" goto batchCustomFormat
+if /i "%cleaner_input%" equ " =" goto batchCustomFormat
 
 set batch_custom_qual=%cleaner_input%
 

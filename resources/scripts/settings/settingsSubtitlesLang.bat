@@ -19,10 +19,10 @@ call tui windowSize %small_width% 29
 color %theme_colors%
 title Subtitles: Change Lanuage
 set sub_lang_display=%sub_lang%
-if "%sub_lang%" == "en" set sub_lang_display=English
-if "%sub_lang%" == "zh" set sub_lang_display=Chinese
-if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "cs" set sub_lang_display=Czech
+if /i "%sub_lang%" == "en" set sub_lang_display=English
+if /i "%sub_lang%" == "zh" set sub_lang_display=Chinese
+if /i "%sub_lang%" == "ru" set sub_lang_display=Russian
+if /i "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
 echo.
@@ -65,10 +65,10 @@ call tui windowSize %small_width% 19
 color %theme_colors%
 title Subtitles: Custom lang code
 set sub_lang_display=%sub_lang%
-if "%sub_lang%" == "en" set sub_lang_display=English
-if "%sub_lang%" == "zh" set sub_lang_display=Chinese
-if "%sub_lang%" == "ru" set sub_lang_display=Russian
-if "%sub_lang%" == "cs" set sub_lang_display=Czech
+if /i "%sub_lang%" == "en" set sub_lang_display=English
+if /i "%sub_lang%" == "zh" set sub_lang_display=Chinese
+if /i "%sub_lang%" == "ru" set sub_lang_display=Russian
+if /i "%sub_lang%" == "cs" set sub_lang_display=Czech
 cls
 call tui bannerSmall
 echo.
@@ -88,9 +88,9 @@ set /p cleaner_input=Enter language code:
 
 call cleaner "dq"
 call cleaner "ws"
-if "%cleaner_input%" equ "null" goto :EOF
-if "%cleaner_input%" equ "" goto :customSubLang
-if "%cleaner_input%" equ " =" goto settingsChangeDefinedTry
+if /i "%cleaner_input%" equ "null" goto :EOF
+if /i "%cleaner_input%" equ "" goto :customSubLang
+if /i "%cleaner_input%" equ " =" goto settingsChangeDefinedTry
 
 set sub_lang_tmp=%cleaner_input%
 

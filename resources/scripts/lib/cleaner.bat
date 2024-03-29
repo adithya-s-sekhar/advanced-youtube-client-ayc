@@ -16,13 +16,13 @@
 
 set cleaner.arg1=%~1
 
-if "%cleaner.arg1%" == "input" call :cleanerInput & goto :EOF
+if /i "%cleaner.arg1%" == "input" call :cleanerInput & goto :EOF
 
-if "%cleaner.arg1%" == "sq" call :cleanSingleQuote & goto :EOF
-if "%cleaner.arg1%" == "dq" call :cleanDoubleQuote & goto :EOF
-if "%cleaner.arg1%" == "ws" call :cleanWhitespace & goto :EOF
-if "%cleaner.arg1%" == "lws" call :cleanLeadingWhitespace & goto :EOF
-if "%cleaner.arg1%" == "tws" call :cleanTrailingWhitespace & goto :EOF
+if /i "%cleaner.arg1%" == "sq" call :cleanSingleQuote & goto :EOF
+if /i "%cleaner.arg1%" == "dq" call :cleanDoubleQuote & goto :EOF
+if /i "%cleaner.arg1%" == "ws" call :cleanWhitespace & goto :EOF
+if /i "%cleaner.arg1%" == "lws" call :cleanLeadingWhitespace & goto :EOF
+if /i "%cleaner.arg1%" == "tws" call :cleanTrailingWhitespace & goto :EOF
 
 goto :EOF
 
@@ -44,7 +44,7 @@ goto :EOF
 
 :cleanLeadingWhitespace
 :cleanLeadingWhitespaceCheck
-if "%cleaner_input:~0,1%"==" " goto cleanLeadingWhitespaceClean
+if /i "%cleaner_input:~0,1%"==" " goto cleanLeadingWhitespaceClean
 goto :EOF
 :cleanLeadingWhitespaceClean
 set "cleaner_input=%cleaner_input:~1%"
@@ -52,7 +52,7 @@ goto cleanLeadingWhitespaceCheck
 
 :cleanTrailingWhitespace
 :cleanTrailingWhitespaceCheck
-if "%cleaner_input:~-1%"==" " goto cleanTrailingWhitespaceClean
+if /i "%cleaner_input:~-1%"==" " goto cleanTrailingWhitespaceClean
 goto :EOF
 :cleanTrailingWhitespaceClean
 set "cleaner_input=%cleaner_input:~0,-1%"
