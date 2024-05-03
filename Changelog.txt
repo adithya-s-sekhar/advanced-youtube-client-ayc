@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.20 - 26/Nov/2023
+Advanced Youtube Client - AYC v4.21 - 03/May/2024
 Open AYClient.bat
 
 What's new?
+
+[4.21]
+- New: Option to open downloads folder after a successful download.
+- Improved: UI.
+- Improved: Code quality.
+- Updated: ffmpeg to v7.0.
 
 [4.20]
 - New: Simplified quality selector for youtube and bilibili.
