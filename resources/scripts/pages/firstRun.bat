@@ -1,5 +1,5 @@
 :: Advanced Youtube Client - AYC
-:: Copyright (C) 2023  Adithya S Sekhar
+:: Copyright (C) 2024  Adithya S Sekhar
 ::
 :: This program is free software: you can redistribute it and/or modify
 :: it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ echo.
 echo  License Agreement
 echo.
 echo  Advanced Youtube Client - AYC 
-echo  Copyright (C) 2023 Adithya S Sekhar
+echo  Copyright (C) 2024 Adithya S Sekhar
 echo  This program comes with ABSOLUTELY NO WARRANTY;
 echo  This is free software, and you are welcome to redistribute it
 echo  under certain conditions;
