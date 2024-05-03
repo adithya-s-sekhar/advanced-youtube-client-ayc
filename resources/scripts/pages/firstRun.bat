@@ -29,7 +29,7 @@ echo  under certain conditions;
 echo.
 call tui borderMediumHalf
 echo.
-echo  By pressing Enter you are agreeing to the terms of this license.
+echo  By pressing Enter you are agreeing to the terms of the GNU GPLv3 or newer license.
 pause>NUL
 cls
 echo.
