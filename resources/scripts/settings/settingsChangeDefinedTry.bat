@@ -53,7 +53,6 @@ if /i "%cleaner_input%" equ " =" goto settingsChangeDefinedTry
 set settings_try=%cleaner_input%
 
 if /i %settings_try% == r set settings_try=0
-if /i %settings_try% == R set settings_try=0
 
 echo "%settings_try%">"%aycdata%\try.txt"
 set defined_try="%settings_try%"
