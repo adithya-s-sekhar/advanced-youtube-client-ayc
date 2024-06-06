@@ -1,7 +1,11 @@
-Advanced Youtube Client - AYC v4.21 - 03/May/2024
+Advanced Youtube Client - AYC v4.22 - 06/Jun/2024
 Open AYClient.bat
 
 What's new?
+
+[4.22]
+- Fixed: Retried were failing due to a previous optimization from v4.19.
+- Updated: Libraries.
 
 [4.21]
 - New: Option to open downloads folder after a successful download.
