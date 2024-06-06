@@ -4,7 +4,7 @@ Open AYClient.bat
 What's new?
 
 [4.22]
-- Fixed: Retried were failing due to a previous optimization from v4.19.
+- Fixed: Retries were failing due to a previous optimization from v4.19.
 - Updated: Libraries.
 
 [4.21]
