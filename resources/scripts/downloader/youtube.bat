@@ -276,7 +276,7 @@ if /i %format_chosen% == av1 %youtube_dl% %default_config% %conf% %aria2% %subs%
 if /i %format_chosen% == m4a %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 if /i %format_chosen% == mp3 %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 if /i %format_chosen% == webm %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
-if /i %format_chosen% == cust %youtube_dl% %default_config% %conf% %aria2% %thumbs% --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
+if /i %format_chosen% == cust %youtube_dl% %default_config% %conf% %aria2% %subs% %thumbs% --merge-output-format mp4 --add-metadata -P home:"%loc%" -o "%%(title).177s-%%(id).12s.%%(ext)s" %custom_config_youtube% %cookies% "%url%" && set youtube_download_status=1 && goto :EOF
 set /a try=%try%+1
 if /i %try% GTR %max_try% set youtube_download_status=0 & goto :EOF
 goto downloadTried
