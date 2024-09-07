@@ -124,6 +124,11 @@ set /p sub_lang=<"%aycdata%\sub_lang.txt"
 set sub_lang=%sub_lang:"=%
 set sub_lang=%sub_lang: =%
 
+if not exist "%aycdata%\auto_subs.txt" echo "0">"%aycdata%\auto_subs.txt"
+set /p auto_subs=<"%aycdata%\auto_subs.txt"
+set auto_subs=%auto_subs:"=%
+set auto_subs=%auto_subs: =%
+
 if /i %subs_status% == 0 (
     call :subs_disabled
 ) else (
@@ -148,8 +153,7 @@ goto :EOF
 
 :subs_enabled
 set "subs="
-set subs=--write-auto-sub
-:: comment the above line to disable auto generated subtitles
+if /i "%auto_subs%" == "1" set subs=--write-auto-sub
 set subs=%subs% --convert-subs srt
 :: comment the above line to disable srt conversion
 if /i "%sub_type%" == "1" set subs=%subs% --write-subs

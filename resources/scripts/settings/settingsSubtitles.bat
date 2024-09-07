@@ -18,7 +18,7 @@
 if /i "%subs_status%" == "0" (
     call tui windowSize %small_width% 17
 ) else (
-    call tui windowSize %small_width% 25
+    call tui windowSize %small_width% 28
 )
 color %theme_colors%
 title Subtitle settings
@@ -72,10 +72,15 @@ echo  (2) - Change subtitle type
 echo.
 echo  (3) - Change subtitle language
 echo.
+echo  (4) - Auto generated subtitles
+if /i %auto_subs% == 0 echo        [Disabled]
+if /i %auto_subs% == 1 echo        [Enabled]
+echo.
 call tui borderSmallHalf
 echo.
-choice /c 0123 /n /m "Select Option (0-3): "
+choice /c 01234 /n /m "Select Option (0-4): "
 if /i %errorlevel% == 1 goto :EOF
 if /i %errorlevel% == 2 call settingsToggles ChangeSubs & goto settingsSubtitles
 if /i %errorlevel% == 3 call settingsToggles ChangeSubType & goto settingsSubtitles
 if /i %errorlevel% == 4 call settingsSubtitlesLang & goto settingsSubtitles
+if /i %errorlevel% == 5 call settingsToggles ChangeAutoSubs & goto settingsSubtitles

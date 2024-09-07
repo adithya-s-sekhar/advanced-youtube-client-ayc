@@ -42,7 +42,7 @@ echo  (4) - Czech (cs)
 echo.
 echo  (5) - Show all language codes (web)
 echo.
-echo  (6) - Select all languages (Not recommended)
+echo  (6) - Select all languages
 echo.
 echo  (7) - Enter language code manually
 echo.

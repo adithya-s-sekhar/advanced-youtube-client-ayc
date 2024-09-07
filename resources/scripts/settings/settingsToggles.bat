@@ -103,6 +103,16 @@ if /i %sub_type% == 2 (
     goto :EOF
 )
 
+:toggleChangeAutoSubs
+if /i %auto_subs% == 0 (
+    set auto_subs=1
+    goto :EOF
+)
+if /i %auto_subs% == 1 (
+    set auto_subs=0
+    goto :EOF
+)
+
 :saveChangeAria2
 echo "%aria2_status%">"%aycdata%\aria2_status.txt"
 goto :EOF
@@ -126,4 +136,8 @@ goto :EOF
 
 :saveChangeSubType
 echo "%sub_type%">"%aycdata%\sub_type.txt"
+goto :EOF
+
+:saveChangeAutoSubs
+echo "%auto_subs%">"%aycdata%\auto_subs.txt"
 goto :EOF
