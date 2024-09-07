@@ -75,7 +75,7 @@ set yt_updated=0
 echo.
 echo Updating to latest stable
 echo.
-%youtube_dl% --update-to stable@2024.05.27 > nul
+%youtube_dl% --update-to stable@2024.08.06 > nul
 :: you can't downgrade from nightly without targetting a specifig tag
 %youtube_dl% --update-to stable > nul
 :: now update to latest stable
