@@ -1,7 +1,13 @@
-Advanced Youtube Client - AYC v4.22 - 06/Jun/2024
+Advanced Youtube Client - AYC v4.23 - 07/Sep/2024
 Open AYClient.bat
 
 What's new?
+
+[4.23]
+- New: Toggle to enable or disable downloading auto-generated subtitles.
+- New: Subtitles support added to custom quality youtube downloads.
+- Fixed: Thumbnails were not being shown on custom quality youtube downloads.
+- Updated: ffmpeg, atomicparsley.
 
 [4.22]
 - Fixed: Retries were failing due to a previous optimization from v4.19.
